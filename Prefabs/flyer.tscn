@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://j7xjqslowfv4"]
+
+[ext_resource type="Script" path="res://Scripts/flyer.gd" id="1_tbb62"]
+[ext_resource type="PackedScene" uid="uid://cxsi5j6vr8kn2" path="res://3DModels/flyer.fbx" id="1_v7q4s"]
+[ext_resource type="Texture2D" uid="uid://d0sufcckunvsn" path="res://Textures/flyer.png" id="2_e5smc"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://7ad32kr2vxvm" path="res://AnimationTrees/flyer.tres" id="4_igl5p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw81l"]
+albedo_texture = ExtResource("2_e5smc")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tp6gt"]
+
+[node name="FlyerCharacter" type="CharacterBody3D"]
+script = ExtResource("1_tbb62")
+
+[node name="flyer" parent="." instance=ExtResource("1_v7q4s")]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 1, 0)
+
+[node name="Skeleton3D" parent="flyer/RootNode/Flyer Boi armature" index="0"]
+bones/0/position = Vector3(8.79912e-07, 0.179994, 0.264522)
+bones/0/rotation = Quaternion(0.935119, -6.77314e-07, -1.78369e-06, 0.354335)
+bones/1/rotation = Quaternion(0.211394, 8.8368e-07, 1.13358e-05, 0.977401)
+bones/3/rotation = Quaternion(0.937581, -1.14015e-06, -1.66641e-06, 0.347767)
+bones/4/rotation = Quaternion(-0.208448, -6.9102e-09, -1.39052e-06, 0.978034)
+bones/4/scale = Vector3(1, 1, 0.999989)
+bones/5/rotation = Quaternion(0.176753, 1.53725e-10, -3.12804e-07, 0.984255)
+bones/6/rotation = Quaternion(0.197318, 1.36557e-09, -3.5949e-07, 0.98034)
+bones/8/rotation = Quaternion(-0.212007, 0.204308, -0.689226, 0.662026)
+bones/9/rotation = Quaternion(0.127886, 0.02835, -0.337227, 0.932266)
+bones/10/rotation = Quaternion(-0.0731251, 2.18712e-05, 0.529896, 0.844904)
+bones/11/rotation = Quaternion(0.498242, 0.222782, -0.460326, 0.70016)
+bones/13/rotation = Quaternion(-0.617222, 1.89877e-08, -0.0851926, 0.782163)
+bones/14/position = Vector3(-0.0565605, 0.0294675, 0.539248)
+bones/14/rotation = Quaternion(0.469594, 0.598199, -0.453401, 0.46483)
+bones/18/rotation = Quaternion(-0.212004, -0.204306, 0.689227, 0.662027)
+bones/19/rotation = Quaternion(0.12702, -0.0255143, 0.35207, 0.926964)
+bones/20/rotation = Quaternion(-0.0759021, -1.70106e-05, -0.549998, 0.83171)
+bones/21/rotation = Quaternion(0.503584, -0.222152, 0.46529, 0.693222)
+bones/23/rotation = Quaternion(-0.617222, -1.74304e-08, 0.0851926, 0.782163)
+bones/24/position = Vector3(0.0557923, 0.0329688, 0.53105)
+bones/24/rotation = Quaternion(0.469594, -0.598199, 0.453402, 0.46483)
+bones/28/position = Vector3(-0.152441, 0.212935, -0.103792)
+bones/30/position = Vector3(0.15244, 0.212935, -0.103793)
+bones/32/position = Vector3(-1.79677e-17, -0.0207622, 0.421318)
+bones/32/rotation = Quaternion(0.985078, 4.23337e-07, -2.42298e-06, -0.17211)
+bones/33/position = Vector3(-2.2322e-06, 0.0683376, -0.0515494)
+bones/34/rotation = Quaternion(0.552833, -3.6419e-08, -2.08472e-06, 0.833292)
+bones/36/position = Vector3(-1.70568e-16, 0.279907, -0.586724)
+bones/38/position = Vector3(-1.23755e-16, 0.167489, -0.376038)
+bones/40/position = Vector3(-8.66503e-17, 0.148438, -0.210137)
+bones/42/position = Vector3(6.63037e-18, 0.214524, 0.0121655)
+
+[node name="Flyer Boi mesh" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
+
+[node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, -3.81468e-06, 3.80926e-06, -0.0533088, 0.998578, -2.03356e-07, -0.998578, -0.0533088, -1.97861e-06, -0.1275, 0.448362)
+bone_name = "jaw"
+bone_idx = 34
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_tp6gt")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("4_igl5p")
+anim_player = NodePath("../flyer/AnimationPlayer")
+parameters/conditions/attack1 = false
+parameters/conditions/attack2 = false
+parameters/conditions/death = false
+parameters/conditions/glide = false
+parameters/conditions/idle = false
+
+[editable path="flyer"]

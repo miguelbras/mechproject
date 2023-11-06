@@ -1,0 +1,127 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=29 format=3 uid="uid://7ad32kr2vxvm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fwymf"]
+animation = &"Flyer Boi armature|Attack 1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1sjex"]
+animation = &"Flyer Boi armature|Attack 2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1jesr"]
+animation = &"Flyer Boi armature|Attack Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ofcy6"]
+animation = &"Flyer Boi armature|Attack to Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lqejb"]
+animation = &"Flyer Boi armature|Attack to Glide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fsisl"]
+animation = &"Flyer Boi armature|Death Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ctxqf"]
+animation = &"Flyer Boi armature|Glide Flap"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gbcc8"]
+animation = &"Flyer Boi armature|Glide To Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e4gq8"]
+animation = &"Flyer Boi armature|Glide to Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wjxhb"]
+animation = &"Flyer Boi armature|Glide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wa36k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6l0mu"]
+advance_mode = 2
+advance_condition = &"glide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a8c0h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q3iu3"]
+advance_mode = 2
+advance_condition = &"attack1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5x0x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ihdw0"]
+advance_mode = 2
+advance_condition = &"attack2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f1cd2"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ts72q"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_comvf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26om5"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fc0e8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wyykv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_udjhe"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_krdiv"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_84pws"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qcvsl"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iqeqb"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6em4b"]
+advance_mode = 2
+advance_condition = &"death"
+
+[resource]
+states/End/position = Vector2(1130, 100)
+"states/Flyer Boi armature|Attack 1/node" = SubResource("AnimationNodeAnimation_fwymf")
+"states/Flyer Boi armature|Attack 1/position" = Vector2(872, 82)
+"states/Flyer Boi armature|Attack 2/node" = SubResource("AnimationNodeAnimation_1sjex")
+"states/Flyer Boi armature|Attack 2/position" = Vector2(1021, 198)
+"states/Flyer Boi armature|Attack Idle/node" = SubResource("AnimationNodeAnimation_1jesr")
+"states/Flyer Boi armature|Attack Idle/position" = Vector2(434, 134)
+"states/Flyer Boi armature|Attack to Death/node" = SubResource("AnimationNodeAnimation_ofcy6")
+"states/Flyer Boi armature|Attack to Death/position" = Vector2(1021, -69)
+"states/Flyer Boi armature|Attack to Glide/node" = SubResource("AnimationNodeAnimation_lqejb")
+"states/Flyer Boi armature|Attack to Glide/position" = Vector2(630, 14)
+"states/Flyer Boi armature|Death Fall/node" = SubResource("AnimationNodeAnimation_fsisl")
+"states/Flyer Boi armature|Death Fall/position" = Vector2(1021, -196)
+"states/Flyer Boi armature|Glide/node" = SubResource("AnimationNodeAnimation_wjxhb")
+"states/Flyer Boi armature|Glide/position" = Vector2(434, -93)
+"states/Flyer Boi armature|Glide Flap/node" = SubResource("AnimationNodeAnimation_ctxqf")
+"states/Flyer Boi armature|Glide Flap/position" = Vector2(234, -196)
+"states/Flyer Boi armature|Glide To Attack/node" = SubResource("AnimationNodeAnimation_gbcc8")
+"states/Flyer Boi armature|Glide To Attack/position" = Vector2(234, 14)
+"states/Flyer Boi armature|Glide to Death/node" = SubResource("AnimationNodeAnimation_e4gq8")
+"states/Flyer Boi armature|Glide to Death/position" = Vector2(630, -196)
+states/Start/position = Vector2(177, 134)
+transitions = ["Start", "Flyer Boi armature|Attack Idle", SubResource("AnimationNodeStateMachineTransition_wa36k"), "Flyer Boi armature|Attack Idle", "Flyer Boi armature|Attack to Glide", SubResource("AnimationNodeStateMachineTransition_6l0mu"), "Flyer Boi armature|Glide To Attack", "Flyer Boi armature|Attack Idle", SubResource("AnimationNodeStateMachineTransition_a8c0h"), "Flyer Boi armature|Attack Idle", "Flyer Boi armature|Attack 1", SubResource("AnimationNodeStateMachineTransition_q3iu3"), "Flyer Boi armature|Attack 1", "Flyer Boi armature|Attack Idle", SubResource("AnimationNodeStateMachineTransition_c5x0x"), "Flyer Boi armature|Attack Idle", "Flyer Boi armature|Attack 2", SubResource("AnimationNodeStateMachineTransition_ihdw0"), "Flyer Boi armature|Attack 2", "Flyer Boi armature|Attack Idle", SubResource("AnimationNodeStateMachineTransition_f1cd2"), "Flyer Boi armature|Glide", "Flyer Boi armature|Glide To Attack", SubResource("AnimationNodeStateMachineTransition_ts72q"), "Flyer Boi armature|Attack to Glide", "Flyer Boi armature|Glide", SubResource("AnimationNodeStateMachineTransition_comvf"), "Flyer Boi armature|Glide Flap", "Flyer Boi armature|Glide To Attack", SubResource("AnimationNodeStateMachineTransition_26om5"), "Flyer Boi armature|Glide", "Flyer Boi armature|Glide Flap", SubResource("AnimationNodeStateMachineTransition_fc0e8"), "Flyer Boi armature|Glide Flap", "Flyer Boi armature|Glide", SubResource("AnimationNodeStateMachineTransition_wyykv"), "Flyer Boi armature|Glide", "Flyer Boi armature|Glide to Death", SubResource("AnimationNodeStateMachineTransition_udjhe"), "Flyer Boi armature|Glide Flap", "Flyer Boi armature|Glide to Death", SubResource("AnimationNodeStateMachineTransition_krdiv"), "Flyer Boi armature|Glide to Death", "Flyer Boi armature|Death Fall", SubResource("AnimationNodeStateMachineTransition_84pws"), "Flyer Boi armature|Attack to Death", "Flyer Boi armature|Death Fall", SubResource("AnimationNodeStateMachineTransition_qcvsl"), "Flyer Boi armature|Attack 1", "Flyer Boi armature|Attack to Death", SubResource("AnimationNodeStateMachineTransition_iqeqb"), "Flyer Boi armature|Attack 2", "Flyer Boi armature|Attack to Death", SubResource("AnimationNodeStateMachineTransition_6em4b")]
+graph_offset = Vector2(-113, -284)

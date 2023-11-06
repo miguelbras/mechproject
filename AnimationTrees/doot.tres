@@ -1,0 +1,89 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=20 format=3 uid="uid://mb4cajj8uh7s"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mae3k"]
+animation = &"Doot Boi armature_001|Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ihqjj"]
+animation = &"Doot Boi armature_001|Attack02"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p5dl2"]
+animation = &"Doot Boi armature_001|Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eb2hc"]
+animation = &"Doot Boi armature_001|Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sjyx4"]
+animation = &"Doot Boi armature_001|Revival"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_of3p6"]
+animation = &"Doot Boi armature_001|Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7dpm8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l3gdq"]
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_un1ux"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sdljh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3tfcu"]
+advance_mode = 2
+advance_condition = &"attack1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pgiwp"]
+advance_mode = 2
+advance_condition = &"attack2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvx52"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r3s4b"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j1djm"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"revival"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_il4jf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1irde"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q2ehh"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b4el8"]
+advance_mode = 2
+advance_condition = &"death"
+
+[resource]
+"states/Doot Boi armature_001|Attack/node" = SubResource("AnimationNodeAnimation_mae3k")
+"states/Doot Boi armature_001|Attack/position" = Vector2(721.038, 155)
+"states/Doot Boi armature_001|Attack02/node" = SubResource("AnimationNodeAnimation_ihqjj")
+"states/Doot Boi armature_001|Attack02/position" = Vector2(911.039, 52)
+"states/Doot Boi armature_001|Death/node" = SubResource("AnimationNodeAnimation_p5dl2")
+"states/Doot Boi armature_001|Death/position" = Vector2(911.039, 336)
+"states/Doot Boi armature_001|Idle/node" = SubResource("AnimationNodeAnimation_eb2hc")
+"states/Doot Boi armature_001|Idle/position" = Vector2(303, 100)
+"states/Doot Boi armature_001|Revival/node" = SubResource("AnimationNodeAnimation_sjyx4")
+"states/Doot Boi armature_001|Revival/position" = Vector2(303, 336)
+"states/Doot Boi armature_001|Walk/node" = SubResource("AnimationNodeAnimation_of3p6")
+"states/Doot Boi armature_001|Walk/position" = Vector2(457, 272)
+states/End/position = Vector2(1050, 125)
+states/Start/position = Vector2(79, 100)
+transitions = ["Start", "Doot Boi armature_001|Idle", SubResource("AnimationNodeStateMachineTransition_7dpm8"), "Doot Boi armature_001|Idle", "Doot Boi armature_001|Walk", SubResource("AnimationNodeStateMachineTransition_l3gdq"), "Doot Boi armature_001|Walk", "Doot Boi armature_001|Idle", SubResource("AnimationNodeStateMachineTransition_un1ux"), "Doot Boi armature_001|Attack", "Doot Boi armature_001|Idle", SubResource("AnimationNodeStateMachineTransition_sdljh"), "Doot Boi armature_001|Idle", "Doot Boi armature_001|Attack", SubResource("AnimationNodeStateMachineTransition_3tfcu"), "Doot Boi armature_001|Idle", "Doot Boi armature_001|Attack02", SubResource("AnimationNodeStateMachineTransition_pgiwp"), "Doot Boi armature_001|Attack02", "Doot Boi armature_001|Idle", SubResource("AnimationNodeStateMachineTransition_tvx52"), "Doot Boi armature_001|Idle", "Doot Boi armature_001|Death", SubResource("AnimationNodeStateMachineTransition_r3s4b"), "Doot Boi armature_001|Death", "Doot Boi armature_001|Revival", SubResource("AnimationNodeStateMachineTransition_j1djm"), "Doot Boi armature_001|Revival", "Doot Boi armature_001|Idle", SubResource("AnimationNodeStateMachineTransition_il4jf"), "Doot Boi armature_001|Attack", "Doot Boi armature_001|Death", SubResource("AnimationNodeStateMachineTransition_1irde"), "Doot Boi armature_001|Attack02", "Doot Boi armature_001|Death", SubResource("AnimationNodeStateMachineTransition_q2ehh"), "Doot Boi armature_001|Walk", "Doot Boi armature_001|Death", SubResource("AnimationNodeStateMachineTransition_b4el8")]
+graph_offset = Vector2(-27.9615, 16)
