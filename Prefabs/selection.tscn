@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjsxmtsb0ta1e"]
+
+[ext_resource type="Script" path="res://Scripts/selection.gd" id="1_wkery"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ot7bq"]
+
+[node name="Selection" type="Area3D"]
+script = ExtResource("1_wkery")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ot7bq")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true

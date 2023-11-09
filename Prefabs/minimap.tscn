@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://co56gxdon4pbs"]
+
+[ext_resource type="Texture2D" uid="uid://cardlmq0je27v" path="res://Textures/UI/border.png" id="1_3v5fg"]
+[ext_resource type="Script" path="res://Scripts/minimap.gd" id="1_l4hq0"]
+[ext_resource type="Texture2D" uid="uid://s8ayc55es16p" path="res://Textures/UI/grid.png" id="2_sm4l3"]
+[ext_resource type="Texture2D" uid="uid://cinpgd1njqs25" path="res://Textures/UI/playermarker.png" id="4_5d21n"]
+[ext_resource type="Texture2D" uid="uid://ypxpge7xut3j" path="res://Textures/UI/mobmarker.png" id="5_bjt38"]
+[ext_resource type="Texture2D" uid="uid://bl3vw8i160w0b" path="res://Textures/UI/alertmarker.png" id="6_fxi2a"]
+
+[node name="minimap" type="CanvasLayer"]
+
+[node name="Minimap" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(5, 5)
+offset_right = 200.0
+offset_bottom = 200.0
+script = ExtResource("1_l4hq0")
+
+[node name="Frame" type="NinePatchRect" parent="Minimap"]
+layout_mode = 2
+texture = ExtResource("1_3v5fg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Minimap"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Grid" type="TextureRect" parent="Minimap/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_sm4l3")
+stretch_mode = 1
+
+[node name="PlayerMarker" type="Sprite2D" parent="Minimap/MarginContainer/Grid"]
+position = Vector2(92, 93)
+texture = ExtResource("4_5d21n")
+
+[node name="MobMarker" type="Sprite2D" parent="Minimap/MarginContainer/Grid"]
+visible = false
+position = Vector2(36, 65)
+texture = ExtResource("5_bjt38")
+
+[node name="AlertMarker" type="Sprite2D" parent="Minimap/MarginContainer/Grid"]
+visible = false
+position = Vector2(146, 142)
+texture = ExtResource("6_fxi2a")

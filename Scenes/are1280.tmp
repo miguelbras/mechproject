@@ -58,6 +58,7 @@ camera = NodePath("../Lich/Camera3D")
 [node name="Minimap" parent="minimap" index="0" node_paths=PackedStringArray("arena")]
 player = NodePath("../../Lich")
 arena = NodePath("../../Arena/MeshInstance3D")
+zoom = 1.5
 
 [editable path="DootCharacter"]
 [editable path="DootCharacter/doot"]
