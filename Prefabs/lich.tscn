@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://brjmf2ik2584c"]
+
+[ext_resource type="Script" path="res://Scripts/lich.gd" id="1_7sbdc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3rj3x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qv6f7"]
+
+[node name="Lich" type="CharacterBody3D" groups=["mob"]]
+script = ExtResource("1_7sbdc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3rj3x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_qv6f7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999943, -1.054e-09, -0.0106987, 0.00903731, 0.535223, 0.844663, 0.00572619, -0.844711, 0.535192, 0.606391, 8.30563, 4.1951)
