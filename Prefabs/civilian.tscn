@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1vp4yn7ubm41"]
 
-[ext_resource type="Script" path="res://civilian.gd" id="1_fw6mh"]
+[ext_resource type="Script" path="res://Scripts/civilian.gd" id="1_b3qgl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hn37s"]
 
@@ -8,8 +8,8 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ftsx7"]
 
-[node name="Civilian" type="CharacterBody3D"]
-script = ExtResource("1_fw6mh")
+[node name="Civilian" type="CharacterBody3D" groups=["civ"]]
+script = ExtResource("1_b3qgl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -22,3 +22,11 @@ mesh = SubResource("CapsuleMesh_2rt5c")
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 1.93326, 0)
 shape = SubResource("CylinderShape3D_ftsx7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

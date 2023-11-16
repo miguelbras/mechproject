@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
-#@export var target : Node3D
 @export var max_velocity = 2
 @export var hp = 10
 
 @onready var detection_area = $ShapeCast3D
+@onready var doot = load("res://Prefabs/doot.tscn")
 
 var target = null
 
@@ -28,7 +28,6 @@ func set_current_target():
 
 func run_from_target():
 	set_current_target()
-	print(self, " ", target)
 	if target != null:
 		var desired_velocity = (position - target.position) * max_velocity
 		var steering = desired_velocity - velocity
@@ -40,3 +39,11 @@ func run_from_target():
 func _physics_process(delta):
 	run_from_target()
 	move_and_slide()
+
+func _on_timer_timeout():
+	queue_free()
+
+func _on_tree_exited():
+	var doot_instance = doot.instantiate()
+	doot_instance.position = position
+	Global.arena.add_child(doot_instance)
