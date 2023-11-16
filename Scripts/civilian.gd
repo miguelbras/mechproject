@@ -25,7 +25,6 @@ func _physics_process(delta):
 		run_from_target()
 	if velocity.length() > 0:
 		sta -= delta
-		print(sta)
 		if sta <= 0:
 			velocity = Vector3.ZERO
 			timer.start()

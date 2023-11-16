@@ -41,7 +41,7 @@ func _physics_process(delta):
 
 func follow_target():
 	target = Util.get_closest_target(target, position, cast, "civ")
-	if target != null:
+	if target != null: # stop on distance
 		var desired_velocity = (target.position - position) * max_velocity
 		var steering = desired_velocity - velocity
 		velocity = Util.truncate_vector(velocity + steering, max_velocity)
