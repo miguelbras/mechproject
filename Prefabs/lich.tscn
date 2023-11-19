@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://brjmf2ik2584c"]
+[gd_scene load_steps=8 format=3 uid="uid://brjmf2ik2584c"]
 
 [ext_resource type="Script" path="res://Scripts/lich.gd" id="1_7sbdc"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/attack1.tscn" id="2_g76xd"]
+[ext_resource type="PackedScene" uid="uid://bev6v5dhv8muu" path="res://Prefabs/attack2.tscn" id="3_qomia"]
+[ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/attack3.tscn" id="4_7f1bl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o30m4"]
 
@@ -12,6 +14,8 @@
 [node name="Lich" type="CharacterBody3D" groups=["mob"]]
 script = ExtResource("1_7sbdc")
 attack1_prefab = ExtResource("2_g76xd")
+attack2_prefab = ExtResource("3_qomia")
+attack3_prefab = ExtResource("4_7f1bl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
