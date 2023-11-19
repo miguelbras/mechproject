@@ -10,7 +10,7 @@ static func truncate_vector(vector, max):
 # behaviour
 
 static func get_all_targets(cast: ShapeCast3D, group: String):
-	return cast.collision_result.map(func(x): return x.collider).filter(func(x): return x.is_in_group(group))
+	return cast.collision_result.map(func(x): return x.collider).filter(func(x): return x and x.is_in_group(group))
 
 static func get_closest_target(curr_target, pos: Vector3, cast: ShapeCast3D, group: String):
 	var neighbours = get_all_targets(cast, group)

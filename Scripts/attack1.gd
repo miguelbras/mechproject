@@ -8,12 +8,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.position -= transform.basis.x * 150 * delta
+	self.position -= transform.basis.z * 15 * delta
 
 func _on_dmg(body: Node) -> void:
-	if body.in_in_group("Enemy"):
+	if body.is_in_group("Enemy"):
 		body.take_damage(1)
-	queue_free()
+		# spawn explosion
+		# do slow/dot/more dmg
+		queue_free()
 
 func _on_timeout() -> void:
 	queue_free()

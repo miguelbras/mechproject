@@ -32,7 +32,7 @@ func faceDirection(direction):
 
 func _input(event):
 	if Input.is_action_just_pressed("mouse_move"):
-		mouse_move(event)
+		mouse_move()
 	elif Input.is_action_pressed("attack1"):
 		attack1()
 	elif Input.is_action_pressed("attack2"):
@@ -44,7 +44,7 @@ func _input(event):
 	elif Input.is_action_pressed("zombie_move_pass"):
 		pass
 
-func mouse_move(event):
+func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
 	var rayLength = 100
 	var from = camera.project_ray_origin(mousePos)
@@ -54,12 +54,21 @@ func mouse_move(event):
 	rayQuery.from = from
 	rayQuery.to = to
 	rayQuery.collide_with_areas = true
-	var result = space.intersect_ray(rayQuery)
+	var result: Dictionary = space.intersect_ray(rayQuery)
+	return result
+
+func mouse_move():
+	var result = get_mouse_target_pos()
 	if not result:
 		return
 	navigationAgent.target_position = result.position
+	
 
 func attack1():
-	var projectile = attack1_prefab.instance()
+	var projectile = attack1_prefab.instantiate()
+	var result = get_mouse_target_pos()
+	if not result:
+		return
+	faceDirection(result.position)
 	projectile.rotation_degrees = projectile_spawner.global_transform.basis.get_euler()
 	projectile_spawner.add_child(projectile)

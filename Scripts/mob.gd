@@ -30,7 +30,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func follow_target():
-	target = Util.get_closest_target(target, position, cast, "civ")
+	target = Util.get_closest_target(target, position, cast, "Enemy")
 	if target != null and target.position.distance_to(position) > 2:
 		var desired_velocity = (target.position - position) * max_velocity
 		var steering = desired_velocity - velocity
