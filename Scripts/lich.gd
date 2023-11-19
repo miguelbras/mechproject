@@ -30,18 +30,29 @@ func faceDirection(direction):
 
 func _input(event):
 	if Input.is_action_just_pressed("mouse_move"):
-		var mousePos = get_viewport().get_mouse_position()
-		var rayLength = 100
-		var from = camera.project_ray_origin(mousePos)
-		var to = from + camera.project_ray_normal(mousePos) * rayLength
-		var space = get_world_3d().direct_space_state
-		var rayQuery = PhysicsRayQueryParameters3D.new()
-		rayQuery.from = from
-		rayQuery.to = to
-		rayQuery.collide_with_areas = true
-		var result = space.intersect_ray(rayQuery)
-		print(result)
-		if not result:
-			return
-		
-		navigationAgent.target_position = result.position
+		mouse_move(event)
+	elif Input.is_action_pressed("attack1"):
+		pass
+	elif Input.is_action_pressed("attack2"):
+		pass
+	elif Input.is_action_pressed("attack3"):
+		pass
+	elif Input.is_action_pressed("zombie_move_agg"):
+		pass
+	elif Input.is_action_pressed("zombie_move_pass"):
+		pass
+
+func mouse_move(event):
+	var mousePos = get_viewport().get_mouse_position()
+	var rayLength = 100
+	var from = camera.project_ray_origin(mousePos)
+	var to = from + camera.project_ray_normal(mousePos) * rayLength
+	var space = get_world_3d().direct_space_state
+	var rayQuery = PhysicsRayQueryParameters3D.new()
+	rayQuery.from = from
+	rayQuery.to = to
+	rayQuery.collide_with_areas = true
+	var result = space.intersect_ray(rayQuery)
+	if not result:
+		return
+	navigationAgent.target_position = result.position
