@@ -54,3 +54,7 @@ func _on_timer_timeout():
 	behaviour = Behaviour.RANDOM if randf() > 0.5 else Behaviour.ESCASPE
 	rand_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1))
 		
+func take_damage(dmg: int):
+	hp -= dmg
+	if hp <= 0:
+		queue_free()

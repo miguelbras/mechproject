@@ -8,10 +8,8 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ftsx7"]
 
-[node name="Civilian" type="CharacterBody3D" groups=["civ"]]
+[node name="Civilian" type="CharacterBody3D" groups=["Enemy", "civ"]]
 script = ExtResource("1_b3qgl")
-max_velocity = null
-hp = null
 sta = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

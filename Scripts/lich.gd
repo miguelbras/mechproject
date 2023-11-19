@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
 @onready var camera: Camera3D = get_tree().get_nodes_in_group("Camera")[0]
 @onready var camera_delta: Vector3 = camera.position - self.position
+@onready var projectile_spawner : Node3D = $ProjectileSpawner
+@export var attack1_prefab : PackedScene
 @export var Speed = 6
 
 # Called when the node enters the scene tree for the first time.
@@ -32,7 +34,7 @@ func _input(event):
 	if Input.is_action_just_pressed("mouse_move"):
 		mouse_move(event)
 	elif Input.is_action_pressed("attack1"):
-		pass
+		attack1()
 	elif Input.is_action_pressed("attack2"):
 		pass
 	elif Input.is_action_pressed("attack3"):
@@ -56,3 +58,8 @@ func mouse_move(event):
 	if not result:
 		return
 	navigationAgent.target_position = result.position
+
+func attack1():
+	var projectile = attack1_prefab.instance()
+	projectile.rotation_degrees = projectile_spawner.global_transform.basis.get_euler()
+	projectile_spawner.add_child(projectile)
