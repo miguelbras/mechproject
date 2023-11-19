@@ -1,33 +1,58 @@
 extends CharacterBody3D
 
-@export var speed = 6
+@onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
+@onready var camera: Camera3D = get_tree().get_nodes_in_group("Camera")[0]
+@onready var camera_delta: Vector3 = camera.position - self.position
+@export var Speed = 6
 
-var target_velocity = Vector3.ZERO
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
-func _physics_process(delta):
-	# We create a local variable to store the input direction.
-	var direction = Vector3.ZERO
 
-	# We check for each move input and update the direction accordingly.
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_backward"):
-		# Notice how we are working with the vector's x and z axes.
-		# In 3D, the XZ plane is the ground plane.
-		direction.z += 1
-	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if(navigationAgent.is_navigation_finished()):
+		return
 	
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-	
-	# Ground Velocity
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
+	moveToPoint(delta, Speed)
+	camera.position = self.position + camera_delta
 
-	# Moving the Character
-	velocity = target_velocity
-	
+func moveToPoint(delta, speed):
+	var targetPos = navigationAgent.get_next_path_position()
+	var direction = global_position.direction_to(targetPos)
+	faceDirection(targetPos)
+	velocity = direction * speed
 	move_and_slide()
+
+func faceDirection(direction):
+	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
+
+func _input(event):
+	if Input.is_action_just_pressed("mouse_move"):
+		mouse_move(event)
+	elif Input.is_action_pressed("attack1"):
+		pass
+	elif Input.is_action_pressed("attack2"):
+		pass
+	elif Input.is_action_pressed("attack3"):
+		pass
+	elif Input.is_action_pressed("zombie_move_agg"):
+		pass
+	elif Input.is_action_pressed("zombie_move_pass"):
+		pass
+
+func mouse_move(event):
+	var mousePos = get_viewport().get_mouse_position()
+	var rayLength = 100
+	var from = camera.project_ray_origin(mousePos)
+	var to = from + camera.project_ray_normal(mousePos) * rayLength
+	var space = get_world_3d().direct_space_state
+	var rayQuery = PhysicsRayQueryParameters3D.new()
+	rayQuery.from = from
+	rayQuery.to = to
+	rayQuery.collide_with_areas = true
+	var result = space.intersect_ray(rayQuery)
+	if not result:
+		return
+	navigationAgent.target_position = result.position
