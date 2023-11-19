@@ -2739,7 +2739,7 @@ bones/42/position = Vector3(6.63037e-18, 0.345098, 0.14854)
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.47324e-06, -0.0831875, 0.419962)
+transform = Transform3D(1, -2.50111e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.47324e-06, -0.0831875, 0.419962)
 bone_name = "jaw"
 bone_idx = 34
 
