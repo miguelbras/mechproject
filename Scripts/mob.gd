@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Mob
 
-enum State {IDLE, WALK, ATK1, ATK2, DEAD}
+enum State {IDLE, WALK, ATK, DEAD}
 
 signal removed
 
@@ -23,13 +23,13 @@ func _ready():
 
 func _process(delta):
 	update_state()
+	if attacking:
+		attack_target()
 	update_animation_parameters()
 
 func _physics_process(delta):
 	if not attacking:
 		follow_target()
-	else:
-		attack_target()
 	look_at_target(delta)
 	move_and_slide()
 
@@ -51,14 +51,18 @@ func attack_target():
 	pass
 
 func update_state():
-		if velocity == Vector3.ZERO and target == null:
-			state = State.IDLE
-		elif velocity == Vector3.ZERO and target != null:
-			if not attacking:
-				state = State.ATK1 if randf() > 0.5 else State.ATK2
+	if not attacking:
+		if velocity == Vector3.ZERO:
+			if target == null:
+				state = State.IDLE
+			else:
+				state = State.ATK
 				attacking = true
 		else:
 			state = State.WALK
+	#else:
+	#	if target.velocity != Vector3.ZERO:
+	#		attacking = false
 
 func update_animation_parameters():
 	pass
