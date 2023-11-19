@@ -10,6 +10,8 @@
 
 [node name="Civilian" type="CharacterBody3D" groups=["civ"]]
 script = ExtResource("1_b3qgl")
+max_velocity = null
+hp = null
 sta = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
