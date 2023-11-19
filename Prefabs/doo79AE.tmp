@@ -2809,6 +2809,7 @@ script = ExtResource("1_21tef")
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, 0)
 
 [node name="Skeleton3D" parent="doot/RootNode/Doot Boi armature_001" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/1/position = Vector3(0, 0.24299, -0.00340372)
 bones/1/rotation = Quaternion(0.0918456, 0.0174208, 0.185537, 0.97818)
 bones/2/rotation = Quaternion(-0.013895, -0.0360732, -0.206397, 0.977704)

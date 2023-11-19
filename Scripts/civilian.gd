@@ -1,17 +1,18 @@
 extends CharacterBody3D
 
-enum Behaviour {ESCASPE, RANDOM}
+enum State {ESCAPE, RANDOM}
 
 @export var max_velocity = 2
 @export var hp = 10
-@export var sta = 2.0
+@export var sta = 5.0
+@export var rec = 2.0
 
 @onready var cast = $ShapeCast3D
 @onready var timer = $Timer
 @onready var doot = load("res://Prefabs/doot.tscn")
 
 var target = null
-var behaviour = Behaviour.ESCASPE
+var state = State.ESCAPE
 var rand_dir = Vector3.ZERO
 
 func run_from_target():
@@ -32,7 +33,7 @@ func run_direction(direction: Vector3):
 
 func _physics_process(delta):
 	if sta > 0:
-		if behaviour == Behaviour.ESCASPE:
+		if state == State.ESCAPE:
 			run_from_target()
 		else:
 			run_direction(rand_dir)
@@ -40,7 +41,7 @@ func _physics_process(delta):
 		sta -= delta
 		if sta <= 0:
 			velocity = Vector3.ZERO
-			timer.start()
+			timer.start(rec)
 	move_and_slide()
 
 func _on_tree_exited():
@@ -51,6 +52,5 @@ func _on_tree_exited():
 func _on_timer_timeout():
 	timer.stop()
 	sta = 2.0
-	behaviour = Behaviour.RANDOM if randf() > 0.5 else Behaviour.ESCASPE
+	state = State.RANDOM if randf() > 0.5 else State.ESCAPE
 	rand_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1))
-		
