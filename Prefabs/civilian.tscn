@@ -12,7 +12,6 @@
 
 [node name="Civilian" type="CharacterBody3D" groups=["Enemy", "civ"]]
 script = ExtResource("1_b3qgl")
-sta = 5.0
 attack1_debuff_prefab = ExtResource("2_fqw7m")
 attack2_debuff_prefab = ExtResource("3_a60kg")
 
@@ -30,7 +29,6 @@ shape = SubResource("CylinderShape3D_ftsx7")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 2.0
 
 [node name="SlowTimer" type="Timer" parent="."]
 wait_time = 5.0
