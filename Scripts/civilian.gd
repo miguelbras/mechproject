@@ -18,6 +18,15 @@ var rand_dir = Vector3.ZERO
 @onready var slow_timer = $SlowTimer
 var slow_factor = 0.5
 var slow = false
+@export var attack1_debuff_prefab : PackedScene
+var attack1_debuff = null
+
+@onready var dot_timer = $DotTimer
+var dot_tick_count_max = 5
+var dot_ticks_left = 0
+var dot_dmg = 1
+@export var attack2_debuff_prefab : PackedScene
+var attack2_debuff = null
 
 func run_from_target():
 	target = Util.get_closest_target(target, position, cast, "mob")
@@ -71,6 +80,30 @@ func set_slow():
 		slow_timer.stop()
 	slow = true
 	slow_timer.start()
+	if attack1_debuff == null:
+		attack1_debuff = attack1_debuff_prefab.instantiate()
+		add_child(attack1_debuff)
 
 func _on_slow_timer_timeout():
 	slow = false
+	attack1_debuff.queue_free()
+	attack1_debuff = null
+
+func set_dot():
+	if dot_ticks_left > 0:
+		dot_timer.stop()
+	dot_ticks_left = dot_tick_count_max
+	dot_timer.start()
+	if attack2_debuff == null:
+		attack2_debuff = attack2_debuff_prefab.instantiate()
+		add_child(attack2_debuff)
+	
+
+func _on_dot_timer_timeout():
+	take_damage(dot_dmg)
+	dot_ticks_left -= 1
+	# print(dot_ticks_left)
+	if dot_ticks_left == 0:
+		dot_timer.stop()
+		attack2_debuff.queue_free()
+		attack2_debuff = null

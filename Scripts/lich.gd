@@ -5,7 +5,12 @@ extends CharacterBody3D
 @onready var camera_delta: Vector3 = camera.position - self.position
 @onready var projectile_spawner : Node3D = $ProjectileSpawner
 @export var attack1_prefab : PackedScene
+@export var attack2_prefab : PackedScene
+@export var attack3_prefab : PackedScene
 @export var Speed = 6
+
+var last_time_attacked = 0
+@export var attack_cooldown_ms = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,9 +41,9 @@ func _input(event):
 	elif Input.is_action_pressed("attack1"):
 		attack1()
 	elif Input.is_action_pressed("attack2"):
-		pass
+		attack2()
 	elif Input.is_action_pressed("attack3"):
-		pass
+		attack3()
 	elif Input.is_action_pressed("zombie_move_agg"):
 		pass
 	elif Input.is_action_pressed("zombie_move_pass"):
@@ -63,12 +68,30 @@ func mouse_move():
 		return
 	navigationAgent.target_position = result.position
 	
-
-func attack1():
-	var projectile = attack1_prefab.instantiate()
+	
+func attack(projectile):
 	var result = get_mouse_target_pos()
 	if not result:
 		return
 	faceDirection(result.position)
 	projectile.rotation_degrees = projectile_spawner.global_transform.basis.get_euler()
 	projectile_spawner.add_child(projectile)
+	
+	# stop moving, add CD to attack
+	navigationAgent.target_position = self.position
+	last_time_attacked = Time.get_ticks_msec()
+	
+func attack1():
+	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+		return
+	attack(attack1_prefab.instantiate())
+
+func attack2():
+	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+		return
+	attack(attack2_prefab.instantiate())
+
+func attack3():
+	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+		return
+	attack(attack3_prefab.instantiate())

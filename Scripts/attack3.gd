@@ -14,7 +14,6 @@ func _on_dmg(body: Node) -> void:
 	if body.is_in_group("Enemy"):
 		body.take_damage(3)
 		# spawn explosion
-		# do slow/dot/more dmg
 		queue_free()
 
 func _on_timeout() -> void:
