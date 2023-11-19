@@ -9,6 +9,9 @@ extends CharacterBody3D
 @export var attack3_prefab : PackedScene
 @export var Speed = 6
 
+var last_time_attacked = 0
+@export var attack_cooldown_ms = 1000
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -74,11 +77,21 @@ func attack(projectile):
 	projectile.rotation_degrees = projectile_spawner.global_transform.basis.get_euler()
 	projectile_spawner.add_child(projectile)
 	
+	# stop moving, add CD to attack
+	navigationAgent.target_position = self.position
+	last_time_attacked = Time.get_ticks_msec()
+	
 func attack1():
+	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+		return
 	attack(attack1_prefab.instantiate())
 
 func attack2():
+	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+		return
 	attack(attack2_prefab.instantiate())
-	
+
 func attack3():
+	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+		return
 	attack(attack3_prefab.instantiate())
