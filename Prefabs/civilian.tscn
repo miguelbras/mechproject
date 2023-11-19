@@ -28,5 +28,10 @@ shape = SubResource("CylinderShape3D_ftsx7")
 process_callback = 0
 wait_time = 2.0
 
+[node name="SlowTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
