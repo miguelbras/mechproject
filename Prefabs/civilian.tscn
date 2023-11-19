@@ -8,7 +8,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ftsx7"]
 
-[node name="Civilian" type="CharacterBody3D" groups=["civ"]]
+[node name="Civilian" type="CharacterBody3D" groups=["Enemy", "civ"]]
 script = ExtResource("1_b3qgl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -26,5 +26,10 @@ shape = SubResource("CylinderShape3D_ftsx7")
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 
+[node name="SlowTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]

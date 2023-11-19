@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bev6v5dhv8muu"]
+
+[ext_resource type="Script" path="res://Scripts/attack2.gd" id="1_2dgqj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ijr8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s2cxj"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_2dgqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2ijr8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_s2cxj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_dmg"]
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]
