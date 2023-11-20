@@ -9,7 +9,7 @@ enum State {ESCAPE, RANDOM}
 
 @onready var cast = $ShapeCast3D
 @onready var timer = $Timer
-@onready var doot = load("res://Prefabs/doot.tscn")
+@onready var doot = load("res://Prefabs/Characters/doot.tscn")
 
 var target = null
 var state = State.ESCAPE

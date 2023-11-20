@@ -6,6 +6,7 @@ enum State {IDLE, WALK, ATK, DEAD}
 
 signal removed
 
+@export var hp = 10
 @export var max_velocity = 3
 
 #@onready var animation_tree : AnimationTree = $AnimationTree
@@ -63,7 +64,9 @@ func look_at_target(delta):
 		self.look_at(move_target, Vector3.UP, true)
 
 func update_state():
-	if not attacking:
+	if hp <= 0:
+		state = State.DEAD
+	elif not attacking:
 		if velocity == Vector3.ZERO:
 			if enemy_target == null:
 				state = State.IDLE
@@ -86,3 +89,6 @@ func aggressive_move(position: Vector3):
 func passive_move(position: Vector3):
 	aggressive = false
 	move_target = position
+
+func take_damage(dmg: int):
+	hp -= dmg

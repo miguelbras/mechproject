@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/flyer.gd" id="1_tbb62"]
 [ext_resource type="PackedScene" uid="uid://cxsi5j6vr8kn2" path="res://3DModels/flyer.fbx" id="1_v7q4s"]
 [ext_resource type="Texture2D" uid="uid://befmrqqwpmyap" path="res://Textures/flyer.png" id="2_e5smc"]
-[ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/attack1.tscn" id="2_vxy5y"]
+[ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/attack3.tscn" id="2_q1iao"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://7ad32kr2vxvm" path="res://AnimationTrees/flyer.tres" id="4_igl5p"]
 [ext_resource type="Script" path="res://detectable.gd" id="5_jku0w"]
 
@@ -2700,52 +2700,52 @@ _data = {
 
 [node name="FlyerCharacter" type="CharacterBody3D"]
 script = ExtResource("1_tbb62")
-attack1_prefab = ExtResource("2_vxy5y")
+attack1_prefab = ExtResource("2_q1iao")
 
 [node name="flyer" parent="." instance=ExtResource("1_v7q4s")]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 1, 0)
 
 [node name="Skeleton3D" parent="flyer/RootNode/Flyer Boi armature" index="0"]
-bones/0/position = Vector3(8.79912e-07, 0.18004, 0.264548)
+bones/0/position = Vector3(8.79912e-07, 0.222549, 0.279837)
 bones/0/rotation = Quaternion(0.935119, -6.77313e-07, -1.78369e-06, 0.354335)
-bones/1/rotation = Quaternion(0.211729, 8.85789e-07, 1.13226e-05, 0.977328)
-bones/3/rotation = Quaternion(0.937454, -1.13984e-06, -1.66694e-06, 0.348109)
-bones/4/rotation = Quaternion(-0.205701, -9.82453e-09, -1.39589e-06, 0.978615)
+bones/1/rotation = Quaternion(0.380176, 4.44871e-07, 4.85067e-06, 0.924914)
+bones/3/rotation = Quaternion(0.992781, -1.77482e-06, -1.38449e-06, 0.119943)
+bones/4/rotation = Quaternion(0.0951738, -5.48751e-07, -2.6349e-06, 0.995461)
 bones/4/scale = Vector3(1, 1, 0.999989)
-bones/5/rotation = Quaternion(0.178245, 2.72314e-10, -3.09771e-07, 0.983986)
-bones/6/rotation = Quaternion(0.195849, 1.90403e-09, -3.59487e-07, 0.980634)
-bones/8/rotation = Quaternion(-0.21173, 0.204163, -0.688739, 0.662666)
-bones/9/rotation = Quaternion(0.12795, 0.0283292, -0.338693, 0.931726)
-bones/10/rotation = Quaternion(-0.0734433, 1.97086e-05, 0.532191, 0.843433)
-bones/11/rotation = Quaternion(0.501073, 0.219361, -0.459921, 0.699485)
+bones/5/rotation = Quaternion(-0.317703, 1.18111e-08, 1.36806e-07, 0.94819)
+bones/6/rotation = Quaternion(-0.368466, 1.96944e-07, -3.00746e-07, 0.929641)
+bones/8/rotation = Quaternion(-0.062915, 0.0819276, -0.597582, 0.795126)
+bones/9/rotation = Quaternion(0.234013, 0.295721, -0.444978, 0.81227)
+bones/10/rotation = Quaternion(-0.123255, 1.88164e-05, 0.893265, 0.432303)
+bones/11/rotation = Quaternion(0.492053, -0.416085, -0.337295, 0.686286)
 bones/13/rotation = Quaternion(-0.617222, 2.01316e-08, -0.0851926, 0.782163)
-bones/14/position = Vector3(-0.056672, 0.029567, 0.538316)
-bones/14/rotation = Quaternion(0.472194, 0.595748, -0.45392, 0.464837)
+bones/14/position = Vector3(-0.125148, -0.139032, 0.2268)
+bones/14/rotation = Quaternion(0.84002, 0.128945, -0.386577, 0.358188)
 bones/16/position = Vector3(0.268526, 6.80331e-09, 0.272846)
-bones/18/rotation = Quaternion(-0.211727, -0.204161, 0.68874, 0.662667)
-bones/19/rotation = Quaternion(0.127074, -0.0254815, 0.353355, 0.926468)
-bones/20/rotation = Quaternion(-0.0761808, -1.53268e-05, -0.552009, 0.830351)
-bones/21/rotation = Quaternion(0.506352, -0.218746, 0.464821, 0.692603)
+bones/18/rotation = Quaternion(-0.0629128, -0.0819246, 0.597583, 0.795126)
+bones/19/rotation = Quaternion(0.234779, -0.296014, 0.442131, 0.813495)
+bones/20/rotation = Quaternion(-0.122979, -1.89319e-05, -0.891263, 0.436492)
+bones/21/rotation = Quaternion(0.49183, 0.415459, 0.3361, 0.68741)
 bones/23/rotation = Quaternion(-0.617222, -1.68894e-08, 0.0851926, 0.782163)
-bones/24/position = Vector3(0.0559106, 0.0330576, 0.530189)
-bones/24/rotation = Quaternion(0.472194, -0.595747, 0.453921, 0.464837)
+bones/24/position = Vector3(0.12535, -0.140483, 0.228908)
+bones/24/rotation = Quaternion(0.84002, -0.128945, 0.386576, 0.358188)
 bones/26/position = Vector3(-0.268526, 2.37454e-09, 0.272846)
-bones/28/position = Vector3(-0.152482, 0.213227, -0.103677)
-bones/30/position = Vector3(0.152481, 0.213227, -0.103678)
+bones/28/position = Vector3(-0.161018, 0.267875, -0.0339831)
+bones/30/position = Vector3(0.161018, 0.267875, -0.0339843)
 bones/32/position = Vector3(-1.79677e-17, -0.0207623, 0.421318)
 bones/32/rotation = Quaternion(0.985078, 4.23337e-07, -2.42298e-06, -0.17211)
-bones/33/position = Vector3(-2.22249e-06, 0.0683379, -0.0514773)
+bones/33/position = Vector3(-1.56443e-06, 0.0425817, -0.0128907)
 bones/34/rotation = Quaternion(0.552833, -3.6419e-08, -2.08472e-06, 0.833292)
-bones/36/position = Vector3(-1.70568e-16, 0.283032, -0.585926)
-bones/38/position = Vector3(-1.23755e-16, 0.169713, -0.375297)
-bones/40/position = Vector3(-8.66503e-17, 0.149554, -0.20987)
-bones/42/position = Vector3(6.63037e-18, 0.214427, 0.0118392)
+bones/36/position = Vector3(-1.70568e-16, 0.432487, -0.406053)
+bones/38/position = Vector3(-1.23755e-16, 0.540739, -0.22846)
+bones/40/position = Vector3(-8.66503e-17, 0.511981, -0.0696564)
+bones/42/position = Vector3(6.63037e-18, 0.328063, 0.126364)
 
 [node name="Flyer Boi mesh" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.96925e-06, -0.127476, 0.448294)
+transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.50102e-06, -0.0901619, 0.420727)
 bone_name = "jaw"
 bone_idx = 34
 
@@ -2781,6 +2781,10 @@ mob = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0n5ip")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="flyer"]

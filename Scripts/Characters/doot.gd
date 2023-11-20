@@ -7,11 +7,13 @@ var prev_state = State.IDLE
 var virt_state = State.IDLE
 
 func update_animation_parameters():
+	if state == State.DEAD:
+		virt_state = state
 	if state == State.WALK:
 		virt_state = state
 		if not timer.is_stopped():
 			timer.stop()
-	if prev_state == State.WALK and state != State.WALK and timer.is_stopped():
+	elif prev_state == State.WALK and state != State.WALK and timer.is_stopped():
 		timer.start()
 	
 	if virt_state == State.IDLE:
@@ -26,6 +28,8 @@ func update_animation_parameters():
 		anim_tree["parameters/conditions/moving"] = false
 	#elif virt_state == State.ATK2:
 	#	anim_tree["parameters/conditions/attack2"] = true
+	elif virt_state == State.DEAD:
+		anim_tree["parameters/conditions/death"] = true
 
 	prev_state = state
 
@@ -34,7 +38,9 @@ func _on_timer_timeout():
 	timer.stop()
 
 func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == "Doot Boi armature_001|Attack" or anim_name == "Doot Boi armature_001|Attack02":
+	if anim_name == "Doot Boi armature_001|Death":
+		queue_free()
+	elif anim_name == "Doot Boi armature_001|Attack" or anim_name == "Doot Boi armature_001|Attack02":
 		anim_tree["parameters/conditions/attack1"] = false
 		anim_tree["parameters/conditions/attack2"] = false
 		attacking = false

@@ -47,7 +47,7 @@ func select():
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
 	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
-	print("SELECTION: ", selected_mobs)
+	#print("SELECTION: ", selected_mobs)
 	
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:
