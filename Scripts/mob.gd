@@ -13,10 +13,14 @@ signal removed
 
 # var minimap_icon = "mob"
 var target_velocity = Vector3.ZERO
-var target = null
+
 var stop_dist = 2
 var state = State.IDLE
 var attacking = false
+
+var enemy_target = null
+var move_target = null
+var aggressive: bool = true
 
 #func _ready():
 #	animation_tree.active = true
@@ -26,15 +30,26 @@ func _process(delta):
 	update_animation_parameters()
 
 func _physics_process(delta):
-	if not attacking:
+	if aggressive:
+		follow_enemy()
+	# if no enemy nearby, or if passive, just move to destination
+	if enemy_target == null || not aggressive:
 		follow_target()
 	look_at_target(delta)
 	move_and_slide()
 
+func follow_enemy():
+	enemy_target = Util.get_closest_target(enemy_target, position, cast, "Enemy")
+	if enemy_target == null:
+		return
+	follow_something(enemy_target.position)
+
 func follow_target():
-	target = Util.get_closest_target(target, position, cast, "Enemy")
-	if target != null and target.position.distance_to(position) > stop_dist:
-		var desired_velocity = (target.position - position) * max_velocity
+	follow_something(move_target)
+		
+func follow_something(target):
+	if target != null and target.distance_to(position) > stop_dist:
+		var desired_velocity = (target - position) * max_velocity
 		var steering = desired_velocity - velocity
 		velocity = Util.truncate_vector(velocity + steering, max_velocity)
 		velocity.y = 0
@@ -42,13 +57,15 @@ func follow_target():
 		velocity = Vector3.ZERO
 
 func look_at_target(delta):
-	if target != null:
-		look_at(target.position, Vector3.UP, true)
+	if aggressive and enemy_target != null:
+		self.look_at(enemy_target.position, Vector3.UP, true)
+	elif move_target != null:
+		self.look_at(move_target, Vector3.UP, true)
 
 func update_state():
 	if not attacking:
 		if velocity == Vector3.ZERO:
-			if target == null:
+			if enemy_target == null:
 				state = State.IDLE
 			else:
 				state = State.ATK
@@ -61,3 +78,11 @@ func update_state():
 
 func update_animation_parameters():
 	pass
+	
+func aggressive_move(position: Vector3):
+	aggressive = true
+	move_target = position
+	
+func passive_move(position: Vector3):
+	aggressive = false
+	move_target = position
