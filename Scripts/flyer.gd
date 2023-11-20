@@ -3,6 +3,7 @@ extends Mob
 @export var attack1_prefab : PackedScene
 
 @onready var anim_tree = $AnimationTree
+@onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
 
 func _ready():
 	stop_dist = 4
