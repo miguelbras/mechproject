@@ -12,6 +12,9 @@ extends CharacterBody3D
 var last_time_attacked = 0
 @export var attack_cooldown_ms = 1000
 
+var selected = []
+var followers = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -45,9 +48,9 @@ func _input(event):
 	elif Input.is_action_pressed("attack3"):
 		attack3()
 	elif Input.is_action_pressed("zombie_move_agg"):
-		pass
+		command_dispatch()
 	elif Input.is_action_pressed("zombie_move_pass"):
-		pass
+		command_follow()
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
@@ -95,3 +98,15 @@ func attack3():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
 		return
 	attack(attack3_prefab.instantiate())
+
+func command_dispatch():
+	for mob in followers:
+		if is_instance_valid(mob): # mob could have died
+			followers.erase(mob)
+			# TODO: command old follower to hunt civilians
+	
+func command_follow():
+	for mob in selected:
+		if is_instance_valid(mob) and mob not in followers: # mob could have died
+			followers += [mob]
+			# TODO: command new follower to follow lich
