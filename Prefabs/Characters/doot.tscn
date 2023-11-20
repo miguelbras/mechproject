@@ -1,15 +1,15 @@
 [gd_scene load_steps=21 format=3 uid="uid://66mvlwfwkl4m"]
 
-[ext_resource type="PackedScene" uid="uid://d086xkoa74atm" path="res://3DModels/doot.fbx" id="1_7whjo"]
-[ext_resource type="Script" path="res://Scripts/doot.gd" id="1_21tef"]
-[ext_resource type="Texture2D" uid="uid://bah40jmnjuu0a" path="res://Textures/doot.png" id="2_ers0d"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://mb4cajj8uh7s" path="res://AnimationTrees/doot.tres" id="4_58a67"]
-[ext_resource type="Script" path="res://Scripts/doot_claw.gd" id="4_bwcoa"]
-[ext_resource type="Script" path="res://detectable.gd" id="5_re63a"]
+[ext_resource type="Script" path="res://Scripts/Characters/doot.gd" id="1_wui4y"]
+[ext_resource type="PackedScene" uid="uid://d086xkoa74atm" path="res://3DModels/doot.fbx" id="2_bjgdx"]
+[ext_resource type="Texture2D" uid="uid://bah40jmnjuu0a" path="res://Textures/doot.png" id="3_fn8hv"]
+[ext_resource type="Script" path="res://Scripts/Attacks/doot_claw.gd" id="4_i8unv"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://mb4cajj8uh7s" path="res://AnimationTrees/doot.tres" id="5_okusr"]
+[ext_resource type="Script" path="res://detectable.gd" id="6_0n0il"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nwks"]
 shading_mode = 0
-albedo_texture = ExtResource("2_ers0d")
+albedo_texture = ExtResource("3_fn8hv")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c6doj"]
 
@@ -2807,9 +2807,9 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vifq"]
 
 [node name="DootCharacter" type="CharacterBody3D" groups=["minimap_objects", "mob"]]
-script = ExtResource("1_21tef")
+script = ExtResource("1_wui4y")
 
-[node name="doot" parent="." instance=ExtResource("1_7whjo")]
+[node name="doot" parent="." instance=ExtResource("2_bjgdx")]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, 0)
 
 [node name="Skeleton3D" parent="doot/RootNode/Doot Boi armature_001" index="0"]
@@ -2881,7 +2881,7 @@ bone_idx = 45
 
 [node name="Area3D" type="Area3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D/RightClaw"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-script = ExtResource("4_bwcoa")
+script = ExtResource("4_i8unv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D/RightClaw/Area3D"]
 shape = SubResource("SphereShape3D_c6doj")
@@ -2907,7 +2907,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_adnoa")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = ExtResource("4_58a67")
+tree_root = ExtResource("5_okusr")
 anim_player = NodePath("../doot/AnimationPlayer")
 active = true
 parameters/conditions/attack1 = false
@@ -2925,7 +2925,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Mob"]]
-script = ExtResource("5_re63a")
+script = ExtResource("6_0n0il")
 mob = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
