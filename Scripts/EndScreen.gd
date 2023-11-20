@@ -11,11 +11,6 @@ func _process(delta):
 	pass
 
 
-func _on_play_button_pressed():
-	# TODO submit to leaderboards
-	pass # Replace with function body.
-
-
 func _on_quit_button_pressed():
 	get_tree().quit()
 

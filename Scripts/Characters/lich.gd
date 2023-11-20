@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 var last_time_attacked = 0
 @export var attack_cooldown_ms = 1000
+@export var hp = 30
 
 var selected = []
 var followers = []
@@ -129,3 +130,8 @@ func zombies_pass():
 		return
 	for mob in selection_node.selected_mobs:
 		mob.passive_move(result.position)
+
+func take_damage(dmg: int):
+	hp -= dmg
+	if hp <= 0:
+		Global.arena.lose()

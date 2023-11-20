@@ -15,6 +15,11 @@ func win():
 	game_over = true
 	var win_screen = win_screen_prefab.instantiate()
 	self.add_child(win_screen)
+	
+func lose():
+	game_over = true
+	var lose_screen = lose_screen_prefab.instantiate()
+	self.add_child(lose_screen)
 
 func enemy_spawned():
 	enemy_count += 1

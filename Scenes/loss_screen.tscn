@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://crry7pcjo62je"]
+[gd_scene load_steps=3 format=3 uid="uid://v4xke7w0hrkf"]
 
-[ext_resource type="Script" path="res://Scripts/EndScreen.gd" id="1_hv8am"]
-[ext_resource type="Texture2D" uid="uid://dfng1wu8hu7wh" path="res://Textures/victory.png" id="2_dugxi"]
+[ext_resource type="Script" path="res://Scripts/EndScreen.gd" id="1_1n0t4"]
+[ext_resource type="Texture2D" uid="uid://d272gh3xadxia" path="res://Textures/loss.png" id="2_i7buv"]
 
 [node name="win_screen" type="Node3D"]
-script = ExtResource("1_hv8am")
+script = ExtResource("1_1n0t4")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,10 +24,10 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="Victory" type="Sprite2D" parent="Control/VBoxContainer2"]
-position = Vector2(57, 147)
-scale = Vector2(0.721861, 0.775449)
-texture = ExtResource("2_dugxi")
+[node name="Loss" type="Sprite2D" parent="Control/VBoxContainer2"]
+position = Vector2(25, 147)
+scale = Vector2(0.624268, 0.745509)
+texture = ExtResource("2_i7buv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -43,18 +43,6 @@ offset_bottom = 177.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
-layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-placeholder_text = "name"
-
-[node name="PlayButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "submit score"
-
 [node name="MenuButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "menu"
@@ -63,6 +51,5 @@ text = "menu"
 layout_mode = 2
 text = "exit"
 
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
