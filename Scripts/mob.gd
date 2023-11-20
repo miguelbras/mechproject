@@ -23,8 +23,6 @@ var attacking = false
 
 func _process(delta):
 	update_state()
-	if attacking:
-		attack_target()
 	update_animation_parameters()
 
 func _physics_process(delta):
@@ -46,9 +44,6 @@ func follow_target():
 func look_at_target(delta):
 	if target != null:
 		look_at(target.position, Vector3.UP, true)
-
-func attack_target():
-	pass
 
 func update_state():
 	if not attacking:
