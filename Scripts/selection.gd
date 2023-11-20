@@ -4,12 +4,15 @@
 extends Area3D
 
 @export var camera: Camera3D
-@export var selected_mobs: Array
+@export var selected_mobs: Array = []
 const near_far_margin = .1 # frustum near/far planes distance from camera near/far planes
 
 # mouse dragging position
 var mouse_down_pos: Vector2
 var mouse_current_pos: Vector2
+
+var selection_markers = []
+@export var selection_marker_prefab: PackedScene
 
 func _ready():
 	# initial reference rect setup
@@ -37,6 +40,9 @@ func input(event):
 		$ReferenceRect.size = (event.position - mouse_down_pos).abs()
 		
 func select():
+	for marker in selection_markers:
+		marker.queue_free()
+	selection_markers.clear()
 	# get frustum mesh and assign it as a collider and assign it to the area 3d
 	$ReferenceRect.size.x = max(1, $ReferenceRect.size.x)
 	$ReferenceRect.size.y = max(1, $ReferenceRect.size.y)
@@ -47,6 +53,10 @@ func select():
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
 	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
+	for mob in selected_mobs:
+		var marker = selection_marker_prefab.instantiate()
+		mob.add_child(marker)
+		selection_markers.append(marker)
 	#print("SELECTION: ", selected_mobs)
 	
 # function that construct frustum mesh collider
