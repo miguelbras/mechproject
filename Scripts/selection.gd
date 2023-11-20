@@ -4,11 +4,7 @@
 extends Area3D
 
 @export var camera: Camera3D
-<<<<<<< HEAD
-@export var lich: CharacterBody3D
-=======
 @export var selected_mobs: Array
->>>>>>> 412f5df (Crowd control)
 const near_far_margin = .1 # frustum near/far planes distance from camera near/far planes
 
 # mouse dragging position
@@ -20,7 +16,7 @@ func _ready():
 	$ReferenceRect.editor_only = false
 	$ReferenceRect.visible = false
 
-func _input(event):
+func input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
 			# initialize the rect when mouse is pressed
@@ -33,7 +29,7 @@ func _input(event):
 			$ReferenceRect.visible = false
 			# make a scelection when mouse is released
 			select()	
-	if event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
+	elif event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 		# set rect size when mouse is dragged
 		mouse_current_pos = event.position
 		$ReferenceRect.position.x = min(mouse_current_pos.x, mouse_down_pos.x)
@@ -52,21 +48,8 @@ func select():
 	var selection = get_overlapping_areas()
 
 	# print("SELECTION: ", selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob))
-	lich.selected = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
-
-	# extract unique set of Doots
-	for claw in selection:
-		var doot = get_doot_root_node(claw)
-		if doot == null:
-			continue
-		if doot not in selected_mobs:
-			selected_mobs.append(doot)
+	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
 	print("SELECTION: ", selected_mobs)
-
-func get_doot_root_node(node):
-	while node != null && node.name != "DootCharacter":
-		node = node.get_parent_node_3d()
-	return node
 	
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:
