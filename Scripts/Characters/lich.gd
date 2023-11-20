@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 var last_time_attacked = 0
 @export var attack_cooldown_ms = 1000
+@export var hp = 30
 
 var selected = []
 var followers = []
@@ -40,6 +41,9 @@ func faceDirection(direction):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
 
 func _input(event):
+	if Global.arena.game_over:
+		return
+
 	if Input.is_action_pressed("zombie_move_agg"):
 		zombies_agg()
 	elif Input.is_action_pressed("zombie_move_pass"):
@@ -64,7 +68,7 @@ func get_mouse_target_pos():
 	var rayQuery = PhysicsRayQueryParameters3D.new()
 	rayQuery.from = from
 	rayQuery.to = to
-	rayQuery.collide_with_areas = true
+	rayQuery.set_collision_mask(2) # only collide with floor, on layer 2
 	var result: Dictionary = space.intersect_ray(rayQuery)
 	return result
 
@@ -73,8 +77,7 @@ func mouse_move():
 	if not result:
 		return
 	navigationAgent.target_position = result.position
-	
-	
+
 func attack(projectile):
 	var result = get_mouse_target_pos()
 	if not result:
@@ -127,3 +130,8 @@ func zombies_pass():
 		return
 	for mob in selection_node.selected_mobs:
 		mob.passive_move(result.position)
+
+func take_damage(dmg: int):
+	hp -= dmg
+	if hp <= 0:
+		Global.arena.lose()

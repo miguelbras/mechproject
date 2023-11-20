@@ -63,6 +63,7 @@ func _on_tree_exited():
 	var doot_instance = doot.instantiate()
 	doot_instance.position = position
 	Global.arena.add_child(doot_instance)
+	Global.arena.enemy_despawned()
 
 func _on_timer_timeout():
 	timer.stop()
@@ -107,3 +108,7 @@ func _on_dot_timer_timeout():
 		dot_timer.stop()
 		attack2_debuff.queue_free()
 		attack2_debuff = null
+
+
+func _on_ready():
+	Global.arena.enemy_spawned()
