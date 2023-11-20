@@ -40,6 +40,7 @@ func input(event):
 		$ReferenceRect.size = (event.position - mouse_down_pos).abs()
 		
 func select():
+	# clear current visual markers
 	for marker in selection_markers:
 		marker.queue_free()
 	selection_markers.clear()
@@ -52,13 +53,16 @@ func select():
 	await get_tree().physics_frame
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
+	# grab all root mobs
 	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
+	#print("SELECTION: ", selected_mobs)
+
+	# add new visual markers
 	for mob in selected_mobs:
 		var marker = selection_marker_prefab.instantiate()
 		mob.add_child(marker)
 		selection_markers.append(marker)
-	#print("SELECTION: ", selected_mobs)
-	
+
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:
 	# create a convex polygon collision shape

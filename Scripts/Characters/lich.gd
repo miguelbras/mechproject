@@ -40,6 +40,9 @@ func faceDirection(direction):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
 
 func _input(event):
+	if Global.arena.game_over:
+		return
+
 	if Input.is_action_pressed("zombie_move_agg"):
 		zombies_agg()
 	elif Input.is_action_pressed("zombie_move_pass"):
@@ -73,8 +76,7 @@ func mouse_move():
 	if not result:
 		return
 	navigationAgent.target_position = result.position
-	
-	
+
 func attack(projectile):
 	var result = get_mouse_target_pos()
 	if not result:
