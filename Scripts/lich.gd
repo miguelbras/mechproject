@@ -52,8 +52,7 @@ func _input(event):
 		attack2()
 	elif Input.is_action_pressed("attack3"):
 		attack3()
-	else:
-		# this gets called on ALT+left_click_release, and it shouldnt...
+	elif not Input.is_action_pressed("test_alt"):
 		selection_node.input(event)
 
 func get_mouse_target_pos():

@@ -46,8 +46,6 @@ func select():
 	await get_tree().physics_frame
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
-
-	# print("SELECTION: ", selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob))
 	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
 	print("SELECTION: ", selected_mobs)
 	

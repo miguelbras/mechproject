@@ -30,9 +30,6 @@ func _process(delta):
 	update_animation_parameters()
 
 func _physics_process(delta):
-	#if not attacking:
-	#	follow_target()
-	#look_at_target(delta)
 	if aggressive:
 		follow_enemy()
 	# if no enemy nearby, or if passive, just move to destination
@@ -43,18 +40,16 @@ func _physics_process(delta):
 
 func follow_enemy():
 	enemy_target = Util.get_closest_target(enemy_target, position, cast, "Enemy")
-	if enemy_target != null and enemy_target.position.distance_to(position) > stop_dist:
-		var desired_velocity = (enemy_target.position - position) * max_velocity
-		var steering = desired_velocity - velocity
-		velocity = Util.truncate_vector(velocity + steering, max_velocity)
-		velocity.y = 0
-	else:
-		velocity = Vector3.ZERO
-
+	if enemy_target == null:
+		return
+	follow_something(enemy_target.position)
 
 func follow_target():
-	if move_target != null and move_target.distance_to(position) > stop_dist:
-		var desired_velocity = (move_target - position) * max_velocity
+	follow_something(move_target)
+		
+func follow_something(target):
+	if target != null and target.distance_to(position) > stop_dist:
+		var desired_velocity = (target - position) * max_velocity
 		var steering = desired_velocity - velocity
 		velocity = Util.truncate_vector(velocity + steering, max_velocity)
 		velocity.y = 0
@@ -64,7 +59,7 @@ func follow_target():
 func look_at_target(delta):
 	if aggressive and enemy_target != null:
 		self.look_at(enemy_target.position, Vector3.UP, true)
-	if not aggressive and move_target != null:
+	elif move_target != null:
 		self.look_at(move_target, Vector3.UP, true)
 
 func update_state():
