@@ -42,7 +42,7 @@ func attack():
 	projectile.scale = Vector3.ONE
 
 func _on_animation_tree_animation_started(anim_name):
-	if fire_timer.is_stopped():
+	if anim_name == "Flyer Boi armature|Attack 1" and fire_timer.is_stopped():
 		fire_timer.start()
 
 func _on_timer_timeout():
