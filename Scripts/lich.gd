@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
-@onready var camera: Camera3D = get_tree().get_nodes_in_group("Camera")[0]
 @onready var camera_delta: Vector3 = camera.position - self.position
 @onready var projectile_spawner : Node3D = $ProjectileSpawner
-@onready var selection_node = get_tree().get_nodes_in_group("Selection")[0]
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
+@export var selection_node : Area3D
+@export var camera: Camera3D
 @export var Speed = 6
 
 var last_time_attacked = 0
