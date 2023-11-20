@@ -118,7 +118,7 @@ transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
 
-[node name="Selection" parent="." node_paths=PackedStringArray("camera", "lich") instance=ExtResource("4_joipp")]
+[node name="Selection" parent="." node_paths=PackedStringArray("camera", "lich") groups=["Selection"] instance=ExtResource("4_joipp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.682083, 0.800817, 2.60194)
 camera = NodePath("../Camera3D")
 lich = NodePath("../Lich")

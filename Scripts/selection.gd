@@ -4,7 +4,11 @@
 extends Area3D
 
 @export var camera: Camera3D
+<<<<<<< HEAD
 @export var lich: CharacterBody3D
+=======
+@export var selected_mobs: Array
+>>>>>>> 412f5df (Crowd control)
 const near_far_margin = .1 # frustum near/far planes distance from camera near/far planes
 
 # mouse dragging position
@@ -37,7 +41,7 @@ func _input(event):
 		$ReferenceRect.size = (event.position - mouse_down_pos).abs()
 		
 func select():
-	# get frustum mesh and assign it as a collider and assignit to the area 3d
+	# get frustum mesh and assign it as a collider and assign it to the area 3d
 	$ReferenceRect.size.x = max(1, $ReferenceRect.size.x)
 	$ReferenceRect.size.y = max(1, $ReferenceRect.size.y)
 	$CollisionShape3D.shape = make_frustum_collision_mesh(Rect2($ReferenceRect.position, $ReferenceRect.size))
@@ -46,9 +50,24 @@ func select():
 	await get_tree().physics_frame
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
+
 	# print("SELECTION: ", selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob))
 	lich.selected = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
 
+	# extract unique set of Doots
+	for claw in selection:
+		var doot = get_doot_root_node(claw)
+		if doot == null:
+			continue
+		if doot not in selected_mobs:
+			selected_mobs.append(doot)
+	print("SELECTION: ", selected_mobs)
+
+func get_doot_root_node(node):
+	while node != null && node.name != "DootCharacter":
+		node = node.get_parent_node_3d()
+	return node
+	
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:
 	# create a convex polygon collision shape
