@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://brjmf2ik2584c"]
 
-[ext_resource type="Script" path="res://Scripts/lich.gd" id="1_7sbdc"]
-[ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/attack1.tscn" id="2_g76xd"]
-[ext_resource type="PackedScene" uid="uid://bev6v5dhv8muu" path="res://Prefabs/attack2.tscn" id="3_qomia"]
-[ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/attack3.tscn" id="4_7f1bl"]
+[ext_resource type="Script" path="res://Scripts/Characters/lich.gd" id="1_7sbdc"]
+[ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_g76xd"]
+[ext_resource type="PackedScene" uid="uid://bev6v5dhv8muu" path="res://Prefabs/Attacks/attack2.tscn" id="3_qomia"]
+[ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/Attacks/attack3.tscn" id="4_7f1bl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o30m4"]
 

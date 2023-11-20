@@ -4,7 +4,7 @@
 extends Area3D
 
 @export var camera: Camera3D
-@export var lich: CharacterBody3D
+@export var selected_mobs: Array
 const near_far_margin = .1 # frustum near/far planes distance from camera near/far planes
 
 # mouse dragging position
@@ -16,7 +16,7 @@ func _ready():
 	$ReferenceRect.editor_only = false
 	$ReferenceRect.visible = false
 
-func _input(event):
+func input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
 			# initialize the rect when mouse is pressed
@@ -29,7 +29,7 @@ func _input(event):
 			$ReferenceRect.visible = false
 			# make a scelection when mouse is released
 			select()	
-	if event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
+	elif event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 		# set rect size when mouse is dragged
 		mouse_current_pos = event.position
 		$ReferenceRect.position.x = min(mouse_current_pos.x, mouse_down_pos.x)
@@ -37,7 +37,7 @@ func _input(event):
 		$ReferenceRect.size = (event.position - mouse_down_pos).abs()
 		
 func select():
-	# get frustum mesh and assign it as a collider and assignit to the area 3d
+	# get frustum mesh and assign it as a collider and assign it to the area 3d
 	$ReferenceRect.size.x = max(1, $ReferenceRect.size.x)
 	$ReferenceRect.size.y = max(1, $ReferenceRect.size.y)
 	$CollisionShape3D.shape = make_frustum_collision_mesh(Rect2($ReferenceRect.position, $ReferenceRect.size))
@@ -46,9 +46,9 @@ func select():
 	await get_tree().physics_frame
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
-	# print("SELECTION: ", selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob))
-	lich.selected = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
-
+	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
+	#print("SELECTION: ", selected_mobs)
+	
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:
 	# create a convex polygon collision shape

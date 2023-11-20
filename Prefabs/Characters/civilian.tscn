@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://c1vp4yn7ubm41"]
 
-[ext_resource type="Script" path="res://Scripts/civilian.gd" id="1_b3qgl"]
-[ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/attack1_debuff.tscn" id="2_fqw7m"]
-[ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/attack2_debuff.tscn" id="3_a60kg"]
+[ext_resource type="Script" path="res://Scripts/Characters/civilian.gd" id="1_b3qgl"]
+[ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_fqw7m"]
+[ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_a60kg"]
 [ext_resource type="Script" path="res://detectable.gd" id="4_bmby5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hn37s"]

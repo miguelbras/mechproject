@@ -1,12 +1,13 @@
 extends CharacterBody3D
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
-@onready var camera: Camera3D = get_tree().get_nodes_in_group("Camera")[0]
 @onready var camera_delta: Vector3 = camera.position - self.position
 @onready var projectile_spawner : Node3D = $ProjectileSpawner
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
+@export var selection_node : Area3D
+@export var camera: Camera3D
 @export var Speed = 6
 
 var last_time_attacked = 0
@@ -39,7 +40,11 @@ func faceDirection(direction):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
 
 func _input(event):
-	if Input.is_action_just_pressed("mouse_move"):
+	if Input.is_action_pressed("zombie_move_agg"):
+		zombies_agg()
+	elif Input.is_action_pressed("zombie_move_pass"):
+		zombies_pass()
+	elif Input.is_action_just_pressed("mouse_move"):
 		mouse_move()
 	elif Input.is_action_pressed("attack1"):
 		attack1()
@@ -47,10 +52,8 @@ func _input(event):
 		attack2()
 	elif Input.is_action_pressed("attack3"):
 		attack3()
-	elif Input.is_action_pressed("zombie_move_agg"):
-		command_dispatch()
-	elif Input.is_action_pressed("zombie_move_pass"):
-		command_follow()
+	elif not Input.is_action_pressed("test_alt"):
+		selection_node.input(event)
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
@@ -110,3 +113,17 @@ func command_follow():
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
 			# TODO: command new follower to follow lich
+
+func zombies_agg():
+	var result = get_mouse_target_pos()
+	if not result:
+		return
+	for mob in selection_node.selected_mobs:
+		mob.aggressive_move(result.position)
+
+func zombies_pass():
+	var result = get_mouse_target_pos()
+	if not result:
+		return
+	for mob in selection_node.selected_mobs:
+		mob.passive_move(result.position)
