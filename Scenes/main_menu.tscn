@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvgmvpt1lfg1o"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_pavq3"]
+[ext_resource type="Texture2D" uid="uid://li6ypkpv00ty" path="res://Textures/tlq.png" id="2_06swr"]
+
+[node name="main_menu" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 645.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_pavq3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -50.5
+offset_right = 55.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "play"
+
+[node name="LbButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "leaderboards"
+
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "exit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Tlq" type="Sprite2D" parent="Control/VBoxContainer2"]
+position = Vector2(23.0001, 129)
+scale = Vector2(0.694535, 0.724551)
+texture = ExtResource("2_06swr")
+
+[connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="Control" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/LbButton" to="Control" method="_on_lb_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="Control" method="_on_quit_button_pressed"]
