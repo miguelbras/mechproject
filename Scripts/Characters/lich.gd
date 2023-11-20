@@ -64,7 +64,7 @@ func get_mouse_target_pos():
 	var rayQuery = PhysicsRayQueryParameters3D.new()
 	rayQuery.from = from
 	rayQuery.to = to
-	rayQuery.collide_with_areas = true
+	rayQuery.set_collision_mask(2) # only collide with floor, on layer 2
 	var result: Dictionary = space.intersect_ray(rayQuery)
 	return result
 
