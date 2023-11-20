@@ -8,7 +8,7 @@ signal removed
 
 @export var max_velocity = 3
 
-@onready var animation_tree : AnimationTree = $AnimationTree
+#@onready var animation_tree : AnimationTree = $AnimationTree
 @onready var cast = $ShapeCast3D
 
 # var minimap_icon = "mob"
@@ -18,13 +18,11 @@ var stop_dist = 2
 var state = State.IDLE
 var attacking = false
 
-func _ready():
-	animation_tree.active = true
+#func _ready():
+#	animation_tree.active = true
 
 func _process(delta):
 	update_state()
-	if attacking:
-		attack_target()
 	update_animation_parameters()
 
 func _physics_process(delta):
@@ -46,9 +44,6 @@ func follow_target():
 func look_at_target(delta):
 	if target != null:
 		look_at(target.position, Vector3.UP, true)
-
-func attack_target():
-	pass
 
 func update_state():
 	if not attacking:

@@ -4,6 +4,7 @@
 extends Area3D
 
 @export var camera: Camera3D
+@export var lich: CharacterBody3D
 const near_far_margin = .1 # frustum near/far planes distance from camera near/far planes
 
 # mouse dragging position
@@ -45,8 +46,8 @@ func select():
 	await get_tree().physics_frame
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
-	print("SELECTION: ", selection)
-	# YOUR CODE THAT DECIDES WHAT TO DO WITH THE SELECTION GOES HERE
+	# print("SELECTION: ", selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob))
+	lich.selected = selection.filter(func(x): return x and x.is_in_group("Mob")).map(func(x): return x.mob)
 
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:

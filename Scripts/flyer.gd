@@ -1,5 +1,7 @@
 extends Mob
 
+@export var attack1_prefab : PackedScene
+
 @onready var anim_tree = $AnimationTree
 
 func _ready():
@@ -24,6 +26,3 @@ func _on_animation_tree_animation_finished(anim_name):
 		anim_tree["parameters/conditions/attack1"] = false
 		anim_tree["parameters/conditions/attack2"] = false
 		attacking = false
-
-func attack_target():
-	pass
