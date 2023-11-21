@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjan7el5etmxg"]
+
+[ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_4mjaa"]
+[ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_iyt6u"]
+[ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_w0nw1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_af4ob"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hs1mb"]
+
+[node name="SpawnerHouse1" type="Node3D" groups=["spawner"]]
+script = ExtResource("1_4mjaa")
+civilian_prefab = ExtResource("2_iyt6u")
+knight_prefab = ExtResource("3_w0nw1")
+spawn_direction = Vector3(0, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.48017, 0, 0, 0, 4.2861, 0, 0, 0, 5.1034, 0, 2.13257, 0)
+mesh = SubResource("BoxMesh_af4ob")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_hs1mb")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934647, 1.69994)
+
+[node name="AfterSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ReadySpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98972, 0.47373, 4.03933)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AfterSpawnTimer" to="." method="_on_after_spawn_timer_timeout"]

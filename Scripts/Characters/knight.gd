@@ -28,6 +28,9 @@ var can_attack = true
 var base_rot
 var mob_target
 
+var ready_after_spawn = false
+var parent_spawner = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sword.set_process(false)

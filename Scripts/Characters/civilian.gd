@@ -28,6 +28,9 @@ var dot_dmg = 1
 @export var attack2_debuff_prefab : PackedScene
 var attack2_debuff = null
 
+var ready_after_spawn = false
+var parent_spawner = null
+
 func run_from_target():
 	target = Util.get_closest_target(target, position, cast, "mob")
 	if target != null:
@@ -45,25 +48,28 @@ func run_direction(direction: Vector3):
 	velocity.y = 0
 
 func _physics_process(delta):
-	velocity = Vector3.ZERO
-	if sta > 0:
-		if state == State.ESCAPE:
-			run_from_target()
-		else:
-			run_direction(rand_dir)
-	if slow:
-		velocity *= slow_factor
-	if velocity.length() > 0:
-		sta -= delta
-		if sta <= 0:
-			timer.start(rec)
+	if ready_after_spawn:
+		velocity = Vector3.ZERO
+		if sta > 0:
+			if state == State.ESCAPE:
+				run_from_target()
+			else:
+				run_direction(rand_dir)
+		if slow:
+			velocity *= slow_factor
+		if velocity.length() > 0:
+			sta -= delta
+			if sta <= 0:
+				timer.start(rec)
 	move_and_slide()
 
 func _on_tree_exited():
 	var doot_instance = doot.instantiate()
-	doot_instance.position = position
 	Global.arena.add_child(doot_instance)
+	doot_instance.position = self.position # TODO
 	Global.arena.enemy_despawned()
+	if parent_spawner != null:
+		parent_spawner.current_civilians -= 1
 
 func _on_timer_timeout():
 	timer.stop()
