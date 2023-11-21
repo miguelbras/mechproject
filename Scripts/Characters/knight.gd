@@ -24,7 +24,7 @@ var attack2_debuff = null
 
 var stop_dist = 1.5
 var slashing = false
-var can_attack = true
+var can_attack = false
 var base_rot
 var mob_target
 
@@ -69,7 +69,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func follow_enemy():
-	mob_target = Util.get_closest_target(mob_target, position, cast, "mob")
+	mob_target = Util.get_closest_target(mob_target, position, cast, "Mob")
 	if mob_target != null and mob_target.position.distance_to(position) > stop_dist:
 		var desired_velocity = (mob_target.position - position) * max_velocity
 		var steering = desired_velocity - velocity
@@ -84,10 +84,8 @@ func look_at_target():
 	if mob_target != null:
 		self.look_at(mob_target.position, Vector3.UP, true)
 
-
 func _on_cooldown_timeout():
-	can_attack = true
-
+	can_attack = mob_target != null
 
 func set_slow():
 	if slow:
