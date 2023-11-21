@@ -28,7 +28,7 @@ var dot_dmg = 1
 @export var attack2_debuff_prefab : PackedScene
 var attack2_debuff = null
 
-var ready_after_spawn = false
+var ready_after_spawn = true
 var parent_spawner = null
 
 func run_from_target():
