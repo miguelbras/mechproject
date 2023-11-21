@@ -1,5 +1,8 @@
 extends Area3D
 
+@export var dmg = 3
+@export var spd = 15
+
 var dir = Vector3()
 
 # Called when the node enters the scene tree for the first time.
@@ -8,11 +11,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.position -= transform.basis.z * 15 * delta
+	self.position -= transform.basis.z * spd * delta
 
 func _on_dmg(body: Node) -> void:
 	if body.is_in_group("Enemy"):
-		body.take_damage(3)
+		body.take_damage(dmg)
 		# spawn explosion
 		queue_free()
 
