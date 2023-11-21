@@ -14,7 +14,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xsrau"]
 
-[node name="Lich" type="CharacterBody3D" groups=["mob"]]
+[node name="Lich" type="CharacterBody3D" groups=["Lich", "Mob"]]
 script = ExtResource("1_7sbdc")
 attack1_prefab = ExtResource("2_g76xd")
 attack2_prefab = ExtResource("3_qomia")

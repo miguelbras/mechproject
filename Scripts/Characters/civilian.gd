@@ -29,7 +29,7 @@ var dot_dmg = 1
 var attack2_debuff = null
 
 func run_from_target():
-	target = Util.get_closest_target(target, position, cast, "mob")
+	target = Util.get_closest_target(target, position, cast, "Mob")
 	if target != null:
 		var desired_velocity = (position - target.position) * max_velocity
 		var steering = desired_velocity - velocity
