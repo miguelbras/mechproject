@@ -26,8 +26,8 @@ func _physics_process(delta):
 		if aggressive:
 			follow_enemy()
 		# if no enemy nearby, or if passive, just move to destination
-		elif enemy_target == null:
-			follow_target()
+		if enemy_target == null or not aggressive:
+			follow_target() 
 	update_state()
 	update_animation_parameters()
 	look_at_target()
@@ -46,6 +46,11 @@ func follow_enemy():
 func follow_target():
 	if move_target != null:
 		var desired_velocity = (move_target - position) * max_velocity
+		# dont move if right next to target
+		if desired_velocity.length() < 0.1:
+			velocity = Vector3.ZERO
+			return
+		# TODO dont move if blocked by other zombies
 		var steering = desired_velocity - velocity
 		velocity = Util.truncate_vector(velocity + steering, max_velocity)
 		velocity.y = 0
@@ -56,7 +61,9 @@ func look_at_target():
 	if aggressive and enemy_target != null:
 		self.look_at(enemy_target.position, Vector3.UP, true)
 	elif move_target != null:
-		self.look_at(move_target, Vector3.UP, true)
+		# only look if target is far away
+		if (move_target - position).length() > 0.1:
+			self.look_at(move_target, Vector3.UP, true)
 
 func update_state():
 	if hp <= 0:
