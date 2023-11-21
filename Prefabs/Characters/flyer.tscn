@@ -2698,7 +2698,7 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0n5ip"]
 
-[node name="FlyerCharacter" type="CharacterBody3D"]
+[node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_pryk6")
 attack1_prefab = ExtResource("2_wlm1g")
 

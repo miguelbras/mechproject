@@ -32,7 +32,7 @@ var ready_after_spawn = false
 var parent_spawner = null
 
 func run_from_target():
-	target = Util.get_closest_target(target, position, cast, "mob")
+	target = Util.get_closest_target(target, position, cast, "Mob")
 	if target != null:
 		var desired_velocity = (position - target.position) * max_velocity
 		var steering = desired_velocity - velocity

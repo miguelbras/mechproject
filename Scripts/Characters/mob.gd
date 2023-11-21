@@ -11,13 +11,13 @@ signal removed
 
 @onready var cast = $ShapeCast3D
 
-# var minimap_icon = "mob"
 var target_velocity = Vector3.ZERO
 
 var stop_dist = 2
 var state = State.IDLE
 var attacking = false
 var enemy_target = null
+var atk_pattern = 0
 @onready var move_target = self.position
 var aggressive: bool = true
 
@@ -99,6 +99,7 @@ func update_state():
 		if enemy_target != null and aggressive:
 			state = State.ATK
 			attacking = true
+			atk_pattern = 0 if randf() > .35 else 1
 		else:
 			state = State.IDLE
 	#if "Doot" in name:

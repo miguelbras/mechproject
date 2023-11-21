@@ -6,6 +6,8 @@ extends Mob
 @onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
 @onready var fire_timer = $Timer
 
+var fire_pattern = 0
+
 func _ready():
 	stop_dist = 4
 
@@ -17,13 +19,14 @@ func update_animation_parameters():
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/glide"] = true
 	elif state == State.ATK:
-		anim_tree["parameters/conditions/attack1"] = true
+		if atk_pattern == 0:
+			anim_tree["parameters/conditions/attack1"] = true
+		else:
+			anim_tree["parameters/conditions/attack2"] = true
 		anim_tree["parameters/conditions/idle"] = true
 		anim_tree["parameters/conditions/glide"] = false
 	elif state == State.DEAD:
 		anim_tree["parameters/conditions/death"] = true
-	#elif state == State.ATK2:
-	#	anim_tree["parameters/conditions/attack2"] = true
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "Flyer Boi armature|Death Fall":
@@ -36,14 +39,27 @@ func _on_animation_tree_animation_finished(anim_name):
 func attack():
 	if enemy_target == null:
 		return
-	var projectile = attack1_prefab.instantiate()
-	fire_point.add_child(projectile)
-	projectile.look_at(enemy_target.global_position)
-	projectile.scale = Vector3.ONE
+	if fire_pattern == 0:
+		var projectile = attack1_prefab.instantiate()
+		fire_point.add_child(projectile)
+		projectile.look_at(enemy_target.global_position)
+		projectile.scale = Vector3.ONE
+	else:
+		for angle in [-60, -30, 0, 30, 60]:
+			var projectile = attack1_prefab.instantiate()
+			fire_point.add_child(projectile)
+			projectile.look_at(enemy_target.global_position)
+			projectile.rotate_y(deg_to_rad(angle))
+			projectile.scale = Vector3.ONE
 
 func _on_animation_tree_animation_started(anim_name):
-	if anim_name == "Flyer Boi armature|Attack 1" and fire_timer.is_stopped():
-		fire_timer.start()
+	if fire_timer.is_stopped():
+		if anim_name == "Flyer Boi armature|Attack 1":
+			fire_timer.start(0.9)
+			fire_pattern = 0
+		elif anim_name == "Flyer Boi armature|Attack 2":
+			fire_timer.start(1.4)
+			fire_pattern = 1
 
 func _on_timer_timeout():
 	attack()

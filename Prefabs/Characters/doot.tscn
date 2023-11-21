@@ -2806,7 +2806,7 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8vifq"]
 
-[node name="DootCharacter" type="CharacterBody3D" groups=["minimap_objects", "mob"]]
+[node name="DootCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_wui4y")
 
 [node name="doot" parent="." instance=ExtResource("2_bjgdx")]
