@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1496, -0.786497)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Mob"]]
+[node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Lich", "Mob"]]
 script = ExtResource("5_i7foq")
 mob = NodePath("..")
 
