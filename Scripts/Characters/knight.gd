@@ -33,6 +33,7 @@ var parent_spawner = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.arena.enemy_spawned()
 	sword.set_process(false)
 	base_rot = rot.basis
 
@@ -121,3 +122,12 @@ func _on_dot_timer_timeout():
 		dot_timer.stop()
 		attack2_debuff.queue_free()
 		attack2_debuff = null
+
+func _on_tree_exited():
+	#var doot_instance = doot.instantiate()
+	#Global.arena.add_child(doot_instance)
+	#doot_instance.position = self.position # TODO
+	Global.arena.enemy_despawned()
+	if parent_spawner != null:
+		parent_spawner.current_knights -= 1
+
