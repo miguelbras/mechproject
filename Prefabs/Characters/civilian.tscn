@@ -13,7 +13,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7m8sb"]
 
-[node name="Civilian" type="CharacterBody3D" groups=["Enemy", "civ"]]
+[node name="Civilian" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_b3qgl")
 attack1_debuff_prefab = ExtResource("2_fqw7m")
 attack2_debuff_prefab = ExtResource("3_a60kg")
