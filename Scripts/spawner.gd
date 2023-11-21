@@ -50,6 +50,7 @@ func spawn_something():
 	last_spawned_entity.parent_spawner = self
 	last_spawned_entity.position = $SpawnPoint.position
 	last_spawned_entity.get_node("CollisionShape3D").disabled = true
+	last_spawned_entity.ready_after_spawn = false
 	self.add_child(last_spawned_entity)
 
 func spawn_something_ready(entity: Node):
@@ -58,7 +59,6 @@ func spawn_something_ready(entity: Node):
 	entity.position = spawn_point
 	entity.velocity = Vector3(randf_range(-2,2), 0, randf_range(-2,2))
 	entity.parent_spawner = self
-	entity.ready_after_spawn = true
 	self.add_child(entity)
 
 func _on_timer_timeout():
