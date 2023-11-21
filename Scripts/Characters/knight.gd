@@ -28,8 +28,12 @@ var can_attack = false
 var base_rot
 var mob_target
 
+var ready_after_spawn = true
+var parent_spawner = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.arena.enemy_spawned()
 	sword.set_process(false)
 	base_rot = rot.basis
 
@@ -59,13 +63,14 @@ func take_damage(dmg: int):
 		queue_free()
 
 func _physics_process(delta):
-	if not slashing:
-		follow_enemy()
-	# update_state()
-	# update_animation_parameters()
-	look_at_target()
-	if slow:
-		velocity *= slow_factor
+	if ready_after_spawn:
+		if not slashing:
+			follow_enemy()
+		# update_state()
+		# update_animation_parameters()
+		look_at_target()
+		if slow:
+			velocity *= slow_factor
 	move_and_slide()
 
 func follow_enemy():
@@ -118,3 +123,12 @@ func _on_dot_timer_timeout():
 		dot_timer.stop()
 		attack2_debuff.queue_free()
 		attack2_debuff = null
+
+func _on_tree_exited():
+	#var doot_instance = doot.instantiate()
+	#Global.arena.add_child(doot_instance)
+	#doot_instance.position = self.position # TODO
+	Global.arena.enemy_despawned()
+	if parent_spawner != null:
+		parent_spawner.current_knights -= 1
+
