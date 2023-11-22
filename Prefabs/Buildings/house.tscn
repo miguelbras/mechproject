@@ -11,8 +11,6 @@ size = Vector3(4.26721, 4.74908, 7.99388)
 
 [node name="StaticBody3D" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_4mjaa")
-max_civilians = 1
-max_knights = 0
 civilian_prefab = ExtResource("2_iyt6u")
 knight_prefab = ExtResource("3_w0nw1")
 spawn_direction = Vector3(2, 0, 0)
@@ -29,7 +27,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98972, 0.47373, 4.03933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0, 6.239)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2nx6i")
