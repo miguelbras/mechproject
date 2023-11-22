@@ -60,7 +60,7 @@ func check_blocked():
 
 func follow_enemy():
 	enemy_target = Util.get_closest_target(enemy_target, position, cast, "Enemy")
-	if enemy_target != null and enemy_target.position.distance_to(position) > stop_dist:
+	if enemy_target != null and enemy_target.position.distance_to(position) > stop_dist: # only works for circular small stuff
 		var desired_velocity = (enemy_target.position - position) * max_velocity
 		var steering = desired_velocity - velocity
 		velocity = Util.truncate_vector(velocity + steering, max_velocity)

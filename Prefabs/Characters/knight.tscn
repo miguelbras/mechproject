@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Attacks/sword_slash.gd" id="2_esnnl"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_u3had"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_jtsri"]
-[ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="6_6iil5"]
+[ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_24fca"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gn7p2"]
 
@@ -61,8 +61,9 @@ one_shot = true
 
 [node name="DotTimer" type="Timer" parent="."]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_6iil5")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_24fca")
+volume_db = -18.0
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="area_entered" from="RotPoint/SwordArea3D" to="RotPoint/SwordArea3D" method="_on_area_entered"]

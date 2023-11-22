@@ -55,6 +55,8 @@ far = 100.0
 
 [node name="SpawnerHouse1" parent="." instance=ExtResource("10_x1qmi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.332, 0, -13.901)
+max_civilians = 2
+max_knights = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_pnex7")
