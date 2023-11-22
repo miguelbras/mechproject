@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuvnsrih2hjtu"]
+
+[ext_resource type="Script" path="res://Scripts/UI/AbilityCooldownUI.gd" id="1_10xn3"]
+[ext_resource type="Texture2D" uid="uid://nrkltitmgva1" path="res://Textures/UI/blue_circle.png" id="1_78445"]
+[ext_resource type="Texture2D" uid="uid://cvscs03iuidok" path="res://Textures/UI/gray_circle.png" id="2_d1w2y"]
+[ext_resource type="Texture2D" uid="uid://cyuo8vsm3k0m4" path="res://Textures/UI/red_circle.png" id="3_fw8m0"]
+[ext_resource type="Texture2D" uid="uid://bv51grfhsq855" path="res://Textures/UI/green_circle.png" id="4_kap6f"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("ability1Circle", "ability2Circle", "ability3Circle")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -94.035
+offset_right = 125.0
+offset_bottom = -30.035
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+script = ExtResource("1_10xn3")
+ability1Circle = NodePath("Ability1Cooldown")
+ability2Circle = NodePath("Ability2Cooldown")
+ability3Circle = NodePath("Ability3Cooldown")
+
+[node name="Ability1Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+fill_mode = 4
+texture_under = ExtResource("1_78445")
+texture_progress = ExtResource("2_d1w2y")
+
+[node name="Ability2Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+fill_mode = 4
+texture_under = ExtResource("3_fw8m0")
+texture_progress = ExtResource("2_d1w2y")
+
+[node name="Ability3Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+fill_mode = 4
+texture_under = ExtResource("4_kap6f")
+texture_progress = ExtResource("2_d1w2y")

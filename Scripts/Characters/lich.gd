@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name Lich
 signal healthChanged
+signal abilityUsed
+signal coolDownThick(deltaTime)
 
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
@@ -27,6 +29,7 @@ var selected = []
 var followers = []
 
 func _process(delta):
+	coolDownThick.emit(delta)
 	if(navigationAgent.is_navigation_finished()):
 		return
 	moveToPoint(delta, my_speed)
@@ -97,6 +100,7 @@ func attack1():
 	audio_player.stream = atk1_sound
 	audio_player.play()
 	attack(attack1_prefab.instantiate())
+	abilityUsed.emit()
 
 func attack2():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
@@ -104,6 +108,7 @@ func attack2():
 	audio_player.stream = atk2_sound
 	audio_player.play()
 	attack(attack2_prefab.instantiate())
+	abilityUsed.emit()
 
 func attack3():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
@@ -111,6 +116,7 @@ func attack3():
 	audio_player.stream = atk3_sound
 	audio_player.play()
 	attack(attack3_prefab.instantiate())
+	abilityUsed.emit()
 
 func command_dispatch():
 	for mob in followers:
