@@ -5,12 +5,18 @@ extends Mob
 @onready var anim_tree = $AnimationTree
 @onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
 @onready var fire_timer = $Timer
+@onready var audio_player = $AudioStreamPlayer3D
+
+const sound1 = preload("res://Sound/Character/dragon-roar-96996.mp3")
+const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
 
 var fire_pattern = 0 # remember which attack was selected
 
 func _ready():
 	super._ready()
 	stop_dist = 4
+	audio_player.stream = sound1
+	audio_player.play()
 
 func update_animation_parameters():
 	if state == State.IDLE:
@@ -40,6 +46,8 @@ func _on_animation_tree_animation_finished(anim_name):
 func attack():
 	if enemy_target == null:
 		return
+	audio_player.stream = sound2
+	audio_player.play()
 	if fire_pattern == 0:
 		var projectile = attack1_prefab.instantiate()
 		fire_point.add_child(projectile)

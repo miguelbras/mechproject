@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_dlpux"]
 [ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_joipp"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
-[ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="6_57qnw"]
+[ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
 [ext_resource type="PackedScene" uid="uid://cjan7el5etmxg" path="res://Prefabs/Buildings/house.tscn" id="10_x1qmi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
@@ -53,11 +53,13 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 
 near = 5.0
 far = 100.0
 
-[node name="Civilian" parent="." instance=ExtResource("6_57qnw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5684, 0.0866346, 27.9434)
+[node name="SpawnerHouse1" parent="." instance=ExtResource("10_x1qmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.332, 0, -13.901)
 
-[node name="StaticBody3D" parent="." instance=ExtResource("10_x1qmi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2458, 0.0866346, -8.16802)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_pnex7")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
