@@ -48,7 +48,7 @@ func _physics_process(delta):
 func _on_tree_exited():
 	var doot_instance = doot.instantiate()
 	Global.arena.add_child(doot_instance)
-	doot_instance.position = self.position # TODO
+	doot_instance.position = self.position
 	Global.arena.enemy_despawned()
 	if parent_spawner != null:
 		parent_spawner.current_civilians -= 1

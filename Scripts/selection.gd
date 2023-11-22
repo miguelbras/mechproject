@@ -55,7 +55,7 @@ func select():
 	# actually get areas that intersest the frustum
 	var selection = get_overlapping_areas()
 	# grab all root mobs
-	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Mob") and not x.is_in_group("Lich")).map(func(x): return x.mob)
+	selected_mobs = selection.filter(func(x): return x and x.is_in_group("Selectable") and not x.is_in_group("Lich")).map(func(x): return x.mob)
 	#print("SELECTION: ", selected_mobs)
 
 	# add new visual markers

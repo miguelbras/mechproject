@@ -11,7 +11,7 @@ size = Vector3(4.2482, 4.53307, 7.63803)
 [sub_resource type="BoxMesh" id="BoxMesh_1r6c1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wm6mk"]
-size = Vector3(6.14376, 4.55066, 9.33607)
+size = Vector3(4.09491, 4.63971, 7.68932)
 
 [node name="StaticBody3D" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_4mjaa")
@@ -31,7 +31,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0, 6.239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0.5, 6.239)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2nx6i")
@@ -45,7 +45,7 @@ script = ExtResource("4_nb1is")
 mob = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0634441, 0)
 shape = SubResource("BoxShape3D_wm6mk")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
