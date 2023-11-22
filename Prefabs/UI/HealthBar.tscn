@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn4137vckmneq"]
+
+[ext_resource type="Texture2D" uid="uid://c5wfgweu778jt" path="res://Textures/UI/black_bar.png" id="1_4kyki"]
+[ext_resource type="Texture2D" uid="uid://co1hmvgqva6pt" path="res://Textures/UI/red_bar.png" id="2_n78ew"]
+[ext_resource type="Script" path="res://healthBar.gd" id="3_o0pwp"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 591.0
+offset_bottom = 42.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_4kyki")
+texture_progress = ExtResource("2_n78ew")
+script = ExtResource("3_o0pwp")
