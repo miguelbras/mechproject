@@ -16,6 +16,11 @@ signal healthChanged
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
 @onready var camera_delta: Vector3 = camera.position - position
 @onready var projectile_spawner : Node3D = $ProjectileSpawner
+@onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
+
+const atk1_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
+const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
+const atk3_sound = preload("res://Sound/Attack/magic-spell-6005.mp3")
 
 var last_time_attacked = 0
 var selected = []
@@ -44,7 +49,7 @@ func _input(event):
 		zombies_agg()
 	elif Input.is_action_pressed("zombie_move_pass"):
 		zombies_pass()
-	elif Input.is_action_just_pressed("mouse_move"):
+	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
 	elif Input.is_action_pressed("attack1"):
 		attack1()
@@ -89,16 +94,22 @@ func attack(projectile):
 func attack1():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
 		return
+	audio_player.stream = atk1_sound
+	audio_player.play()
 	attack(attack1_prefab.instantiate())
 
 func attack2():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
 		return
+	audio_player.stream = atk2_sound
+	audio_player.play()
 	attack(attack2_prefab.instantiate())
 
 func attack3():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
 		return
+	audio_player.stream = atk3_sound
+	audio_player.play()
 	attack(attack3_prefab.instantiate())
 
 func command_dispatch():
