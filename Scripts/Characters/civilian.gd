@@ -2,16 +2,16 @@ extends Enemy
 
 enum State {ESCAPE, RANDOM}
 
-@export var sta = 5.0
-@export var rec = 2.0
+@export var sta = 5.0 # stamina, how much time it walks
+@export var rec = 2.0 # how much time it stops
 
 @onready var cast = $ShapeCast3D
 @onready var timer = $Timer
 @onready var doot = load("res://Prefabs/Characters/doot.tscn")
 
-var target
-var state = State.ESCAPE
-var rand_dir = Vector3.ZERO
+var target # target to run from
+var state = State.ESCAPE # escape or move in random direction
+var rand_dir = Vector3.ZERO # random direction to move
 
 func run_from_target():
 	target = Util.get_closest_target(target, position, cast, "Mob")

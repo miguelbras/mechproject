@@ -6,11 +6,11 @@ extends Enemy
 @onready var sword = $RotPoint/SwordArea3D
 @onready var cast = $ShapeCast3D
 
-var stop_dist = 1.5
-var slashing = false
-var can_attack = false
-var base_rot
-var mob_target
+var stop_dist = 1.5 # distance to stop so it doesn't collide with target
+var slashing = false # is swinging the sword (animation)
+var can_attack = false # cooldown so it does not endesly attack
+var base_rot # restore original rotation of sword
+var mob_target # which mob to follow and attack
 
 func _ready():
 	Global.arena.enemy_spawned()
@@ -72,7 +72,6 @@ func _on_slow_timer_timeout():
 func _on_dot_timer_timeout():
 	take_damage(dot_dmg)
 	dot_ticks_left -= 1
-	# print(dot_ticks_left)
 	if dot_ticks_left == 0:
 		dot_timer.stop()
 		attack2_debuff.queue_free()

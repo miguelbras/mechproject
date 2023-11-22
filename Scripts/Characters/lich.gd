@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var attack3_prefab : PackedScene
 @export var selection_node : Area3D
 @export var camera: Camera3D
-@export var Speed = 6
+@export var my_speed = 6
 @export var attack_cooldown_ms = 1000
 @export var hp = 30
 
@@ -20,7 +20,7 @@ var followers = []
 func _process(delta):
 	if(navigationAgent.is_navigation_finished()):
 		return
-	moveToPoint(delta, Speed)
+	moveToPoint(delta, my_speed)
 	camera.position = position + camera_delta
 
 func moveToPoint(delta, speed):
