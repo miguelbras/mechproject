@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=13 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="2_17swa"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_joipp"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
 [ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="6_57qnw"]
+[ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="9_76oba"]
 [ext_resource type="PackedScene" uid="uid://cjan7el5etmxg" path="res://Prefabs/Buildings/house.tscn" id="10_x1qmi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
@@ -81,6 +82,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45495, 0.0866356, 4.00668)
 [node name="Civilian6" parent="." instance=ExtResource("6_57qnw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93599, 0.0866356, 13.177)
 
+[node name="UI" parent="." instance=ExtResource("9_76oba")]
+
+[node name="TextureProgressBar" parent="UI/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
+lich = NodePath("../../../Lich")
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]
+[editable path="UI"]
