@@ -1,18 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://brjmf2ik2584c"]
+[gd_scene load_steps=8 format=3 uid="uid://brjmf2ik2584c"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/lich.gd" id="1_7sbdc"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_g76xd"]
 [ext_resource type="PackedScene" uid="uid://bev6v5dhv8muu" path="res://Prefabs/Attacks/attack2.tscn" id="3_qomia"]
 [ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/Attacks/attack3.tscn" id="4_7f1bl"]
-[ext_resource type="Script" path="res://Scripts/detectable.gd" id="5_i7foq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o30m4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_llvjj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1mmsx"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xsrau"]
 
 [node name="Lich" type="CharacterBody3D" groups=["Lich", "Mob"]]
 script = ExtResource("1_7sbdc")
@@ -36,11 +33,3 @@ mesh = SubResource("BoxMesh_1mmsx")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.1496, 0.74867)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Lich", "Mob"]]
-script = ExtResource("5_i7foq")
-mob = NodePath("..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_xsrau")

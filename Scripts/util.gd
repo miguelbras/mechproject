@@ -14,6 +14,8 @@ static func look_at_target(obj: Node3D, target_pos: Vector3):
 ### behaviour ###
 
 static func get_all_targets(cast: ShapeCast3D, group: String):
+	#if group == "Enemy":
+	#	print(cast.collision_result)
 	return cast.collision_result.map(func(x): return x.collider).filter(func(x): return x and x.is_in_group(group))
 
 static func get_closest_target(curr_target, pos: Vector3, cast: ShapeCast3D, group: String):
@@ -21,10 +23,11 @@ static func get_closest_target(curr_target, pos: Vector3, cast: ShapeCast3D, gro
 	if len(neighbours) == 0:
 		return null
 	elif curr_target not in neighbours:
-		var distance = 15
+		var distance = 1500
 		for t in neighbours:
 			var target_distance = (pos - t.position).length()
 			if target_distance <= distance:
 				curr_target = t
 				distance = target_distance
+	print(curr_target)
 	return curr_target

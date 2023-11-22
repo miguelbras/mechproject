@@ -13,6 +13,8 @@ var current_knights: int = 0
 var current_civilians: int = 0
 var last_spawned_entity = null
 
+@export var hp = 30
+
 func _ready():
 	while current_paladins < max_paladins:
 		spawn_something_ready(paladin_prefab.instantiate())
@@ -53,11 +55,17 @@ func spawn_something_ready(entity: Node):
 	entity.parent_spawner = self
 	add_child(entity)
 
-func _on_timer_timeout():
-	spawn_something()
-	$AfterSpawnTimer.start()
-
 func _on_after_spawn_timer_timeout():
 	if last_spawned_entity != null:
 		last_spawned_entity.ready_after_spawn = true
 		last_spawned_entity.get_node("CollisionShape3D").disabled = false
+
+func take_damage(dmg: int):
+	hp -= dmg
+	if hp <= 0:
+		queue_free()
+
+
+func _on_spawn_timer_timeout():
+	spawn_something()
+	$AfterSpawnTimer.start()
