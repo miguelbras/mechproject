@@ -4,25 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_iyt6u"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_w0nw1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_af4ob"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nx6i"]
+size = Vector3(4.26721, 4.74908, 7.99388)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hs1mb"]
+[sub_resource type="BoxMesh" id="BoxMesh_1r6c1"]
 
-[node name="SpawnerHouse1" type="Node3D" groups=["spawner"]]
+[node name="StaticBody3D" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_4mjaa")
 civilian_prefab = ExtResource("2_iyt6u")
 knight_prefab = ExtResource("3_w0nw1")
-spawn_direction = Vector3(0, 0, 2)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.48017, 0, 0, 0, 4.2861, 0, 0, 0, 5.1034, 0, 2.13257, 0)
-mesh = SubResource("BoxMesh_af4ob")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_hs1mb")
+spawn_direction = Vector3(2, 0, 0)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 10.0
@@ -36,7 +27,14 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98972, 0.47373, 4.03933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0, 6.239)
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2nx6i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.29151, 0, 0, 0, 4.49626, 0, 0, 0, 7.68652, 0, 0, 0)
+mesh = SubResource("BoxMesh_1r6c1")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="AfterSpawnTimer" to="." method="_on_after_spawn_timer_timeout"]
