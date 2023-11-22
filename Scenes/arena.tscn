@@ -1,14 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=12 format=3 uid="uid://bwt6nlsioa41q"]
 
-[ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="1_5yjbp"]
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="2_17swa"]
-[ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Scenes/win_screen.tscn" id="2_m6p7r"]
-[ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Scenes/loss_screen.tscn" id="3_of7t0"]
+[ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
+[ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_dlpux"]
 [ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_joipp"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
 [ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="6_57qnw"]
-[ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="9_qxxv4"]
 [ext_resource type="PackedScene" uid="uid://cjan7el5etmxg" path="res://Prefabs/Buildings/house.tscn" id="10_x1qmi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
@@ -23,103 +21,8 @@ size = Vector3(60.4594, 2.17327, 69.0516)
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_041gh")
-win_screen_prefab = ExtResource("2_m6p7r")
-lose_screen_prefab = ExtResource("3_of7t0")
-
-[node name="DootCharacter" parent="." instance=ExtResource("1_5yjbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28864, 0.0412159, -1.96819)
-
-[node name="Skeleton3D" parent="DootCharacter/doot/RootNode/Doot Boi armature_001" index="0"]
-bones/1/position = Vector3(-0.00391699, 0.245857, -0.00442079)
-bones/1/rotation = Quaternion(0.0480511, 0.024538, 0.0788575, 0.995425)
-bones/2/rotation = Quaternion(0.0387943, -0.00330733, -0.0565455, 0.997641)
-bones/3/rotation = Quaternion(0.257921, 0.0135047, -0.177559, 0.949614)
-bones/5/rotation = Quaternion(-0.265779, 0.554546, 0.788238, 0.0228387)
-bones/6/rotation = Quaternion(-0.670663, 0.00628257, -0.186114, 0.718007)
-bones/7/rotation = Quaternion(0.770287, -0.0493009, 0.00831476, 0.635734)
-bones/9/rotation = Quaternion(0.173219, 0.413693, 0.875607, 0.179349)
-bones/10/rotation = Quaternion(-0.688928, 0.00520864, 0.31161, 0.654408)
-bones/11/rotation = Quaternion(0.86599, 0.0729828, -0.17614, 0.462287)
-bones/13/position = Vector3(0.060741, 0.391583, 0.138869)
-bones/13/rotation = Quaternion(-0.708407, -0.0235261, 0.0253996, 0.704955)
-bones/15/rotation = Quaternion(0.120806, 0.700882, -0.672459, 0.204864)
-bones/17/position = Vector3(-0.0584488, 0.186488, 0.147121)
-bones/17/rotation = Quaternion(0.71145, -0.00435965, 0.00435949, 0.702709)
-bones/19/rotation = Quaternion(-0.00916574, 0.707047, -0.707047, 0.00916573)
-bones/21/position = Vector3(0.0274008, 0.188022, 0.153704)
-bones/21/rotation = Quaternion(0.712489, 9.82546e-08, 0.0108813, 0.701599)
-bones/23/position = Vector3(0.0224581, 0.382979, 0.0620741)
-bones/23/rotation = Quaternion(-0.364686, 0.114101, -0.224224, 0.896498)
-bones/24/position = Vector3(0.00304276, -0.0056532, -0.0379782)
-bones/24/rotation = Quaternion(0.737809, 8.04673e-08, 8.79537e-08, 0.675009)
-bones/25/rotation = Quaternion(0.16453, 0.00273543, -0.170705, 0.971485)
-bones/26/rotation = Quaternion(-0.577452, 0.075192, 0.341858, 0.737583)
-bones/27/rotation = Quaternion(0.85211, -0.0186339, -0.0199133, 0.522651)
-bones/29/rotation = Quaternion(0.126187, -0.201009, -0.787817, 0.568346)
-bones/30/rotation = Quaternion(-0.143561, -0.409511, -0.25628, 0.86372)
-bones/31/rotation = Quaternion(0.529125, 0.000643433, -0.0452336, 0.847337)
-bones/32/rotation = Quaternion(-0.122152, 0.712546, -0.488366, 0.48873)
-bones/34/rotation = Quaternion(-0.0731162, 0.122391, 0.843252, 0.518268)
-bones/35/position = Vector3(0.140465, -0.121824, 0.1234)
-bones/35/rotation = Quaternion(-0.313598, 0.676273, -0.121105, 0.655473)
-bones/37/position = Vector3(0.016821, -0.124607, -0.0203963)
-bones/37/rotation = Quaternion(-0.39608, 0.579213, -0.581819, 0.411242)
-bones/39/rotation = Quaternion(0.461403, -0.520527, 0.570393, -0.43682)
-bones/41/rotation = Quaternion(-0.0355427, 0.0375778, 0.766326, 0.640366)
-bones/42/rotation = Quaternion(-0.112028, -0.0152919, 0.706017, 0.699111)
-bones/43/rotation = Quaternion(0.722797, 0.00790068, 0.127259, 0.679196)
-bones/44/rotation = Quaternion(-0.150089, -0.630929, 0.419146, 0.635388)
-bones/46/rotation = Quaternion(0.0233466, 0.00946945, -0.75157, 0.659172)
-bones/47/position = Vector3(0.0214217, -0.148478, 0.098261)
-bones/47/rotation = Quaternion(0.0671389, 0.614805, -0.47724, -0.624298)
-bones/49/position = Vector3(0.0359558, -0.14053, -0.00141086)
-bones/49/rotation = Quaternion(0.413855, 0.566643, -0.581816, -0.411255)
-bones/51/rotation = Quaternion(-0.478089, -0.50658, 0.569769, 0.436086)
-
-[node name="RightClaw" parent="DootCharacter/doot/RootNode/Doot Boi armature_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.100717, 0.149246, 0.983657, -0.992159, 0.0584725, -0.110459, -0.0740027, -0.987069, 0.142186, -0.0704176, -0.0280788, 0.152674)
-
-[node name="LeftClaw" parent="DootCharacter/doot/RootNode/Doot Boi armature_001/Skeleton3D" index="2"]
-transform = Transform3D(0.34274, -0.277344, -0.897557, 0.932299, 0.217913, 0.288671, 0.115528, -0.935731, 0.333255, 0.0628566, -0.0839852, 0.0389753)
-
-[node name="FlyerCharacter" parent="." instance=ExtResource("2_17swa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681534, 0, -3.12041)
-
-[node name="Skeleton3D" parent="FlyerCharacter/flyer/RootNode/Flyer Boi armature" index="0"]
-bones/0/position = Vector3(8.79912e-07, 0.239844, 0.302268)
-bones/0/rotation = Quaternion(0.935119, -6.77313e-07, -1.78369e-06, 0.354335)
-bones/1/rotation = Quaternion(0.479094, 3.90069e-07, 3.45803e-06, 0.877764)
-bones/3/rotation = Quaternion(0.967328, -2.13213e-06, -1.764e-06, 0.25353)
-bones/4/rotation = Quaternion(-0.223314, 4.05993e-07, -3.1044e-06, 0.974747)
-bones/5/rotation = Quaternion(-0.237323, -1.24861e-07, 7.46637e-07, 0.971431)
-bones/6/rotation = Quaternion(0.00818709, 6.9387e-08, -3.52732e-07, 0.999967)
-bones/8/rotation = Quaternion(-0.0111206, 0.0302724, -0.602421, 0.797527)
-bones/9/rotation = Quaternion(0.452851, 0.252087, 0.174674, 0.837178)
-bones/10/rotation = Quaternion(-0.0363692, 1.68943e-05, 0.263534, 0.963964)
-bones/11/rotation = Quaternion(-0.222863, 0.0865089, -0.58971, 0.771421)
-bones/13/rotation = Quaternion(-0.617222, 2.01316e-08, -0.0851926, 0.782163)
-bones/14/position = Vector3(-0.181319, -0.491905, 0.322557)
-bones/14/rotation = Quaternion(0.293047, 0.641437, -0.239118, 0.667462)
-bones/18/rotation = Quaternion(-0.0111183, -0.0302692, 0.602421, 0.797527)
-bones/19/rotation = Quaternion(0.452817, -0.24941, -0.178593, 0.837171)
-bones/20/rotation = Quaternion(-0.0351326, -1.73513e-05, -0.254575, 0.966415)
-bones/21/rotation = Quaternion(-0.223013, -0.0855913, 0.585972, 0.774323)
-bones/23/rotation = Quaternion(-0.617222, -1.68894e-08, 0.0851926, 0.782163)
-bones/24/position = Vector3(0.18154, -0.492217, 0.324806)
-bones/24/rotation = Quaternion(0.293047, -0.641437, 0.239118, 0.667462)
-bones/28/position = Vector3(-0.152337, 0.26377, -0.00859871)
-bones/30/position = Vector3(0.152336, 0.26377, -0.0085999)
-bones/32/position = Vector3(-1.79677e-17, -0.0207623, 0.421318)
-bones/32/rotation = Quaternion(0.985078, 4.23337e-07, -2.42298e-06, -0.17211)
-bones/33/position = Vector3(-9.92688e-07, 0.0235758, -0.00166563)
-bones/34/rotation = Quaternion(0.552833, -3.6419e-08, -2.08472e-06, 0.833292)
-bones/36/position = Vector3(-1.70568e-16, 0.0995052, -0.44448)
-bones/38/position = Vector3(-1.23755e-16, 0.173045, -0.331107)
-bones/40/position = Vector3(-8.66503e-17, 0.296556, -0.155193)
-bones/42/position = Vector3(6.63037e-18, 0.295912, 0.140494)
-
-[node name="Fire Point" parent="FlyerCharacter/flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -9.84494e-07, -0.0684757, 0.416611)
+win_screen_prefab = ExtResource("2_j5whs")
+lose_screen_prefab = ExtResource("3_dlpux")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
@@ -131,15 +34,6 @@ camera = NodePath("../Camera3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 selection_node = NodePath("../Selection")
 camera = NodePath("../Camera3D")
-
-[node name="Civilian" parent="." instance=ExtResource("6_57qnw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00551, 0, 0.741485)
-
-[node name="Civilian2" parent="." instance=ExtResource("6_57qnw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42316, 0, 0.741485)
-
-[node name="Civilian3" parent="." instance=ExtResource("6_57qnw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.78544, 0, 0.741485)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0ivu4")
@@ -157,17 +51,36 @@ shape = SubResource("BoxShape3D_1cpf1")
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 10, 6)
-
-[node name="Knight" parent="." instance=ExtResource("9_qxxv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8287, 0.0866346, 1.14524)
+near = 5.0
+far = 100.0
 
 [node name="SpawnerHouse1" parent="." instance=ExtResource("10_x1qmi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9488, 0.0866346, -2.14506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.332, 0, -13.901)
+
+[node name="FlyerCharacter" parent="." instance=ExtResource("2_17swa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93691, 0.0866356, -2.1135)
+
+[node name="FlyerCharacter2" parent="." instance=ExtResource("2_17swa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93691, 0.0866356, 10.7317)
+
+[node name="Civilian" parent="." instance=ExtResource("6_57qnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.38293, 0.0866356, 0.624741)
+
+[node name="Civilian2" parent="." instance=ExtResource("6_57qnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7832, 0.0866356, -0.0171032)
+
+[node name="Civilian3" parent="." instance=ExtResource("6_57qnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.01242, 0.0866356, 6.3309)
+
+[node name="Civilian4" parent="." instance=ExtResource("6_57qnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16861, 0.0866356, 9.84188)
+
+[node name="Civilian5" parent="." instance=ExtResource("6_57qnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45495, 0.0866356, 4.00668)
+
+[node name="Civilian6" parent="." instance=ExtResource("6_57qnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93599, 0.0866356, 13.177)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
-[editable path="DootCharacter"]
-[editable path="DootCharacter/doot"]
-[editable path="FlyerCharacter"]
-[editable path="FlyerCharacter/flyer"]
 [editable path="Lich"]

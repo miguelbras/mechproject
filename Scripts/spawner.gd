@@ -11,27 +11,19 @@ extends Node3D
 var current_paladins: int = 0
 var current_knights: int = 0
 var current_civilians: int = 0
-
 var last_spawned_entity = null
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	while current_paladins < max_paladins:
-		spawn_something_ready(paladin_prefab.instantiate())
-		current_paladins += 1
-	while current_knights < max_knights:
-		spawn_something_ready(knight_prefab.instantiate())
-		current_knights += 1
-	while current_civilians < max_civilians:
-		spawn_something_ready(civilian_prefab.instantiate())
-		current_civilians += 1
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	#while current_paladins < max_paladins:
+	#	spawn_something_ready(paladin_prefab.instantiate())
+	#	current_paladins += 1
+	#while current_knights < max_knights:
+	#	spawn_something_ready(knight_prefab.instantiate())
+	#	current_knights += 1
+	#while current_civilians < max_civilians:
+	#	spawn_something_ready(civilian_prefab.instantiate())
+	#	current_civilians += 1
 	pass
-
 
 func spawn_something():
 	if current_paladins < max_paladins:
@@ -59,12 +51,11 @@ func spawn_something_ready(entity: Node):
 	entity.position = spawn_point
 	entity.velocity = Vector3(randf_range(-2,2), 0, randf_range(-2,2))
 	entity.parent_spawner = self
-	self.add_child(entity)
+	add_child(entity)
 
 func _on_timer_timeout():
 	spawn_something()
 	$AfterSpawnTimer.start()
-
 
 func _on_after_spawn_timer_timeout():
 	if last_spawned_entity != null:

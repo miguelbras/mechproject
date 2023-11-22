@@ -2875,7 +2875,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.98952e-13, 0, -1.98952e-13, 1, 0, 1.937
 surface_material_override/0 = SubResource("StandardMaterial3D_3nwks")
 
 [node name="RightClaw" type="BoneAttachment3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.14055, 0.179096, 0.97374, -0.986995, 0.052148, -0.152055, -0.0780117, -0.982448, 0.169438, -0.0787303, -0.0307073, 0.143537)
+transform = Transform3D(-0.27106, -0.962207, 0.0261552, 0.676763, -0.171185, 0.716022, -0.684484, 0.211786, 0.697588, -0.338816, 0.411759, 0.0310008)
 bone_name = "hand.R_end"
 bone_idx = 45
 
@@ -2887,7 +2887,7 @@ script = ExtResource("4_i8unv")
 shape = SubResource("SphereShape3D_c6doj")
 
 [node name="LeftClaw" type="BoneAttachment3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D" index="2"]
-transform = Transform3D(0.364911, -0.242889, -0.898802, 0.926581, 0.189138, 0.325076, 0.0910408, -0.951436, 0.294074, 0.0436007, -0.0728447, 0.0201428)
+transform = Transform3D(0.0674994, -0.386516, 0.919809, -0.728523, 0.610798, 0.310128, -0.681687, -0.691036, -0.240357, -0.0242626, 0.345637, 0.014076)
 bone_name = "hand.L_end"
 bone_idx = 33
 

@@ -6,9 +6,10 @@ extends Mob
 @onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
 @onready var fire_timer = $Timer
 
-var fire_pattern = 0
+var fire_pattern = 0 # remember which attack was selected
 
 func _ready():
+	super._ready()
 	stop_dist = 4
 
 func update_animation_parameters():
