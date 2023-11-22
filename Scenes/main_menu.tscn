@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvgmvpt1lfg1o"]
+[gd_scene load_steps=4 format=3 uid="uid://bvgmvpt1lfg1o"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/mainmenu.gd" id="1_pavq3"]
 [ext_resource type="Texture2D" uid="uid://li6ypkpv00ty" path="res://Textures/Menu/tlq.png" id="2_06swr"]
+[ext_resource type="AudioStream" uid="uid://bape6cbr8a8hv" path="res://Sound/BackgroundMusic/dark-mysterious-halloween-night-scary-creepy-spooky-horror-music-116551_by_-_SoundGalleryBy_.mp3" id="3_qvj5d"]
 
 [node name="main_menu" type="Node3D"]
 
@@ -54,6 +55,11 @@ grow_horizontal = 2
 position = Vector2(23.0001, 129)
 scale = Vector2(0.694535, 0.724551)
 texture = ExtResource("2_06swr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qvj5d")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="Control" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/LbButton" to="Control" method="_on_lb_button_pressed"]
