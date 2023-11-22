@@ -5,7 +5,7 @@ extends Enemy
 @onready var cooldown = $RotPoint/Timer
 @onready var sword = $RotPoint/SwordArea3D
 @onready var cast = $ShapeCast3D
-@onready var audio_player = $AudioStreamPlayer3D
+@onready var audio_player = $AudioStreamPlayer
 
 var stop_dist = 1.5 # distance to stop so it doesn't collide with target
 var slashing = false # is swinging the sword (animation)

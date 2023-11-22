@@ -22,8 +22,8 @@ var last_positions_amount = 20 # idem
 
 func _ready():
 	set_as_top_level(true)
+	await Engine.get_main_loop().physics_frame
 	move_target = self.position
-	print("READY", move_target, self.position)
 
 func _physics_process(delta):
 	if not attacking:
@@ -60,7 +60,7 @@ func check_blocked():
 
 func follow_enemy():
 	enemy_target = Util.get_closest_target(enemy_target, position, cast, "Enemy")
-	if enemy_target != null and enemy_target.position.distance_to(position) > stop_dist:
+	if enemy_target != null and enemy_target.position.distance_to(position) > stop_dist: # only works for circular small stuff
 		var desired_velocity = (enemy_target.position - position) * max_velocity
 		var steering = desired_velocity - velocity
 		velocity = Util.truncate_vector(velocity + steering, max_velocity)
@@ -70,7 +70,6 @@ func follow_enemy():
 
 func follow_target():
 	var distance_to_target: Vector3 = move_target - self.position
-	print(move_target, self.position)
 	# dont move if right next to target
 	if distance_to_target.length_squared() < 0.1:
 		velocity = Vector3.ZERO
