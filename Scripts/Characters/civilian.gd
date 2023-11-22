@@ -5,7 +5,7 @@ enum State {ESCAPE, RANDOM}
 @export var sta = 5.0 # stamina, how much time it walks
 @export var rec = 2.0 # how much time it stops
 
-@onready var cast = $ShapeCast3D
+@onready var cast = $AggroRange
 @onready var timer = $Timer
 @onready var doot = load("res://Prefabs/Characters/doot.tscn")
 
@@ -48,7 +48,7 @@ func _physics_process(delta):
 func _on_tree_exited():
 	var doot_instance = doot.instantiate()
 	Global.arena.add_child(doot_instance)
-	doot_instance.position = self.position # TODO
+	doot_instance.position = self.position
 	Global.arena.enemy_despawned()
 	if parent_spawner != null:
 		parent_spawner.current_civilians -= 1

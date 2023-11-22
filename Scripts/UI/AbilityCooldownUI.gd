@@ -29,7 +29,7 @@ func update(delta):
 	if timePassed <= atkCD:
 		timePassed += delta*1000
 		var value = atkCD - timePassed
-		print(value)
+		# print(value)
 		ability1Circle.value = value * 100 / atkCD
 		ability2Circle.value = value * 100 / atkCD
 		ability3Circle.value = value * 100 / atkCD

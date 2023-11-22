@@ -1,6 +1,6 @@
 extends Mob
 
-@export var attack1_prefab : PackedScene
+@export var attack_prefab : PackedScene
 
 @onready var anim_tree = $AnimationTree
 @onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
@@ -14,7 +14,6 @@ var fire_pattern = 0 # remember which attack was selected
 
 func _ready():
 	super._ready()
-	stop_dist = 4
 	audio_player.stream = sound1
 	audio_player.play()
 
@@ -49,13 +48,13 @@ func attack():
 	audio_player.stream = sound2
 	audio_player.play()
 	if fire_pattern == 0:
-		var projectile = attack1_prefab.instantiate()
+		var projectile = attack_prefab.instantiate()
 		fire_point.add_child(projectile)
 		projectile.look_at(enemy_target.global_position)
 		projectile.scale = Vector3.ONE
 	else:
 		for angle in [-60, -30, 0, 30, 60]:
-			var projectile = attack1_prefab.instantiate()
+			var projectile = attack_prefab.instantiate()
 			fire_point.add_child(projectile)
 			projectile.look_at(enemy_target.global_position)
 			projectile.rotate_y(deg_to_rad(angle))

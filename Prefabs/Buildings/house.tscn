@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjan7el5etmxg"]
+[gd_scene load_steps=8 format=3 uid="uid://cjan7el5etmxg"]
 
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_4mjaa"]
 [ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_iyt6u"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_w0nw1"]
+[ext_resource type="Script" path="res://Scripts/detectable.gd" id="4_nb1is"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nx6i"]
-size = Vector3(4.26721, 4.74908, 7.99388)
+size = Vector3(4.2482, 4.53307, 7.63803)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1r6c1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wm6mk"]
+size = Vector3(4.09491, 4.63971, 7.68932)
 
 [node name="StaticBody3D" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_4mjaa")
@@ -27,7 +31,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0, 6.239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0.5, 6.239)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2nx6i")
@@ -35,6 +39,14 @@ shape = SubResource("BoxShape3D_2nx6i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4.29151, 0, 0, 0, 4.49626, 0, 0, 0, 7.68652, 0, 0, 0)
 mesh = SubResource("BoxMesh_1r6c1")
+
+[node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Enemy"]]
+script = ExtResource("4_nb1is")
+mob = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0634441, 0)
+shape = SubResource("BoxShape3D_wm6mk")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="AfterSpawnTimer" to="." method="_on_after_spawn_timer_timeout"]
