@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var max_civilians: int = 10
-@export var max_knights: int = 1
+@export var max_civilians: int = 1
+@export var max_knights: int = 0
 @export var max_paladins: int = 0
 @export var civilian_prefab: PackedScene
 @export var knight_prefab: PackedScene
