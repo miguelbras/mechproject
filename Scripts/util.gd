@@ -21,7 +21,7 @@ static func get_closest_target(curr_target, pos: Vector3, cast: ShapeCast3D, gro
 	if len(neighbours) == 0:
 		return null
 	elif curr_target not in neighbours:
-		var distance = 15
+		var distance = 1500
 		for t in neighbours:
 			var target_distance = (pos - t.position).length()
 			if target_distance <= distance:
