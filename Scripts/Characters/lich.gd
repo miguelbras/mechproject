@@ -1,34 +1,27 @@
 extends CharacterBody3D
 
-@onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
-@onready var camera_delta: Vector3 = camera.position - self.position
-@onready var projectile_spawner : Node3D = $ProjectileSpawner
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
 @export var selection_node : Area3D
 @export var camera: Camera3D
 @export var Speed = 6
-
-var last_time_attacked = 0
 @export var attack_cooldown_ms = 1000
 @export var hp = 30
 
+@onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
+@onready var camera_delta: Vector3 = camera.position - position
+@onready var projectile_spawner : Node3D = $ProjectileSpawner
+
+var last_time_attacked = 0
 var selected = []
 var followers = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(navigationAgent.is_navigation_finished()):
 		return
-	
 	moveToPoint(delta, Speed)
-	camera.position = self.position + camera_delta
+	camera.position = position + camera_delta
 
 func moveToPoint(delta, speed):
 	var targetPos = navigationAgent.get_next_path_position()
@@ -43,7 +36,6 @@ func faceDirection(direction):
 func _input(event):
 	if Global.arena.game_over:
 		return
-
 	if Input.is_action_pressed("zombie_move_agg"):
 		zombies_agg()
 	elif Input.is_action_pressed("zombie_move_pass"):
@@ -87,7 +79,7 @@ func attack(projectile):
 	projectile_spawner.add_child(projectile)
 	
 	# stop moving, add CD to attack
-	navigationAgent.target_position = self.position
+	navigationAgent.target_position = position
 	last_time_attacked = Time.get_ticks_msec()
 	
 func attack1():

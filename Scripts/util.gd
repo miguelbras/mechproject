@@ -2,12 +2,12 @@ extends Node
 
 class_name Util
 
-# miscelaneous
+### miscelaneous ###
 
 static func truncate_vector(vector, max):
 	return vector * min(max / vector.length(), 1.0)
 
-# behaviour
+### behaviour ###
 
 static func get_all_targets(cast: ShapeCast3D, group: String):
 	return cast.collision_result.map(func(x): return x.collider).filter(func(x): return x and x.is_in_group(group))

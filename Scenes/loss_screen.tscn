@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://v4xke7w0hrkf"]
 
-[ext_resource type="Script" path="res://Scripts/EndScreen.gd" id="1_1n0t4"]
-[ext_resource type="Texture2D" uid="uid://d272gh3xadxia" path="res://Textures/loss.png" id="2_i7buv"]
+[ext_resource type="Script" path="res://Scripts/Menu/endscreen.gd" id="1_1n0t4"]
+[ext_resource type="Texture2D" uid="uid://d272gh3xadxia" path="res://Textures/Menu/loss.png" id="2_i7buv"]
 
 [node name="win_screen" type="Node3D"]
 script = ExtResource("1_1n0t4")

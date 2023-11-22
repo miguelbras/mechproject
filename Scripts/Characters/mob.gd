@@ -4,23 +4,19 @@ class_name Mob
 
 enum State {IDLE, WALK, ATK, DEAD}
 
-signal removed
-
 @export var hp = 10
 @export var max_velocity = 3
 
 @onready var cast = $ShapeCast3D
+@onready var move_target = position
 
 var target_velocity = Vector3.ZERO
-
 var stop_dist = 2
 var state = State.IDLE
 var attacking = false
-var enemy_target = null
+var enemy_target
 var atk_pattern = 0
-@onready var move_target = self.position
 var aggressive: bool = true
-
 var last_positions = []
 var last_positions_amount = 20
 
@@ -42,7 +38,7 @@ func check_blocked():
 	if velocity == Vector3.ZERO:
 		return
 	
-	last_positions.append(self.position)
+	last_positions.append(position)
 	# return if we dont have enough samples
 	if len(last_positions) < last_positions_amount:
 		return
@@ -57,7 +53,8 @@ func check_blocked():
 			blocked = false
 	if blocked:
 		#print("blocked")
-		move_target = self.position
+		move_target = position
+		#velocity = Vector3.ZERO
 
 func follow_enemy():
 	enemy_target = Util.get_closest_target(enemy_target, position, cast, "Enemy")
@@ -84,11 +81,11 @@ func follow_target():
 
 func look_at_target():
 	if aggressive and enemy_target != null:
-		self.look_at(enemy_target.position, Vector3.UP, true)
+		look_at(enemy_target.position, Vector3.UP, true)
 		return
 	# only look if target is far away
 	if (move_target - position).length() > 0.1:
-		self.look_at(move_target, Vector3.UP, true)
+		look_at(move_target, Vector3.UP, true)
 
 func update_state():
 	if hp <= 0:

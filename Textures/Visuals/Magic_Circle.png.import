@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bah40jmnjuu0a"
-path.s3tc="res://.godot/imported/doot.png-d07f7f2f6e7bf165605a19d35f369320.s3tc.ctex"
+uid="uid://5xiofk04yiit"
+path.s3tc="res://.godot/imported/Magic_Circle.png-744ccc6ef3926bb94c16ad8c1c529076.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/doot.png"
-dest_files=["res://.godot/imported/doot.png-d07f7f2f6e7bf165605a19d35f369320.s3tc.ctex"]
+source_file="res://Textures/Visuals/Magic_Circle.png"
+dest_files=["res://.godot/imported/Magic_Circle.png-744ccc6ef3926bb94c16ad8c1c529076.s3tc.ctex"]
 
 [params]
 

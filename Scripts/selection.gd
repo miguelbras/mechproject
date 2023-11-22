@@ -1,18 +1,18 @@
-# from https://godotforums.org/u/xyz, awnser:
+# adapted from https://godotforums.org/u/xyz, awnser:
 # https://godotforums.org/d/34220-more-information-about-using-3d-selection-boxes/39
 
 extends Area3D
 
 @export var camera: Camera3D
 @export var selected_mobs: Array = []
+@export var selection_marker_prefab: PackedScene
+
 const near_far_margin = .1 # frustum near/far planes distance from camera near/far planes
 
 # mouse dragging position
 var mouse_down_pos: Vector2
 var mouse_current_pos: Vector2
-
 var selection_markers = []
-@export var selection_marker_prefab: PackedScene
 
 func _ready():
 	# initial reference rect setup

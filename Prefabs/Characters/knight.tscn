@@ -71,6 +71,7 @@ one_shot = true
 
 [node name="DotTimer" type="Timer" parent="."]
 
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="area_entered" from="RotPoint/SwordArea3D" to="RotPoint/SwordArea3D" method="_on_area_entered"]
 [connection signal="timeout" from="RotPoint/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

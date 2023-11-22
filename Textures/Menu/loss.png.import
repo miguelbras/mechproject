@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d13vwcblvuxwi"
-path="res://.godot/imported/SelectionMarker.png-c308104bdbddaeea6b96dee5fa870354.ctex"
+uid="uid://d272gh3xadxia"
+path="res://.godot/imported/loss.png-7dcb956dbfc7c59ef9ff975e63ba037b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/SelectionMarker.png"
-dest_files=["res://.godot/imported/SelectionMarker.png-c308104bdbddaeea6b96dee5fa870354.ctex"]
+source_file="res://Textures/Menu/loss.png"
+dest_files=["res://.godot/imported/loss.png-7dcb956dbfc7c59ef9ff975e63ba037b.ctex"]
 
 [params]
 
