@@ -79,11 +79,11 @@ func follow_target():
 
 func look_at_target():
 	if aggressive and enemy_target != null:
-		look_at(enemy_target.position, Vector3.UP, true)
+		Util.look_at_target(self, enemy_target.position)
 		return
 	# only look if target is far away
 	if (move_target - position).length() > 0.15:
-		look_at(move_target, Vector3.UP, true)
+		Util.look_at_target(self, move_target)
 
 func update_state():
 	if hp <= 0:

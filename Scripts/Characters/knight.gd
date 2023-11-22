@@ -60,7 +60,8 @@ func follow_enemy():
 
 func look_at_target():
 	if mob_target != null:
-		self.look_at(mob_target.position, Vector3.UP, true)
+		#look_at(mob_target.position, Vector3.UP, true)
+		Util.look_at_target(self, mob_target.position)
 
 func _on_cooldown_timeout():
 	can_attack = mob_target != null
