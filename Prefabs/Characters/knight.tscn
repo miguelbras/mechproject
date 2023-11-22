@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://kcl3hrttj06k"]
+[gd_scene load_steps=11 format=3 uid="uid://kcl3hrttj06k"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/knight.gd" id="1_2x1n4"]
 [ext_resource type="Script" path="res://Scripts/Attacks/sword_slash.gd" id="2_esnnl"]
