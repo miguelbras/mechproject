@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://j7xjqslowfv4"]
+[gd_scene load_steps=25 format=3 uid="uid://j7xjqslowfv4"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/flyer.gd" id="1_pryk6"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_wlm1g"]
@@ -2699,6 +2699,8 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0n5ip"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lv4w5"]
+
 [node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_pryk6")
 attack1_prefab = ExtResource("2_wlm1g")
@@ -2707,46 +2709,46 @@ attack1_prefab = ExtResource("2_wlm1g")
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 1, 0)
 
 [node name="Skeleton3D" parent="flyer/RootNode/Flyer Boi armature" index="0"]
-bones/0/position = Vector3(8.79912e-07, 0.179635, 0.266211)
+bones/0/position = Vector3(8.79912e-07, 0.262159, 0.300353)
 bones/0/rotation = Quaternion(0.935119, -6.77313e-07, -1.78369e-06, 0.354335)
-bones/1/rotation = Quaternion(0.232278, 8.23841e-07, 1.19405e-05, 0.97265)
-bones/3/rotation = Quaternion(0.940229, -1.26012e-06, -1.69622e-06, 0.340543)
-bones/4/rotation = Quaternion(-0.222411, 4.67163e-08, -1.53724e-06, 0.974953)
+bones/1/rotation = Quaternion(0.449993, -7.69174e-08, 2.8746e-06, 0.893032)
+bones/3/rotation = Quaternion(0.990758, -2.19875e-06, -1.4784e-06, 0.135642)
+bones/4/rotation = Quaternion(-0.07404, -5.5724e-08, -3.24849e-06, 0.997255)
 bones/4/scale = Vector3(1, 1, 0.999989)
-bones/5/rotation = Quaternion(0.165678, 3.11629e-08, -1.47326e-07, 0.98618)
-bones/6/rotation = Quaternion(0.197764, 1.20196e-09, -3.5949e-07, 0.98025)
-bones/8/rotation = Quaternion(-0.205424, 0.198566, -0.687549, 0.66757)
-bones/9/rotation = Quaternion(0.147301, 0.0611113, -0.333072, 0.929317)
-bones/10/rotation = Quaternion(-0.0750753, 1.59657e-05, 0.543999, 0.835721)
-bones/11/rotation = Quaternion(0.456697, 0.20467, -0.477619, 0.722093)
+bones/5/rotation = Quaternion(-0.614373, -2.61798e-07, 4.26997e-07, 0.789016)
+bones/6/rotation = Quaternion(-0.101251, 1.07557e-07, -3.43025e-07, 0.994861)
+bones/8/rotation = Quaternion(0.0178368, 0.00351859, -0.592904, 0.805068)
+bones/9/rotation = Quaternion(0.469226, 0.340997, 0.0794474, 0.810701)
+bones/10/rotation = Quaternion(-0.0736562, 2.4464e-05, 0.533752, 0.842427)
+bones/11/rotation = Quaternion(0.172599, 0.117017, -0.44359, 0.871633)
 bones/13/rotation = Quaternion(-0.617222, 2.01316e-08, -0.0851926, 0.782163)
-bones/14/position = Vector3(-0.0642779, -0.00291922, 0.53279)
-bones/14/rotation = Quaternion(0.450784, 0.610585, -0.443529, 0.476721)
+bones/14/position = Vector3(-0.169009, -0.47458, 0.197636)
+bones/14/rotation = Quaternion(0.747305, 0.475576, -0.0696444, 0.458816)
 bones/16/position = Vector3(0.268526, 6.80331e-09, 0.272846)
-bones/18/rotation = Quaternion(-0.205421, -0.198563, 0.687549, 0.667571)
-bones/19/rotation = Quaternion(0.146367, -0.0591743, 0.347833, 0.924168)
-bones/20/rotation = Quaternion(-0.0777932, -1.27014e-05, -0.563679, 0.822322)
-bones/21/rotation = Quaternion(0.461634, -0.203979, 0.482747, 0.715711)
+bones/18/rotation = Quaternion(0.017839, -0.00351547, 0.592904, 0.805068)
+bones/19/rotation = Quaternion(0.468673, -0.339732, -0.0801504, 0.811482)
+bones/20/rotation = Quaternion(-0.0731889, -2.52482e-05, -0.53037, 0.844601)
+bones/21/rotation = Quaternion(0.1732, -0.117461, 0.440669, 0.872935)
 bones/23/rotation = Quaternion(-0.617222, -1.68894e-08, 0.0851926, 0.782163)
-bones/24/position = Vector3(0.0635163, 0.000429199, 0.524678)
-bones/24/rotation = Quaternion(0.450783, -0.610584, 0.443529, 0.476722)
+bones/24/position = Vector3(0.16926, -0.474934, 0.200186)
+bones/24/rotation = Quaternion(0.747305, -0.475576, 0.0696442, 0.458816)
 bones/26/position = Vector3(-0.268526, 2.37454e-09, 0.272846)
-bones/28/position = Vector3(-0.152337, 0.214854, -0.099732)
-bones/30/position = Vector3(0.152336, 0.214854, -0.099733)
+bones/28/position = Vector3(-0.152336, 0.267632, 0.00391816)
+bones/30/position = Vector3(0.152336, 0.267632, 0.003917)
 bones/32/position = Vector3(-1.79677e-17, -0.0207623, 0.421318)
 bones/32/rotation = Quaternion(0.985078, 4.23337e-07, -2.42298e-06, -0.17211)
-bones/33/position = Vector3(-2.00713e-06, 0.0710972, -0.0489665)
+bones/33/position = Vector3(-1.22647e-06, 0.00239072, -0.000335666)
 bones/34/rotation = Quaternion(0.552833, -3.6419e-08, -2.08472e-06, 0.833292)
-bones/36/position = Vector3(-1.70568e-16, 0.264673, -0.583331)
-bones/38/position = Vector3(-1.23755e-16, 0.161948, -0.377192)
-bones/40/position = Vector3(-8.66503e-17, 0.148035, -0.210191)
-bones/42/position = Vector3(6.63037e-18, 0.21727, 0.0192858)
+bones/36/position = Vector3(-1.70568e-16, -0.00888646, -0.394932)
+bones/38/position = Vector3(-1.23755e-16, 0.286399, -0.264264)
+bones/40/position = Vector3(-8.66503e-17, 0.47548, -0.0795565)
+bones/42/position = Vector3(6.63037e-18, 0.346364, 0.170221)
 
 [node name="Flyer Boi mesh" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.50111e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.76625e-06, -0.129221, 0.444996)
+transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.22481e-06, -0.0480947, 0.422544)
 bone_name = "jaw"
 bone_idx = 34
 
@@ -2770,7 +2772,7 @@ parameters/conditions/flap = false
 parameters/conditions/glide = false
 parameters/conditions/idle = true
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+[node name="AggroRange" type="ShapeCast3D" parent="."]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 1.93326, 0)
 shape = SubResource("CylinderShape3D_xjbyb")
 
@@ -2787,6 +2789,10 @@ shape = SubResource("CapsuleShape3D_0n5ip")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_w2my2")
 volume_db = -13.0
+
+[node name="AttackRange" type="ShapeCast3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 1.93326, 0)
+shape = SubResource("CylinderShape3D_lv4w5")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
