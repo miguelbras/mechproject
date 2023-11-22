@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://brjmf2ik2584c"]
+[gd_scene load_steps=9 format=3 uid="uid://brjmf2ik2584c"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/lich.gd" id="1_7sbdc"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_g76xd"]
 [ext_resource type="PackedScene" uid="uid://bev6v5dhv8muu" path="res://Prefabs/Attacks/attack2.tscn" id="3_qomia"]
 [ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/Attacks/attack3.tscn" id="4_7f1bl"]
+[ext_resource type="AudioStream" uid="uid://xdjb1ms4onmt" path="res://Sound/Attack/Eldritch Blast.wav" id="6_2s3g7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o30m4"]
 
@@ -33,3 +34,7 @@ mesh = SubResource("BoxMesh_1mmsx")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.1496, 0.74867)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2s3g7")
+volume_db = -18.0
