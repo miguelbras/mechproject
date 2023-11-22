@@ -31,7 +31,7 @@ func moveToPoint(delta, speed):
 	move_and_slide()
 
 func faceDirection(direction):
-	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
+	Util.look_at_target(self, Vector3(direction.x, global_position.y, direction.z))
 
 func _input(event):
 	if Global.arena.game_over:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/flyer.gd" id="1_pryk6"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_wlm1g"]
 [ext_resource type="PackedScene" uid="uid://cxsi5j6vr8kn2" path="res://3DModels/flyer.fbx" id="3_pylqf"]
-[ext_resource type="Texture2D" uid="uid://befmrqqwpmyap" path="res://Textures/flyer.png" id="4_1re8f"]
+[ext_resource type="Texture2D" uid="uid://befmrqqwpmyap" path="res://Textures/3DModels/flyer.png" id="4_1re8f"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://7ad32kr2vxvm" path="res://AnimationTrees/flyer.tres" id="5_xbxaq"]
 [ext_resource type="Script" path="res://Scripts/detectable.gd" id="6_a7pim"]
 
@@ -2745,7 +2745,7 @@ bones/42/position = Vector3(6.63037e-18, 0.223864, 0.00287135)
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.65254e-06, -0.122619, 0.438494)
+transform = Transform3D(1, -2.50111e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.65254e-06, -0.122619, 0.438494)
 bone_name = "jaw"
 bone_idx = 34
 

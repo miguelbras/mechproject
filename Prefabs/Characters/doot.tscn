@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Characters/doot.gd" id="1_wui4y"]
 [ext_resource type="PackedScene" uid="uid://d086xkoa74atm" path="res://3DModels/doot.fbx" id="2_bjgdx"]
-[ext_resource type="Texture2D" uid="uid://bah40jmnjuu0a" path="res://Textures/doot.png" id="3_fn8hv"]
+[ext_resource type="Texture2D" uid="uid://bah40jmnjuu0a" path="res://Textures/3DModels/doot.png" id="3_fn8hv"]
 [ext_resource type="Script" path="res://Scripts/Attacks/doot_claw.gd" id="4_i8unv"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://mb4cajj8uh7s" path="res://AnimationTrees/doot.tres" id="5_okusr"]
 [ext_resource type="Script" path="res://Scripts/detectable.gd" id="6_0n0il"]
@@ -2875,7 +2875,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.98952e-13, 0, -1.98952e-13, 1, 0, 1.937
 surface_material_override/0 = SubResource("StandardMaterial3D_3nwks")
 
 [node name="RightClaw" type="BoneAttachment3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.27106, -0.962207, 0.0261552, 0.676763, -0.171185, 0.716022, -0.684484, 0.211786, 0.697588, -0.338816, 0.411759, 0.0310008)
+transform = Transform3D(-0.140551, 0.179097, 0.97374, -0.986995, 0.0521479, -0.152056, -0.0780118, -0.982448, 0.169439, -0.0787302, -0.0307071, 0.143537)
 bone_name = "hand.R_end"
 bone_idx = 45
 
@@ -2887,7 +2887,7 @@ script = ExtResource("4_i8unv")
 shape = SubResource("SphereShape3D_c6doj")
 
 [node name="LeftClaw" type="BoneAttachment3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0674994, -0.386516, 0.919809, -0.728523, 0.610798, 0.310128, -0.681687, -0.691036, -0.240357, -0.0242626, 0.345637, 0.014076)
+transform = Transform3D(0.364911, -0.242889, -0.898802, 0.926581, 0.189139, 0.325076, 0.0910413, -0.951436, 0.294075, 0.0436005, -0.0728443, 0.0201428)
 bone_name = "hand.L_end"
 bone_idx = 33
 

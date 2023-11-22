@@ -14,15 +14,15 @@ var current_civilians: int = 0
 var last_spawned_entity = null
 
 func _ready():
-	#while current_paladins < max_paladins:
-	#	spawn_something_ready(paladin_prefab.instantiate())
-	#	current_paladins += 1
-	#while current_knights < max_knights:
-	#	spawn_something_ready(knight_prefab.instantiate())
-	#	current_knights += 1
-	#while current_civilians < max_civilians:
-	#	spawn_something_ready(civilian_prefab.instantiate())
-	#	current_civilians += 1
+	while current_paladins < max_paladins:
+		spawn_something_ready(paladin_prefab.instantiate())
+		current_paladins += 1
+	while current_knights < max_knights:
+		spawn_something_ready(knight_prefab.instantiate())
+		current_knights += 1
+	while current_civilians < max_civilians:
+		spawn_something_ready(civilian_prefab.instantiate())
+		current_civilians += 1
 	pass
 
 func spawn_something():

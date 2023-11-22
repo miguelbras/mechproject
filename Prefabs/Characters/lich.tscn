@@ -29,11 +29,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_llvjj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(0.373309, 0, 0, 0, 0.312953, 0, 0, 0, 0.413909, -0.0111693, 0.448802, -0.639583)
+transform = Transform3D(0.373309, 0, 0, 0, 0.312953, 0, 0, 0, 0.413909, -0.0111693, 0.448802, 0.648106)
 mesh = SubResource("BoxMesh_1mmsx")
 
 [node name="ProjectileSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1496, -0.786497)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.1496, 0.74867)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
