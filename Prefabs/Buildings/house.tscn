@@ -29,7 +29,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934647, 1.69994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7)
 
 [node name="AfterSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

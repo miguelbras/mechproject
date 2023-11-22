@@ -13,6 +13,7 @@ var base_rot # restore original rotation of sword
 var mob_target # which mob to follow and attack
 
 func _ready():
+	super._ready()
 	Global.arena.enemy_spawned()
 	sword.set_process(false)
 	base_rot = rot.basis

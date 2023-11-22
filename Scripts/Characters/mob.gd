@@ -20,6 +20,9 @@ var aggressive: bool = true # if aggressive should attack player, if not just mo
 var last_positions = [] # check if is blocked, if so put it IDLE
 var last_positions_amount = 20 # idem
 
+func _ready():
+	set_as_top_level(true)
+
 func _physics_process(delta):
 	if not attacking:
 		if aggressive:
@@ -77,8 +80,9 @@ func follow_target():
 func look_at_target():
 	if aggressive and enemy_target != null:
 		look_at(enemy_target.position, Vector3.UP, true)
+		return
 	# only look if target is far away
-	elif (move_target - position).length() > 0.1:
+	if (move_target - position).length() > 0.15:
 		look_at(move_target, Vector3.UP, true)
 
 func update_state():

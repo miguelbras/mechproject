@@ -21,6 +21,9 @@ var attack2_debuff = null
 var ready_after_spawn = true
 var parent_spawner = null
 
+func _ready():
+	set_as_top_level(true)
+
 func set_slow():
 	if slow:
 		slow_timer.stop()

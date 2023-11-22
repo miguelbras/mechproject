@@ -42,7 +42,8 @@ func input(event):
 func select():
 	# clear current visual markers
 	for marker in selection_markers:
-		marker.queue_free()
+		if is_instance_valid(marker):
+			marker.queue_free()
 	selection_markers.clear()
 	# get frustum mesh and assign it as a collider and assign it to the area 3d
 	$ReferenceRect.size.x = max(1, $ReferenceRect.size.x)
@@ -59,9 +60,10 @@ func select():
 
 	# add new visual markers
 	for mob in selected_mobs:
-		var marker = selection_marker_prefab.instantiate()
-		mob.add_child(marker)
-		selection_markers.append(marker)
+		if is_instance_valid(mob):
+			var marker = selection_marker_prefab.instantiate()
+			mob.add_child(marker)
+			selection_markers.append(marker)
 
 # function that construct frustum mesh collider
 func make_frustum_collision_mesh(rect: Rect2) -> ConvexPolygonShape3D:

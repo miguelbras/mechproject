@@ -114,14 +114,16 @@ func zombies_agg():
 	if not result:
 		return
 	for mob in selection_node.selected_mobs:
-		mob.aggressive_move(result.position)
+		if is_instance_valid(mob):
+			mob.aggressive_move(result.position)
 
 func zombies_pass():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
 	for mob in selection_node.selected_mobs:
-		mob.passive_move(result.position)
+		if is_instance_valid(mob):
+			mob.passive_move(result.position)
 
 func take_damage(dmg: int):
 	hp -= dmg
