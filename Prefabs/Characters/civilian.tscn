@@ -30,8 +30,9 @@ mesh = SubResource("CapsuleMesh_2rt5c")
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 1.93326, 0)
 shape = SubResource("CylinderShape3D_ftsx7")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="StaminaTimer" type="Timer" parent="."]
 process_callback = 0
+one_shot = true
 
 [node name="SlowTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -49,10 +50,11 @@ shape = SubResource("CapsuleShape3D_uoaip")
 
 [node name="RandomMovementTimer" type="Timer" parent="."]
 wait_time = 20.0
+one_shot = true
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StaminaTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
 [connection signal="timeout" from="DotTimer" to="." method="_on_dot_timer_timeout"]
 [connection signal="timeout" from="RandomMovementTimer" to="." method="_on_random_movement_timer_timeout"]
