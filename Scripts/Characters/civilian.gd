@@ -2,7 +2,8 @@ extends Enemy
 
 enum State {ESCAPE, RANDOM}
 
-@export var sta = 5.0 # stamina, how much time it walks
+var current_stamina: float 
+@export var max_stamina: float = 5.0 # stamina, how much time it walks
 @export var rec = 2.0 # how much time it stops
 
 @onready var cast = $AggroRange
@@ -32,7 +33,7 @@ func run_direction(direction: Vector3):
 func _physics_process(delta):
 	if ready_after_spawn:
 		velocity = Vector3.ZERO
-		if sta > 0:
+		if current_stamina > 0:
 			if state == State.ESCAPE:
 				run_from_target()
 			else:
@@ -40,9 +41,11 @@ func _physics_process(delta):
 		if slow:
 			velocity *= slow_factor
 		if velocity.length() > 0:
-			sta -= delta
-			if sta <= 0:
+			current_stamina -= delta
+			if current_stamina <= 0:
 				timer.start(rec)
+	if position.y > 0.58:
+		velocity.y = -position.y * 4
 	move_and_slide()
 
 func _on_tree_exited():
@@ -55,9 +58,9 @@ func _on_tree_exited():
 
 func _on_timer_timeout():
 	timer.stop()
-	sta = 2.0
+	current_stamina = max_stamina
 	state = State.RANDOM if randf() > 0.5 else State.ESCAPE
-	rand_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1))
+	rand_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 
 func _on_slow_timer_timeout():
 	slow = false
@@ -75,3 +78,19 @@ func _on_dot_timer_timeout():
 
 func _on_ready():
 	Global.arena.enemy_spawned()
+	current_stamina = max_stamina
+	$RandomMovementTimer.wait_time = randf_range(10, 30)
+	$RandomMovementTimer.start()
+
+
+func _on_random_movement_timer_timeout():
+	# only start doing random movement if fully rested
+	if current_stamina != max_stamina:
+		return
+	
+	# move in random direction for random amount of time
+	current_stamina = randf_range(1, 2)
+	rand_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
+	state = State.RANDOM
+	
+	$RandomMovementTimer.wait_time = randf_range(10, 30)
