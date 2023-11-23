@@ -1,25 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjan7el5etmxg"]
+[gd_scene load_steps=8 format=3 uid="uid://db1xd14iaadya"]
 
-[ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_4mjaa"]
-[ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_iyt6u"]
-[ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_w0nw1"]
-[ext_resource type="Script" path="res://Scripts/detectable.gd" id="4_nb1is"]
+[ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_bkupb"]
+[ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_r1glx"]
+[ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_pw1i6"]
+[ext_resource type="Script" path="res://Scripts/detectable.gd" id="4_6q0k4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nx6i"]
-size = Vector3(4.34816, 4.53307, 7.6971)
+size = Vector3(4.34816, 4.53307, 4.82336)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c4wuw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wm6mk"]
-size = Vector3(4.29646, 4.63971, 7.68932)
+size = Vector3(4.29646, 4.63971, 4.83363)
 
-[node name="House" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
-script = ExtResource("1_4mjaa")
-max_civilians = 5
-max_knights = 1
-civilian_prefab = ExtResource("2_iyt6u")
-knight_prefab = ExtResource("3_w0nw1")
-paladin_prefab = ExtResource("3_w0nw1")
+[node name="Hut" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
+script = ExtResource("1_bkupb")
+max_civilians = 3
+civilian_prefab = ExtResource("2_r1glx")
+knight_prefab = ExtResource("3_pw1i6")
+paladin_prefab = ExtResource("3_pw1i6")
 spawn_direction = Vector3(2, 0, 0)
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -27,24 +26,24 @@ wait_time = 10.0
 autostart = true
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18352, 0, 0.134407)
 
 [node name="AfterSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0.5, 6.239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.015, 0.5, 4.57204)
 
 [node name="BuildingCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2nx6i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.29151, 0, 0, 0, 4.49626, 0, 0, 0, 7.68652, 0, 0, 0)
+transform = Transform3D(4.29151, 0, 0, 0, 4.49626, 0, 0, 0, 4.81204, 0, 0, 0)
 mesh = SubResource("BoxMesh_c4wuw")
 
 [node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Enemy"]]
-script = ExtResource("4_nb1is")
+script = ExtResource("4_6q0k4")
 mob = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]

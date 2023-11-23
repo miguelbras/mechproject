@@ -51,7 +51,7 @@ func spawn_something_ready(entity: Node):
 	var spawn_point: Vector3 = $ReadySpawnPoint.global_position
 	spawn_point[0] += randf_range(-2,2)
 	spawn_point[2] -= (current_paladins + current_knights + current_civilians)*2
-	entity.global_position = spawn_point
+	entity.position = spawn_point
 	entity.velocity = Vector3(randf_range(-2,2), 0, randf_range(-2,2))
 	entity.parent_spawner = self
 	Global.arena.add_child(entity)

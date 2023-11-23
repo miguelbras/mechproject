@@ -151,3 +151,4 @@ func take_damage(dmg: int):
 	healthChanged.emit()
 	if hp <= 0:
 		Global.arena.lose()
+		queue_free()

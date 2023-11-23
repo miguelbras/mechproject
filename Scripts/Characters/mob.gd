@@ -25,7 +25,7 @@ func _ready():
 	await Engine.get_main_loop().physics_frame
 	move_target = self.position
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not attacking:
 		if aggressive:
 			follow_enemy()
@@ -111,14 +111,14 @@ func update_state():
 func update_animation_parameters():
 	pass
 	
-func aggressive_move(position: Vector3):
+func aggressive_move(target_position: Vector3):
 	aggressive = true
-	move_target = position
+	move_target = target_position
 	last_positions.clear()
 	
-func passive_move(position: Vector3):
+func passive_move(target_position: Vector3):
 	aggressive = false
-	move_target = position
+	move_target = target_position
 	last_positions.clear()
 
 func take_damage(dmg: int):
