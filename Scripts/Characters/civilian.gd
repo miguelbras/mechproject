@@ -44,7 +44,7 @@ func _physics_process(delta):
 			current_stamina -= delta
 			if current_stamina <= 0:
 				timer.start(rec)
-	if position.y > 0.58:
+	if position.y > 0.58: # hardcoded value where mobs stand at
 		velocity.y = -position.y * 4
 	move_and_slide()
 

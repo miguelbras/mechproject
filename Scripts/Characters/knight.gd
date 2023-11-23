@@ -46,6 +46,8 @@ func _physics_process(delta):
 		look_at_target()
 		if slow:
 			velocity *= slow_factor
+	if position.y > 0.58: # hardcoded value where mobs stand at
+		velocity.y = -position.y * 4
 	move_and_slide()
 
 func follow_enemy():
