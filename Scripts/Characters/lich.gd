@@ -1,5 +1,10 @@
 extends CharacterBody3D
 
+class_name Lich
+signal healthChanged
+signal abilityUsed
+signal coolDownThick(deltaTime)
+
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
@@ -7,7 +12,8 @@ extends CharacterBody3D
 @export var camera: Camera3D
 @export var my_speed = 6
 @export var attack_cooldown_ms = 1000
-@export var hp = 30
+@export var maxHp = 30
+@export var hp = maxHp
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
 @onready var camera_delta: Vector3 = camera.position - position
@@ -23,6 +29,7 @@ var selected = []
 var followers = []
 
 func _process(delta):
+	coolDownThick.emit(delta)
 	if(navigationAgent.is_navigation_finished()):
 		return
 	moveToPoint(delta, my_speed)
@@ -45,7 +52,7 @@ func _input(event):
 		zombies_agg()
 	elif Input.is_action_pressed("zombie_move_pass"):
 		zombies_pass()
-	elif Input.is_action_just_pressed("mouse_move"):
+	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
 	elif Input.is_action_pressed("attack1"):
 		attack1()
@@ -93,6 +100,7 @@ func attack1():
 	audio_player.stream = atk1_sound
 	audio_player.play()
 	attack(attack1_prefab.instantiate())
+	abilityUsed.emit()
 
 func attack2():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
@@ -100,6 +108,7 @@ func attack2():
 	audio_player.stream = atk2_sound
 	audio_player.play()
 	attack(attack2_prefab.instantiate())
+	abilityUsed.emit()
 
 func attack3():
 	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
@@ -107,6 +116,7 @@ func attack3():
 	audio_player.stream = atk3_sound
 	audio_player.play()
 	attack(attack3_prefab.instantiate())
+	abilityUsed.emit()
 
 func command_dispatch():
 	for mob in followers:
@@ -138,5 +148,7 @@ func zombies_pass():
 
 func take_damage(dmg: int):
 	hp -= dmg
+	healthChanged.emit()
 	if hp <= 0:
 		Global.arena.lose()
+		queue_free()

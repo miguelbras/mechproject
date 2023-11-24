@@ -7,11 +7,11 @@ enum State {IDLE, WALK, ATK, DEAD}
 @export var hp = 10
 @export var max_velocity = 3
 
-@onready var cast = $ShapeCast3D
+@onready var aggro_range = $AggroRange
+@onready var attack_range = $AttackRange
 @onready var move_target = position # position to move on command
 
 var target_velocity = Vector3.ZERO # direction to move
-var stop_dist = 2 # stop distance to not collide with target for attack
 var state = State.IDLE # animation state
 var attacking = false # is attacking (so it doesnt move while attack animation is running)
 var enemy_target # target to follow and attack
@@ -22,10 +22,10 @@ var last_positions_amount = 20 # idem
 
 func _ready():
 	set_as_top_level(true)
+	await Engine.get_main_loop().physics_frame
 	move_target = self.position
-	print("READY", move_target, self.position)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not attacking:
 		if aggressive:
 			follow_enemy()
@@ -59,18 +59,25 @@ func check_blocked():
 		move_target = position
 
 func follow_enemy():
-	enemy_target = Util.get_closest_target(enemy_target, position, cast, "Enemy")
-	if enemy_target != null and enemy_target.position.distance_to(position) > stop_dist:
-		var desired_velocity = (enemy_target.position - position) * max_velocity
-		var steering = desired_velocity - velocity
-		velocity = Util.truncate_vector(velocity + steering, max_velocity)
-		velocity.y = 0
-	else:
+	enemy_target = Util.get_closest_target(enemy_target, position, aggro_range, "Enemy")
+	# return if enemy not found
+	if enemy_target == null:
 		velocity = Vector3.ZERO
+		return
+	# return if enemy already within attack range
+	var enemy_in_range: bool = enemy_target in Util.get_all_targets(attack_range, "Enemy")
+	if enemy_in_range:
+		velocity = Vector3.ZERO
+		return
+	# chase enemy
+	var desired_velocity = (enemy_target.position - position) * max_velocity
+	var steering = desired_velocity - velocity
+	velocity = Util.truncate_vector(velocity + steering, max_velocity)
+	velocity.y = 0
+
 
 func follow_target():
 	var distance_to_target: Vector3 = move_target - self.position
-	print(move_target, self.position)
 	# dont move if right next to target
 	if distance_to_target.length_squared() < 0.1:
 		velocity = Vector3.ZERO
@@ -104,14 +111,14 @@ func update_state():
 func update_animation_parameters():
 	pass
 	
-func aggressive_move(position: Vector3):
+func aggressive_move(target_position: Vector3):
 	aggressive = true
-	move_target = position
+	move_target = target_position
 	last_positions.clear()
 	
-func passive_move(position: Vector3):
+func passive_move(target_position: Vector3):
 	aggressive = false
-	move_target = position
+	move_target = target_position
 	last_positions.clear()
 
 func take_damage(dmg: int):

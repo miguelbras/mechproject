@@ -1,11 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=14 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_dlpux"]
 [ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_joipp"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
+[ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="8_b74ak"]
+[ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="9_etbo6"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
+[ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="10_vogs1"]
 [ext_resource type="PackedScene" uid="uid://cjan7el5etmxg" path="res://Prefabs/Buildings/house.tscn" id="10_x1qmi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
@@ -55,12 +58,33 @@ far = 100.0
 
 [node name="SpawnerHouse1" parent="." instance=ExtResource("10_x1qmi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.332, 0, -13.901)
+max_civilians = 2
+max_knights = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_pnex7")
 volume_db = -20.0
 autoplay = true
 
+[node name="UI" parent="." instance=ExtResource("8_b74ak")]
+
+[node name="TextureProgressBar" parent="UI/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
+lich = NodePath("../../../Lich")
+
+[node name="Control" parent="." instance=ExtResource("9_etbo6")]
+offset_left = 693.0
+offset_top = 591.0
+offset_right = 693.0
+offset_bottom = 591.0
+
+[node name="HBoxContainer" parent="Control/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
+lich = NodePath("../../../Lich")
+
+[node name="FlyerCharacter" parent="." instance=ExtResource("10_vogs1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5021, 0.0866346, -13.6755)
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]
+[editable path="UI"]
+[editable path="Control"]

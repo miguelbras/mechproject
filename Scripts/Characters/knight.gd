@@ -4,12 +4,12 @@ extends Enemy
 @onready var rot_timer = $RotPoint/Timer
 @onready var cooldown = $RotPoint/Timer
 @onready var sword = $RotPoint/SwordArea3D
-@onready var cast = $ShapeCast3D
-@onready var audio_player = $AudioStreamPlayer3D
+@onready var aggro_range = $AggroRange
+@onready var attack_range = $AttackRange
+@onready var audio_player = $AudioStreamPlayer
 
-var stop_dist = 1.5 # distance to stop so it doesn't collide with target
 var slashing = false # is swinging the sword (animation)
-var can_attack = false # cooldown so it does not endesly attack
+var can_attack = false # cooldown so it does not endlessly attack
 var base_rot # restore original rotation of sword
 var mob_target # which mob to follow and attack
 
@@ -46,19 +46,28 @@ func _physics_process(delta):
 		look_at_target()
 		if slow:
 			velocity *= slow_factor
+	if position.y > 0.58: # hardcoded value where mobs stand at
+		velocity.y = -position.y * 4
 	move_and_slide()
 
 func follow_enemy():
-	mob_target = Util.get_closest_target(mob_target, position, cast, "Mob")
-	if mob_target != null and mob_target.position.distance_to(position) > stop_dist:
-		var desired_velocity = (mob_target.position - position) * max_velocity
-		var steering = desired_velocity - velocity
-		velocity = Util.truncate_vector(velocity + steering, max_velocity)
-		velocity.y = 0
-	else:
+	mob_target = Util.get_closest_target(mob_target, position, aggro_range, "Mob")
+	# return if enemy not found
+	if mob_target == null:
+		velocity = Vector3.ZERO
+		return
+	# return if enemy already within attack range
+	var mob_in_range: bool = mob_target in Util.get_all_targets(attack_range, "Mob")
+	if mob_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:
 			attack()
+		return
+	# chase enemy
+	var desired_velocity = (mob_target.position - position) * max_velocity
+	var steering = desired_velocity - velocity
+	velocity = Util.truncate_vector(velocity + steering, max_velocity)
+	velocity.y = 0
 
 func look_at_target():
 	if mob_target != null:

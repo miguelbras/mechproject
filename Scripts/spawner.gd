@@ -16,6 +16,7 @@ var last_spawned_entity = null
 @export var hp = 30
 
 func _ready():
+	await Engine.get_main_loop().physics_frame
 	while current_paladins < max_paladins:
 		spawn_something_ready(paladin_prefab.instantiate())
 		current_paladins += 1
@@ -25,7 +26,6 @@ func _ready():
 	while current_civilians < max_civilians:
 		spawn_something_ready(civilian_prefab.instantiate())
 		current_civilians += 1
-	pass
 
 func spawn_something():
 	if current_paladins < max_paladins:
@@ -42,19 +42,19 @@ func spawn_something():
 		return
 	last_spawned_entity.velocity = spawn_direction
 	last_spawned_entity.parent_spawner = self
-	last_spawned_entity.position = $SpawnPoint.position
+	last_spawned_entity.global_position = $SpawnPoint.global_position
 	last_spawned_entity.get_node("CollisionShape3D").disabled = true
 	last_spawned_entity.ready_after_spawn = false
-	self.add_child(last_spawned_entity)
+	Global.arena.add_child(last_spawned_entity)
 
 func spawn_something_ready(entity: Node):
-	var spawn_point: Vector3 = $ReadySpawnPoint.position
+	var spawn_point: Vector3 = $ReadySpawnPoint.global_position
 	spawn_point[0] += randf_range(-2,2)
 	spawn_point[2] -= (current_paladins + current_knights + current_civilians)*2
 	entity.position = spawn_point
 	entity.velocity = Vector3(randf_range(-2,2), 0, randf_range(-2,2))
 	entity.parent_spawner = self
-	add_child(entity)
+	Global.arena.add_child(entity)
 
 func _on_after_spawn_timer_timeout():
 	if last_spawned_entity != null:
