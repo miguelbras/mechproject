@@ -2,18 +2,19 @@ extends Knight
 
 # if lich visible follow lich and attack lich, if not follow closest mob
 func follow_enemy():
-	mob_target = Util.get_closest_target(mob_target, position, aggro_range, "Lich")
-	# return if enemy not found
+	# prioritize lich
+	var lich_node = Global.arena.ally_map[Global.arena.LICH_ID]
+	if is_instance_valid(lich_node) and (self.position - lich_node.position).length_squared() < AggroTargetScript.aggro_range_squared:
+		mob_target = lich_node
+	# find other enemies if lich isn't in range
 	if mob_target == null:
-		mob_target = Util.get_closest_target(mob_target, position, aggro_range, "Mob")
-		if mob_target == null:
-			velocity = Vector3.ZERO
-			return
+		mob_target = AggroTargetScript.target
+	# return if no enemies nearby
+	if mob_target == null:
+		velocity = Vector3.ZERO
+		return
 	# return if enemy already within attack range
-	var mob_in_range: bool = mob_target in Util.get_all_targets(attack_range, "Lich")
-	if not mob_in_range:
-		mob_target = Util.get_closest_target(null, position, aggro_range, "Mob")
-		mob_in_range = mob_target in Util.get_all_targets(attack_range, "Mob")
+	var mob_in_range: bool = (self.position - mob_target.position).length_squared() < attack_range_squared
 	if mob_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:

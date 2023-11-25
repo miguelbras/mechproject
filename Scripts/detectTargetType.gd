@@ -1,6 +1,5 @@
 extends Node
 
-
 @export var aggro_range: float
 var target: Node3D = null # target to run from
 var aggro_range_squared: float
@@ -15,7 +14,6 @@ func _ready():
 		target_map = Global.arena.ally_map
 	else:
 		target_map = Global.arena.enemy_map
-
 
 func get_targets(pos: Vector3):
 	var targets = []
@@ -36,7 +34,6 @@ func get_closest_target(curr_target: Node3D, pos: Vector3) -> Node3D:
 				curr_target = t
 				distance = target_distance
 	return curr_target
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
