@@ -9,9 +9,6 @@ const sound1 = preload("res://Sound/Character/female-horror-voice-creature-2-att
 const sound2 = preload("res://Sound/Character/female-horror-voice-possessed-vol-001-142646.mp3")
 const sound3 = preload("res://Sound/Character/female-horror-voice-possessed-vol-002-142639.mp3")
 
-var process_tick_curr = 0
-var process_tick_max = 10
-
 func _ready():
 	super._ready()
 	audio_player.stream = sound1

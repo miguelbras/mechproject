@@ -16,7 +16,6 @@ func follow_enemy():
 	# return if enemy already within attack range
 	var dist = (self.position - mob_target.position).length_squared()
 	var mob_in_range: bool = dist < attack_range_squared
-	print(mob_in_range, " ", mob_target)
 	if not mob_in_range and mob_target is Lich:
 		var closest_mob = AggroTargetScript.closest_target # fetch non lich
 		if closest_mob != null:

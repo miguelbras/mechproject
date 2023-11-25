@@ -24,6 +24,8 @@ var last_positions_amount = 20 # idem
 var lich
 var follower: bool = false
 var my_id
+var process_tick_curr = 0
+var process_tick_max = 10
 
 func _ready():
 	set_as_top_level(true)

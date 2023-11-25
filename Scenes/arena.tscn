@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=16 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="10_sixii"]
 [ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="10_yvltf"]
+[ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="12_ibxb4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -93,6 +94,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92575, 0.0866346, -17.0772
 
 [node name="Paladin" parent="." instance=ExtResource("10_yvltf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4739, 0.0866346, -5.46888)
+
+[node name="FlyerCharacter" parent="." instance=ExtResource("12_ibxb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7746, 0.0866356, 4.69333)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
