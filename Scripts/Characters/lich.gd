@@ -25,7 +25,7 @@ const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
 const atk3_sound = preload("res://Sound/Attack/magic-spell-6005.mp3")
 
 var last_time_attacked = 0
-var selected = []
+#var selected = []
 var followers = []
 
 func _on_ready():
@@ -54,7 +54,8 @@ func _input(event):
 	if Input.is_action_pressed("zombie_move_agg"):
 		zombies_agg()
 	elif Input.is_action_pressed("zombie_move_pass"):
-		zombies_pass()
+		#zombies_pass()
+		command_follow()
 	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
 	elif Input.is_action_pressed("attack1"):
@@ -125,15 +126,16 @@ func command_dispatch():
 	for mob in followers:
 		if is_instance_valid(mob): # mob could have died
 			followers.erase(mob)
-			# TODO: command old follower to hunt civilians
+			selection_node.selected_mobs += [mob] # hacky but it works
 	
 func command_follow():
-	for mob in selected:
+	for mob in selection_node.selected_mobs:
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
-			# TODO: command new follower to follow lich
+			mob.follow_mode(self)
 
 func zombies_agg():
+	command_dispatch() # we must make them unremember to follow lich
 	var result = get_mouse_target_pos()
 	if not result:
 		return
@@ -147,7 +149,8 @@ func zombies_pass():
 		return
 	for mob in selection_node.selected_mobs:
 		if is_instance_valid(mob):
-			mob.passive_move(result.position)
+			# mob.passive_move(result.position)
+			mob.passive_move(position)
 
 func take_damage(dmg: int):
 	hp -= dmg

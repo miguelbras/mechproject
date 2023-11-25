@@ -20,6 +20,8 @@ var atk_pattern = 0 # select which attack to use next
 var aggressive: bool = true # if aggressive should attack player, if not just move to command target and wait
 var last_positions = [] # check if is blocked, if so put it IDLE
 var last_positions_amount = 20 # idem
+var lich
+var follower: bool = false
 
 func _ready():
 	set_as_top_level(true)
@@ -32,7 +34,9 @@ func _physics_process(_delta):
 			follow_enemy()
 		# if no enemy nearby, or if passive, just move to destination
 		if enemy_target == null or not aggressive:
-			follow_target() 
+			if follower:
+				move_target = lich.position
+			follow_target()
 		check_blocked()
 	update_state()
 	update_animation_parameters()
@@ -77,11 +81,11 @@ func follow_enemy():
 	velocity = Util.truncate_vector(velocity + steering, max_velocity)
 	velocity.y = 0
 
-
 func follow_target():
 	var distance_to_target: Vector3 = move_target - self.position
 	# dont move if right next to target
-	if distance_to_target.length_squared() < 0.1:
+	var threshold = 0.1 if not follower else 3.0
+	if distance_to_target.length_squared() < threshold:
 		velocity = Vector3.ZERO
 		return
 	var desired_velocity = distance_to_target * max_velocity
@@ -117,12 +121,21 @@ func update_animation_parameters():
 	
 func aggressive_move(target_position: Vector3):
 	aggressive = true
+	follower = false
 	move_target = target_position
 	last_positions.clear()
 	
 func passive_move(target_position: Vector3):
 	aggressive = false
+	follower = false
 	move_target = target_position
+	last_positions.clear()
+	
+func follow_mode(lich: Lich):
+	aggressive = false
+	follower = true
+	self.lich = lich
+	move_target = lich.position#target_position
 	last_positions.clear()
 
 func take_damage(dmg: int):
