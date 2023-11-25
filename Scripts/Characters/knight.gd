@@ -1,5 +1,7 @@
 extends Enemy
 
+class_name Knight
+
 @onready var rot = $RotPoint
 @onready var rot_timer = $RotPoint/Timer
 @onready var cooldown = $RotPoint/Timer

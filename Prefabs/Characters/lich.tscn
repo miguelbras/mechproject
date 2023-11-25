@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brjmf2ik2584c"]
+[gd_scene load_steps=11 format=3 uid="uid://brjmf2ik2584c"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/lich.gd" id="1_7sbdc"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_g76xd"]
