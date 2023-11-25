@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv0510wjionak"]
+[gd_scene load_steps=10 format=3 uid="uid://dv0510wjionak"]
 
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_ehjat"]
-[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="2_pfmqr"]
+[ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_2wsek"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_g2egg"]
+[ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="4_2xjtl"]
 [ext_resource type="Script" path="res://Scripts/detectable.gd" id="4_280il"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nx6i"]
@@ -19,9 +20,9 @@ size = Vector3(10.3269, 4.63971, 7.68932)
 script = ExtResource("1_ehjat")
 max_civilians = 4
 max_knights = 2
-civilian_prefab = ExtResource("2_pfmqr")
+civilian_prefab = ExtResource("2_2wsek")
 knight_prefab = ExtResource("3_g2egg")
-paladin_prefab = ExtResource("3_g2egg")
+paladin_prefab = ExtResource("4_2xjtl")
 spawn_direction = Vector3(2, 0, 0)
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -57,5 +58,7 @@ shape = SubResource("BoxShape3D_wm6mk")
 transform = Transform3D(2.90475, 0, 0, 0, 1, 0, 0, 0, 6.36994, -2.80773, 2.5939, 0)
 mesh = SubResource("BoxMesh_rdq8v")
 
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="AfterSpawnTimer" to="." method="_on_after_spawn_timer_timeout"]

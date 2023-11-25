@@ -3,6 +3,7 @@ extends CharacterBody3D
 class_name Enemy
 
 @export var hp = 10
+@export var defense = 0
 @export var max_velocity = 3
 
 @onready var slow_timer = $SlowTimer
@@ -42,7 +43,9 @@ func set_dot():
 		attack2_debuff = attack2_debuff_prefab.instantiate()
 		add_child(attack2_debuff)
 
-func take_damage(dmg: int):
-	hp -= dmg
+func take_damage(damage: int):
+	damage -= defense
+	if damage > 0:
+		hp -= damage
 	if hp <= 0:
 		queue_free()

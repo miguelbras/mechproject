@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 class_name Lich
+
 signal healthChanged
 signal abilityUsed
 signal coolDownThick(deltaTime)
@@ -13,7 +14,7 @@ signal coolDownThick(deltaTime)
 @export var my_speed = 6
 @export var attack_cooldown_ms = 1000
 @export var maxHp = 30
-@export var hp = maxHp
+@export var defense = 0
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
 @onready var camera_delta: Vector3 = camera.position - position
@@ -25,8 +26,8 @@ const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
 const atk3_sound = preload("res://Sound/Attack/magic-spell-6005.mp3")
 const flyer = preload("res://Prefabs/Characters/flyer.tscn")
 
+var hp = maxHp
 var last_time_attacked = 0
-#var selected = []
 var followers = []
 
 func _on_ready():
@@ -155,9 +156,11 @@ func zombies_pass():
 			# mob.passive_move(result.position)
 			mob.passive_move(position)
 
-func take_damage(dmg: int):
-	hp -= dmg
-	healthChanged.emit()
+func take_damage(damage: int):
+	damage -= defense
+	if damage > 0:
+		hp -= damage
+		healthChanged.emit()
 	if hp <= 0:
 		Global.arena.lose()
 		queue_free()

@@ -11,7 +11,11 @@ const sound3 = preload("res://Sound/Character/female-horror-voice-possessed-vol-
 
 var process_tick_curr = 0
 var process_tick_max = 10
-var my_id
+
+func _ready():
+	super._ready()
+	audio_player.stream = sound1
+	audio_player.play()
 
 func update_animation_parameters():
 	if state == State.IDLE:
@@ -42,17 +46,6 @@ func _on_animation_tree_animation_started(anim_name):
 	if anim_name == "Doot Boi armature_001|Death":
 		audio_player.stream = sound2
 		audio_player.play()
-	if anim_name == "Doot Boi armature_001|Revival":
-		audio_player.stream = sound1
-		audio_player.play()
 	if anim_name == "Doot Boi armature_001|Attack" or anim_name == "Doot Boi armature_001|Attack02":
 		audio_player.stream = sound3
 		audio_player.play()
-
-
-func _on_ready():
-	my_id = Global.arena.ally_spawned_light(self)
-
-
-func _on_tree_exited():
-	Global.arena.ally_despawned_light(my_id)

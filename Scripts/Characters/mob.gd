@@ -5,6 +5,7 @@ class_name Mob
 enum State {IDLE, WALK, ATK, DEAD}
 
 @export var hp = 10
+@export var defense = 0
 @export var strength = 2
 @export var max_velocity = 3
 
@@ -22,11 +23,16 @@ var last_positions = [] # check if is blocked, if so put it IDLE
 var last_positions_amount = 20 # idem
 var lich
 var follower: bool = false
+var my_id
 
 func _ready():
 	set_as_top_level(true)
 	await Engine.get_main_loop().physics_frame
 	move_target = self.position
+	my_id = Global.arena.ally_spawned_light(self)
+
+func _on_tree_exited():
+	Global.arena.ally_despawned_light(my_id)
 
 func _physics_process(_delta):
 	if not attacking:
@@ -64,7 +70,7 @@ func check_blocked():
 		move_target = position
 
 func follow_enemy():
-	enemy_target = AggroTargetScript.target
+	enemy_target = AggroTargetScript.closest_target
 	# return if enemy not found
 	if enemy_target == null:
 		velocity = Vector3.ZERO
@@ -138,5 +144,7 @@ func follow_mode(lich: Lich):
 	move_target = lich.position#target_position
 	last_positions.clear()
 
-func take_damage(dmg: int):
-	hp -= dmg
+func take_damage(damage: int):
+	damage -= defense
+	if damage > 0:
+		hp -= damage

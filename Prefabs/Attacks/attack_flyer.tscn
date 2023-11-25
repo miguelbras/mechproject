@@ -6,8 +6,9 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s2cxj"]
 
-[node name="Area3D" type="Area3D"]
+[node name="AttackFlyer" type="Area3D"]
 script = ExtResource("1_ggibq")
+strength = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_j37ut")

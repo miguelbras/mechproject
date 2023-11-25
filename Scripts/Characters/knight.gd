@@ -2,65 +2,66 @@ extends Enemy
 
 class_name Knight
 
-@onready var rot = $RotPoint
-@onready var rot_timer = $RotPoint/Timer
-@onready var cooldown = $RotPoint/Timer
-@onready var sword = $RotPoint/SwordArea3D
-@onready var aggro_range = $AggroRange
-@onready var attack_range = $AttackRange
-@onready var audio_player = $AudioStreamPlayer
+@export var attack_range: float
+@export var strength = 3
 
-var slashing = false # is swinging the sword (animation)
-var can_attack = false # cooldown so it does not endlessly attack
+@onready var audio_player = $AudioStreamPlayer
+@onready var cooldown = $Cooldown
+@onready var AggroTargetScript = $Thread1Node
+
+var attack_range_squared: float
+var can_attack = true # cooldown so it does not endlessly attack
+var attacking = false
 var base_rot # restore original rotation of sword
 var mob_target # which mob to follow and attack
 
+var process_tick_curr = 0
+var process_tick_max = 10
+var my_id
+
 func _ready():
 	super._ready()
-	Global.arena.enemy_spawned()
-	sword.set_process(false)
-	base_rot = rot.basis
-
-func _process(delta):
-	if slashing:
-		rot.rotate_y(20 * delta)
+	my_id = Global.arena.enemy_spawned_light(self)
+	attack_range_squared = attack_range * attack_range
 
 func attack():
-	if not slashing:
-		audio_player.play()
-		sword.set_process(true)
-		slashing = true
-		can_attack = false
-		rot_timer.start()
+	cooldown.start()
+	audio_player.play()
+	mob_target.take_damage(strength)
+	can_attack = false
+	attacking = true
 
-func _on_timer_timeout():
-	sword.set_process(false)
-	slashing = false
-	rot_timer.stop()
-	rot.basis = base_rot
+func calc_velocity():
+	if process_tick_curr <= process_tick_max:
+		process_tick_curr += 1
+		return
+	process_tick_curr = 0
+	
+	if not attacking:
+		follow_enemy()
+	# update_state()
+	# update_animation_parameters()
+	look_at_target()
+	if slow:
+		velocity *= slow_factor
 
 func _physics_process(_delta):
-	return
 	if ready_after_spawn:
-		if not slashing:
-			follow_enemy()
-		# update_state()
-		# update_animation_parameters()
-		look_at_target()
-		if slow:
-			velocity *= slow_factor
+		calc_velocity()
 	if position.y > 0.58: # hardcoded value where mobs stand at
 		velocity.y = -position.y * 4
 	move_and_slide()
 
 func follow_enemy():
-	mob_target = Util.get_closest_target(mob_target, position, aggro_range, "Mob")
+	mob_target = AggroTargetScript.closest_target
 	# return if enemy not found
+	#print(mob_target)
 	if mob_target == null:
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
-	var mob_in_range: bool = mob_target in Util.get_all_targets(attack_range, "Mob")
+	var mob_in_range: bool = (self.position - mob_target.position).length_squared() < attack_range_squared
+	#print(name, " ", mob_in_range)
 	if mob_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:
@@ -74,11 +75,11 @@ func follow_enemy():
 
 func look_at_target():
 	if mob_target != null:
-		#look_at(mob_target.position, Vector3.UP, true)
 		Util.look_at_target(self, mob_target.position)
 
 func _on_cooldown_timeout():
-	can_attack = mob_target != null
+	can_attack = true
+	attacking = false
 
 func _on_slow_timer_timeout():
 	slow = false
@@ -94,10 +95,6 @@ func _on_dot_timer_timeout():
 		attack2_debuff = null
 
 func _on_tree_exited():
-	#var doot_instance = doot.instantiate()
-	#Global.arena.add_child(doot_instance)
-	#doot_instance.position = self.position # TODO
-	Global.arena.enemy_despawned()
+	Global.arena.enemy_despawned_light(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_knights -= 1
-
