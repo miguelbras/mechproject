@@ -39,7 +39,8 @@ func _on_timer_timeout():
 	rot_timer.stop()
 	rot.basis = base_rot
 
-func _physics_process(delta):
+func _physics_process(_delta):
+	return
 	if ready_after_spawn:
 		if not slashing:
 			follow_enemy()

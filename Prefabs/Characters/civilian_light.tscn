@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj3qf4rpr17pm"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/civilian.gd" id="1_6nb2k"]
+[ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_a30c8"]
+[ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="2_d18j0"]
+[ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_3xc1d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hn37s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gj37i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ecue"]
+
+[node name="Civilian" type="CharacterBody3D" node_paths=PackedStringArray("AggroTargetScript") groups=["Enemy"]]
+script = ExtResource("1_6nb2k")
+AggroTargetScript = NodePath("Thread1Node")
+attack1_debuff_prefab = ExtResource("2_a30c8")
+attack2_debuff_prefab = ExtResource("3_3xc1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hn37s")
+
+[node name="StaminaTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="SlowTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="DotTimer" type="Timer" parent="."]
+
+[node name="RandomMovementTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_gj37i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.334557, 0, 0, 0, 0.188521, 0, 0, 0, 0.452703, 0, 0.554172, 0.413653)
+mesh = SubResource("BoxMesh_7ecue")
+
+[node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+script = ExtResource("2_d18j0")
+aggro_range = 10.0
+parentNode = NodePath("..")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
+[connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
+[connection signal="timeout" from="DotTimer" to="." method="_on_dot_timer_timeout"]
+[connection signal="timeout" from="RandomMovementTimer" to="." method="_on_random_movement_timer_timeout"]

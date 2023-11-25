@@ -5,9 +5,10 @@ class_name Mob
 enum State {IDLE, WALK, ATK, DEAD}
 
 @export var hp = 10
+@export var dmg = 2
 @export var max_velocity = 3
+@export var AggroTargetScript: Node
 
-@onready var aggro_range = $AggroRange
 @onready var attack_range = $AttackRange
 @onready var move_target = position # position to move on command
 
@@ -63,12 +64,13 @@ func check_blocked():
 		move_target = position
 
 func follow_enemy():
-	enemy_target = Util.get_closest_target(enemy_target, position, aggro_range, "Enemy")
+	enemy_target = AggroTargetScript.target
 	# return if enemy not found
 	if enemy_target == null:
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
+	# TODO have buildings with detection area instead?
 	var enemy_in_range: bool = enemy_target in Util.get_all_targets(attack_range, "Enemy")
 	if enemy_in_range:
 		velocity = Vector3.ZERO
@@ -107,7 +109,9 @@ func update_state():
 	elif velocity == Vector3.ZERO:
 		if enemy_target != null and aggressive:
 			state = State.ATK
-			attacking = true
+			if not attacking:
+				attacking = true
+				enemy_target.take_damage(dmg)
 			atk_pattern = 0 if randf() > .35 else 1
 		else:
 			state = State.IDLE

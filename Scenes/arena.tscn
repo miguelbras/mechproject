@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=13 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="8_b74ak"]
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="9_etbo6"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
-[ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="10_vogs1"]
-[ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="11_ewmpk"]
-[ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="11_yewfi"]
+[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="9_quwlq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -76,26 +74,8 @@ offset_bottom = 591.0
 [node name="HBoxContainer" parent="Control/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
 lich = NodePath("../../../Lich")
 
-[node name="FlyerCharacter" parent="." instance=ExtResource("10_vogs1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7414, 0.0866346, -3.28995)
-
-[node name="DootCharacter" parent="." instance=ExtResource("11_yewfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98621, 0.0866356, 7.39257)
-
-[node name="DootCharacter2" parent="." instance=ExtResource("11_yewfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.36254, 0.0866346, 6.66495)
-
-[node name="DootCharacter3" parent="." instance=ExtResource("11_yewfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83767, 0.0866346, -2.17786)
-
-[node name="Paladin" parent="." instance=ExtResource("11_ewmpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9765, 0.0866356, 5.27904)
-
-[node name="Paladin2" parent="." instance=ExtResource("11_ewmpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.85139, 0.0866356, -4.22786)
-
-[node name="Paladin3" parent="." instance=ExtResource("11_ewmpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09711, 0.0866356, -8.59507)
+[node name="Civilian2" parent="." instance=ExtResource("9_quwlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.02793, 0.0866351, 3.31428)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 

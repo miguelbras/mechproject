@@ -26,7 +26,7 @@ material = SubResource("StandardMaterial3D_pwng4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mfbcc"]
 
-[node name="Arena" type="Node3D"]
+[node name="Arena2" type="Node3D"]
 script = ExtResource("1_x7pq0")
 win_screen_prefab = ExtResource("2_haw5r")
 lose_screen_prefab = ExtResource("3_6usxq")

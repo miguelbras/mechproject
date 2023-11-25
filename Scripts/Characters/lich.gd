@@ -28,6 +28,9 @@ var last_time_attacked = 0
 #var selected = []
 var followers = []
 
+func _on_ready():
+	Global.arena.lich_spawned(self)
+
 func _process(delta):
 	coolDownThick.emit(delta)
 	if(navigationAgent.is_navigation_finished()):
@@ -35,7 +38,7 @@ func _process(delta):
 	moveToPoint(delta, my_speed)
 	camera.position = position + camera_delta
 
-func moveToPoint(delta, speed):
+func moveToPoint(_delta, speed):
 	var targetPos = navigationAgent.get_next_path_position()
 	var direction = global_position.direction_to(targetPos)
 	faceDirection(targetPos)
