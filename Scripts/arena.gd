@@ -6,6 +6,13 @@ extends Node
 
 var game_over: bool = false
 var enemy_count = 0
+var process_tick_curr = 0
+var process_tick_max = 10
+var enemy_id = 0
+var enemy_map = {}
+var ally_id = 1
+var LICH_ID = 0
+var ally_map = {}
 
 func win():
 	if game_over:
@@ -23,11 +30,29 @@ func lose():
 
 func enemy_spawned():
 	enemy_count += 1
+	
+func enemy_spawned_light(enemy: Node3D) -> int:
+	enemy_count += 1
+	enemy.process_tick_curr = process_tick_curr
+	enemy.process_tick_max = process_tick_max
+	enemy_id += 1
+	enemy_map[enemy_id] = enemy
+	process_tick_curr = (process_tick_curr + 1) % process_tick_max
+	return enemy_id
 
 func enemy_despawned():
 	enemy_count -= 1
 	if enemy_count == 0:
 		win()
+
+func enemy_despawned_light(id: int):
+	enemy_count -= 1
+	enemy_map.erase(id)
+	if enemy_count == 0:
+		win()
+		
+func lich_spawned(lich: Node3D):
+	ally_map[LICH_ID] = lich
 
 func _on_tree_entered():
 	Global.arena = self

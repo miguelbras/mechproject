@@ -14,6 +14,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uoaip"]
 
 [node name="Civilian" type="CharacterBody3D" groups=["Enemy"]]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
 script = ExtResource("1_b3qgl")
 attack1_debuff_prefab = ExtResource("2_fqw7m")
 attack2_debuff_prefab = ExtResource("3_a60kg")

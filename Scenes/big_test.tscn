@@ -1,0 +1,3244 @@
+[gd_scene load_steps=14 format=3 uid="uid://rg3af6dpq3pf"]
+
+[ext_resource type="Script" path="res://Scripts/arena.gd" id="1_8a7uj"]
+[ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_7k5yc"]
+[ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_kf20s"]
+[ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_btgsj"]
+[ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_05uup"]
+[ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="6_ue3m5"]
+[ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="7_2hqjr"]
+[ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="8_e2bh5"]
+[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="9_y7j8o"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_uih61"]
+vertices = PackedVector3Array(-290.25, 0.45, -299.5, -299.5, 0.45, -299.5, -299.5, 0.45, -290.25, -299.5, 0.45, 290, -299.5, 0.45, 299.5, -290.25, 0.45, 299.5, 299.5, 0.45, -290.25, 299.5, 0.45, -299.5, 290, 0.45, -299.5, 290, 0.45, 299.5, 299.5, 0.45, 299.5, 299.5, 0.45, 290, -281, 0.45, -299.5, -290.25, 0.45, -299.5, -299.5, 0.45, -290.25, -299.5, 0.45, -281, -299.5, 0.45, 290, -290.25, 0.45, 299.5, -281, 0.45, 299.5, -299.5, 0.45, 280.75, 299.5, 0.45, -281, 299.5, 0.45, -290.25, 290, 0.45, -299.5, 280.75, 0.45, -299.5, 280.75, 0.45, 299.5, 290, 0.45, 299.5, 299.5, 0.45, 290, -28.25, 0.45, -299.5, -37.5, 0.45, -299.5, -299.5, 0.45, -37.5, -299.5, 0.45, -28.25, 140.25, 0.45, 299.5, 299.5, 0.45, 149.75, 299.5, 0.45, 140.25, 131, 0.45, 299.5, 299.5, 0.45, -65.75, 299.5, 0.45, -75, 74.75, 0.45, -299.5, 65.25, 0.45, -299.5, 280.75, 0.45, 299.5, 299.5, 0.45, 290, 299.5, 0.45, 280.75, 271.25, 0.45, 299.5, -271.75, 0.45, -299.5, -281, 0.45, -299.5, -299.5, 0.45, -281, -299.5, 0.45, -271.75, -299.5, 0.45, 280.75, -281, 0.45, 299.5, -271.75, 0.45, 299.5, -299.5, 0.45, 271.25, 299.5, 0.45, -271.75, 299.5, 0.45, -281, 280.75, 0.45, -299.5, 271.25, 0.45, -299.5, -131.25, 0.45, -299.5, -140.5, 0.45, -299.5, -299.5, 0.45, -140.5, -299.5, 0.45, -131.25, -299.5, 0.45, 140.25, -140.5, 0.45, 299.5, -131.25, 0.45, 299.5, -299.5, 0.45, 131, -299.5, 0.45, 37.25, -37.5, 0.45, 299.5, -28.25, 0.45, 299.5, -299.5, 0.45, 27.75, 299.5, 0.45, -131.25, 299.5, 0.45, -140.5, 140.25, 0.45, -299.5, 131, 0.45, -299.5, 271.25, 0.45, 299.5, 299.5, 0.45, 280.75, 299.5, 0.45, 271.25, 262, 0.45, 299.5, -262.25, 0.45, -299.5, -271.75, 0.45, -299.5, -299.5, 0.45, -271.75, -299.5, 0.45, -262.25, -299.5, 0.45, 262, -299.5, 0.45, 271.25, -271.75, 0.45, 299.5, -262.25, 0.45, 299.5, 299.5, 0.45, -271.75, 271.25, 0.45, -299.5, 262, 0.45, -299.5, 299.5, 0.45, -262.25, -9.5, 0.45, -299.5, -18.75, 0.45, -299.5, -299.5, 0.45, -18.75, -299.5, 0.45, -9.5, 65.25, 0.45, 299.5, 299.5, 0.45, 74.75, 299.5, 0.45, 65.25, 56, 0.45, 299.5, 131, 0.45, 299.5, 299.5, 0.45, 140.25, 299.5, 0.45, 131, 121.5, 0.45, 299.5, 299.5, 0.45, -28.25, 299.5, 0.45, -37.5, 37.25, 0.45, -299.5, 27.75, 0.45, -299.5, 262, 0.45, 299.5, 299.5, 0.45, 271.25, 299.5, 0.45, 262, 252.5, 0.45, 299.5, -253, 0.45, -299.5, -262.25, 0.45, -299.5, -299.5, 0.45, -262.25, -299.5, 0.45, -253, -299.5, 0.45, 262, -262.25, 0.45, 299.5, -253, 0.45, 299.5, -299.5, 0.45, 252.5, 299.5, 0.45, -253, 299.5, 0.45, -262.25, 262, 0.45, -299.5, 252.5, 0.45, -299.5, -122, 0.45, -299.5, -131.25, 0.45, -299.5, -299.5, 0.45, -131.25, -299.5, 0.45, -122, -299.5, 0.45, 131, -131.25, 0.45, 299.5, -122, 0.45, 299.5, -299.5, 0.45, 121.5, -56.25, 0.45, -299.5, -65.75, 0.45, -299.5, -299.5, 0.45, -65.75, -299.5, 0.45, -56.25, 299.5, 0.45, -122, 299.5, 0.45, -131.25, 131, 0.45, -299.5, 121.5, 0.45, -299.5, 252.5, 0.45, 299.5, 299.5, 0.45, 262, 299.5, 0.45, 252.5, 243.25, 0.45, 299.5, -243.5, 0.45, -299.5, -253, 0.45, -299.5, -299.5, 0.45, -253, -299.5, 0.45, -243.5, -299.5, 0.45, 243.25, -299.5, 0.45, 252.5, -253, 0.45, 299.5, -243.5, 0.45, 299.5, 299.5, 0.45, -253, 252.5, 0.45, -299.5, 243.25, 0.45, -299.5, 299.5, 0.45, -243.5, -299.5, 0.45, 56, -299.5, 0.45, 65.25, -65.75, 0.45, 299.5, -56.25, 0.45, 299.5, -299.5, 0.45, 18.5, -18.75, 0.45, 299.5, -9.5, 0.45, 299.5, -299.5, 0.45, 9.25, 121.5, 0.45, 299.5, 299.5, 0.45, 131, 299.5, 0.45, 121.5, 112.25, 0.45, 299.5, 299.5, 0.45, -65.75, 65.25, 0.45, -299.5, 56, 0.45, -299.5, 299.5, 0.45, -56.25, 243.25, 0.45, 299.5, 299.5, 0.45, 252.5, 299.5, 0.45, 243.25, 233.75, 0.45, 299.5, -234.25, 0.45, -299.5, -243.5, 0.45, -299.5, -299.5, 0.45, -243.5, -299.5, 0.45, -234.25, -299.5, 0.45, 243.25, -243.5, 0.45, 299.5, -234.25, 0.45, 299.5, -299.5, 0.45, 233.75, 299.5, 0.45, -234.25, 299.5, 0.45, -243.5, 243.25, 0.45, -299.5, 233.75, 0.45, -299.5, -112.5, 0.45, -299.5, -122, 0.45, -299.5, -299.5, 0.45, -122, -299.5, 0.45, -112.5, -299.5, 0.45, 112.25, -299.5, 0.45, 121.5, -122, 0.45, 299.5, -112.5, 0.45, 299.5, -299.5, 0.45, 0, -299.5, 0.45, 9.25, -9.5, 0.45, 299.5, 299.5, 0.45, -122, 121.5, 0.45, -299.5, 112.25, 0.45, -299.5, 299.5, 0.45, -112.5, 233.75, 0.45, 299.5, 299.5, 0.45, 243.25, 299.5, 0.45, 233.75, 224.5, 0.45, 299.5, -224.75, 0.45, -299.5, -234.25, 0.45, -299.5, -299.5, 0.45, -234.25, -299.5, 0.45, -224.75, -299.5, 0.45, 224.5, -299.5, 0.45, 233.75, -234.25, 0.45, 299.5, -224.75, 0.45, 299.5, 299.5, 0.45, -234.25, 233.75, 0.45, -299.5, 224.5, 0.45, -299.5, 299.5, 0.45, -224.75, 27.75, 0.45, 299.5, 299.5, 0.45, 37.25, 299.5, 0.45, 27.75, 18.5, 0.45, 299.5, 56, 0.45, 299.5, 299.5, 0.45, 65.25, 299.5, 0.45, 56, 46.5, 0.45, 299.5, 112.25, 0.45, 299.5, 299.5, 0.45, 121.5, 299.5, 0.45, 112.25, 102.75, 0.45, 299.5, 299.5, 0.45, -9.5, 299.5, 0.45, -18.75, 18.5, 0.45, -299.5, 9.25, 0.45, -299.5, 224.5, 0.45, 299.5, 299.5, 0.45, 233.75, 299.5, 0.45, 224.5, 215, 0.45, 299.5, -215.5, 0.45, -299.5, -224.75, 0.45, -299.5, -299.5, 0.45, -224.75, -299.5, 0.45, -215.5, -299.5, 0.45, 224.5, -224.75, 0.45, 299.5, -215.5, 0.45, 299.5, -299.5, 0.45, 215, 299.5, 0.45, -215.5, 299.5, 0.45, -224.75, 224.5, 0.45, -299.5, 215, 0.45, -299.5, -103.25, 0.45, -299.5, -112.5, 0.45, -299.5, -299.5, 0.45, -112.5, -299.5, 0.45, -103.25, -299.5, 0.45, 112.25, -112.5, 0.45, 299.5, -103.25, 0.45, 299.5, -299.5, 0.45, 102.75, -47, 0.45, -299.5, -56.25, 0.45, -299.5, -299.5, 0.45, -56.25, -299.5, 0.45, -47, 299.5, 0.45, -103.25, 299.5, 0.45, -112.5, 112.25, 0.45, -299.5, 102.75, 0.45, -299.5, 215, 0.45, 299.5, 299.5, 0.45, 224.5, 299.5, 0.45, 215, 205.75, 0.45, 299.5, -206, 0.45, -299.5, -215.5, 0.45, -299.5, -299.5, 0.45, -215.5, -299.5, 0.45, -206, -299.5, 0.45, 205.75, -299.5, 0.45, 215, -215.5, 0.45, 299.5, -206, 0.45, 299.5, 299.5, 0.45, -215.5, 215, 0.45, -299.5, 205.75, 0.45, -299.5, 299.5, 0.45, -206, -299.5, 0.45, 56, -56.25, 0.45, 299.5, -47, 0.45, 299.5, -299.5, 0.45, 46.5, -18.75, 0.45, -299.5, -28.25, 0.45, -299.5, -299.5, 0.45, -28.25, -299.5, 0.45, -18.75, 102.75, 0.45, 299.5, 299.5, 0.45, 112.25, 299.5, 0.45, 102.75, 93.5, 0.45, 299.5, 299.5, 0.45, -47, 299.5, 0.45, -56.25, 56, 0.45, -299.5, 46.5, 0.45, -299.5, 205.75, 0.45, 299.5, 299.5, 0.45, 215, 299.5, 0.45, 205.75, 196.25, 0.45, 299.5, -196.75, 0.45, -299.5, -206, 0.45, -299.5, -299.5, 0.45, -206, -299.5, 0.45, -196.75, -299.5, 0.45, 205.75, -206, 0.45, 299.5, -196.75, 0.45, 299.5, -299.5, 0.45, 196.25, 299.5, 0.45, -196.75, 299.5, 0.45, -206, 205.75, 0.45, -299.5, 196.25, 0.45, -299.5, -93.75, 0.45, -299.5, -103.25, 0.45, -299.5, -299.5, 0.45, -103.25, -299.5, 0.45, -93.75, -299.5, 0.45, 93.5, -299.5, 0.45, 102.75, -103.25, 0.45, 299.5, -93.75, 0.45, 299.5, -299.5, 0.45, 18.5, -299.5, 0.45, 27.75, -28.25, 0.45, 299.5, -18.75, 0.45, 299.5, 299.5, 0.45, -103.25, 102.75, 0.45, -299.5, 93.5, 0.45, -299.5, 299.5, 0.45, -93.75, 196.25, 0.45, 299.5, 299.5, 0.45, 205.75, 299.5, 0.45, 196.25, 187, 0.45, 299.5, -187.25, 0.45, -299.5, -196.75, 0.45, -299.5, -299.5, 0.45, -196.75, -299.5, 0.45, -187.25, -299.5, 0.45, 187, -299.5, 0.45, 196.25, -196.75, 0.45, 299.5, -187.25, 0.45, 299.5, 299.5, 0.45, -196.75, 196.25, 0.45, -299.5, 187, 0.45, -299.5, 299.5, 0.45, -187.25, 299.5, 0.45, -9.5, 9.25, 0.45, -299.5, 0, 0.45, -299.5, 299.5, 0.45, 0, 46.5, 0.45, 299.5, 299.5, 0.45, 56, 299.5, 0.45, 46.5, 37.25, 0.45, 299.5, 93.5, 0.45, 299.5, 299.5, 0.45, 102.75, 299.5, 0.45, 93.5, 84, 0.45, 299.5, 299.5, 0.45, -28.25, 27.75, 0.45, -299.5, 18.5, 0.45, -299.5, 299.5, 0.45, -18.75, 187, 0.45, 299.5, 299.5, 0.45, 196.25, 299.5, 0.45, 187, 177.5, 0.45, 299.5, -178, 0.45, -299.5, -187.25, 0.45, -299.5, -299.5, 0.45, -187.25, -299.5, 0.45, -178, -299.5, 0.45, 187, -187.25, 0.45, 299.5, -178, 0.45, 299.5, -299.5, 0.45, 177.5, 299.5, 0.45, -178, 299.5, 0.45, -187.25, 187, 0.45, -299.5, 177.5, 0.45, -299.5, -84.5, 0.45, -299.5, -93.75, 0.45, -299.5, -299.5, 0.45, -93.75, -299.5, 0.45, -84.5, -299.5, 0.45, 93.5, -93.75, 0.45, 299.5, -84.5, 0.45, 299.5, -299.5, 0.45, 84, -37.5, 0.45, -299.5, -47, 0.45, -299.5, -299.5, 0.45, -47, -299.5, 0.45, -37.5, 299.5, 0.45, -84.5, 299.5, 0.45, -93.75, 93.5, 0.45, -299.5, 84, 0.45, -299.5, 177.5, 0.45, 299.5, 299.5, 0.45, 187, 299.5, 0.45, 177.5, 168.25, 0.45, 299.5, -168.5, 0.45, -299.5, -178, 0.45, -299.5, -299.5, 0.45, -178, -299.5, 0.45, -168.5, -299.5, 0.45, 168.25, -299.5, 0.45, 177.5, -178, 0.45, 299.5, -168.5, 0.45, 299.5, 299.5, 0.45, -178, 177.5, 0.45, -299.5, 168.25, 0.45, -299.5, 299.5, 0.45, -168.5, -299.5, 0.45, 37.25, -299.5, 0.45, 46.5, -47, 0.45, 299.5, -37.5, 0.45, 299.5, 299.5, 0.45, 0, 0, 0.45, -299.5, -299.5, 0.45, 0, -9.5, 0.45, 299.5, 0, 0.45, 299.5, 299.5, 0.45, 9.25, 84, 0.45, 299.5, 299.5, 0.45, 93.5, 299.5, 0.45, 84, 74.75, 0.45, 299.5, 299.5, 0.45, -47, 46.5, 0.45, -299.5, 37.25, 0.45, -299.5, 299.5, 0.45, -37.5, 168.25, 0.45, 299.5, 299.5, 0.45, 177.5, 299.5, 0.45, 168.25, 159, 0.45, 299.5, -159.25, 0.45, -299.5, -168.5, 0.45, -299.5, -299.5, 0.45, -168.5, -299.5, 0.45, -159.25, -299.5, 0.45, 168.25, -168.5, 0.45, 299.5, -159.25, 0.45, 299.5, -299.5, 0.45, 159, 299.5, 0.45, -159.25, 299.5, 0.45, -168.5, 168.25, 0.45, -299.5, 159, 0.45, -299.5, -75, 0.45, -299.5, -84.5, 0.45, -299.5, -299.5, 0.45, -84.5, -299.5, 0.45, -75, -299.5, 0.45, 74.75, -299.5, 0.45, 84, -84.5, 0.45, 299.5, -75, 0.45, 299.5, 9.25, 0.45, 299.5, 299.5, 0.45, 18.5, 299.5, 0.45, 9.25, 0, 0.45, 299.5, 299.5, 0.45, -84.5, 84, 0.45, -299.5, 74.75, 0.45, -299.5, 299.5, 0.45, -75, 159, 0.45, 299.5, 299.5, 0.45, 168.25, 299.5, 0.45, 159, 149.75, 0.45, 299.5, -299.5, 0.45, 149.75, -299.5, 0.45, 159, -159.25, 0.45, 299.5, -149.75, 0.45, 299.5, 299.5, 0.45, -159.25, 159, 0.45, -299.5, 149.75, 0.45, -299.5, 299.5, 0.45, -149.75, -149.75, 0.45, -299.5, -159.25, 0.45, -299.5, -299.5, 0.45, -159.25, -299.5, 0.45, -149.75, 18.5, 0.45, 299.5, 299.5, 0.45, 27.75, 299.5, 0.45, 18.5, 9.25, 0.45, 299.5, 74.75, 0.45, 299.5, 299.5, 0.45, 84, 299.5, 0.45, 74.75, 65.25, 0.45, 299.5, 149.75, 0.45, 299.5, 299.5, 0.45, 159, 299.5, 0.45, 149.75, 140.25, 0.45, 299.5, 0, 0.45, -299.5, -9.5, 0.45, -299.5, -299.5, 0.45, -9.5, -299.5, 0.45, 0, 37.25, 0.45, 299.5, 299.5, 0.45, 46.5, 299.5, 0.45, 37.25, 27.75, 0.45, 299.5, -299.5, 0.45, 149.75, -149.75, 0.45, 299.5, -140.5, 0.45, 299.5, -299.5, 0.45, 140.25, 299.5, 0.45, -140.5, 299.5, 0.45, -149.75, 149.75, 0.45, -299.5, 140.25, 0.45, -299.5, -140.5, 0.45, -299.5, -149.75, 0.45, -299.5, -299.5, 0.45, -149.75, -299.5, 0.45, -140.5, -65.75, 0.45, -299.5, -75, 0.45, -299.5, -299.5, 0.45, -75, -299.5, 0.45, -65.75, -299.5, 0.45, 74.75, -75, 0.45, 299.5, -65.75, 0.45, 299.5, -299.5, 0.45, 65.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(26, 25, 24), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(31, 34, 32), PackedInt32Array(32, 34, 33), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 50), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 54), PackedInt32Array(56, 55, 57), PackedInt32Array(57, 55, 58), PackedInt32Array(60, 59, 61), PackedInt32Array(61, 59, 62), PackedInt32Array(64, 63, 65), PackedInt32Array(65, 63, 66), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 70), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 74), PackedInt32Array(76, 75, 77), PackedInt32Array(77, 75, 78), PackedInt32Array(80, 79, 81), PackedInt32Array(81, 79, 82), PackedInt32Array(84, 83, 85), PackedInt32Array(85, 83, 86), PackedInt32Array(88, 87, 89), PackedInt32Array(89, 87, 90), PackedInt32Array(91, 94, 92), PackedInt32Array(92, 94, 93), PackedInt32Array(96, 95, 97), PackedInt32Array(97, 95, 98), PackedInt32Array(100, 99, 101), PackedInt32Array(101, 99, 102), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(108, 107, 109), PackedInt32Array(109, 107, 110), PackedInt32Array(112, 111, 113), PackedInt32Array(113, 111, 114), PackedInt32Array(116, 115, 117), PackedInt32Array(117, 115, 118), PackedInt32Array(120, 119, 121), PackedInt32Array(121, 119, 122), PackedInt32Array(124, 123, 125), PackedInt32Array(125, 123, 126), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130), PackedInt32Array(132, 131, 133), PackedInt32Array(133, 131, 134), PackedInt32Array(136, 135, 137), PackedInt32Array(137, 135, 138), PackedInt32Array(140, 139, 141), PackedInt32Array(141, 139, 142), PackedInt32Array(144, 143, 145), PackedInt32Array(145, 143, 146), PackedInt32Array(148, 147, 149), PackedInt32Array(149, 147, 150), PackedInt32Array(152, 151, 153), PackedInt32Array(153, 151, 154), PackedInt32Array(156, 155, 157), PackedInt32Array(157, 155, 158), PackedInt32Array(159, 162, 160), PackedInt32Array(160, 162, 161), PackedInt32Array(164, 163, 165), PackedInt32Array(165, 163, 166), PackedInt32Array(168, 167, 169), PackedInt32Array(169, 167, 170), PackedInt32Array(172, 171, 173), PackedInt32Array(173, 171, 174), PackedInt32Array(176, 175, 177), PackedInt32Array(177, 175, 178), PackedInt32Array(180, 179, 181), PackedInt32Array(181, 179, 182), PackedInt32Array(184, 183, 185), PackedInt32Array(185, 183, 186), PackedInt32Array(188, 187, 189), PackedInt32Array(189, 187, 190), PackedInt32Array(193, 192, 191), PackedInt32Array(195, 194, 196), PackedInt32Array(196, 194, 197), PackedInt32Array(199, 198, 200), PackedInt32Array(200, 198, 201), PackedInt32Array(203, 202, 204), PackedInt32Array(204, 202, 205), PackedInt32Array(207, 206, 208), PackedInt32Array(208, 206, 209), PackedInt32Array(211, 210, 212), PackedInt32Array(212, 210, 213), PackedInt32Array(214, 217, 215), PackedInt32Array(215, 217, 216), PackedInt32Array(219, 218, 220), PackedInt32Array(220, 218, 221), PackedInt32Array(223, 222, 224), PackedInt32Array(224, 222, 225), PackedInt32Array(227, 226, 228), PackedInt32Array(228, 226, 229), PackedInt32Array(231, 230, 232), PackedInt32Array(232, 230, 233), PackedInt32Array(235, 234, 236), PackedInt32Array(236, 234, 237), PackedInt32Array(239, 238, 240), PackedInt32Array(240, 238, 241), PackedInt32Array(243, 242, 244), PackedInt32Array(244, 242, 245), PackedInt32Array(247, 246, 248), PackedInt32Array(248, 246, 249), PackedInt32Array(251, 250, 252), PackedInt32Array(252, 250, 253), PackedInt32Array(255, 254, 256), PackedInt32Array(256, 254, 257), PackedInt32Array(259, 258, 260), PackedInt32Array(260, 258, 261), PackedInt32Array(263, 262, 264), PackedInt32Array(264, 262, 265), PackedInt32Array(267, 266, 268), PackedInt32Array(268, 266, 269), PackedInt32Array(271, 270, 272), PackedInt32Array(272, 270, 273), PackedInt32Array(275, 274, 276), PackedInt32Array(276, 274, 277), PackedInt32Array(279, 278, 280), PackedInt32Array(280, 278, 281), PackedInt32Array(283, 282, 284), PackedInt32Array(284, 282, 285), PackedInt32Array(286, 289, 287), PackedInt32Array(287, 289, 288), PackedInt32Array(291, 290, 292), PackedInt32Array(292, 290, 293), PackedInt32Array(295, 294, 296), PackedInt32Array(296, 294, 297), PackedInt32Array(299, 298, 300), PackedInt32Array(300, 298, 301), PackedInt32Array(303, 302, 304), PackedInt32Array(304, 302, 305), PackedInt32Array(307, 306, 308), PackedInt32Array(308, 306, 309), PackedInt32Array(311, 310, 312), PackedInt32Array(312, 310, 313), PackedInt32Array(315, 314, 316), PackedInt32Array(316, 314, 317), PackedInt32Array(319, 318, 320), PackedInt32Array(320, 318, 321), PackedInt32Array(323, 322, 324), PackedInt32Array(324, 322, 325), PackedInt32Array(327, 326, 328), PackedInt32Array(328, 326, 329), PackedInt32Array(331, 330, 332), PackedInt32Array(332, 330, 333), PackedInt32Array(335, 334, 336), PackedInt32Array(336, 334, 337), PackedInt32Array(339, 338, 340), PackedInt32Array(340, 338, 341), PackedInt32Array(343, 342, 344), PackedInt32Array(344, 342, 345), PackedInt32Array(346, 349, 347), PackedInt32Array(347, 349, 348), PackedInt32Array(351, 350, 352), PackedInt32Array(352, 350, 353), PackedInt32Array(355, 354, 356), PackedInt32Array(356, 354, 357), PackedInt32Array(359, 358, 360), PackedInt32Array(360, 358, 361), PackedInt32Array(363, 362, 364), PackedInt32Array(364, 362, 365), PackedInt32Array(367, 366, 368), PackedInt32Array(368, 366, 369), PackedInt32Array(371, 370, 372), PackedInt32Array(372, 370, 373), PackedInt32Array(375, 374, 376), PackedInt32Array(376, 374, 377), PackedInt32Array(379, 378, 380), PackedInt32Array(380, 378, 381), PackedInt32Array(383, 382, 384), PackedInt32Array(384, 382, 385), PackedInt32Array(387, 386, 388), PackedInt32Array(388, 386, 389), PackedInt32Array(391, 390, 392), PackedInt32Array(392, 390, 393), PackedInt32Array(395, 394, 396), PackedInt32Array(396, 394, 397), PackedInt32Array(399, 398, 400), PackedInt32Array(400, 398, 401), PackedInt32Array(403, 402, 404), PackedInt32Array(404, 402, 405), PackedInt32Array(407, 406, 408), PackedInt32Array(408, 406, 409), PackedInt32Array(415, 414, 410), PackedInt32Array(410, 414, 413), PackedInt32Array(410, 413, 412), PackedInt32Array(410, 412, 411), PackedInt32Array(416, 419, 417), PackedInt32Array(417, 419, 418), PackedInt32Array(421, 420, 422), PackedInt32Array(422, 420, 423), PackedInt32Array(425, 424, 426), PackedInt32Array(426, 424, 427), PackedInt32Array(429, 428, 430), PackedInt32Array(430, 428, 431), PackedInt32Array(433, 432, 434), PackedInt32Array(434, 432, 435), PackedInt32Array(437, 436, 438), PackedInt32Array(438, 436, 439), PackedInt32Array(441, 440, 442), PackedInt32Array(442, 440, 443), PackedInt32Array(445, 444, 446), PackedInt32Array(446, 444, 447), PackedInt32Array(449, 448, 450), PackedInt32Array(450, 448, 451), PackedInt32Array(453, 452, 454), PackedInt32Array(454, 452, 455), PackedInt32Array(457, 456, 458), PackedInt32Array(458, 456, 459), PackedInt32Array(461, 460, 462), PackedInt32Array(462, 460, 463), PackedInt32Array(465, 464, 466), PackedInt32Array(466, 464, 467), PackedInt32Array(469, 468, 470), PackedInt32Array(470, 468, 471), PackedInt32Array(473, 472, 474), PackedInt32Array(474, 472, 475), PackedInt32Array(477, 476, 478), PackedInt32Array(478, 476, 479), PackedInt32Array(481, 480, 482), PackedInt32Array(482, 480, 483), PackedInt32Array(485, 484, 486), PackedInt32Array(486, 484, 487), PackedInt32Array(489, 488, 490), PackedInt32Array(490, 488, 491), PackedInt32Array(493, 492, 494), PackedInt32Array(494, 492, 495), PackedInt32Array(497, 496, 498), PackedInt32Array(498, 496, 499), PackedInt32Array(501, 500, 502), PackedInt32Array(502, 500, 503), PackedInt32Array(505, 504, 506), PackedInt32Array(506, 504, 507), PackedInt32Array(509, 508, 510), PackedInt32Array(510, 508, 511)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwng4"]
+albedo_color = Color(0.380392, 0.219608, 0.117647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_te20w"]
+material = SubResource("StandardMaterial3D_pwng4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mfbcc"]
+
+[node name="Arena" type="Node3D"]
+script = ExtResource("1_8a7uj")
+win_screen_prefab = ExtResource("2_7k5yc")
+lose_screen_prefab = ExtResource("3_kf20s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
+
+[node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_btgsj")]
+camera = NodePath("../Camera3D")
+
+[node name="Lich" parent="." node_paths=PackedStringArray("selection_node", "camera") instance=ExtResource("5_05uup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.37112)
+selection_node = NodePath("../Selection")
+camera = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 20, 10)
+projection = 1
+size = 20.0
+near = 5.0
+far = 100.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ue3m5")
+volume_db = -20.0
+autoplay = true
+
+[node name="UI" parent="." instance=ExtResource("7_2hqjr")]
+
+[node name="TextureProgressBar" parent="UI/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
+lich = NodePath("../../../Lich")
+
+[node name="Control" parent="." instance=ExtResource("8_e2bh5")]
+offset_left = 693.0
+offset_top = 591.0
+offset_right = 693.0
+offset_bottom = 591.0
+
+[node name="HBoxContainer" parent="Control/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
+lich = NodePath("../../../Lich")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_uih61")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(600, 0, 0, 0, 0.1, 0, 0, 0, 600, 0, 0, 0)
+mesh = SubResource("BoxMesh_te20w")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_mfbcc")
+
+[node name="Node3D11" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="Node3D11"]
+
+[node name="Civilian" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D2" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.66802)
+
+[node name="Civilian" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D3" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.78496)
+
+[node name="Civilian" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D4" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5182)
+
+[node name="Civilian" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D5" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2847)
+
+[node name="Civilian" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D6" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.6638)
+
+[node name="Civilian" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D7" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0603)
+
+[node name="Civilian" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D8" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.9413)
+
+[node name="Civilian" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D9" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9971)
+
+[node name="Civilian" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D10" type="Node3D" parent="Node3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -47.4163)
+
+[node name="Civilian" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D11/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D12" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8371, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Node3D12"]
+
+[node name="Civilian" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D2" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.66802)
+
+[node name="Civilian" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D3" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.78496)
+
+[node name="Civilian" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D4" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5182)
+
+[node name="Civilian" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D5" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2847)
+
+[node name="Civilian" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D6" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.6638)
+
+[node name="Civilian" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D7" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0603)
+
+[node name="Civilian" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D8" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.9413)
+
+[node name="Civilian" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D9" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9971)
+
+[node name="Civilian" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D10" type="Node3D" parent="Node3D12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -47.4163)
+
+[node name="Civilian" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D12/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D13" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8624, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Node3D13"]
+
+[node name="Civilian" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D2" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.66802)
+
+[node name="Civilian" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D3" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.78496)
+
+[node name="Civilian" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D4" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5182)
+
+[node name="Civilian" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D5" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2847)
+
+[node name="Civilian" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D6" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.6638)
+
+[node name="Civilian" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D7" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0603)
+
+[node name="Civilian" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D8" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.9413)
+
+[node name="Civilian" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D9" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9971)
+
+[node name="Civilian" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D10" type="Node3D" parent="Node3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -47.4163)
+
+[node name="Civilian" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D13/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D14" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8624, 0, 59.9128)
+
+[node name="Node3D" type="Node3D" parent="Node3D14"]
+
+[node name="Civilian" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D2" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.66802)
+
+[node name="Civilian" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D3" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.78496)
+
+[node name="Civilian" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D4" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5182)
+
+[node name="Civilian" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D5" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2847)
+
+[node name="Civilian" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D6" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.6638)
+
+[node name="Civilian" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D7" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0603)
+
+[node name="Civilian" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D8" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.9413)
+
+[node name="Civilian" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D9" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9971)
+
+[node name="Civilian" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D10" type="Node3D" parent="Node3D14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -47.4163)
+
+[node name="Civilian" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D14/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D15" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.7351, 0, 59.9128)
+
+[node name="Node3D" type="Node3D" parent="Node3D15"]
+
+[node name="Civilian" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D2" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.66802)
+
+[node name="Civilian" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D2" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D3" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.78496)
+
+[node name="Civilian" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D3" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D4" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5182)
+
+[node name="Civilian" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D4" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D5" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2847)
+
+[node name="Civilian" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D5" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D6" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23.6638)
+
+[node name="Civilian" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D6" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D7" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.0603)
+
+[node name="Civilian" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D7" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D8" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.9413)
+
+[node name="Civilian" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D8" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D9" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39.9971)
+
+[node name="Civilian" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D9" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Node3D10" type="Node3D" parent="Node3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -47.4163)
+
+[node name="Civilian" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7566, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian2" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.00874, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian3" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14699, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian4" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26859, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian5" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.742434, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian6" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83727, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian7" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.52792, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian8" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.586, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian9" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.415, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[node name="Civilian10" parent="Node3D15/Node3D10" instance=ExtResource("9_y7j8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4658, 0.05, -0.764656)
+max_stamina = 5.0
+hp = 10
+max_velocity = 3
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+
+[editable path="Lich"]
+[editable path="UI"]
+[editable path="Control"]

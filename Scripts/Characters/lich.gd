@@ -28,6 +28,9 @@ var last_time_attacked = 0
 var selected = []
 var followers = []
 
+func _on_ready():
+	Global.arena.lich_spawned(self)
+
 func _process(delta):
 	coolDownThick.emit(delta)
 	if(navigationAgent.is_navigation_finished()):

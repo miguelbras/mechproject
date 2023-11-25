@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_map.tscn")
+	get_tree().change_scene_to_file("res://Scenes/big_test.tscn")
 
 func _on_lb_button_pressed():
 	# TODO: instantiate a new square showing leaderboards, etc
