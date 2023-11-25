@@ -35,7 +35,7 @@ func _process(delta):
 	moveToPoint(delta, my_speed)
 	camera.position = position + camera_delta
 
-func moveToPoint(delta, speed):
+func moveToPoint(_delta, speed):
 	var targetPos = navigationAgent.get_next_path_position()
 	var direction = global_position.direction_to(targetPos)
 	faceDirection(targetPos)

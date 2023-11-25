@@ -15,6 +15,9 @@ var target # target to run from
 var state = State.ESCAPE # escape or move in random direction
 var rand_dir = Vector3.ZERO # random direction to move
 
+var process_tick_curr = 0
+var process_tick_max = 10
+
 func run_from_target():
 	target = Util.get_closest_target(target, position, cast, "Mob")
 	if target != null:
@@ -31,24 +34,33 @@ func run_direction(direction: Vector3):
 	velocity = Util.truncate_vector(velocity + steering, max_velocity)
 	velocity.y = 0
 
+func calc_velocity(delta):
+	if process_tick_curr <= process_tick_max:
+		process_tick_curr += 1
+		return
+	process_tick_curr = 0
+
+	velocity = Vector3.ZERO
+	# update velocity based on state
+	if current_stamina > 0:
+		if state == State.ESCAPE:
+			run_from_target()
+		else:
+			run_direction(rand_dir)
+	if slow:
+		velocity *= slow_factor
+	# if moving, decrease stamina; otherwise, prepare to rest
+	if velocity.length() > 0:
+		current_stamina -= delta
+		if not stamina_timer.is_stopped(): # we were resting, but got interrupted
+			stamina_timer.stop()
+	elif stamina_timer.is_stopped(): # if standing still, prepare to rest
+		stamina_timer.start(rec)
+
 func _physics_process(delta):
+	return
 	if ready_after_spawn:
-		velocity = Vector3.ZERO
-		# update velocity based on state
-		if current_stamina > 0:
-			if state == State.ESCAPE:
-				run_from_target()
-			else:
-				run_direction(rand_dir)
-		if slow:
-			velocity *= slow_factor
-		# if moving, decrease stamina; otherwise, prepare to rest
-		if velocity.length() > 0:
-			current_stamina -= delta
-			if not stamina_timer.is_stopped(): # we were resting, but got interrupted
-				stamina_timer.stop()
-		elif stamina_timer.is_stopped(): # if standing still, prepare to rest
-			stamina_timer.start(rec)
+		calc_velocity(delta)
 	if position.y > 0.58: # hardcoded value where mobs stand at
 		velocity.y = -(position.y-0.58) * 4
 	move_and_slide()
@@ -84,6 +96,7 @@ func _on_ready():
 	Global.arena.enemy_spawned()
 	current_stamina = max_stamina
 	random_mov_timer.start(randf_range(10, 11))
+	process_tick_curr = randi_range(0, process_tick_max)
 
 
 func _on_random_movement_timer_timeout():
