@@ -2,17 +2,16 @@ extends Enemy
 
 class_name Knight
 
-@onready var rot = $RotPoint
-@onready var rot_timer = $RotPoint/Timer
-@onready var cooldown = $RotPoint/Timer
-@onready var sword = $RotPoint/SwordArea3D
+@export var attack_range: float
+@export var strength = 3
+
 @onready var audio_player = $AudioStreamPlayer
-@export var AggroTargetScript: Node
-@export var AttackRange: float
+@onready var cooldown = $Cooldown
+@onready var AggroTargetScript = $Thread1Node
 
 var attack_range_squared: float
-var slashing = false # is swinging the sword (animation)
-var can_attack = false # cooldown so it does not endlessly attack
+var can_attack = true # cooldown so it does not endlessly attack
+var attacking = false
 var base_rot # restore original rotation of sword
 var mob_target # which mob to follow and attack
 
@@ -20,30 +19,17 @@ var process_tick_curr = 0
 var process_tick_max = 10
 var my_id
 
-func _on_ready():
+func _ready():
 	super._ready()
 	my_id = Global.arena.enemy_spawned_light(self)
-	sword.set_process(false)
-	base_rot = rot.basis
-	attack_range_squared = AttackRange * AttackRange
-
-func _process(delta):
-	if slashing:
-		rot.rotate_y(20 * delta)
+	attack_range_squared = attack_range * attack_range
 
 func attack():
-	if not slashing:
-		audio_player.play()
-		sword.set_process(true)
-		slashing = true
-		can_attack = false
-		rot_timer.start()
-
-func _on_timer_timeout():
-	sword.set_process(false)
-	slashing = false
-	rot_timer.stop()
-	rot.basis = base_rot
+	cooldown.start()
+	audio_player.play()
+	mob_target.take_damage(strength)
+	can_attack = false
+	attacking = true
 
 func calc_velocity():
 	if process_tick_curr <= process_tick_max:
@@ -51,7 +37,7 @@ func calc_velocity():
 		return
 	process_tick_curr = 0
 	
-	if not slashing:
+	if not attacking:
 		follow_enemy()
 	# update_state()
 	# update_animation_parameters()
@@ -67,13 +53,15 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func follow_enemy():
-	mob_target = AggroTargetScript.target
+	mob_target = AggroTargetScript.closest_target
 	# return if enemy not found
+	#print(mob_target)
 	if mob_target == null:
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
 	var mob_in_range: bool = (self.position - mob_target.position).length_squared() < attack_range_squared
+	#print(name, " ", mob_in_range)
 	if mob_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:
@@ -87,11 +75,11 @@ func follow_enemy():
 
 func look_at_target():
 	if mob_target != null:
-		#look_at(mob_target.position, Vector3.UP, true)
 		Util.look_at_target(self, mob_target.position)
 
 func _on_cooldown_timeout():
-	can_attack = mob_target != null
+	can_attack = true
+	attacking = false
 
 func _on_slow_timer_timeout():
 	slow = false

@@ -6,8 +6,9 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s2cxj"]
 
-[node name="Area3D" type="Area3D"]
+[node name="Attack3" type="Area3D"]
 script = ExtResource("1_iey51")
+strength = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_dulib")

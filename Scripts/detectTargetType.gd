@@ -1,25 +1,33 @@
 extends Node
 
 @export var aggro_range: float
-var target: Node3D = null # target to run from
+var closest_target: Node3D = null # target to run from
 var aggro_range_squared: float
 @export var parentNode: Node3D
 @export var search_for_allies: bool = true
+@export var searchLich = true
 var target_map
+#var mutex
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	aggro_range_squared = aggro_range * aggro_range
 	if search_for_allies:
 		target_map = Global.arena.ally_map
+		#mutex = Global.arena.ally_mutex
 	else:
 		target_map = Global.arena.enemy_map
+		#mutex = Global.arena.enemy_mutex
 
 func get_targets(pos: Vector3):
 	var targets = []
+	#mutex.lock()
+	# print(Global.arena.ally_map, " ", Global.arena.ally_map.values(), " ")
 	for target in target_map.values():
 		if (target.position-pos).length_squared() < aggro_range_squared:
+			if target is Lich and not searchLich:
+				continue
 			targets.append(target)
+	#mutex.unlock()
 	return targets
 
 func get_closest_target(curr_target: Node3D, pos: Vector3) -> Node3D:
@@ -35,6 +43,7 @@ func get_closest_target(curr_target: Node3D, pos: Vector3) -> Node3D:
 				distance = target_distance
 	return curr_target
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	target = get_closest_target(target, parentNode.position)
+	if not is_instance_valid(closest_target):
+		closest_target = null
+	closest_target = get_closest_target(closest_target, parentNode.position)

@@ -6,7 +6,7 @@ var current_stamina: float
 @export var max_stamina: float = 5.0 # stamina, how much time it walks
 @export var recovery_time = 2.0 # how much time it stops
 
-@export var AggroTargetScript: Node
+@onready var AggroTargetScript = $Thread1Node
 @onready var stamina_timer = $StaminaTimer
 @onready var random_mov_timer = $RandomMovementTimer
 @onready var doot = load("res://Prefabs/Characters/doot.tscn")

@@ -8,13 +8,22 @@ func follow_enemy():
 		mob_target = lich_node
 	# find other enemies if lich isn't in range
 	if mob_target == null:
-		mob_target = AggroTargetScript.target
+		mob_target = AggroTargetScript.closest_target
 	# return if no enemies nearby
 	if mob_target == null:
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
-	var mob_in_range: bool = (self.position - mob_target.position).length_squared() < attack_range_squared
+	var dist = (self.position - mob_target.position).length_squared()
+	var mob_in_range: bool = dist < attack_range_squared
+	print(mob_in_range, " ", mob_target)
+	if not mob_in_range and mob_target is Lich:
+		var closest_mob = AggroTargetScript.closest_target # fetch non lich
+		if closest_mob != null:
+			var dist2 = (self.position - closest_mob.position).length_squared()
+			if dist2 < dist:
+				mob_target = closest_mob
+				mob_in_range = (self.position - mob_target.position).length_squared() < attack_range_squared
 	if mob_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:
