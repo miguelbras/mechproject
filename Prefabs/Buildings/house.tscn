@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjan7el5etmxg"]
 
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_4mjaa"]
-[ext_resource type="PackedScene" uid="uid://c1vp4yn7ubm41" path="res://Prefabs/Characters/civilian.tscn" id="2_iyt6u"]
+[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="2_g282e"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_w0nw1"]
 [ext_resource type="Script" path="res://Scripts/detectable.gd" id="4_nb1is"]
 
@@ -17,7 +17,7 @@ size = Vector3(4.29646, 4.63971, 7.68932)
 script = ExtResource("1_4mjaa")
 max_civilians = 5
 max_knights = 1
-civilian_prefab = ExtResource("2_iyt6u")
+civilian_prefab = ExtResource("2_g282e")
 knight_prefab = ExtResource("3_w0nw1")
 paladin_prefab = ExtResource("3_w0nw1")
 spawn_direction = Vector3(2, 0, 0)

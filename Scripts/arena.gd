@@ -54,5 +54,16 @@ func enemy_despawned_light(id: int):
 func lich_spawned(lich: Node3D):
 	ally_map[LICH_ID] = lich
 
+func ally_spawned_light(ally: Node3D) -> int:
+	ally.process_tick_curr = process_tick_curr
+	ally.process_tick_max = process_tick_max
+	ally_id += 1
+	ally_map[ally_id] = ally
+	process_tick_curr = (process_tick_curr + 1) % process_tick_max
+	return ally_id
+	
+func ally_despawned_light(id: int):
+	ally_map.erase(id)
+
 func _on_tree_entered():
 	Global.arena = self

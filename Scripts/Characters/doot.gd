@@ -7,6 +7,10 @@ const sound1 = preload("res://Sound/Character/female-horror-voice-creature-2-att
 const sound2 = preload("res://Sound/Character/female-horror-voice-possessed-vol-001-142646.mp3")
 const sound3 = preload("res://Sound/Character/female-horror-voice-possessed-vol-002-142639.mp3")
 
+var process_tick_curr = 0
+var process_tick_max = 10
+var my_id
+
 func update_animation_parameters():
 	if state == State.IDLE:
 		anim_tree["parameters/conditions/idle"] = true
@@ -42,3 +46,11 @@ func _on_animation_tree_animation_started(anim_name):
 	if anim_name == "Doot Boi armature_001|Attack" or anim_name == "Doot Boi armature_001|Attack02":
 		audio_player.stream = sound3
 		audio_player.play()
+
+
+func _on_ready():
+	my_id = Global.arena.ally_spawned_light(self)
+
+
+func _on_tree_exited():
+	Global.arena.ally_despawned_light(my_id)

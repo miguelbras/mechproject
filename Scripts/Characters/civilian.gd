@@ -35,10 +35,10 @@ func run_direction(direction_normalized: Vector3):
 	velocity.y = 0
 
 func calc_velocity():
-	#if process_tick_curr <= process_tick_max:
-	#	process_tick_curr += 1
-	#	return
-	#process_tick_curr = 0
+	if process_tick_curr <= process_tick_max:
+		process_tick_curr += 1
+		return
+	process_tick_curr = 0
 
 	velocity = Vector3.ZERO
 	# update velocity based on state
