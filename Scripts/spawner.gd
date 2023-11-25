@@ -14,9 +14,13 @@ var current_civilians: int = 0
 var last_spawned_entity = null
 
 @export var hp = 30
+var my_id
+var process_tick_curr #unused
+var process_tick_max #unused
 
-func _ready():
+func _on_ready():
 	await Engine.get_main_loop().physics_frame
+	my_id = Global.arena.enemy_spawned_light(self)
 	while current_paladins < max_paladins:
 		spawn_something_ready(paladin_prefab.instantiate())
 		current_paladins += 1
@@ -66,7 +70,9 @@ func take_damage(dmg: int):
 	if hp <= 0:
 		queue_free()
 
-
 func _on_spawn_timer_timeout():
 	spawn_something()
 	$AfterSpawnTimer.start()
+
+func _on_tree_exited():
+	Global.arena.enemy_despawned_light(my_id)

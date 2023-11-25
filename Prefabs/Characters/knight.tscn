@@ -1,29 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://kcl3hrttj06k"]
+[gd_scene load_steps=11 format=3 uid="uid://kcl3hrttj06k"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/knight.gd" id="1_2x1n4"]
 [ext_resource type="Script" path="res://Scripts/Attacks/sword_slash.gd" id="2_esnnl"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_u3had"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_jtsri"]
 [ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_24fca"]
-[ext_resource type="Script" path="res://Scripts/detectable.gd" id="6_4rrtf"]
+[ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="6_64djv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gn7p2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c64cr"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ltvq3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fdr44"]
 size = Vector3(1, 0.2, 0.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0aiuh"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_gbyfj"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dd7su"]
-
-[node name="Knight" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Knight" type="CharacterBody3D" node_paths=PackedStringArray("AggroTargetScript") groups=["Enemy"]]
 script = ExtResource("1_2x1n4")
+AggroTargetScript = NodePath("Thread1Node")
+AttackRange = 2.0
 attack1_debuff_prefab = ExtResource("2_u3had")
 attack2_debuff_prefab = ExtResource("3_jtsri")
 
@@ -34,10 +30,6 @@ shape = SubResource("CapsuleShape3D_gn7p2")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_c64cr")
-
-[node name="AggroRange" type="ShapeCast3D" parent="."]
-transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 1.93326, 0)
-shape = SubResource("CylinderShape3D_ltvq3")
 
 [node name="RotPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -70,18 +62,15 @@ one_shot = true
 stream = ExtResource("5_24fca")
 volume_db = -18.0
 
-[node name="AttackRange" type="ShapeCast3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 1.93326, 0)
-shape = SubResource("CylinderShape3D_gbyfj")
+[node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
+process_thread_group = 2
+process_thread_group_order = 1
+process_thread_messages = 0
+script = ExtResource("6_64djv")
+aggro_range = 10.0
+parentNode = NodePath("..")
 
-[node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Enemy"]]
-script = ExtResource("6_4rrtf")
-mob = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_dd7su")
-
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="area_entered" from="RotPoint/SwordArea3D" to="RotPoint/SwordArea3D" method="_on_area_entered"]
 [connection signal="timeout" from="RotPoint/Timer" to="." method="_on_timer_timeout"]
