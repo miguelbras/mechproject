@@ -12,6 +12,7 @@ func follow_enemy():
 	# return if enemy already within attack range
 	var mob_in_range: bool = mob_target in Util.get_all_targets(attack_range, "Lich")
 	if not mob_in_range:
+		mob_target = Util.get_closest_target(null, position, aggro_range, "Mob")
 		mob_in_range = mob_target in Util.get_all_targets(attack_range, "Mob")
 	if mob_in_range:
 		velocity = Vector3.ZERO
