@@ -98,6 +98,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4739, 0.0866346, -5.46888
 [node name="FlyerCharacter" parent="." instance=ExtResource("12_ibxb4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7746, 0.0866356, 4.69333)
 
+[node name="Hut" parent="." instance=ExtResource("11_vlgqi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05585, 0.0866346, -3.31938)
+
+[node name="FlyerCharacter" parent="." instance=ExtResource("12_qcm0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28566, 0.0866346, 10.5366)
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]

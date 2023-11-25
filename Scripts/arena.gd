@@ -30,10 +30,7 @@ func lose():
 	var lose_screen = lose_screen_prefab.instantiate()
 	add_child(lose_screen)
 
-func enemy_spawned():
-	enemy_count += 1
-	
-func enemy_spawned_light(enemy: Node3D) -> int:
+func enemy_spawned(enemy: Node3D) -> int:
 	enemy_count += 1
 	enemy.process_tick_curr = process_tick_curr
 	enemy.process_tick_max = process_tick_max
@@ -44,16 +41,13 @@ func enemy_spawned_light(enemy: Node3D) -> int:
 	process_tick_curr = (process_tick_curr + 1) % process_tick_max
 	return enemy_id
 
-func enemy_despawned():
-	enemy_count -= 1
-	if enemy_count == 0:
-		win()
-
-func enemy_despawned_light(id: int):
+func enemy_despawned(id: int):
 	enemy_count -= 1
 	#enemy_mutex.lock()
 	enemy_map.erase(id)
 	#enemy_mutex.unlock()
+	print("killing ", id)
+	print(enemy_map)
 	if enemy_count == 0:
 		win()
 		
@@ -62,7 +56,7 @@ func lich_spawned(lich: Node3D):
 	ally_map[LICH_ID] = lich
 	#ally_mutex.unlock()
 
-func ally_spawned_light(ally: Node3D) -> int:
+func ally_spawned(ally: Node3D) -> int:
 	ally.process_tick_curr = process_tick_curr
 	ally.process_tick_max = process_tick_max
 	ally_id += 1
@@ -71,8 +65,8 @@ func ally_spawned_light(ally: Node3D) -> int:
 	#ally_mutex.unlock()
 	process_tick_curr = (process_tick_curr + 1) % process_tick_max
 	return ally_id
-	
-func ally_despawned_light(id: int):
+
+func ally_despawned(id: int):
 	#ally_mutex.lock()
 	ally_map.erase(id)
 	#ally_mutex.unlock()

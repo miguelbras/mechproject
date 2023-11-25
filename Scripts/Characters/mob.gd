@@ -10,7 +10,8 @@ enum State {IDLE, WALK, ATK, DEAD}
 @export var max_velocity = 3
 
 @onready var AggroTargetScript = $Thread1Node
-@onready var attack_range = $AttackRange
+@export var attack_range: float = 2
+
 @onready var move_target = position # position to move on command
 
 var target_velocity = Vector3.ZERO # direction to move
@@ -23,29 +24,40 @@ var last_positions = [] # check if is blocked, if so put it IDLE
 var last_positions_amount = 20 # idem
 var lich
 var follower: bool = false
-var my_id
+var attack_range_squared: float
+
 var process_tick_curr = 0
 var process_tick_max = 10
+var my_id
 
 func _ready():
 	set_as_top_level(true)
 	await Engine.get_main_loop().physics_frame
 	move_target = self.position
 	my_id = Global.arena.ally_spawned_light(self)
+	attack_range_squared = attack_range * attack_range
+
+func calc_velocity():
+	if process_tick_curr <= process_tick_max:
+		process_tick_curr += 1
+		return
+	process_tick_curr = 0
+	
+	if aggressive:
+		follow_enemy()
+	# if no enemy nearby, or if passive, just move to destination
+	if enemy_target == null or not aggressive:
+		if follower:
+			move_target = lich.position
+		follow_target()
+	check_blocked()
 
 func _on_tree_exited():
 	Global.arena.ally_despawned_light(my_id)
 
 func _physics_process(_delta):
 	if not attacking:
-		if aggressive:
-			follow_enemy()
-		# if no enemy nearby, or if passive, just move to destination
-		if enemy_target == null or not aggressive:
-			if follower:
-				move_target = lich.position
-			follow_target()
-		check_blocked()
+		calc_velocity()
 	update_state()
 	update_animation_parameters()
 	look_at_target()
@@ -73,20 +85,19 @@ func check_blocked():
 
 func follow_enemy():
 	enemy_target = AggroTargetScript.closest_target
+	print(enemy_target)
 	# return if enemy not found
 	if enemy_target == null:
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
-	# TODO have buildings with detection area instead?
-	var enemy_in_range: bool = enemy_target in Util.get_all_targets(attack_range, "Enemy")
+	var enemy_in_range: bool = (self.position - enemy_target.position).length_squared() < attack_range_squared
+	# TODO doesnt work for buildings! maybe have buildings with detection area instead?
 	if enemy_in_range:
 		velocity = Vector3.ZERO
 		return
 	# chase enemy
-	var desired_velocity = (enemy_target.position - position) * max_velocity
-	var steering = desired_velocity - velocity
-	velocity = Util.truncate_vector(velocity + steering, max_velocity)
+	velocity = (enemy_target.position - position).normalized() * max_velocity
 	velocity.y = 0
 
 func follow_target():
@@ -96,9 +107,7 @@ func follow_target():
 	if distance_to_target.length_squared() < threshold:
 		velocity = Vector3.ZERO
 		return
-	var desired_velocity = distance_to_target * max_velocity
-	var steering = desired_velocity - velocity
-	velocity = Util.truncate_vector(velocity + steering, max_velocity)
+	velocity = distance_to_target.normalized() * max_velocity
 	velocity.y = 0
 
 func look_at_target():
