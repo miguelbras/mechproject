@@ -1,5 +1,7 @@
 extends Mob
 
+class_name Doot
+
 @onready var anim_tree = $AnimationTree
 @onready var audio_player = $AudioStreamPlayer3D
 

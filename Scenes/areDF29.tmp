@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
 [ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="8_b74ak"]
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="9_etbo6"]
-[ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="9_n62aw"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
+[ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="9_w2o6r"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -36,58 +36,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 selection_node = NodePath("../Selection")
 camera = NodePath("../Camera3D")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_0ivu4")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("BoxMesh_b258l")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
-collision_layer = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_1cpf1")
-
-[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 10, 6)
-near = 5.0
-far = 100.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_pnex7")
-volume_db = -20.0
-autoplay = true
-
-[node name="UI" parent="." instance=ExtResource("8_b74ak")]
-
-[node name="TextureProgressBar" parent="UI/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
-lich = NodePath("../../../Lich")
-
-[node name="Control" parent="." instance=ExtResource("9_etbo6")]
-offset_left = 693.0
-offset_top = 591.0
-offset_right = 693.0
-offset_bottom = 591.0
-
-[node name="HBoxContainer" parent="Control/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
-lich = NodePath("../../../Lich")
-
-[node name="DootCharacter" parent="." instance=ExtResource("9_n62aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37762, 0.0866346, 2.49254)
-
-[node name="DootCharacter2" parent="." instance=ExtResource("9_n62aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63892, 0.0866346, -0.661649)
-
-[node name="DootCharacter3" parent="." instance=ExtResource("9_n62aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.67056, 0.0866346, 2.45268)
-
-[node name="DootCharacter4" parent="." instance=ExtResource("9_n62aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0358334, 0.0866346, 6.48813)
-
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-
-[editable path="Lich"]
-[editable path="UI"]
-[editable path="Control"]
+[node name="

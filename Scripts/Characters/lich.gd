@@ -23,6 +23,7 @@ signal coolDownThick(deltaTime)
 const atk1_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
 const atk3_sound = preload("res://Sound/Attack/magic-spell-6005.mp3")
+const flyer = preload("res://Prefabs/Characters/flyer.tscn")
 
 var last_time_attacked = 0
 #var selected = []
@@ -64,6 +65,8 @@ func _input(event):
 		attack2()
 	elif Input.is_action_pressed("attack3"):
 		attack3()
+	elif Input.is_action_pressed("summon"):
+		summon_flier()
 	elif not Input.is_action_pressed("test_alt"):
 		selection_node.input(event)
 
@@ -158,3 +161,18 @@ func take_damage(dmg: int):
 	if hp <= 0:
 		Global.arena.lose()
 		queue_free()
+
+func summon_flier():
+	var sacrifice = []
+	for f in followers:
+		if is_instance_valid(f) and f is Doot:
+			sacrifice += [f]
+		if len(sacrifice) == 3:
+			var pos = sacrifice[0].position
+			for s in sacrifice:
+				followers.erase(s)
+				s.queue_free()
+			var flyer_instance = flyer.instantiate()
+			Global.arena.add_child(flyer_instance)
+			flyer_instance.position = pos
+		

@@ -5,10 +5,10 @@ class_name Mob
 enum State {IDLE, WALK, ATK, DEAD}
 
 @export var hp = 10
-@export var dmg = 2
+@export var strength = 2
 @export var max_velocity = 3
-@export var AggroTargetScript: Node
 
+@onready var AggroTargetScript = $Thread1Node
 @onready var attack_range = $AttackRange
 @onready var move_target = position # position to move on command
 
@@ -111,7 +111,7 @@ func update_state():
 			state = State.ATK
 			if not attacking:
 				attacking = true
-				enemy_target.take_damage(dmg)
+				enemy_target.take_damage(strength)
 			atk_pattern = 0 if randf() > .35 else 1
 		else:
 			state = State.IDLE
