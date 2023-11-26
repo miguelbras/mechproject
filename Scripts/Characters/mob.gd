@@ -34,7 +34,7 @@ func _ready():
 	set_as_top_level(true)
 	await Engine.get_main_loop().physics_frame
 	move_target = self.position
-	my_id = Global.arena.ally_spawned_light(self)
+	my_id = Global.arena.ally_spawned(self)
 	attack_range_squared = attack_range * attack_range
 
 func calc_velocity():
@@ -85,7 +85,6 @@ func check_blocked():
 
 func follow_enemy():
 	enemy_target = AggroTargetScript.closest_target
-	print(enemy_target)
 	# return if enemy not found
 	if enemy_target == null:
 		velocity = Vector3.ZERO

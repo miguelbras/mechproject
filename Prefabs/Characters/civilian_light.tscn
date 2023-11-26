@@ -49,6 +49,7 @@ process_thread_messages = 0
 script = ExtResource("2_d18j0")
 aggro_range = 10.0
 parentNode = NodePath("..")
+searchLich = false
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

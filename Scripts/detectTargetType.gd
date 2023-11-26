@@ -32,7 +32,6 @@ func get_targets(pos: Vector3):
 
 func get_closest_target(curr_target: Node3D, pos: Vector3) -> Node3D:
 	var neighbours = get_targets(pos)
-	print("neighbors ", neighbours)
 	if len(neighbours) == 0:
 		return null
 	elif curr_target not in neighbours:
@@ -48,5 +47,4 @@ func _process(delta):
 	if not is_instance_valid(closest_target):
 		closest_target = null
 	closest_target = get_closest_target(closest_target, parentNode.position)
-	print("_process", closest_target)
 

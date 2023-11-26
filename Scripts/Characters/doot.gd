@@ -43,8 +43,8 @@ func _on_animation_tree_animation_started(anim_name):
 		audio_player.play()
 
 func _on_ready():
-	my_id = Global.arena.ally_spawned(self)
 	super._ready()
+	my_id = Global.arena.ally_spawned(self)
 	audio_player.stream = sound1
 	audio_player.play()
 
