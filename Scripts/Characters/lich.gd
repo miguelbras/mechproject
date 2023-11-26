@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name Lich
 
+enum State {IDLE, WALK, ATK, DEAD}
+
 signal healthChanged
 signal abilityUsed
 signal coolDownThick(deltaTime)
@@ -20,6 +22,10 @@ signal coolDownThick(deltaTime)
 @onready var camera_delta: Vector3 = camera.position - position
 @onready var projectile_spawner : Node3D = $ProjectileSpawner
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
+@onready var anim_tree = $AnimationTree
+@onready var death_timer = $DeathTimer
+@onready var cooldown = $Cooldown
+@onready var timer = $Timer
 
 const atk1_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -29,13 +35,20 @@ const flyer = preload("res://Prefabs/Characters/flyer.tscn")
 var hp = maxHp
 var last_time_attacked = 0
 var followers = []
+var state = State.IDLE # animation state
+var atk_pattern = 0
+var attacking = false
 
 func _on_ready():
 	Global.arena.lich_spawned(self)
+	anim_tree.active = true
 
 func _process(delta):
 	coolDownThick.emit(delta)
+	update_state()
+	update_animation_parameters()
 	if(navigationAgent.is_navigation_finished()):
+		velocity = Vector3.ZERO
 		return
 	moveToPoint(delta, my_speed)
 	camera.position = position + camera_delta
@@ -57,6 +70,10 @@ func _input(event):
 	#	zombies_agg()
 	elif Input.is_action_pressed("zombie_move"):
 		#zombies_pass()
+		if not attacking:
+			atk_pattern = 3
+			attacking = true
+			cooldown.start()
 		if len(followers) == 0:
 			command_follow()
 		else:
@@ -64,11 +81,23 @@ func _input(event):
 	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
 	elif Input.is_action_pressed("attack1"):
-		attack1()
+		if not attacking:
+			atk_pattern = 0
+			attacking = true
+			cooldown.start(0.5)
+			timer.start()
 	elif Input.is_action_pressed("attack2"):
-		attack2()
+		if not attacking:
+			atk_pattern = 1
+			attacking = true
+			cooldown.start()
+			timer.start()
 	elif Input.is_action_pressed("attack3"):
-		attack3()
+		if not attacking:
+			atk_pattern = 2
+			attacking = true
+			cooldown.start(2.3)
+			timer.start()
 	elif Input.is_action_pressed("summon"):
 		summon_flier()
 	#elif not Input.is_action_pressed("test_alt"):
@@ -165,9 +194,9 @@ func take_damage(damage: int):
 	if damage > 0:
 		hp -= damage
 		healthChanged.emit()
-	if hp <= 0:
+	if hp <= 0 and death_timer.is_stopped():
 		Global.arena.lose()
-		queue_free()
+		death_timer.start()
 
 func summon_flier():
 	var sacrifice = []
@@ -184,4 +213,57 @@ func summon_flier():
 			flyer_instance.position = pos
 			followers += [flyer_instance]
 			flyer_instance.follow_mode(self)
-		
+
+func update_state():
+	if hp <= 0:
+		state = State.DEAD
+	elif velocity != Vector3.ZERO:
+		state = State.WALK
+	elif velocity == Vector3.ZERO:
+		if attacking:
+			state = State.ATK
+		else:
+			state = State.IDLE
+
+func update_animation_parameters():
+	if state == State.IDLE:
+		anim_tree["parameters/conditions/idle"] = true
+		anim_tree["parameters/conditions/move"] = false
+		anim_tree["parameters/conditions/action"] = false
+		anim_tree["parameters/conditions/attack1"] = false
+		anim_tree["parameters/conditions/attack2"] = false
+		anim_tree["parameters/conditions/attack3"] = false
+	elif state == State.WALK:
+		anim_tree["parameters/conditions/idle"] = false
+		anim_tree["parameters/conditions/move"] = true
+		anim_tree["parameters/conditions/action"] = false
+		anim_tree["parameters/conditions/attack1"] = false
+		anim_tree["parameters/conditions/attack2"] = false
+		anim_tree["parameters/conditions/attack3"] = false
+	elif state == State.ATK:
+		if atk_pattern == 0:
+			anim_tree["parameters/conditions/attack1"] = true
+		elif atk_pattern == 1:
+			anim_tree["parameters/conditions/attack2"] = true
+		elif atk_pattern == 2:
+			anim_tree["parameters/conditions/attack3"] = true
+		else:
+			anim_tree["parameters/conditions/action"] = true
+		anim_tree["parameters/conditions/idle"] = true
+		anim_tree["parameters/conditions/move"] = false
+	elif state == State.DEAD:
+		anim_tree["parameters/conditions/death"] = true
+	
+func _on_death_timer_timeout():
+	queue_free()
+
+func _on_cooldown_timeout():
+	attacking = false
+
+func _on_timer_timeout():
+	if atk_pattern == 0:
+		attack1()
+	elif atk_pattern == 1:
+		attack2()
+	else:
+		attack3()

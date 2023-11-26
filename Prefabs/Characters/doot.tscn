@@ -2869,12 +2869,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.98952e-13, 0, -1.98952e-13, 1, 0, 1.937
 surface_material_override/0 = SubResource("StandardMaterial3D_3nwks")
 
 [node name="RightClaw" type="BoneAttachment3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.0720753, 0.148023, 0.986354, -0.994793, 0.0607795, -0.0818132, -0.0720609, -0.987114, 0.142872, -0.0586654, -0.0385071, 0.172916)
+transform = Transform3D(-0.0720759, 0.148022, 0.986354, -0.994793, 0.0607799, -0.0818137, -0.0720612, -0.987115, 0.14287, -0.0586657, -0.0385071, 0.172916)
 bone_name = "hand.R_end"
 bone_idx = 45
 
 [node name="LeftClaw" type="BoneAttachment3D" parent="doot/RootNode/Doot Boi armature_001/Skeleton3D" index="2"]
-transform = Transform3D(0.330322, -0.284899, -0.899844, 0.932605, 0.245357, 0.264665, 0.145381, -0.926624, 0.346744, 0.039476, -0.0680343, 0.0409186)
+transform = Transform3D(0.330321, -0.2849, -0.899845, 0.932606, 0.245355, 0.264665, 0.14538, -0.926624, 0.346745, 0.0394758, -0.0680348, 0.0409186)
 bone_name = "hand.L_end"
 bone_idx = 33
 

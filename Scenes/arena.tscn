@@ -1,14 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=11 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_dlpux"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
 [ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="8_b74ak"]
-[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="9_1gv7j"]
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="9_etbo6"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
-[ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="12_ibxb4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -31,6 +29,35 @@ transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 
 [node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_ayhs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 camera = NodePath("../Camera3D")
+
+[node name="Skeleton3D" parent="Lich/lich/RootNode/cultist armature" index="0"]
+bones/2/rotation = Quaternion(0.0497263, 0.976614, -0.198524, 0.0658827)
+bones/3/rotation = Quaternion(-0.505698, -0.00251157, -0.0090844, 0.862659)
+bones/7/position = Vector3(5.05821e-18, 0.034687, -0.00293802)
+bones/8/position = Vector3(-0.00274591, -0.00174719, 0.00581227)
+bones/9/rotation = Quaternion(0.735868, 0.210611, -0.105715, 0.634796)
+bones/11/position = Vector3(0.000354289, -0.00189074, 0.00734208)
+bones/12/position = Vector3(-0.000155734, 0.000914115, -0.00357711)
+bones/13/rotation = Quaternion(0.47175, 7.76185e-05, 0.242876, 0.847622)
+bones/15/position = Vector3(-0.00241732, 0.00942918, 0.00467433)
+bones/17/position = Vector3(0.00891451, 0.0049555, -0.0162382)
+bones/19/position = Vector3(0.0144636, -0.0119335, -0.00305711)
+bones/19/rotation = Quaternion(0.121843, 0.393912, -0.903966, 0.113283)
+bones/21/position = Vector3(-0.000239216, -0.00120054, -0.0056773)
+bones/22/rotation = Quaternion(0.71393, -0.0664018, 0.0665013, 0.693882)
+bones/23/rotation = Quaternion(0.88155, 0.0990344, 0.452517, -0.0910561)
+bones/24/rotation = Quaternion(-0.0377582, 7.87062e-05, -0.790897, 0.610783)
+bones/25/rotation = Quaternion(-0.506029, 0.601491, 0.186763, 0.58929)
+bones/28/position = Vector3(-0.00363088, 0.0101303, 0.00371697)
+bones/28/rotation = Quaternion(0.0634446, -0.751408, 0.0203078, 0.656467)
+bones/32/rotation = Quaternion(0.5484, -0.209056, -0.798478, -0.13411)
+bones/33/rotation = Quaternion(-0.0388362, -7.5268e-05, 0.813479, 0.580296)
+bones/34/rotation = Quaternion(-0.467675, -0.29093, -0.453192, 0.700897)
+bones/37/position = Vector3(0.000665737, 0.010018, 0.00360796)
+bones/37/rotation = Quaternion(0.151329, 0.647011, 0.076447, 0.743393)
+bones/41/position = Vector3(-0.0213976, 0.0211611, -0.0139975)
+bones/43/position = Vector3(-0.00515075, -0.0140019, -0.00560217)
+bones/43/rotation = Quaternion(-0.0606972, -0.53918, 0.823326, -0.166541)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0ivu4")
@@ -72,26 +99,9 @@ offset_bottom = 591.0
 [node name="HBoxContainer" parent="Control/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
 lich = NodePath("../../../Lich")
 
-[node name="FlyerCharacter" parent="." instance=ExtResource("12_ibxb4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3297, 0.0866346, -2.00254)
-
-[node name="Civilian" parent="." instance=ExtResource("9_1gv7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83076, 0.0866356, -0.792591)
-max_stamina = 1.0
-
-[node name="Civilian2" parent="." instance=ExtResource("9_1gv7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66118, 0.0866351, 1.41995)
-max_stamina = 1.0
-
-[node name="Civilian3" parent="." instance=ExtResource("9_1gv7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26445, 0.0866351, 2.71035)
-max_stamina = 1.0
-
-[node name="Civilian4" parent="." instance=ExtResource("9_1gv7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14377, 0.0866351, 3.62027)
-
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]
+[editable path="Lich/lich"]
 [editable path="UI"]
 [editable path="Control"]
