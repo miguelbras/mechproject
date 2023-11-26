@@ -42,10 +42,10 @@ func _ready():
 
 func calc_velocity():
 	# TODO: this frame rarely matches with attacking being false...
-	#if process_tick_curr <= process_tick_max:
-	#	process_tick_curr += 1
-	#	return
-	#process_tick_curr = 0
+	if process_tick_curr <= process_tick_max:
+		process_tick_curr += 1
+		return
+	process_tick_curr = 0
 	
 	if not attacking:
 		if aggressive:
