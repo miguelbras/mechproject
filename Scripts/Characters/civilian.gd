@@ -40,15 +40,17 @@ func calc_velocity():
 		return
 	process_tick_curr = 0
 
-	velocity = Vector3.ZERO
+	self.velocity = Vector3.ZERO
 	# update velocity based on state
 	if current_stamina > 0:
 		if state != State.RANDOM:
 			run_from_target()
 		else:
 			run_direction(rand_dir)
+	if self.velocity != Vector3.ZERO:
+		Util.look_at_target(self, self.position + self.velocity)
 	if slow:
-		velocity *= slow_factor
+		self.velocity *= slow_factor
 
 func _physics_process(delta):
 	if ready_after_spawn:
