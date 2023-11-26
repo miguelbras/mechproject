@@ -91,8 +91,12 @@ func follow_enemy():
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
-	var enemy_in_range: bool = (self.position - enemy_target.position).length_squared() < attack_range_squared
-	# TODO doesnt work for buildings! maybe have buildings with detection area instead?
+	var enemy_in_range: bool
+	if enemy_target.is_in_group("Building"):
+		# we assume that if we're hitting a wall while moving to a building, we're hitting the building's edge
+		enemy_in_range = self.is_on_wall()
+	else:
+		enemy_in_range = (self.position - enemy_target.position).length_squared() < attack_range_squared
 	if enemy_in_range:
 		velocity = Vector3.ZERO
 		return
