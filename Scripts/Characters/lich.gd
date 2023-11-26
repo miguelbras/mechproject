@@ -80,12 +80,12 @@ func moveToPoint(_delta, speed):
 func faceDirection(direction):
 	Util.look_at_target(self, Vector3(direction.x, global_position.y, direction.z))
 
-func _input(_event):
+func _input(event):
 	if Global.arena.game_over:
 		return
 	#if Input.is_action_pressed("zombie_move_agg"):
 	#	zombies_agg()
-	elif Input.is_action_pressed("zombie_move"):
+	elif event.is_action_pressed("zombie_move"):
 		#zombies_pass()
 		if not attacking:
 			atk_pattern = 3
@@ -95,37 +95,37 @@ func _input(_event):
 			command_follow()
 		else:
 			zombies_agg()
-	elif Input.is_action_pressed("mouse_move"):
+	elif event.is_action_pressed("mouse_move"):
 		mouse_move()
-	elif Input.is_action_pressed("attack1"):
+	elif event.is_action_pressed("attack1"):
 		if not attacking:
 			atk_pattern = 0
 			attacking = true
 			cooldown.start(0.5)
 			timer.start()
-	elif Input.is_action_pressed("attack2"):
+	elif event.is_action_pressed("attack2"):
 		if not attacking:
 			atk_pattern = 1
 			attacking = true
 			cooldown.start()
 			timer.start()
-	elif Input.is_action_pressed("attack3"):
+	elif event.is_action_pressed("attack3"):
 		if not attacking:
 			atk_pattern = 2
 			attacking = true
 			cooldown.start(2.3)
 			timer.start()
-	elif Input.is_action_pressed("summon"):
+	elif event.is_action_pressed("summon"):
 		summon_flier()
-	elif Input.is_action_pressed("zoom_out"):
+	elif event.is_action_pressed("zoom_out"):
 		top_down_cam_zoom_level = min(top_down_cam_zoom_level*2, 8)
 		top_down_camera_delta = top_down_camera_delta_fixed * top_down_cam_zoom_level
 		top_down_camera.position = self.position + top_down_camera_delta
-	elif Input.is_action_pressed("zoom_in"):
+	elif event.is_action_pressed("zoom_in"):
 		top_down_cam_zoom_level = max(top_down_cam_zoom_level/2, 1)
 		top_down_camera_delta = top_down_camera_delta_fixed * top_down_cam_zoom_level
 		top_down_camera.position = self.position + top_down_camera_delta
-	elif Input.is_action_pressed("switch_cam"):
+	elif event.is_action_pressed("switch_cam"):
 		top_down_camera.current = iso_camera.current
 		iso_camera.current = !top_down_camera.current
 
