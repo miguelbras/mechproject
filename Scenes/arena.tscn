@@ -1,16 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=13 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_dlpux"]
-[ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_joipp"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
 [ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="8_b74ak"]
 [ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="9_3opsf"]
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="9_etbo6"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
-[ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="10_sixii"]
-[ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="10_yvltf"]
 [ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="12_ibxb4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
@@ -31,12 +28,8 @@ lose_screen_prefab = ExtResource("3_dlpux")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
 
-[node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_joipp")]
-camera = NodePath("../Camera3D")
-
-[node name="Lich" parent="." node_paths=PackedStringArray("selection_node", "camera") instance=ExtResource("5_ayhs3")]
+[node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_ayhs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-selection_node = NodePath("../Selection")
 camera = NodePath("../Camera3D")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -54,8 +47,10 @@ collision_layer = 3
 shape = SubResource("BoxShape3D_1cpf1")
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 10, 6)
-near = 5.0
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10.1508, 13.0842)
+projection = 1
+size = 14.0
+near = 1.0
 far = 100.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -88,12 +83,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4555, 0.0866346, -1.45058
 
 [node name="DootCharacter4" parent="." instance=ExtResource("9_3opsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312093, 0.0866346, -1.45058)
-
-[node name="Knight" parent="." instance=ExtResource("10_sixii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92575, 0.0866346, -17.0772)
-
-[node name="Paladin" parent="." instance=ExtResource("10_yvltf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4739, 0.0866346, -5.46888)
 
 [node name="FlyerCharacter" parent="." instance=ExtResource("12_ibxb4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7746, 0.0866356, 4.69333)

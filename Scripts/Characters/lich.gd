@@ -9,7 +9,7 @@ signal coolDownThick(deltaTime)
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
-@export var selection_node : Area3D
+#@export var selection_node : Area3D
 @export var camera: Camera3D
 @export var my_speed = 6
 @export var attack_cooldown_ms = 1000
@@ -53,11 +53,14 @@ func faceDirection(direction):
 func _input(event):
 	if Global.arena.game_over:
 		return
-	if Input.is_action_pressed("zombie_move_agg"):
-		zombies_agg()
-	elif Input.is_action_pressed("zombie_move_pass"):
+	#if Input.is_action_pressed("zombie_move_agg"):
+	#	zombies_agg()
+	elif Input.is_action_pressed("zombie_move"):
 		#zombies_pass()
-		command_follow()
+		if len(followers) == 0:
+			command_follow()
+		else:
+			zombies_agg()
 	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
 	elif Input.is_action_pressed("attack1"):
@@ -68,8 +71,8 @@ func _input(event):
 		attack3()
 	elif Input.is_action_pressed("summon"):
 		summon_flier()
-	elif not Input.is_action_pressed("test_alt"):
-		selection_node.input(event)
+	#elif not Input.is_action_pressed("test_alt"):
+	#	selection_node.input(event)
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
@@ -130,28 +133,29 @@ func command_dispatch():
 	for mob in followers:
 		if is_instance_valid(mob): # mob could have died
 			followers.erase(mob)
-			selection_node.selected_mobs += [mob] # hacky but it works
+			Global.arena.visible_mobs += [mob] # hacky but it works
 	
 func command_follow():
-	for mob in selection_node.selected_mobs:
+	for mob in Global.arena.visible_mobs:
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
 			mob.follow_mode(self)
 
 func zombies_agg():
-	command_dispatch() # we must make them unremember to follow lich
+	#command_dispatch() # we must make them unremember to follow lich
 	var result = get_mouse_target_pos()
 	if not result:
 		return
-	for mob in selection_node.selected_mobs:
+	for mob in followers:
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
+	followers = []
 
 func zombies_pass():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
-	for mob in selection_node.selected_mobs:
+	for mob in Global.arena.visible_mobs:
 		if is_instance_valid(mob):
 			# mob.passive_move(result.position)
 			mob.passive_move(position)
@@ -178,4 +182,6 @@ func summon_flier():
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)
 			flyer_instance.position = pos
+			followers += [flyer_instance]
+			flyer_instance.follow_mode(self)
 		

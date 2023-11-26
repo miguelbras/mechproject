@@ -52,7 +52,11 @@ aggro_range = 15.0
 parentNode = NodePath("..")
 searchLich = false
 
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
 [connection signal="timeout" from="DotTimer" to="." method="_on_dot_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

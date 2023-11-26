@@ -16,6 +16,8 @@ var LICH_ID = 0
 var ally_map = {}
 #var ally_mutex = Mutex.new()
 
+var visible_mobs = []
+
 func win():
 	if game_over:
 		return

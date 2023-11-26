@@ -1,11 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://j7xjqslowfv4"]
+[gd_scene load_steps=23 format=3 uid="uid://j7xjqslowfv4"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/flyer.gd" id="1_pryk6"]
 [ext_resource type="PackedScene" uid="uid://lyo40j6gd3ts" path="res://Prefabs/Attacks/attack_flyer.tscn" id="2_luirf"]
 [ext_resource type="PackedScene" uid="uid://cxsi5j6vr8kn2" path="res://3DModels/flyer.fbx" id="3_pylqf"]
 [ext_resource type="Texture2D" uid="uid://befmrqqwpmyap" path="res://Textures/3DModels/flyer.png" id="4_1re8f"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://7ad32kr2vxvm" path="res://AnimationTrees/flyer.tres" id="5_xbxaq"]
-[ext_resource type="Script" path="res://Scripts/detectable.gd" id="6_a7pim"]
 [ext_resource type="AudioStream" uid="uid://df36jfrogp2x6" path="res://Sound/Attack/fire-magic-6947.mp3" id="7_w2my2"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="8_va4ep"]
 
@@ -2696,10 +2695,6 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tp6gt"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_xjbyb"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0n5ip"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lv4w5"]
 
 [node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
@@ -2711,46 +2706,46 @@ strength = 0
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 1, 0)
 
 [node name="Skeleton3D" parent="flyer/RootNode/Flyer Boi armature" index="0"]
-bones/0/position = Vector3(8.79912e-07, 0.17947, 0.267409)
+bones/0/position = Vector3(8.79912e-07, 0.223362, 0.280167)
 bones/0/rotation = Quaternion(0.935119, -6.77313e-07, -1.78369e-06, 0.354335)
-bones/1/rotation = Quaternion(0.24736, 8.86612e-07, 1.21656e-05, 0.968924)
-bones/3/rotation = Quaternion(0.941874, -1.31177e-06, -1.70566e-06, 0.335965)
-bones/4/rotation = Quaternion(-0.227317, 6.93564e-08, -1.60142e-06, 0.973821)
+bones/1/rotation = Quaternion(0.382004, 4.29784e-07, 4.78487e-06, 0.924161)
+bones/3/rotation = Quaternion(0.993556, -1.79097e-06, -1.37332e-06, 0.113347)
+bones/4/rotation = Quaternion(0.0869444, -5.28201e-07, -2.64797e-06, 0.996213)
 bones/4/scale = Vector3(1, 1, 0.999989)
-bones/5/rotation = Quaternion(0.160261, 4.34411e-08, -7.74997e-08, 0.987075)
-bones/6/rotation = Quaternion(0.195875, 1.89482e-09, -3.59487e-07, 0.980629)
-bones/8/rotation = Quaternion(-0.200285, 0.19422, -0.68547, 0.672529)
-bones/9/rotation = Quaternion(0.160269, 0.0831736, -0.330153, 0.926496)
-bones/10/rotation = Quaternion(-0.0766089, 3.06917e-05, 0.555183, 0.828193)
-bones/11/rotation = Quaternion(0.431945, 0.186624, -0.488497, 0.734824)
+bones/5/rotation = Quaternion(-0.325868, 9.06871e-09, 1.42471e-07, 0.945415)
+bones/6/rotation = Quaternion(-0.364801, 1.95758e-07, -3.01519e-07, 0.931085)
+bones/8/rotation = Quaternion(-0.0608386, 0.0799411, -0.597433, 0.795601)
+bones/9/rotation = Quaternion(0.237925, 0.304299, -0.43731, 0.812129)
+bones/10/rotation = Quaternion(-0.123308, 1.9541e-05, 0.893658, 0.431474)
+bones/11/rotation = Quaternion(0.483305, -0.413409, -0.341183, 0.692173)
 bones/13/rotation = Quaternion(-0.617222, 2.01316e-08, -0.0851926, 0.782163)
-bones/14/position = Vector3(-0.0697263, -0.0248363, 0.526649)
-bones/14/rotation = Quaternion(0.442867, 0.614835, -0.437035, 0.48461)
+bones/14/position = Vector3(-0.126051, -0.145167, 0.222713)
+bones/14/rotation = Quaternion(0.841241, 0.132402, -0.383281, 0.357601)
 bones/16/position = Vector3(0.268526, 6.80331e-09, 0.272846)
-bones/18/rotation = Quaternion(-0.200282, -0.194218, 0.685471, 0.67253)
-bones/19/rotation = Quaternion(0.159276, -0.0818119, 0.344108, 0.921698)
-bones/20/rotation = Quaternion(-0.0791532, -2.45376e-05, -0.573594, 0.815307)
-bones/21/rotation = Quaternion(0.43639, -0.185951, 0.493465, 0.729026)
+bones/18/rotation = Quaternion(-0.0608364, -0.0799381, 0.597434, 0.795601)
+bones/19/rotation = Quaternion(0.238696, -0.30454, 0.434481, 0.81333)
+bones/20/rotation = Quaternion(-0.12303, -1.97217e-05, -0.891647, 0.435695)
+bones/21/rotation = Quaternion(0.483121, 0.41277, 0.339964, 0.693281)
 bones/23/rotation = Quaternion(-0.617222, -1.68894e-08, 0.0851926, 0.782163)
-bones/24/position = Vector3(0.0690054, -0.0216453, 0.518969)
-bones/24/rotation = Quaternion(0.442867, -0.614835, 0.437035, 0.48461)
+bones/24/position = Vector3(0.126253, -0.146638, 0.224828)
+bones/24/rotation = Quaternion(0.841242, -0.132402, 0.38328, 0.357601)
 bones/26/position = Vector3(-0.268526, 2.37454e-09, 0.272846)
-bones/28/position = Vector3(-0.152337, 0.216681, -0.0967229)
-bones/30/position = Vector3(0.152336, 0.216681, -0.0967241)
+bones/28/position = Vector3(-0.160919, 0.267939, -0.03295)
+bones/30/position = Vector3(0.160919, 0.267939, -0.0329512)
 bones/32/position = Vector3(-1.79677e-17, -0.0207623, 0.421318)
 bones/32/rotation = Quaternion(0.985078, 4.23337e-07, -2.42298e-06, -0.17211)
-bones/33/position = Vector3(-1.90673e-06, 0.0729347, -0.0469511)
+bones/33/position = Vector3(-1.55918e-06, 0.0418517, -0.0124618)
 bones/34/rotation = Quaternion(0.552833, -3.6419e-08, -2.08472e-06, 0.833292)
-bones/36/position = Vector3(-1.70568e-16, 0.259852, -0.579544)
-bones/38/position = Vector3(-1.23755e-16, 0.161985, -0.376641)
-bones/40/position = Vector3(-8.66503e-17, 0.149873, -0.209691)
-bones/42/position = Vector3(6.63037e-18, 0.219044, 0.0236148)
+bones/36/position = Vector3(-1.70568e-16, 0.429437, -0.405185)
+bones/38/position = Vector3(-1.23755e-16, 0.540912, -0.228003)
+bones/40/position = Vector3(-8.66503e-17, 0.515113, -0.0679834)
+bones/42/position = Vector3(6.63037e-18, 0.330297, 0.129257)
 
 [node name="Flyer Boi mesh" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.67576e-06, -0.130266, 0.442477)
+transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.49788e-06, -0.0893296, 0.420571)
 bone_name = "jaw"
 bone_idx = 34
 
@@ -2774,18 +2769,6 @@ parameters/conditions/flap = false
 parameters/conditions/glide = false
 parameters/conditions/idle = true
 
-[node name="AggroRange" type="ShapeCast3D" parent="."]
-transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 1.93326, 0)
-shape = SubResource("CylinderShape3D_xjbyb")
-
-[node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Mob", "Selectable"]]
-script = ExtResource("6_a7pim")
-mob = NodePath("..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_0n5ip")
-
 [node name="Timer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -2805,8 +2788,12 @@ aggro_range = 10.0
 parentNode = NodePath("..")
 search_for_allies = false
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 
 [editable path="flyer"]

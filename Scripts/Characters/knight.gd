@@ -2,19 +2,22 @@ extends Enemy
 
 class_name Knight
 
+enum State {IDLE, WALK, ATK, DEAD}
+
 @export var attack_range: float
 @export var strength = 3
 
 @onready var audio_player = $AudioStreamPlayer
 @onready var cooldown = $Cooldown
 @onready var AggroTargetScript = $Thread1Node
+@onready var anim_tree = $AnimationTree
 
 var attack_range_squared: float
 var can_attack = true # cooldown so it does not endlessly attack
 var attacking = false
 var base_rot # restore original rotation of sword
 var mob_target # which mob to follow and attack
-
+var state = State.IDLE
 var process_tick_curr = 0
 var process_tick_max = 10
 var my_id
@@ -36,12 +39,10 @@ func calc_velocity():
 		process_tick_curr += 1
 		return
 	process_tick_curr = 0
-	
-	if not attacking:
+	if not attacking and hp > 0:
 		follow_enemy()
-	# update_state()
-	# update_animation_parameters()
-	look_at_target()
+	elif hp <= 0:
+		velocity = Vector3.ZERO
 	if slow:
 		velocity *= slow_factor
 
@@ -50,18 +51,19 @@ func _physics_process(_delta):
 		calc_velocity()
 	if position.y > 0.58: # hardcoded value where mobs stand at
 		velocity.y = -position.y * 4
+	update_state()
+	update_animation_parameters()
+	look_at_target()
 	move_and_slide()
 
 func follow_enemy():
 	mob_target = AggroTargetScript.closest_target
 	# return if enemy not found
-	#print(mob_target)
 	if mob_target == null:
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
 	var mob_in_range: bool = (self.position - mob_target.position).length_squared() < attack_range_squared
-	#print(name, " ", mob_in_range)
 	if mob_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:
@@ -98,3 +100,34 @@ func _on_tree_exited():
 	Global.arena.enemy_despawned_light(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_knights -= 1
+
+func update_state():
+	if hp <= 0:
+		state = State.DEAD
+	elif velocity != Vector3.ZERO:
+		state = State.WALK
+	elif velocity == Vector3.ZERO:
+		if mob_target != null:
+			if attacking:
+				state = State.ATK
+			else:
+				state = State.IDLE
+		else:
+			state = State.IDLE
+
+func update_animation_parameters():
+	if state == State.IDLE:
+		anim_tree["parameters/conditions/idle"] = true
+		anim_tree["parameters/conditions/move"] = false
+		anim_tree["parameters/conditions/attack"] = false
+	elif state == State.WALK:
+		anim_tree["parameters/conditions/idle"] = false
+		anim_tree["parameters/conditions/move"] = true
+		anim_tree["parameters/conditions/attack"] = false
+	elif state == State.ATK:
+		anim_tree["parameters/conditions/attack"] = true
+		anim_tree["parameters/conditions/idle"] = true
+		anim_tree["parameters/conditions/move"] = false
+	elif state == State.DEAD:
+		anim_tree["parameters/conditions/death"] = true
+

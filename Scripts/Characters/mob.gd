@@ -150,3 +150,11 @@ func take_damage(damage: int):
 	damage -= defense
 	if damage > 0:
 		hp -= damage
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	if self not in Global.arena.visible_mobs:
+		Global.arena.visible_mobs += [self]
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	if self in Global.arena.visible_mobs:
+		Global.arena.visible_mobs.erase(self)
