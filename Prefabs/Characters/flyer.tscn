@@ -2696,60 +2696,61 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tp6gt"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xjbyb"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0n5ip"]
 
-[node name="FlyerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("AggroTargetScript") groups=["Mob"]]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lv4w5"]
+
+[node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_pryk6")
 attack_prefab = ExtResource("2_luirf")
-hp = 20
-max_velocity = 6
-attack_range = 8.0
-AggroTargetScript = NodePath("Thread1Node")
+strength = 0
 
 [node name="flyer" parent="." instance=ExtResource("3_pylqf")]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 1, 0)
 
 [node name="Skeleton3D" parent="flyer/RootNode/Flyer Boi armature" index="0"]
-bones/0/position = Vector3(8.79912e-07, 0.179126, 0.272868)
+bones/0/position = Vector3(8.79912e-07, 0.17947, 0.267409)
 bones/0/rotation = Quaternion(0.935119, -6.77313e-07, -1.78369e-06, 0.354335)
-bones/1/rotation = Quaternion(0.318666, 1.07117e-06, 1.27863e-05, 0.947867)
-bones/3/rotation = Quaternion(0.949828, -1.48598e-06, -1.71557e-06, 0.312771)
-bones/4/rotation = Quaternion(-0.250814, 1.58611e-07, -1.79267e-06, 0.968035)
+bones/1/rotation = Quaternion(0.24736, 8.86612e-07, 1.21656e-05, 0.968924)
+bones/3/rotation = Quaternion(0.941874, -1.31177e-06, -1.70566e-06, 0.335965)
+bones/4/rotation = Quaternion(-0.227317, 6.93564e-08, -1.60142e-06, 0.973821)
 bones/4/scale = Vector3(1, 1, 0.999989)
-bones/5/rotation = Quaternion(0.13086, 7.30292e-08, 1.35425e-07, 0.991401)
-bones/6/rotation = Quaternion(0.186521, 5.3204e-09, -3.59453e-07, 0.982451)
-bones/8/rotation = Quaternion(-0.174678, 0.17251, -0.674918, 0.695855)
-bones/9/rotation = Quaternion(0.216713, 0.171608, -0.285132, 0.917761)
-bones/10/rotation = Quaternion(-0.0793964, 1.1934e-05, 0.57529, 0.814087)
-bones/11/rotation = Quaternion(0.305309, 0.120655, -0.540442, 0.774694)
+bones/5/rotation = Quaternion(0.160261, 4.34411e-08, -7.74997e-08, 0.987075)
+bones/6/rotation = Quaternion(0.195875, 1.89482e-09, -3.59487e-07, 0.980629)
+bones/8/rotation = Quaternion(-0.200285, 0.19422, -0.68547, 0.672529)
+bones/9/rotation = Quaternion(0.160269, 0.0831736, -0.330153, 0.926496)
+bones/10/rotation = Quaternion(-0.0766089, 3.06917e-05, 0.555183, 0.828193)
+bones/11/rotation = Quaternion(0.431945, 0.186624, -0.488497, 0.734824)
 bones/13/rotation = Quaternion(-0.617222, 2.01316e-08, -0.0851926, 0.782163)
-bones/14/position = Vector3(-0.0941646, -0.123525, 0.497467)
-bones/14/rotation = Quaternion(0.406879, 0.631928, -0.405862, 0.519994)
+bones/14/position = Vector3(-0.0697263, -0.0248363, 0.526649)
+bones/14/rotation = Quaternion(0.442867, 0.614835, -0.437035, 0.48461)
 bones/16/position = Vector3(0.268526, 6.80331e-09, 0.272846)
-bones/18/rotation = Quaternion(-0.174675, -0.172507, 0.674918, 0.695856)
-bones/19/rotation = Quaternion(0.215648, -0.172205, 0.295674, 0.914559)
-bones/20/rotation = Quaternion(-0.0813363, -1.31251e-05, -0.589354, 0.80377)
-bones/21/rotation = Quaternion(0.307816, -0.120057, 0.545007, 0.770586)
+bones/18/rotation = Quaternion(-0.200282, -0.194218, 0.685471, 0.67253)
+bones/19/rotation = Quaternion(0.159276, -0.0818119, 0.344108, 0.921698)
+bones/20/rotation = Quaternion(-0.0791532, -2.45376e-05, -0.573594, 0.815307)
+bones/21/rotation = Quaternion(0.43639, -0.185951, 0.493465, 0.729026)
 bones/23/rotation = Quaternion(-0.617222, -1.68894e-08, 0.0851926, 0.782163)
-bones/24/position = Vector3(0.0936121, -0.121022, 0.491571)
-bones/24/rotation = Quaternion(0.406878, -0.631927, 0.405863, 0.519993)
+bones/24/position = Vector3(0.0690054, -0.0216453, 0.518969)
+bones/24/rotation = Quaternion(0.442867, -0.614835, 0.437035, 0.48461)
 bones/26/position = Vector3(-0.268526, 2.37454e-09, 0.272846)
-bones/28/position = Vector3(-0.152337, 0.225083, -0.0826682)
-bones/30/position = Vector3(0.152336, 0.225083, -0.0826693)
+bones/28/position = Vector3(-0.152337, 0.216681, -0.0967229)
+bones/30/position = Vector3(0.152336, 0.216681, -0.0967241)
 bones/32/position = Vector3(-1.79677e-17, -0.0207623, 0.421318)
 bones/32/rotation = Quaternion(0.985078, 4.23337e-07, -2.42298e-06, -0.17211)
-bones/33/position = Vector3(-1.6033e-06, 0.0798061, -0.036023)
+bones/33/position = Vector3(-1.90673e-06, 0.0729347, -0.0469511)
 bones/34/rotation = Quaternion(0.552833, -3.6419e-08, -2.08472e-06, 0.833292)
-bones/36/position = Vector3(-1.70568e-16, 0.238331, -0.56135)
-bones/38/position = Vector3(-1.23755e-16, 0.162393, -0.373451)
-bones/40/position = Vector3(-8.66503e-17, 0.160399, -0.206522)
-bones/42/position = Vector3(6.63037e-18, 0.22786, 0.043552)
+bones/36/position = Vector3(-1.70568e-16, 0.259852, -0.579544)
+bones/38/position = Vector3(-1.23755e-16, 0.161985, -0.376641)
+bones/40/position = Vector3(-8.66503e-17, 0.149873, -0.209691)
+bones/42/position = Vector3(6.63037e-18, 0.219044, 0.0236148)
 
 [node name="Flyer Boi mesh" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.42609e-06, -0.133025, 0.429866)
+transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.67576e-06, -0.130266, 0.442477)
 bone_name = "jaw"
 bone_idx = 34
 
@@ -2773,6 +2774,10 @@ parameters/conditions/flap = false
 parameters/conditions/glide = false
 parameters/conditions/idle = true
 
+[node name="AggroRange" type="ShapeCast3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 1.93326, 0)
+shape = SubResource("CylinderShape3D_xjbyb")
+
 [node name="DetectionArea3D" type="Area3D" parent="." node_paths=PackedStringArray("mob") groups=["Mob", "Selectable"]]
 script = ExtResource("6_a7pim")
 mob = NodePath("..")
@@ -2787,14 +2792,9 @@ shape = SubResource("CapsuleShape3D_0n5ip")
 stream = ExtResource("7_w2my2")
 volume_db = -13.0
 
-[node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
-process_thread_group = 2
-process_thread_group_order = 2
-process_thread_messages = 0
-script = ExtResource("8_qk0gb")
-aggro_range = 15.0
-parentNode = NodePath("..")
-search_for_allies = false
+[node name="AttackRange" type="ShapeCast3D" parent="."]
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 0, 1.93326, 0)
+shape = SubResource("CylinderShape3D_lv4w5")
 
 [node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
 process_thread_group = 2
@@ -2805,8 +2805,6 @@ aggro_range = 10.0
 parentNode = NodePath("..")
 search_for_allies = false
 
-[connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
