@@ -131,6 +131,7 @@ graph_offset = Vector2(-45, 38)
 [node name="Paladin" type="CharacterBody3D" groups=["Enemy", "Paladin"]]
 script = ExtResource("1_3hk6k")
 attack_range = 2.0
+process_tick_max = 10
 attack1_debuff_prefab = ExtResource("2_7xlae")
 attack2_debuff_prefab = ExtResource("3_nhaj8")
 

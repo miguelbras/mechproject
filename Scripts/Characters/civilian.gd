@@ -16,7 +16,7 @@ var state = State.IDLE
 var rand_dir = Vector3.ZERO # target direction if RANDOM
 
 var process_tick_curr = 0
-var process_tick_max = 10
+@export var process_tick_max: int
 var my_id
 
 # sets velocity and state

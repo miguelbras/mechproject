@@ -16,7 +16,7 @@ var last_spawned_entity = null
 @export var hp = 30
 var my_id
 var process_tick_curr #unused
-var process_tick_max #unused
+var process_tick_max = 1 #unused
 
 func _on_ready():
 	await Engine.get_main_loop().physics_frame

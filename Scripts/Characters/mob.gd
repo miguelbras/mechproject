@@ -30,7 +30,7 @@ var follower: bool = false
 var attack_range_squared: float
 
 var process_tick_curr = 0
-var process_tick_max = 10
+@export var process_tick_max: int
 var my_id
 
 func _ready():

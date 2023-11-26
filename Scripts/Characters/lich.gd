@@ -73,7 +73,7 @@ func moveToPoint(_delta, speed):
 func faceDirection(direction):
 	Util.look_at_target(self, Vector3(direction.x, global_position.y, direction.z))
 
-func _input(event):
+func _input(_event):
 	if Global.arena.game_over:
 		return
 	#if Input.is_action_pressed("zombie_move_agg"):
