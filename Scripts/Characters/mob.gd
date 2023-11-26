@@ -38,26 +38,27 @@ func _ready():
 	attack_range_squared = attack_range * attack_range
 
 func calc_velocity():
-	if process_tick_curr <= process_tick_max:
-		process_tick_curr += 1
-		return
-	process_tick_curr = 0
+	# TODO: this frame rarely matches with attacking being false...
+	#if process_tick_curr <= process_tick_max:
+	#	process_tick_curr += 1
+	#	return
+	#process_tick_curr = 0
 	
-	if aggressive:
-		follow_enemy()
-	# if no enemy nearby, or if passive, just move to destination
-	if enemy_target == null or not aggressive:
-		if follower:
-			move_target = lich.position
-		follow_target()
-	check_blocked()
+	if not attacking:
+		if aggressive:
+			follow_enemy()
+		# if no enemy nearby, or if passive, just move to destination
+		if enemy_target == null or not aggressive:
+			if follower:
+				move_target = lich.position
+			follow_target()
+		check_blocked()
 
 func _on_tree_exited():
 	Global.arena.ally_despawned_light(my_id)
 
 func _physics_process(_delta):
-	if not attacking:
-		calc_velocity()
+	calc_velocity()
 	update_state()
 	update_animation_parameters()
 	look_at_target()
