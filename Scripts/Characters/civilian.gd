@@ -21,7 +21,7 @@ var my_id
 
 # sets velocity and state
 func run_from_target():
-	target = AggroTargetScript.target
+	target = AggroTargetScript.closest_target
 	if target != null:
 		velocity = (self.position - target.position).normalized() * max_velocity
 		velocity.y = 0
@@ -70,7 +70,7 @@ func _on_tree_exited():
 	var doot_instance = doot.instantiate()
 	Global.arena.add_child(doot_instance)
 	doot_instance.position = self.position
-	Global.arena.enemy_despawned_light(my_id)
+	Global.arena.enemy_despawned(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_civilians -= 1
 
@@ -89,7 +89,7 @@ func _on_dot_timer_timeout():
 		attack2_debuff = null
 
 func _on_ready():
-	my_id = Global.arena.enemy_spawned_light(self)
+	my_id = Global.arena.enemy_spawned(self)
 	current_stamina = max_stamina
 	random_mov_timer.start(randf_range(10, 20))
 
