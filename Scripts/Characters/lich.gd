@@ -14,8 +14,9 @@ signal abilityEUsed
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
-#@export var selection_node : Area3D
-@export var camera: Camera3D
+@export var iso_camera: Camera3D
+@export var top_down_camera: Camera3D
+@export var aggressive_marker: Node3D
 @export var my_speed = 6
 @export var attack_cooldown_ms = 1000
 @export var maxHp = 30
@@ -24,9 +25,12 @@ signal abilityEUsed
 @export var attackQ_Cooldown_ms = 1500
 @export var attackW_Cooldown_ms = 2000
 @export var attackE_Cooldown_ms = 2500
+@export var flyer_summon_sacrifices = 5
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
-@onready var camera_delta: Vector3 = camera.position - position
+@onready var iso_camera_delta: Vector3 = iso_camera.position - self.position
+@onready var top_down_camera_delta_fixed: Vector3 = top_down_camera.position - self.position
+@onready var top_down_camera_delta: Vector3 = top_down_camera.position - self.position
 @onready var projectile_spawner : Node3D = $ProjectileSpawner
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 @onready var anim_tree = $AnimationTree
@@ -48,6 +52,8 @@ var followers = []
 var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
+var top_down_cam_zoom_level = 1
+
 
 func _on_ready():
 	Global.arena.lich_spawned(self)
@@ -61,7 +67,8 @@ func _process(delta):
 		velocity = Vector3.ZERO
 		return
 	moveToPoint(delta, my_speed)
-	camera.position = position + camera_delta
+	iso_camera.position = self.position + iso_camera_delta
+	top_down_camera.position = self.position + top_down_camera_delta
 
 func moveToPoint(_delta, speed):
 	var targetPos = navigationAgent.get_next_path_position()
@@ -78,7 +85,7 @@ func _input(event):
 		return
 	#if Input.is_action_pressed("zombie_move_agg"):
 	#	zombies_agg()
-	elif Input.is_action_pressed("zombie_move"):
+	elif event.is_action_pressed("zombie_move"):
 		#zombies_pass()
 		if not attacking:
 			atk_pattern = 3
@@ -90,34 +97,44 @@ func _input(event):
 			zombies_agg()
 	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
-	elif Input.is_action_pressed("attack1"):
+	elif event.is_action_pressed("attack1"):
 		if not attacking:
 			atk_pattern = 0
 			attacking = true
 			cooldown.start(0.5)
 			timer.start()
-	elif Input.is_action_pressed("attack2"):
+	elif event.is_action_pressed("attack2"):
 		if not attacking:
 			atk_pattern = 1
 			attacking = true
 			cooldown.start()
 			timer.start()
-	elif Input.is_action_pressed("attack3"):
+	elif event.is_action_pressed("attack3"):
 		if not attacking:
 			atk_pattern = 2
 			attacking = true
 			cooldown.start(2.3)
 			timer.start()
-	elif Input.is_action_pressed("summon"):
+	elif event.is_action_pressed("summon"):
 		summon_flier()
-	#elif not Input.is_action_pressed("test_alt"):
-	#	selection_node.input(event)
+	elif event.is_action_pressed("zoom_out"):
+		top_down_cam_zoom_level = min(top_down_cam_zoom_level*2, 8)
+		top_down_camera_delta = top_down_camera_delta_fixed * top_down_cam_zoom_level
+		top_down_camera.position = self.position + top_down_camera_delta
+	elif event.is_action_pressed("zoom_in"):
+		top_down_cam_zoom_level = max(top_down_cam_zoom_level/2, 1)
+		top_down_camera_delta = top_down_camera_delta_fixed * top_down_cam_zoom_level
+		top_down_camera.position = self.position + top_down_camera_delta
+	elif event.is_action_pressed("switch_cam"):
+		top_down_camera.current = iso_camera.current
+		iso_camera.current = !top_down_camera.current
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
-	var rayLength = 100
-	var from = camera.project_ray_origin(mousePos)
-	var to = from + camera.project_ray_normal(mousePos) * rayLength
+	var rayLength = 500
+	var cam = iso_camera if iso_camera.current else top_down_camera
+	var from = cam.project_ray_origin(mousePos)
+	var to = from + cam.project_ray_normal(mousePos) * rayLength
 	var space = get_world_3d().direct_space_state
 	var rayQuery = PhysicsRayQueryParameters3D.new()
 	rayQuery.from = from
@@ -185,6 +202,7 @@ func command_follow():
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
 			mob.follow_mode(self)
+	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
 
 func zombies_agg():
 	#command_dispatch() # we must make them unremember to follow lich
@@ -194,6 +212,8 @@ func zombies_agg():
 	for mob in followers:
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
+	aggressive_marker.position = result.position
+	aggressive_marker.position.y += 0.1
 	followers = []
 
 func zombies_pass():
@@ -219,7 +239,7 @@ func summon_flier():
 	for f in followers:
 		if is_instance_valid(f) and f is Doot:
 			sacrifice += [f]
-		if len(sacrifice) == 3:
+		if len(sacrifice) == flyer_summon_sacrifices:
 			var pos = sacrifice[0].position
 			for s in sacrifice:
 				followers.erase(s)
@@ -229,6 +249,7 @@ func summon_flier():
 			flyer_instance.position = pos
 			followers += [flyer_instance]
 			flyer_instance.follow_mode(self)
+			return
 
 func update_state():
 	if hp <= 0:

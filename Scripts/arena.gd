@@ -7,7 +7,6 @@ extends Node
 var game_over: bool = false
 var enemy_count = 0
 var process_tick_curr = 0
-var process_tick_max = 10
 var enemy_id = 0
 var enemy_map = {}
 var ally_id = 1
@@ -32,11 +31,10 @@ func lose():
 
 func enemy_spawned(enemy: Node3D) -> int:
 	enemy_count += 1
-	enemy.process_tick_curr = process_tick_curr
-	enemy.process_tick_max = process_tick_max
+	enemy.process_tick_curr = process_tick_curr % enemy.process_tick_max
+	process_tick_curr += 1
 	enemy_id += 1
 	enemy_map[enemy_id] = enemy
-	process_tick_curr = (process_tick_curr + 1) % process_tick_max
 	return enemy_id
 
 func enemy_despawned(id: int):
@@ -49,11 +47,10 @@ func lich_spawned(lich: Node3D):
 	ally_map[LICH_ID] = lich
 
 func ally_spawned(ally: Node3D) -> int:
-	ally.process_tick_curr = process_tick_curr
-	ally.process_tick_max = process_tick_max
+	ally.process_tick_curr = process_tick_curr % ally.process_tick_max
+	process_tick_curr += 1
 	ally_id += 1
 	ally_map[ally_id] = ally
-	process_tick_curr = (process_tick_curr + 1) % process_tick_max
 	return ally_id
 
 func ally_despawned(id: int):

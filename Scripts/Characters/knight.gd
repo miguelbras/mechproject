@@ -20,7 +20,7 @@ var base_rot # restore original rotation of sword
 var mob_target # which mob to follow and attack
 var state = State.IDLE
 var process_tick_curr = 0
-var process_tick_max = 10
+@export var process_tick_max: int
 var my_id
 
 func _ready():
