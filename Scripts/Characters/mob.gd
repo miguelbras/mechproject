@@ -13,10 +13,13 @@ enum State {IDLE, WALK, ATK, DEAD}
 @export var attack_range: float = 2
 
 @onready var move_target = position # position to move on command
+@onready var death_timer: Timer = $DeathTimer
+@onready var cooldown = $Cooldown
 
 var target_velocity = Vector3.ZERO # direction to move
 var state = State.IDLE # animation state
 var attacking = false # is attacking (so it doesnt move while attack animation is running)
+var can_attack = true # cooldown so it does not endlessly attack
 var enemy_target # target to follow and attack
 var atk_pattern = 0 # select which attack to use next
 var aggressive: bool = true # if aggressive should attack player, if not just move to command target and wait
@@ -103,6 +106,8 @@ func follow_enemy():
 		enemy_in_range = (self.position - enemy_target.position).length_squared() < attack_range_squared
 	if enemy_in_range:
 		velocity = Vector3.ZERO
+		if can_attack:
+			attack()
 		return
 	# chase enemy
 	velocity = (enemy_target.position - position).normalized() * max_velocity
@@ -129,15 +134,14 @@ func look_at_target():
 func update_state():
 	if hp <= 0:
 		state = State.DEAD
-	elif velocity != Vector3.ZERO and not attacking:
+	elif velocity != Vector3.ZERO:
 		state = State.WALK
 	elif velocity == Vector3.ZERO:
-		if enemy_target != null and aggressive:
-			state = State.ATK
-			if not attacking:
-				attacking = true
-				enemy_target.take_damage(strength)
-			atk_pattern = 0 if randf() > .35 else 1
+		if enemy_target != null:
+			if attacking:
+				state = State.ATK
+			else:
+				state = State.IDLE
 		else:
 			state = State.IDLE
 
@@ -167,3 +171,36 @@ func take_damage(damage: int):
 	damage -= defense
 	if damage > 0:
 		hp -= damage
+	if hp <= 0 and death_timer.is_stopped():
+		death_timer.start()
+		_on_death()
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	if self not in Global.arena.visible_mobs:
+		Global.arena.visible_mobs += [self]
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	if self in Global.arena.visible_mobs:
+		Global.arena.visible_mobs.erase(self)
+
+func _on_death_timer_timeout():
+	queue_free()
+
+func _on_cooldown_timeout():
+	can_attack = true
+	attacking = false
+
+func _on_death():
+	pass
+
+func attack():
+	atk_pattern = 0 if randf() > 0.5 else 1
+	cooldown.start()
+	_on_attack_timer()
+	enemy_target.take_damage(strength)
+	can_attack = false
+	attacking = true
+
+func _on_attack_timer():
+	pass
+

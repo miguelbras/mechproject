@@ -6,6 +6,7 @@ extends Mob
 @onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
 @onready var fire_timer = $Timer
 @onready var audio_player = $AudioStreamPlayer3D
+@onready var mesh = $flyer
 
 const sound1 = preload("res://Sound/Character/dragon-roar-96996.mp3")
 const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -22,9 +23,13 @@ func update_animation_parameters():
 	if state == State.IDLE:
 		anim_tree["parameters/conditions/idle"] = true
 		anim_tree["parameters/conditions/glide"] = false
+		anim_tree["parameters/conditions/attack1"] = false
+		anim_tree["parameters/conditions/attack2"] = false
 	elif state == State.WALK:
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/glide"] = true
+		anim_tree["parameters/conditions/attack1"] = false
+		anim_tree["parameters/conditions/attack2"] = false
 	elif state == State.ATK:
 		if atk_pattern == 0:
 			anim_tree["parameters/conditions/attack1"] = true
@@ -35,15 +40,15 @@ func update_animation_parameters():
 	elif state == State.DEAD:
 		anim_tree["parameters/conditions/death"] = true
 
-func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == "Flyer Boi armature|Death Fall":
-		queue_free()
-	if anim_name == "Flyer Boi armature|Attack 1" or anim_name == "Flyer Boi armature|Attack 2":
-		anim_tree["parameters/conditions/attack1"] = false
-		anim_tree["parameters/conditions/attack2"] = false
-		attacking = false
-
 func attack():
+	print("attack")
+	atk_pattern = 0 if randf() > 0.5 else 1
+	cooldown.start()
+	_on_attack_timer()
+	can_attack = false
+	attacking = true
+
+func fire():
 	if enemy_target == null:
 		return
 	audio_player.stream = sound2
@@ -61,18 +66,27 @@ func attack():
 			projectile.rotate_y(deg_to_rad(angle))
 			projectile.scale = Vector3.ONE
 
-func _on_animation_tree_animation_started(anim_name):
-	if fire_timer.is_stopped():
-		if anim_name == "Flyer Boi armature|Attack 1":
-			fire_timer.start(0.9)
-			fire_pattern = 0
-		elif anim_name == "Flyer Boi armature|Attack 2":
-			fire_timer.start(1.4)
-			fire_pattern = 1
-
 func _on_timer_timeout():
-	attack()
+	fire()
 	fire_timer.stop()
 
-func _on_tree_exited():
-	Global.arena.ally_despawned(my_id)
+func _on_death():
+	pass
+
+func _on_attack_timer():
+	if atk_pattern == 0:
+		fire_timer.start(0.9)
+		fire_pattern = 0
+	else:
+		fire_timer.start(1.4)
+		fire_pattern = 1
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	super._on_visible_on_screen_notifier_3d_screen_entered()
+	mesh.set_process(true)
+	anim_tree.active = true
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	super._on_visible_on_screen_notifier_3d_screen_exited()
+	mesh.set_process(false)
+	anim_tree.active = false

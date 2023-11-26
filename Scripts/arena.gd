@@ -14,6 +14,8 @@ var ally_id = 1
 var LICH_ID = 0
 var ally_map = {}
 
+var visible_mobs = []
+
 func win():
 	if game_over:
 		return
