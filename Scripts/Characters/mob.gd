@@ -116,7 +116,7 @@ func follow_enemy():
 func follow_target():
 	var distance_to_target: Vector3 = move_target - self.position
 	# dont move if right next to target
-	var threshold = 0.1 if not follower else 3.0
+	var threshold = 3.0 if not follower else 5.0 # increased threshold because of low tick rate
 	if distance_to_target.length_squared() < threshold:
 		velocity = Vector3.ZERO
 		return

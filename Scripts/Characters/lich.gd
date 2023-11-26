@@ -16,6 +16,7 @@ signal abilityEUsed
 @export var attack3_prefab : PackedScene
 @export var iso_camera: Camera3D
 @export var top_down_camera: Camera3D
+@export var aggressive_marker: Node3D
 @export var my_speed = 6
 @export var attack_cooldown_ms = 1000
 @export var maxHp = 30
@@ -52,6 +53,7 @@ var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
 var top_down_cam_zoom_level = 1
+
 
 func _on_ready():
 	Global.arena.lich_spawned(self)
@@ -200,6 +202,7 @@ func command_follow():
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
 			mob.follow_mode(self)
+	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
 
 func zombies_agg():
 	#command_dispatch() # we must make them unremember to follow lich
@@ -209,6 +212,8 @@ func zombies_agg():
 	for mob in followers:
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
+	aggressive_marker.position = result.position
+	aggressive_marker.position.y += 0.1
 	followers = []
 
 func zombies_pass():
