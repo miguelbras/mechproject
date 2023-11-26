@@ -21,7 +21,7 @@ var my_id
 
 # sets velocity and state
 func run_from_target():
-	target = AggroTargetScript.target
+	target = AggroTargetScript.closest_target
 	if target != null:
 		velocity = (self.position - target.position).normalized() * max_velocity
 		velocity.y = 0
