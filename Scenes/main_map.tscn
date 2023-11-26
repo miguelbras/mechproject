@@ -37,15 +37,14 @@ transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 
 [node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_d77cj")]
 camera = NodePath("../Camera3D")
 
-[node name="Lich" parent="." node_paths=PackedStringArray("selection_node", "camera") instance=ExtResource("5_4lxhq")]
+[node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_4lxhq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-selection_node = NodePath("../Selection")
 camera = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 20, 10)
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 7.885, 11.955, 11.185)
 projection = 1
-size = 20.0
+size = 12.0
 near = 5.0
 far = 100.0
 
@@ -760,5 +759,6 @@ transform = Transform3D(-0.333593, 0, -0.942717, 0, 1, 0, 0.942717, 0, -0.333593
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]
+[editable path="Lich/lich"]
 [editable path="UI"]
 [editable path="Control"]
