@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://j7xjqslowfv4"]
+[gd_scene load_steps=22 format=3 uid="uid://j7xjqslowfv4"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/flyer.gd" id="1_pryk6"]
 [ext_resource type="PackedScene" uid="uid://lyo40j6gd3ts" path="res://Prefabs/Attacks/attack_flyer.tscn" id="2_luirf"]
@@ -2695,8 +2695,6 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tp6gt"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_lv4w5"]
-
 [node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_pryk6")
 attack_prefab = ExtResource("2_luirf")
@@ -2747,7 +2745,7 @@ bones/42/position = Vector3(6.63037e-18, 0.240207, 0.06859)
 surface_material_override/0 = SubResource("StandardMaterial3D_mw81l")
 
 [node name="Fire Point" type="BoneAttachment3D" parent="flyer/RootNode/Flyer Boi armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -2.95586e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.2111e-06, -0.129439, 0.41354)
+transform = Transform3D(1, -2.50111e-12, -3.81468e-06, 3.80926e-06, -0.0533081, 0.998578, -2.03356e-07, -0.998578, -0.0533081, -1.2111e-06, -0.129439, 0.41354)
 bone_name = "jaw"
 bone_idx = 34
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://66mvlwfwkl4m"]
+[gd_scene load_steps=16 format=3 uid="uid://66mvlwfwkl4m"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/doot.gd" id="1_wui4y"]
 [ext_resource type="PackedScene" uid="uid://d086xkoa74atm" path="res://3DModels/doot.fbx" id="2_bjgdx"]
@@ -2796,8 +2796,6 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_adnoa"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_uth8s"]
 
 [node name="DootCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_wui4y")
