@@ -58,7 +58,7 @@ func calc_velocity():
 		check_blocked()
 
 func _on_tree_exited():
-	Global.arena.ally_despawned_light(my_id)
+	Global.arena.ally_despawned(my_id)
 
 func _physics_process(_delta):
 	calc_velocity()
