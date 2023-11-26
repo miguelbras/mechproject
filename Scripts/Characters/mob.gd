@@ -93,8 +93,12 @@ func follow_enemy():
 	# return if enemy already within attack range
 	var enemy_in_range: bool
 	if enemy_target.is_in_group("Building"):
-		# we assume that if we're hitting a wall while moving to a building, we're hitting the building's edge
-		enemy_in_range = self.is_on_wall()
+		if self is Doot:
+			# we assume that if we're hitting a wall while moving to a building, we're hitting the building's edge
+			enemy_in_range = self.is_on_wall()
+		else:
+			# flyer can attack from really far
+			enemy_in_range = (self.position - enemy_target.position).length_squared() < attack_range_squared*1.5
 	else:
 		enemy_in_range = (self.position - enemy_target.position).length_squared() < attack_range_squared
 	if enemy_in_range:
