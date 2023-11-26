@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/global.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://Textures/UI/cursor_pointing.png"
+
 [input]
 
 mouse_move={
