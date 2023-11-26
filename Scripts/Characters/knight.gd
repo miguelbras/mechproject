@@ -27,7 +27,6 @@ func _ready():
 	super._ready()
 	my_id = Global.arena.enemy_spawned(self)
 	attack_range_squared = attack_range * attack_range
-	print(anim_tree)
 
 func attack():
 	cooldown.start()

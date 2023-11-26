@@ -41,7 +41,6 @@ func update_animation_parameters():
 		anim_tree["parameters/conditions/death"] = true
 
 func attack():
-	print("attack")
 	atk_pattern = 0 if randf() > 0.5 else 1
 	cooldown.start()
 	_on_attack_timer()
