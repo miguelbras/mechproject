@@ -2899,10 +2899,6 @@ parameters/conditions/moving = false
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 volume_db = -13.0
 
-[node name="AttackRange" type="ShapeCast3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 1.93326, 0)
-shape = SubResource("CylinderShape3D_uth8s")
-
 [node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
 process_thread_group = 2
 process_thread_group_order = 3
@@ -2911,6 +2907,7 @@ script = ExtResource("7_c4r32")
 aggro_range = 10.0
 parentNode = NodePath("..")
 search_for_allies = false
+searchLich = false
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 

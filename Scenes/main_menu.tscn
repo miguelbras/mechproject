@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvgmvpt1lfg1o"]
+[gd_scene load_steps=5 format=3 uid="uid://bvgmvpt1lfg1o"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/mainmenu.gd" id="1_pavq3"]
 [ext_resource type="Texture2D" uid="uid://li6ypkpv00ty" path="res://Textures/Menu/tlq.png" id="2_06swr"]
+[ext_resource type="Texture2D" uid="uid://ddnnrh5phag7r" path="res://Textures/UI/item_box_transparent.png" id="3_k7n4a"]
 [ext_resource type="AudioStream" uid="uid://bape6cbr8a8hv" path="res://Sound/BackgroundMusic/dark-mysterious-halloween-night-scary-creepy-spooky-horror-music-116551_by_-_SoundGalleryBy_.mp3" id="3_qvj5d"]
 
 [node name="main_menu" type="Node3D"]
@@ -15,52 +16,75 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_pavq3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 3.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Tlq" type="Sprite2D" parent="Control/CanvasLayer/VBoxContainer2"]
+position = Vector2(18, 146)
+scale = Vector2(0.694535, 0.724551)
+texture = ExtResource("2_06swr")
+
+[node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.585
+anchor_right = 0.5
+anchor_bottom = 0.585
+offset_left = -78.0
+offset_top = -84.08
+offset_right = 73.0
+offset_bottom = 170.92
+texture = ExtResource("3_k7n4a")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer/TextureRect"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -55.5
-offset_top = -50.5
+offset_top = -51.96
 offset_right = 55.5
-offset_bottom = 50.5
+offset_bottom = 49.04
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="PlayButton" type="Button" parent="Control/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="Control/CanvasLayer/TextureRect/VBoxContainer"]
 layout_mode = 2
 text = "play"
+flat = true
+icon_alignment = 1
 
-[node name="LbButton" type="Button" parent="Control/VBoxContainer"]
+[node name="LbButton" type="Button" parent="Control/CanvasLayer/TextureRect/VBoxContainer"]
 layout_mode = 2
 text = "leaderboards"
+flat = true
+icon_alignment = 1
 
-[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Control/CanvasLayer/TextureRect/VBoxContainer"]
 layout_mode = 2
 text = "exit"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="Tlq" type="Sprite2D" parent="Control/VBoxContainer2"]
-position = Vector2(23.0001, 129)
-scale = Vector2(0.694535, 0.724551)
-texture = ExtResource("2_06swr")
+flat = true
+icon_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qvj5d")
 volume_db = -20.0
 autoplay = true
 
-[connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="Control" method="_on_play_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/LbButton" to="Control" method="_on_lb_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="Control" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/PlayButton" to="Control" method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/LbButton" to="Control" method="_on_lb_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/QuitButton" to="Control" method="_on_quit_button_pressed"]

@@ -13,8 +13,9 @@ const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
 
 var fire_pattern = 0 # remember which attack was selected
 
-func _ready():
+func _on_ready():
 	super._ready()
+	my_id = Global.arena.ally_spawned(self)
 	audio_player.stream = sound1
 	audio_player.play()
 

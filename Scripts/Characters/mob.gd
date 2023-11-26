@@ -10,7 +10,8 @@ enum State {IDLE, WALK, ATK, DEAD}
 @export var max_velocity = 3
 
 @onready var AggroTargetScript = $Thread1Node
-@onready var attack_range = $AttackRange
+@export var attack_range: float = 2
+
 @onready var move_target = position # position to move on command
 @onready var death_timer: Timer = $DeathTimer
 @onready var cooldown = $Cooldown
@@ -26,20 +27,26 @@ var last_positions = [] # check if is blocked, if so put it IDLE
 var last_positions_amount = 20 # idem
 var lich
 var follower: bool = false
-var my_id
+var attack_range_squared: float
+
 var process_tick_curr = 0
 var process_tick_max = 10
+var my_id
 
 func _ready():
 	set_as_top_level(true)
 	await Engine.get_main_loop().physics_frame
 	move_target = self.position
-	my_id = Global.arena.ally_spawned_light(self)
+	my_id = Global.arena.ally_spawned(self)
+	attack_range_squared = attack_range * attack_range
 
-func _on_tree_exited():
-	Global.arena.ally_despawned_light(my_id)
-
-func _physics_process(_delta):
+func calc_velocity():
+	# TODO: this frame rarely matches with attacking being false...
+	#if process_tick_curr <= process_tick_max:
+	#	process_tick_curr += 1
+	#	return
+	#process_tick_curr = 0
+	
 	if not attacking:
 		if aggressive:
 			follow_enemy()
@@ -49,6 +56,12 @@ func _physics_process(_delta):
 				move_target = lich.position
 			follow_target()
 		check_blocked()
+
+func _on_tree_exited():
+	Global.arena.ally_despawned_light(my_id)
+
+func _physics_process(_delta):
+	calc_velocity()
 	update_state()
 	update_animation_parameters()
 	look_at_target()
@@ -81,17 +94,23 @@ func follow_enemy():
 		velocity = Vector3.ZERO
 		return
 	# return if enemy already within attack range
-	# TODO have buildings with detection area instead?
-	var enemy_in_range: bool = enemy_target in Util.get_all_targets(attack_range, "Enemy")
+	var enemy_in_range: bool
+	if enemy_target.is_in_group("Building"):
+		if self is Doot:
+			# we assume that if we're hitting a wall while moving to a building, we're hitting the building's edge
+			enemy_in_range = self.is_on_wall()
+		else:
+			# flyer can attack from really far
+			enemy_in_range = (self.position - enemy_target.position).length_squared() < attack_range_squared*1.5
+	else:
+		enemy_in_range = (self.position - enemy_target.position).length_squared() < attack_range_squared
 	if enemy_in_range:
 		velocity = Vector3.ZERO
 		if can_attack:
 			attack()
 		return
 	# chase enemy
-	var desired_velocity = (enemy_target.position - position) * max_velocity
-	var steering = desired_velocity - velocity
-	velocity = Util.truncate_vector(velocity + steering, max_velocity)
+	velocity = (enemy_target.position - position).normalized() * max_velocity
 	velocity.y = 0
 
 func follow_target():
@@ -101,9 +120,7 @@ func follow_target():
 	if distance_to_target.length_squared() < threshold:
 		velocity = Vector3.ZERO
 		return
-	var desired_velocity = distance_to_target * max_velocity
-	var steering = desired_velocity - velocity
-	velocity = Util.truncate_vector(velocity + steering, max_velocity)
+	velocity = distance_to_target.normalized() * max_velocity
 	velocity.y = 0
 
 func look_at_target():
@@ -143,11 +160,11 @@ func passive_move(target_position: Vector3):
 	move_target = target_position
 	last_positions.clear()
 	
-func follow_mode(lich: Lich):
+func follow_mode(target_lich: Lich):
 	aggressive = false
 	follower = true
-	self.lich = lich
-	move_target = lich.position#target_position
+	self.lich = target_lich
+	move_target = target_lich.position # target_position
 	last_positions.clear()
 
 func take_damage(damage: int):

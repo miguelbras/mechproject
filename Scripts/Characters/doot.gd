@@ -10,11 +10,6 @@ const sound1 = preload("res://Sound/Character/female-horror-voice-creature-2-att
 const sound2 = preload("res://Sound/Character/female-horror-voice-possessed-vol-001-142646.mp3")
 const sound3 = preload("res://Sound/Character/female-horror-voice-possessed-vol-002-142639.mp3")
 
-func _ready():
-	super._ready()
-	audio_player.stream = sound1
-	audio_player.play()
-
 func update_animation_parameters():
 	if state == State.IDLE:
 		anim_tree["parameters/conditions/idle"] = true
@@ -53,3 +48,4 @@ func _on_visible_on_screen_notifier_3d_screen_exited():
 	super._on_visible_on_screen_notifier_3d_screen_exited()
 	mesh.set_process(false)
 	anim_tree.active = false
+

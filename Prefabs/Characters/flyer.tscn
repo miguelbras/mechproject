@@ -2700,7 +2700,9 @@ _data = {
 [node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
 script = ExtResource("1_pryk6")
 attack_prefab = ExtResource("2_luirf")
-strength = 0
+strength = 3
+max_velocity = 4
+attack_range = 8.0
 
 [node name="flyer" parent="." instance=ExtResource("3_pylqf")]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 1, 0)
@@ -2774,19 +2776,17 @@ parameters/conditions/idle = true
 stream = ExtResource("7_w2my2")
 volume_db = -13.0
 
-[node name="AttackRange" type="ShapeCast3D" parent="."]
-transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 0, 1.93326, 0)
-shape = SubResource("CylinderShape3D_lv4w5")
-
 [node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
 process_thread_group = 2
-process_thread_group_order = 0
+process_thread_group_order = 2
 process_thread_messages = 0
 script = ExtResource("8_va4ep")
-aggro_range = 10.0
+aggro_range = 15.0
 parentNode = NodePath("..")
 search_for_allies = false
+searchLich = false
 
+<<<<<<< HEAD
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="."]
@@ -2795,6 +2795,12 @@ search_for_allies = false
 wait_time = 1.433
 one_shot = true
 
+=======
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
+>>>>>>> e948bf5dc884b1703c3aaded800524aec3b193b2
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

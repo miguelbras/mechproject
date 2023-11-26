@@ -62,6 +62,7 @@ func select():
 	for mob in selected_mobs:
 		if is_instance_valid(mob):
 			var marker = selection_marker_prefab.instantiate()
+			marker.position.y = 0.1
 			mob.add_child(marker)
 			selection_markers.append(marker)
 
