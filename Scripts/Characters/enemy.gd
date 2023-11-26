@@ -19,6 +19,8 @@ var dot_dmg = 1
 @export var attack2_debuff_prefab : PackedScene
 var attack2_debuff = null
 
+@onready var death_timer: Timer = $DeathTimer
+
 var ready_after_spawn = true
 var parent_spawner = null
 
@@ -47,5 +49,8 @@ func take_damage(damage: int):
 	damage -= defense
 	if damage > 0:
 		hp -= damage
-	if hp <= 0:
-		queue_free()
+	if hp <= 0 and death_timer.is_stopped():
+		death_timer.start()
+
+func _on_death_timer_timeout():
+	queue_free()

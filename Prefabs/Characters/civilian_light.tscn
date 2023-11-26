@@ -50,9 +50,16 @@ script = ExtResource("2_d18j0")
 aggro_range = 10.0
 parentNode = NodePath("..")
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
 [connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
 [connection signal="timeout" from="DotTimer" to="." method="_on_dot_timer_timeout"]
 [connection signal="timeout" from="RandomMovementTimer" to="." method="_on_random_movement_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
