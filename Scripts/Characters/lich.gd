@@ -95,7 +95,7 @@ func _input(event):
 			command_follow()
 		else:
 			zombies_agg()
-	elif event.is_action_pressed("mouse_move"):
+	elif Input.is_action_pressed("mouse_move"):
 		mouse_move()
 	elif event.is_action_pressed("attack1"):
 		if not attacking:
