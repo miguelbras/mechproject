@@ -147,11 +147,11 @@ func passive_move(target_position: Vector3):
 	move_target = target_position
 	last_positions.clear()
 	
-func follow_mode(lich: Lich):
+func follow_mode(target_lich: Lich):
 	aggressive = false
 	follower = true
-	self.lich = lich
-	move_target = lich.position#target_position
+	self.lich = target_lich
+	move_target = target_lich.position # target_position
 	last_positions.clear()
 
 func take_damage(damage: int):
