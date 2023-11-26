@@ -11,6 +11,7 @@ enum State {IDLE, WALK, ATK, DEAD}
 @onready var cooldown = $Cooldown
 @onready var AggroTargetScript = $Thread1Node
 @onready var anim_tree = $AnimationTree
+@onready var mesh = $knight
 
 var attack_range_squared: float
 var can_attack = true # cooldown so it does not endlessly attack
@@ -131,3 +132,10 @@ func update_animation_parameters():
 	elif state == State.DEAD:
 		anim_tree["parameters/conditions/death"] = true
 
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	mesh.set_process(true)
+	anim_tree.active = true
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	mesh.set_process(false)
+	anim_tree.active = false

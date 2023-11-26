@@ -142,36 +142,36 @@ transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 [node name="Skeleton3D" parent="knight/RootNode/metarig_001" index="0"]
 bones/1/position = Vector3(0.00726229, 1.18255e-06, 0.0103862)
 bones/3/position = Vector3(-0.00370108, 1.18256e-06, -0.0116038)
-bones/5/position = Vector3(4.29989e-18, 0.0367252, -0.0021988)
+bones/5/position = Vector3(4.29989e-18, 0.0373906, -0.00186574)
 bones/5/rotation = Quaternion(0, -0.345795, 0, 0.93831)
-bones/6/position = Vector3(0.000867082, 0.0132224, 0.000503542)
+bones/6/position = Vector3(0.000494264, 0.0132224, 6.64201e-05)
 bones/6/rotation = Quaternion(-0.74683, -0.0241976, 0.0228693, 0.664181)
 bones/7/position = Vector3(0.000118774, 0.000177611, 0.00127971)
-bones/7/rotation = Quaternion(0.830006, 0.124654, -0.121915, 0.5298)
-bones/9/position = Vector3(0.00207767, 0.0178027, 0.00145714)
+bones/7/rotation = Quaternion(0.820101, 0.112294, -0.109841, 0.550237)
+bones/9/position = Vector3(0.00149407, 0.0178027, 0.000772869)
 bones/9/rotation = Quaternion(-0.477648, 0.306263, 0.195023, 0.800013)
 bones/10/position = Vector3(-3.62134e-05, -0.000232024, -0.00142739)
 bones/12/rotation = Quaternion(-0.0200153, 2.27426e-13, -4.77203e-09, 0.9998)
-bones/13/rotation = Quaternion(0.965775, 0.147788, -0.110603, 0.182221)
-bones/14/rotation = Quaternion(0.289458, 0.00180452, -9.91553e-05, 0.957189)
-bones/16/rotation = Quaternion(-0.0304255, 0.000307357, -0.0799539, 0.996334)
+bones/13/rotation = Quaternion(0.973302, 0.138354, -0.115223, 0.142358)
+bones/14/rotation = Quaternion(0.220511, 0.00183865, -7.55197e-05, 0.975383)
+bones/16/rotation = Quaternion(-0.0793414, 0.000145739, -0.037733, 0.996133)
 bones/17/position = Vector3(0.00753042, 0.00568411, 0.000699099)
-bones/17/rotation = Quaternion(0.866407, -0.151377, 0.416294, -0.230484)
-bones/18/rotation = Quaternion(0.0493165, 0.0814797, -0.331454, 0.938652)
-bones/19/rotation = Quaternion(-0.0882507, 0.331053, 0.0190387, 0.939284)
+bones/17/rotation = Quaternion(0.860266, -0.156677, 0.427598, -0.229248)
+bones/18/rotation = Quaternion(0.0386634, 0.0834463, -0.259848, 0.96126)
+bones/19/rotation = Quaternion(-0.0412232, 0.331761, -0.0426497, 0.941497)
 bones/21/position = Vector3(-0.00753042, 0.00568412, 0.000699096)
-bones/21/rotation = Quaternion(0.651172, -0.249801, -0.710602, 0.0928403)
-bones/22/rotation = Quaternion(0.135085, -0.0343203, 0.907894, 0.395352)
-bones/23/rotation = Quaternion(0.0339167, 0.0709971, 0.336887, 0.938252)
+bones/21/rotation = Quaternion(0.619782, -0.235186, -0.747091, 0.0491302)
+bones/22/rotation = Quaternion(0.132828, -0.0372425, 0.892703, 0.429012)
+bones/23/rotation = Quaternion(0.0325598, 0.0471543, 0.341985, 0.937957)
 bones/24/rotation = Quaternion(0.199322, -0.230327, 0.610918, 0.730752)
-bones/26/rotation = Quaternion(0.993025, -0.0516308, -0.0861998, 0.0616817)
-bones/27/rotation = Quaternion(0.337344, -0.00177464, 0.000115568, 0.94138)
+bones/26/rotation = Quaternion(0.994695, -0.0570075, -0.0828989, 0.0214418)
+bones/27/rotation = Quaternion(0.263247, -0.00181864, 9.01938e-05, 0.964727)
 bones/29/position = Vector3(-0.0103684, 0.00075911, -0.0284276)
 bones/31/position = Vector3(0.00885092, -0.00942694, -0.00209191)
-bones/31/rotation = Quaternion(0.604191, 0.0300932, 0.796254, 0.00526042)
+bones/31/rotation = Quaternion(0.601664, 0.0923522, 0.79339, 0.00167762)
 bones/33/position = Vector3(-0.017415, -0.0100172, 0.00414918)
-bones/35/position = Vector3(-0.00570648, 0.0172411, 0.00991895)
-bones/35/rotation = Quaternion(-0.304791, -0.689345, 0.0335304, 0.65634)
+bones/35/position = Vector3(-0.00576519, 0.0169771, 0.0101039)
+bones/35/rotation = Quaternion(-0.287385, -0.69211, 0.0218871, 0.661751)
 bones/37/position = Vector3(-0.0137382, 0.0219567, 0.0447047)
 bones/39/position = Vector3(-0.0195834, 0.024392, 0.0203621)
 
@@ -179,6 +179,7 @@ bones/39/position = Vector3(-0.0195834, 0.024392, 0.0203621)
 surface_material_override/0 = SubResource("StandardMaterial3D_lhf33")
 
 [node name="Cooldown" type="Timer" parent="."]
+wait_time = 1.667
 one_shot = true
 
 [node name="SlowTimer" type="Timer" parent="."]
@@ -202,7 +203,6 @@ parentNode = NodePath("..")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bo0ww")
 anim_player = NodePath("../knight/AnimationPlayer")
-active = true
 parameters/conditions/attack = false
 parameters/conditions/death = false
 parameters/conditions/idle = true
@@ -212,10 +212,14 @@ parameters/conditions/move = false
 wait_time = 2.0
 one_shot = true
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="SlowTimer" to="." method="_on_slow_timer_timeout"]
 [connection signal="timeout" from="DotTimer" to="." method="_on_dot_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 
 [editable path="knight"]
