@@ -2786,7 +2786,6 @@ parentNode = NodePath("..")
 search_for_allies = false
 searchLich = false
 
-<<<<<<< HEAD
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="."]
@@ -2795,12 +2794,10 @@ searchLich = false
 wait_time = 1.433
 one_shot = true
 
-=======
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
->>>>>>> e948bf5dc884b1703c3aaded800524aec3b193b2
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
