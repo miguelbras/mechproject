@@ -7,6 +7,9 @@ enum State {IDLE, WALK, ATK, DEAD}
 signal healthChanged
 signal abilityUsed
 signal coolDownThick(deltaTime)
+signal abilityQUsed
+signal abilityWUsed
+signal abilityEUsed
 
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
@@ -17,6 +20,10 @@ signal coolDownThick(deltaTime)
 @export var attack_cooldown_ms = 1000
 @export var maxHp = 30
 @export var defense = 0
+
+@export var attackQ_Cooldown_ms = 1500
+@export var attackW_Cooldown_ms = 2000
+@export var attackE_Cooldown_ms = 2500
 
 @onready var navigationAgent : NavigationAgent3D = $NavigationAgent3D
 @onready var camera_delta: Vector3 = camera.position - position
@@ -34,6 +41,9 @@ const flyer = preload("res://Prefabs/Characters/flyer.tscn")
 
 var hp = maxHp
 var last_time_attacked = 0
+var last_time_attackedQ = 0
+var last_time_attackedW = 0
+var last_time_attackedE = 0
 var followers = []
 var state = State.IDLE # animation state
 var atk_pattern = 0
@@ -135,28 +145,34 @@ func attack(projectile):
 	last_time_attacked = Time.get_ticks_msec()
 	
 func attack1():
-	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+	if (last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec()) or (last_time_attackedQ + attackQ_Cooldown_ms > Time.get_ticks_msec()):
 		return
 	audio_player.stream = atk1_sound
 	audio_player.play()
 	attack(attack1_prefab.instantiate())
+	last_time_attackedQ = Time.get_ticks_msec()
 	abilityUsed.emit()
+	abilityQUsed.emit()
 
 func attack2():
-	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+	if (last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec()) or (last_time_attackedW + attackW_Cooldown_ms > Time.get_ticks_msec()):
 		return
 	audio_player.stream = atk2_sound
 	audio_player.play()
 	attack(attack2_prefab.instantiate())
+	last_time_attackedW = Time.get_ticks_msec()
 	abilityUsed.emit()
+	abilityWUsed.emit()
 
 func attack3():
-	if last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec():
+	if (last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec()) or (last_time_attackedE + attackE_Cooldown_ms > Time.get_ticks_msec()):
 		return
 	audio_player.stream = atk3_sound
 	audio_player.play()
 	attack(attack3_prefab.instantiate())
+	last_time_attackedE = Time.get_ticks_msec()
 	abilityUsed.emit()
+	abilityEUsed.emit()
 
 func command_dispatch():
 	for mob in followers:
