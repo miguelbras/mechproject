@@ -35,7 +35,6 @@ signal abilityEUsed
 @onready var anim_tree = $AnimationTree
 @onready var death_timer = $DeathTimer
 @onready var cooldown = $Cooldown
-@onready var timer = $Timer
 
 const atk3_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -194,7 +193,7 @@ func zombies_agg():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
-	for mob in followers:
+	for mob in Global.arena.visible_mobs:
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
 	aggressive_marker.position = result.position
