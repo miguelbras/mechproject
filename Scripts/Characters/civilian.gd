@@ -23,9 +23,12 @@ var my_id
 
 func _ready():
 	super._ready()
-	fbx.set_process(false)
-	fbx.visible = false
-	anim_tree.active = false
+	set_visuals(false)
+	
+func set_visuals(enable: bool):
+	fbx.set_process(enable)
+	fbx.visible = enable
+	anim_tree.active = enable
 
 # sets velocity and state
 func run_from_target():
@@ -120,14 +123,10 @@ func _on_stamina_timer_timeout():
 
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
-	fbx.set_process(true)
-	fbx.visible = true
-	anim_tree.active = true
+	set_visuals(true)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	fbx.set_process(true)
-	fbx.visible = true
-	anim_tree.active = false
+	set_visuals(false)
 
 func update_state():
 	if hp <= 0:

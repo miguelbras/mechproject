@@ -51,6 +51,8 @@ func take_damage(damage: int):
 		hp -= damage
 	if hp <= 0 and death_timer.is_stopped():
 		death_timer.start()
+		self.set_physics_process(false)
+		self.velocity = Vector3.ZERO
 
 func _on_death_timer_timeout():
 	queue_free()

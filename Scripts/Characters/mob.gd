@@ -172,6 +172,8 @@ func take_damage(damage: int):
 	if damage > 0:
 		hp -= damage
 	if hp <= 0 and death_timer.is_stopped():
+		# TODO disable attack timers
+		self.set_physics_process(false)
 		death_timer.start()
 		_on_death()
 

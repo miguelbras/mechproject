@@ -4,7 +4,7 @@ class_name Doot
 
 @onready var anim_tree = $AnimationTree
 @onready var audio_player = $AudioStreamPlayer3D
-@onready var mesh = $doot
+@onready var fbx = $doot
 
 const sound1 = preload("res://Sound/Character/female-horror-voice-creature-2-attack-vol-001-138132.mp3")
 const sound2 = preload("res://Sound/Character/female-horror-voice-possessed-vol-001-142646.mp3")
@@ -41,11 +41,17 @@ func _on_attack_timer():
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
 	super._on_visible_on_screen_notifier_3d_screen_entered()
-	mesh.set_process(true)
-	anim_tree.active = true
+	set_visuals(true)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	super._on_visible_on_screen_notifier_3d_screen_exited()
-	mesh.set_process(false)
-	anim_tree.active = false
+	set_visuals(false)
 
+func set_visuals(enable: bool):
+	fbx.set_process(enable)
+	fbx.visible = enable
+	anim_tree.active = enable
+
+func _on_ready():
+	super._ready()
+	set_visuals(false)
