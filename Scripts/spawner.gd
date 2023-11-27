@@ -44,12 +44,12 @@ func spawn_something():
 	else:
 		last_spawned_entity = null
 		return
+	Global.arena.add_child(last_spawned_entity)
 	last_spawned_entity.velocity = spawn_direction
 	last_spawned_entity.parent_spawner = self
 	last_spawned_entity.global_position = $SpawnPoint.global_position
 	last_spawned_entity.get_node("CollisionShape3D").disabled = true
 	last_spawned_entity.ready_after_spawn = false
-	Global.arena.add_child(last_spawned_entity)
 
 func spawn_something_ready(entity: Node):
 	var spawn_point: Vector3 = $ReadySpawnPoint.global_position

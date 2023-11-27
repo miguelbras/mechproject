@@ -21,7 +21,6 @@ signal abilityEUsed
 @export var attack_cooldown_ms = 1000
 @export var maxHp = 30
 @export var defense = 0
-
 @export var attackQ_Cooldown_ms = 1500
 @export var attackW_Cooldown_ms = 2000
 @export var attackE_Cooldown_ms = 2500
@@ -36,15 +35,13 @@ signal abilityEUsed
 @onready var anim_tree = $AnimationTree
 @onready var death_timer = $DeathTimer
 @onready var cooldown = $Cooldown
-@onready var timer = $Timer
 
-const atk1_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
+const atk3_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
-const atk3_sound = preload("res://Sound/Attack/magic-spell-6005.mp3")
+const atk1_sound = preload("res://Sound/Attack/magic-spell-6005.mp3")
 const flyer = preload("res://Prefabs/Characters/flyer.tscn")
 
 var hp = maxHp
-var last_time_attacked = 0
 var last_time_attackedQ = 0
 var last_time_attackedW = 0
 var last_time_attackedE = 0
@@ -54,8 +51,7 @@ var atk_pattern = 0
 var attacking = false
 var top_down_cam_zoom_level = 1
 
-
-func _on_ready():
+func _ready():
 	Global.arena.lich_spawned(self)
 	anim_tree.active = true
 
@@ -83,10 +79,11 @@ func faceDirection(direction):
 func _input(event):
 	if Global.arena.game_over:
 		return
-	#if Input.is_action_pressed("zombie_move_agg"):
-	#	zombies_agg()
-	elif event.is_action_pressed("zombie_move"):
-		#zombies_pass()
+	# move inputs
+	if Input.is_action_pressed("mouse_move"):
+		mouse_move()
+	# attack inputs
+	if event.is_action_pressed("zombie_move"):
 		if not attacking:
 			atk_pattern = 3
 			attacking = true
@@ -95,29 +92,16 @@ func _input(event):
 			command_follow()
 		else:
 			zombies_agg()
-	elif Input.is_action_pressed("mouse_move"):
-		mouse_move()
 	elif event.is_action_pressed("attack1"):
-		if not attacking:
-			atk_pattern = 0
-			attacking = true
-			cooldown.start(0.5)
-			timer.start()
+		attack1()
 	elif event.is_action_pressed("attack2"):
-		if not attacking:
-			atk_pattern = 1
-			attacking = true
-			cooldown.start()
-			timer.start()
+		attack2()
 	elif event.is_action_pressed("attack3"):
-		if not attacking:
-			atk_pattern = 2
-			attacking = true
-			cooldown.start(2.3)
-			timer.start()
+		attack3()
 	elif event.is_action_pressed("summon"):
 		summon_flier()
-	elif event.is_action_pressed("zoom_out"):
+	# camera inputs
+	if event.is_action_pressed("zoom_out"):
 		top_down_cam_zoom_level = min(top_down_cam_zoom_level*2, 8)
 		top_down_camera_delta = top_down_camera_delta_fixed * top_down_cam_zoom_level
 		top_down_camera.position = self.position + top_down_camera_delta
@@ -156,14 +140,15 @@ func attack(projectile):
 	faceDirection(result.position)
 	projectile.rotation_degrees = projectile_spawner.global_transform.basis.get_euler()
 	projectile_spawner.add_child(projectile)
-	
 	# stop moving, add CD to attack
 	navigationAgent.target_position = position
-	last_time_attacked = Time.get_ticks_msec()
 	
 func attack1():
-	if (last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec()) or (last_time_attackedQ + attackQ_Cooldown_ms > Time.get_ticks_msec()):
+	if last_time_attackedQ + attackQ_Cooldown_ms > Time.get_ticks_msec():
 		return
+	atk_pattern = 0
+	attacking = true
+	cooldown.start()
 	audio_player.stream = atk1_sound
 	audio_player.play()
 	attack(attack1_prefab.instantiate())
@@ -172,8 +157,11 @@ func attack1():
 	abilityQUsed.emit()
 
 func attack2():
-	if (last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec()) or (last_time_attackedW + attackW_Cooldown_ms > Time.get_ticks_msec()):
+	if last_time_attackedW + attackW_Cooldown_ms > Time.get_ticks_msec():
 		return
+	atk_pattern = 1
+	attacking = true
+	cooldown.start()
 	audio_player.stream = atk2_sound
 	audio_player.play()
 	attack(attack2_prefab.instantiate())
@@ -182,8 +170,11 @@ func attack2():
 	abilityWUsed.emit()
 
 func attack3():
-	if (last_time_attacked + attack_cooldown_ms > Time.get_ticks_msec()) or (last_time_attackedE + attackE_Cooldown_ms > Time.get_ticks_msec()):
+	if last_time_attackedE + attackE_Cooldown_ms > Time.get_ticks_msec():
 		return
+	atk_pattern = 2
+	attacking = true
+	cooldown.start()
 	audio_player.stream = atk3_sound
 	audio_player.play()
 	attack(attack3_prefab.instantiate())
@@ -191,12 +182,6 @@ func attack3():
 	abilityUsed.emit()
 	abilityEUsed.emit()
 
-func command_dispatch():
-	for mob in followers:
-		if is_instance_valid(mob): # mob could have died
-			followers.erase(mob)
-			Global.arena.visible_mobs += [mob] # hacky but it works
-	
 func command_follow():
 	for mob in Global.arena.visible_mobs:
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
@@ -205,25 +190,15 @@ func command_follow():
 	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
 
 func zombies_agg():
-	#command_dispatch() # we must make them unremember to follow lich
-	var result = get_mouse_target_pos()
-	if not result:
-		return
-	for mob in followers:
-		if is_instance_valid(mob):
-			mob.aggressive_move(result.position)
-	aggressive_marker.position = result.position
-	aggressive_marker.position.y += 0.1
-	followers = []
-
-func zombies_pass():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
 	for mob in Global.arena.visible_mobs:
 		if is_instance_valid(mob):
-			# mob.passive_move(result.position)
-			mob.passive_move(position)
+			mob.aggressive_move(result.position)
+	aggressive_marker.position = result.position
+	aggressive_marker.position.y += 0.1
+	followers = []
 
 func take_damage(damage: int):
 	damage -= defense
@@ -254,53 +229,24 @@ func summon_flier():
 func update_state():
 	if hp <= 0:
 		state = State.DEAD
+	elif attacking:
+		state = State.ATK
 	elif velocity != Vector3.ZERO:
 		state = State.WALK
-	elif velocity == Vector3.ZERO:
-		if attacking:
-			state = State.ATK
-		else:
-			state = State.IDLE
+	else:
+		state = State.IDLE
 
 func update_animation_parameters():
-	if state == State.IDLE:
-		anim_tree["parameters/conditions/idle"] = true
-		anim_tree["parameters/conditions/move"] = false
-		anim_tree["parameters/conditions/action"] = false
-		anim_tree["parameters/conditions/attack1"] = false
-		anim_tree["parameters/conditions/attack2"] = false
-		anim_tree["parameters/conditions/attack3"] = false
-	elif state == State.WALK:
-		anim_tree["parameters/conditions/idle"] = false
-		anim_tree["parameters/conditions/move"] = true
-		anim_tree["parameters/conditions/action"] = false
-		anim_tree["parameters/conditions/attack1"] = false
-		anim_tree["parameters/conditions/attack2"] = false
-		anim_tree["parameters/conditions/attack3"] = false
-	elif state == State.ATK:
-		if atk_pattern == 0:
-			anim_tree["parameters/conditions/attack1"] = true
-		elif atk_pattern == 1:
-			anim_tree["parameters/conditions/attack2"] = true
-		elif atk_pattern == 2:
-			anim_tree["parameters/conditions/attack3"] = true
-		else:
-			anim_tree["parameters/conditions/action"] = true
-		anim_tree["parameters/conditions/idle"] = true
-		anim_tree["parameters/conditions/move"] = false
-	elif state == State.DEAD:
-		anim_tree["parameters/conditions/death"] = true
-	
+	anim_tree["parameters/conditions/idle"] = state == State.IDLE or state == State.ATK
+	anim_tree["parameters/conditions/move"] = state == State.WALK
+	anim_tree["parameters/conditions/attack1"] = state == State.ATK and atk_pattern == 0
+	anim_tree["parameters/conditions/attack2"] = state == State.ATK and atk_pattern == 1
+	anim_tree["parameters/conditions/attack3"] = state == State.ATK and atk_pattern == 2
+	anim_tree["parameters/conditions/action"] = state == State.ATK and atk_pattern == 3
+	anim_tree["parameters/conditions/death"] = state == State.DEAD
+
 func _on_death_timer_timeout():
 	queue_free()
 
 func _on_cooldown_timeout():
 	attacking = false
-
-func _on_timer_timeout():
-	if atk_pattern == 0:
-		attack1()
-	elif atk_pattern == 1:
-		attack2()
-	else:
-		attack3()
