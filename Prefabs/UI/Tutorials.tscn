@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjl8b7uvyfye1"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Tutorials.gd" id="1_76plj"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("text_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_76plj")
+text_label = NodePath("CanvasLayer/RichTextLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -274.0
+offset_top = 61.0
+offset_right = 276.0
+offset_bottom = 106.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Try moving around with your Right Mouse Button!"
+scroll_active = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
