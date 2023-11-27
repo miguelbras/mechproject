@@ -11,7 +11,7 @@ enum State {IDLE, WALK, ATK, DEAD}
 @onready var cooldown = $Cooldown
 @onready var AggroTargetScript = $Thread1Node
 @onready var anim_tree = $AnimationTree
-@onready var mesh = $knight
+@onready var fbx = $knight
 
 var attack_range_squared: float
 var can_attack = true # cooldown so it does not endlessly attack
@@ -27,6 +27,13 @@ func _ready():
 	super._ready()
 	my_id = Global.arena.enemy_spawned(self)
 	attack_range_squared = attack_range * attack_range
+	set_visuals(false)
+
+func set_visuals(enable: bool):
+	fbx.set_process(enable)
+	fbx.visible = enable
+	anim_tree.active = enable
+
 
 func attack():
 	cooldown.start()
@@ -47,13 +54,15 @@ func calc_velocity():
 	if slow:
 		velocity *= slow_factor
 
+func _process(delta):
+	update_state()
+	update_animation_parameters()
+
 func _physics_process(_delta):
 	if ready_after_spawn:
 		calc_velocity()
 	if position.y > 0.58: # hardcoded value where mobs stand at
 		velocity.y = -position.y * 4
-	update_state()
-	update_animation_parameters()
 	look_at_target()
 	move_and_slide()
 
@@ -133,9 +142,7 @@ func update_animation_parameters():
 		anim_tree["parameters/conditions/death"] = true
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
-	mesh.set_process(true)
-	anim_tree.active = true
+	set_visuals(true)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	mesh.set_process(false)
-	anim_tree.active = false
+	set_visuals(false)

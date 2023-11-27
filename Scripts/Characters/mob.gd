@@ -60,10 +60,12 @@ func calc_velocity():
 func _on_tree_exited():
 	Global.arena.ally_despawned(my_id)
 
-func _physics_process(_delta):
-	calc_velocity()
+func _process(delta):
 	update_state()
 	update_animation_parameters()
+
+func _physics_process(_delta):
+	calc_velocity()
 	look_at_target()
 	move_and_slide()
 	
@@ -172,16 +174,10 @@ func take_damage(damage: int):
 	if damage > 0:
 		hp -= damage
 	if hp <= 0 and death_timer.is_stopped():
+		# TODO disable attack timers
+		self.set_physics_process(false)
 		death_timer.start()
 		_on_death()
-
-func _on_visible_on_screen_notifier_3d_screen_entered():
-	if self not in Global.arena.visible_mobs:
-		Global.arena.visible_mobs += [self]
-
-func _on_visible_on_screen_notifier_3d_screen_exited():
-	if self in Global.arena.visible_mobs:
-		Global.arena.visible_mobs.erase(self)
 
 func _on_death_timer_timeout():
 	queue_free()

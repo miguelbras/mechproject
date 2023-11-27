@@ -34,7 +34,7 @@ signal abilityEUsed
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 @onready var anim_tree = $AnimationTree
 @onready var death_timer = $DeathTimer
-@onready var cooldown = $Cooldown
+@onready var global_cooldown = $Cooldown
 
 const atk3_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -87,7 +87,7 @@ func _input(event):
 		if not attacking:
 			atk_pattern = 3
 			attacking = true
-			cooldown.start()
+			global_cooldown.start()
 		if len(followers) == 0:
 			command_follow()
 		else:
@@ -144,11 +144,11 @@ func attack(projectile):
 	navigationAgent.target_position = position
 	
 func attack1():
-	if last_time_attackedQ + attackQ_Cooldown_ms > Time.get_ticks_msec():
+	if attacking or last_time_attackedQ + attackQ_Cooldown_ms > Time.get_ticks_msec():
 		return
 	atk_pattern = 0
 	attacking = true
-	cooldown.start()
+	global_cooldown.start()
 	audio_player.stream = atk1_sound
 	audio_player.play()
 	attack(attack1_prefab.instantiate())
@@ -157,11 +157,11 @@ func attack1():
 	abilityQUsed.emit()
 
 func attack2():
-	if last_time_attackedW + attackW_Cooldown_ms > Time.get_ticks_msec():
+	if attacking or last_time_attackedW + attackW_Cooldown_ms > Time.get_ticks_msec():
 		return
 	atk_pattern = 1
 	attacking = true
-	cooldown.start()
+	global_cooldown.start()
 	audio_player.stream = atk2_sound
 	audio_player.play()
 	attack(attack2_prefab.instantiate())
@@ -170,11 +170,11 @@ func attack2():
 	abilityWUsed.emit()
 
 func attack3():
-	if last_time_attackedE + attackE_Cooldown_ms > Time.get_ticks_msec():
+	if attacking or last_time_attackedE + attackE_Cooldown_ms > Time.get_ticks_msec():
 		return
 	atk_pattern = 2
 	attacking = true
-	cooldown.start()
+	global_cooldown.start()
 	audio_player.stream = atk3_sound
 	audio_player.play()
 	attack(attack3_prefab.instantiate())
@@ -183,7 +183,9 @@ func attack3():
 	abilityEUsed.emit()
 
 func command_follow():
-	for mob in Global.arena.visible_mobs:
+	for mob in Global.arena.ally_map.values():
+		if mob is Lich:
+			continue
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
 			mob.follow_mode(self)
@@ -193,7 +195,9 @@ func zombies_agg():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
-	for mob in Global.arena.visible_mobs:
+	for mob in Global.arena.ally_map.values():
+		if mob is Lich:
+			continue
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
 	aggressive_marker.position = result.position

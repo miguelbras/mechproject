@@ -6,7 +6,7 @@ extends Mob
 @onready var fire_point = $"flyer/RootNode/Flyer Boi armature/Skeleton3D/Fire Point"
 @onready var fire_timer = $Timer
 @onready var audio_player = $AudioStreamPlayer3D
-@onready var mesh = $flyer
+@onready var fbx = $flyer
 
 const sound1 = preload("res://Sound/Character/dragon-roar-96996.mp3")
 const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -14,10 +14,14 @@ const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
 var fire_pattern = 0 # remember which attack was selected
 
 func _on_ready():
-	super._ready()
-	my_id = Global.arena.ally_spawned(self)
 	audio_player.stream = sound1
 	audio_player.play()
+	set_visuals(false)
+
+func set_visuals(enable: bool):
+	fbx.set_process(enable)
+	fbx.visible = enable
+	anim_tree.active = enable
 
 func update_animation_parameters():
 	if state == State.IDLE:
@@ -69,9 +73,6 @@ func _on_timer_timeout():
 	fire()
 	fire_timer.stop()
 
-func _on_death():
-	pass
-
 func _on_attack_timer():
 	if atk_pattern == 0:
 		fire_timer.start(0.9)
@@ -81,11 +82,10 @@ func _on_attack_timer():
 		fire_pattern = 1
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
-	super._on_visible_on_screen_notifier_3d_screen_entered()
-	mesh.set_process(true)
-	anim_tree.active = true
+	set_visuals(true)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	super._on_visible_on_screen_notifier_3d_screen_exited()
-	mesh.set_process(false)
-	anim_tree.active = false
+	set_visuals(false)
+
+func _on_tree_exited_child():
+	super._on_tree_exited()
