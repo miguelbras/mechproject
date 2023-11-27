@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=35 format=3 uid="uid://bficgar1h60u7"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=47 format=3 uid="uid://bficgar1h60u7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ctn1m"]
 animation = &"cultist armature|action"
@@ -124,19 +124,67 @@ advance_condition = &"death"
 advance_mode = 2
 advance_condition = &"death"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ttsii"]
+advance_mode = 2
+advance_condition = &"attack2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_atdvj"]
+advance_mode = 2
+advance_condition = &"attack1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xlm3x"]
+advance_mode = 2
+advance_condition = &"action"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_04t5s"]
+advance_mode = 2
+advance_condition = &"attack1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3iiut"]
+advance_mode = 2
+advance_condition = &"attack3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kmrrd"]
+advance_mode = 2
+advance_condition = &"attack2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rwkqn"]
+advance_mode = 2
+advance_condition = &"attack3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wnvse"]
+advance_mode = 2
+advance_condition = &"action"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26red"]
+advance_mode = 2
+advance_condition = &"attack2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fdeig"]
+advance_mode = 2
+advance_condition = &"action"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3n5j"]
+advance_mode = 2
+advance_condition = &"attack3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_28bmp"]
+advance_mode = 2
+advance_condition = &"attack1"
+
 [resource]
 states/End/position = Vector2(1008, 106)
 states/Start/position = Vector2(-304, 50)
 "states/cultist armature|action/node" = SubResource("AnimationNodeAnimation_ctn1m")
-"states/cultist armature|action/position" = Vector2(500, -117)
+"states/cultist armature|action/position" = Vector2(212, -259)
 "states/cultist armature|attack_01/node" = SubResource("AnimationNodeAnimation_qnhl7")
-"states/cultist armature|attack_01/position" = Vector2(-382, -117)
+"states/cultist armature|attack_01/position" = Vector2(-85, -259)
 "states/cultist armature|attack_02/node" = SubResource("AnimationNodeAnimation_3v8ft")
 "states/cultist armature|attack_02/position" = Vector2(-85, -117)
 "states/cultist armature|attack_03/node" = SubResource("AnimationNodeAnimation_yfmma")
 "states/cultist armature|attack_03/position" = Vector2(212, -117)
 "states/cultist armature|idle/node" = SubResource("AnimationNodeAnimation_bucil")
-"states/cultist armature|idle/position" = Vector2(54, 50)
+"states/cultist armature|idle/position" = Vector2(54, 40)
 "states/cultist armature|idle_to_death/node" = SubResource("AnimationNodeAnimation_8gm4v")
 "states/cultist armature|idle_to_death/position" = Vector2(54, 150)
 "states/cultist armature|idle_to_move/node" = SubResource("AnimationNodeAnimation_ud60k")
@@ -149,5 +197,5 @@ states/Start/position = Vector2(-304, 50)
 "states/cultist armature|sprint/position" = Vector2(687, 268)
 "states/cultist armature|sprint_to_move/node" = SubResource("AnimationNodeAnimation_fs23e")
 "states/cultist armature|sprint_to_move/position" = Vector2(845, 150)
-transitions = ["Start", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_fk1af"), "cultist armature|idle", "cultist armature|idle_to_move", SubResource("AnimationNodeStateMachineTransition_i2du2"), "cultist armature|idle_to_move", "cultist armature|move", SubResource("AnimationNodeStateMachineTransition_rc5c6"), "cultist armature|move", "cultist armature|move_to_sprint", SubResource("AnimationNodeStateMachineTransition_800px"), "cultist armature|move_to_sprint", "cultist armature|sprint", SubResource("AnimationNodeStateMachineTransition_wp7fh"), "cultist armature|sprint", "cultist armature|sprint_to_move", SubResource("AnimationNodeStateMachineTransition_48d06"), "cultist armature|sprint_to_move", "cultist armature|move", SubResource("AnimationNodeStateMachineTransition_hkt2h"), "cultist armature|idle", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_2025i"), "cultist armature|move", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_h6ug4"), "cultist armature|idle", "cultist armature|attack_01", SubResource("AnimationNodeStateMachineTransition_8kcje"), "cultist armature|attack_01", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_e5x0c"), "cultist armature|idle", "cultist armature|attack_02", SubResource("AnimationNodeStateMachineTransition_2m3pp"), "cultist armature|attack_02", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_yokyj"), "cultist armature|idle", "cultist armature|attack_03", SubResource("AnimationNodeStateMachineTransition_etqix"), "cultist armature|attack_03", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_l1628"), "cultist armature|idle", "cultist armature|action", SubResource("AnimationNodeStateMachineTransition_wubrf"), "cultist armature|action", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_6na7u"), "cultist armature|move", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_lvarq"), "cultist armature|sprint", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_aab7q"), "cultist armature|attack_01", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_pjrit"), "cultist armature|attack_02", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_pt8ys"), "cultist armature|attack_03", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_u6584"), "cultist armature|action", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_co5ur")]
-graph_offset = Vector2(-525, -148)
+transitions = ["Start", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_fk1af"), "cultist armature|idle", "cultist armature|idle_to_move", SubResource("AnimationNodeStateMachineTransition_i2du2"), "cultist armature|idle_to_move", "cultist armature|move", SubResource("AnimationNodeStateMachineTransition_rc5c6"), "cultist armature|move", "cultist armature|move_to_sprint", SubResource("AnimationNodeStateMachineTransition_800px"), "cultist armature|move_to_sprint", "cultist armature|sprint", SubResource("AnimationNodeStateMachineTransition_wp7fh"), "cultist armature|sprint", "cultist armature|sprint_to_move", SubResource("AnimationNodeStateMachineTransition_48d06"), "cultist armature|sprint_to_move", "cultist armature|move", SubResource("AnimationNodeStateMachineTransition_hkt2h"), "cultist armature|idle", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_2025i"), "cultist armature|move", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_h6ug4"), "cultist armature|idle", "cultist armature|attack_01", SubResource("AnimationNodeStateMachineTransition_8kcje"), "cultist armature|attack_01", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_e5x0c"), "cultist armature|idle", "cultist armature|attack_02", SubResource("AnimationNodeStateMachineTransition_2m3pp"), "cultist armature|attack_02", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_yokyj"), "cultist armature|idle", "cultist armature|attack_03", SubResource("AnimationNodeStateMachineTransition_etqix"), "cultist armature|attack_03", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_l1628"), "cultist armature|idle", "cultist armature|action", SubResource("AnimationNodeStateMachineTransition_wubrf"), "cultist armature|action", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_6na7u"), "cultist armature|move", "cultist armature|idle", SubResource("AnimationNodeStateMachineTransition_lvarq"), "cultist armature|sprint", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_aab7q"), "cultist armature|attack_01", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_pjrit"), "cultist armature|attack_02", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_pt8ys"), "cultist armature|attack_03", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_u6584"), "cultist armature|action", "cultist armature|idle_to_death", SubResource("AnimationNodeStateMachineTransition_co5ur"), "cultist armature|attack_01", "cultist armature|attack_02", SubResource("AnimationNodeStateMachineTransition_ttsii"), "cultist armature|attack_02", "cultist armature|attack_01", SubResource("AnimationNodeStateMachineTransition_atdvj"), "cultist armature|attack_01", "cultist armature|action", SubResource("AnimationNodeStateMachineTransition_xlm3x"), "cultist armature|action", "cultist armature|attack_01", SubResource("AnimationNodeStateMachineTransition_04t5s"), "cultist armature|attack_02", "cultist armature|attack_03", SubResource("AnimationNodeStateMachineTransition_3iiut"), "cultist armature|attack_03", "cultist armature|attack_02", SubResource("AnimationNodeStateMachineTransition_kmrrd"), "cultist armature|action", "cultist armature|attack_03", SubResource("AnimationNodeStateMachineTransition_rwkqn"), "cultist armature|attack_03", "cultist armature|action", SubResource("AnimationNodeStateMachineTransition_wnvse"), "cultist armature|action", "cultist armature|attack_02", SubResource("AnimationNodeStateMachineTransition_26red"), "cultist armature|attack_02", "cultist armature|action", SubResource("AnimationNodeStateMachineTransition_fdeig"), "cultist armature|attack_01", "cultist armature|attack_03", SubResource("AnimationNodeStateMachineTransition_x3n5j"), "cultist armature|attack_03", "cultist armature|attack_01", SubResource("AnimationNodeStateMachineTransition_28bmp")]
+graph_offset = Vector2(-500, -147.69)
