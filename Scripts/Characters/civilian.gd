@@ -63,6 +63,10 @@ func calc_velocity():
 	if slow:
 		self.velocity *= slow_factor
 
+func _process(delta):
+	update_state()
+	update_animation_parameters()
+
 func _physics_process(delta):
 	if ready_after_spawn:
 		calc_velocity()
@@ -77,8 +81,6 @@ func _physics_process(delta):
 	# gravity. hardcoded value where mobs stand at
 	if position.y > 0.58:
 		velocity.y = -(position.y-0.58) * 4
-	update_state()
-	update_animation_parameters()
 	move_and_slide()
 
 func _on_tree_exited():

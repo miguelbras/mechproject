@@ -54,13 +54,15 @@ func calc_velocity():
 	if slow:
 		velocity *= slow_factor
 
+func _process(delta):
+	update_state()
+	update_animation_parameters()
+
 func _physics_process(_delta):
 	if ready_after_spawn:
 		calc_velocity()
 	if position.y > 0.58: # hardcoded value where mobs stand at
 		velocity.y = -position.y * 4
-	update_state()
-	update_animation_parameters()
 	look_at_target()
 	move_and_slide()
 

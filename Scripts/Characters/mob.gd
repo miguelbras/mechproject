@@ -60,10 +60,12 @@ func calc_velocity():
 func _on_tree_exited():
 	Global.arena.ally_despawned(my_id)
 
-func _physics_process(_delta):
-	calc_velocity()
+func _process(delta):
 	update_state()
 	update_animation_parameters()
+
+func _physics_process(_delta):
+	calc_velocity()
 	look_at_target()
 	move_and_slide()
 	
