@@ -28,9 +28,8 @@ lose_screen_prefab = ExtResource("3_dlpux")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
 
-[node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_ayhs3")]
+[node name="Lich" parent="." instance=ExtResource("5_ayhs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-camera = NodePath("../Camera3D")
 
 [node name="Skeleton3D" parent="Lich/lich/RootNode/cultist armature" index="0"]
 bones/2/rotation = Quaternion(0.0497263, 0.976614, -0.198524, 0.0658827)

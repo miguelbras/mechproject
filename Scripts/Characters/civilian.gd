@@ -1,6 +1,6 @@
 extends Enemy
 
-enum State {ESCAPE, RANDOM, IDLE}
+enum State {ESCAPE, RANDOM, IDLE, DEAD}
 
 var current_stamina: float 
 @export var max_stamina: float = 5.0 # stamina, how much time it walks
@@ -10,6 +10,8 @@ var current_stamina: float
 @onready var stamina_timer = $StaminaTimer
 @onready var random_mov_timer = $RandomMovementTimer
 @onready var doot = load("res://Prefabs/Characters/doot.tscn")
+@onready var fbx = $villager_female
+@onready var anim_tree = $AnimationTree
 
 var target # target to run from if ESCAPE
 var state = State.IDLE
@@ -18,6 +20,12 @@ var rand_dir = Vector3.ZERO # target direction if RANDOM
 var process_tick_curr = 0
 @export var process_tick_max: int
 var my_id
+
+func _ready():
+	super._ready()
+	fbx.set_process(false)
+	fbx.visible = false
+	anim_tree.active = false
 
 # sets velocity and state
 func run_from_target():
@@ -66,6 +74,8 @@ func _physics_process(delta):
 	# gravity. hardcoded value where mobs stand at
 	if position.y > 0.58:
 		velocity.y = -(position.y-0.58) * 4
+	update_state()
+	update_animation_parameters()
 	move_and_slide()
 
 func _on_tree_exited():
@@ -99,14 +109,31 @@ func _on_random_movement_timer_timeout():
 	# only start doing random movement if fully rested
 	if current_stamina != max_stamina:
 		return
-	
 	# move in random direction for random amount of time
 	current_stamina = randf_range(1, 3)
 	rand_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 	state = State.RANDOM
-
 	random_mov_timer.start(randf_range(10, 30))
-
 
 func _on_stamina_timer_timeout():
 	current_stamina = max_stamina
+
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	fbx.set_process(true)
+	fbx.visible = true
+	anim_tree.active = true
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	fbx.set_process(true)
+	fbx.visible = true
+	anim_tree.active = false
+
+func update_state():
+	if hp <= 0:
+		state = State.DEAD
+
+func update_animation_parameters():
+	anim_tree["parameters/conditions/idle"] = state == State.IDLE
+	anim_tree["parameters/conditions/move"] = state == State.ESCAPE or state == State.RANDOM
+	anim_tree["parameters/conditions/death"] = state == State.DEAD
