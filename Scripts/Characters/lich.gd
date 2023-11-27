@@ -183,7 +183,9 @@ func attack3():
 	abilityEUsed.emit()
 
 func command_follow():
-	for mob in Global.arena.visible_mobs:
+	for mob in Global.arena.ally_map.values():
+		if mob is Lich:
+			continue
 		if is_instance_valid(mob) and mob not in followers: # mob could have died
 			followers += [mob]
 			mob.follow_mode(self)
@@ -193,7 +195,9 @@ func zombies_agg():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
-	for mob in Global.arena.visible_mobs:
+	for mob in Global.arena.ally_map.values():
+		if mob is Lich:
+			continue
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
 	aggressive_marker.position = result.position

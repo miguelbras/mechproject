@@ -40,11 +40,9 @@ func _on_attack_timer():
 	audio_player.play()
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
-	super._on_visible_on_screen_notifier_3d_screen_entered()
 	set_visuals(true)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	super._on_visible_on_screen_notifier_3d_screen_exited()
 	set_visuals(false)
 
 func set_visuals(enable: bool):
@@ -53,5 +51,4 @@ func set_visuals(enable: bool):
 	anim_tree.active = enable
 
 func _on_ready():
-	super._ready()
 	set_visuals(false)

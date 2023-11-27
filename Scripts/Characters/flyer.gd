@@ -14,7 +14,6 @@ const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
 var fire_pattern = 0 # remember which attack was selected
 
 func _on_ready():
-	super._ready()
 	audio_player.stream = sound1
 	audio_player.play()
 	set_visuals(false)
@@ -83,11 +82,9 @@ func _on_attack_timer():
 		fire_pattern = 1
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
-	super._on_visible_on_screen_notifier_3d_screen_entered()
 	set_visuals(true)
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	super._on_visible_on_screen_notifier_3d_screen_exited()
 	set_visuals(false)
 
 func _on_tree_exited_child():
