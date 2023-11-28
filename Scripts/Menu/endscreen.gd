@@ -1,4 +1,4 @@
-extends Node3D
+extends CanvasLayer
 
 @onready var http_requester = $HTTPRequest
 @export var test_box: LineEdit
@@ -16,10 +16,11 @@ func _on_menu_button_pressed():
 func _ready():
 	var curr_time = Time.get_ticks_msec()/1000
 	game_time = curr_time - Global.arena.start_time
-	feedback_label.text = "You took %d seconds to conquer the empire!" % game_time
+	if feedback_label:
+		feedback_label.text = "You took %d seconds to conquer the empire!" % game_time
 
 func _on_http_request_request_completed(result, response_code, headers, body):
-	pass # Replace with function body.
+	feedback_label.text = "Submitted!"
 
 
 func _on_submit_button_pressed():
@@ -39,4 +40,4 @@ func _on_submit_button_pressed():
 		push_error("An error occurred in the HTTP request.")
 		return
 	submit_button.disabled = true
-	feedback_label.text = "Submitted!"
+	feedback_label.text = "Submitting..."

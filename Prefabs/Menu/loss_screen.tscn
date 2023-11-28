@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Menu/endscreen.gd" id="1_1n0t4"]
 [ext_resource type="Texture2D" uid="uid://d272gh3xadxia" path="res://Textures/Menu/loss.png" id="2_i7buv"]
 
-[node name="win_screen" type="Node3D"]
+[node name="win_screen" type="CanvasLayer"]
 script = ExtResource("1_1n0t4")
 
 [node name="Control" type="Control" parent="."]
