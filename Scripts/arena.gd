@@ -5,7 +5,7 @@ extends Node
 @export var esc_screen_prefab: PackedScene
 
 var game_over: bool = false
-var enemy_count = 0
+var building_count = 0
 var process_tick_curr = 0
 var enemy_id = 0
 var enemy_map = {}
@@ -32,18 +32,20 @@ func lose():
 	var lose_screen = lose_screen_prefab.instantiate()
 	add_child(lose_screen)
 
-func enemy_spawned(enemy: Node3D) -> int:
-	enemy_count += 1
+func enemy_spawned(enemy: Node3D, building: bool) -> int:
+	if building:
+		building_count += 1
 	enemy.process_tick_curr = process_tick_curr % enemy.process_tick_max
 	process_tick_curr += 1
 	enemy_id += 1
 	enemy_map[enemy_id] = enemy
 	return enemy_id
 
-func enemy_despawned(id: int):
-	enemy_count -= 1
+func enemy_despawned(id: int, building: bool):
 	enemy_map.erase(id)
-	if enemy_count == 0:
+	if building:
+		building_count -= 1
+	if building_count == 0:
 		win()
 		
 func lich_spawned(lich: Node3D):
