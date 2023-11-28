@@ -13,6 +13,11 @@ var ally_id = 1
 var LICH_ID = 0
 var ally_map = {}
 
+var start_time: int
+
+func _ready():
+	start_time = Time.get_ticks_msec()/1000
+
 func win():
 	if game_over:
 		return

@@ -65,10 +65,8 @@ stream = ExtResource("7_ievwm")
 volume_db = -20.0
 autoplay = true
 
-[node name="HealthBar" parent="." instance=ExtResource("8_vlqt6")]
-
-[node name="TextureProgressBar" parent="HealthBar/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
-lich = NodePath("../../../Lich")
+[node name="HealthBar" parent="." node_paths=PackedStringArray("lich") instance=ExtResource("8_vlqt6")]
+lich = NodePath("../Lich")
 
 [node name="CastBar" parent="." instance=ExtResource("9_r5hdm")]
 offset_left = 693.0
