@@ -4,14 +4,11 @@ extends Control
 @export var text_label: RichTextLabel
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_map.tscn")
+	get_tree().change_scene_to_file("res://Scenes/david_arena.tscn")
 
 func _on_lb_button_pressed():
-	#var json = JSON.stringify({})
-	#http_requester.request("http://127.0.0.1:8080", headers, HTTPClient.METHOD_POST, json)
-	
 	# Perform a GET request. The URL below returns JSON as of writing.
-	var error = http_requester.request("http://127.0.0.1:8080")
+	var error = http_requester.request("http://2.82.169.84:6969/")
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
