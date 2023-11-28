@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name Building
+
 @export var max_civilians: int = 1
 @export var max_knights: int = 0
 @export var max_paladins: int = 0

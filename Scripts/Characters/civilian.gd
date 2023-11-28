@@ -1,5 +1,5 @@
 extends Enemy
-
+class_name Civilian
 enum State {ESCAPE, RANDOM, IDLE, DEAD}
 
 var current_stamina: float 
