@@ -11,17 +11,19 @@ import logging
 import json  
       
 class S(BaseHTTPRequestHandler):
-    def _set_response(self):
+    def _set_response(self, content_length):
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', content_length)
         self.end_headers()
 
     def do_GET(self):
         logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
-        self._set_response()
         with open('leaderboards.json') as infile:
             data = json.load(infile)
+        data["values"] = data["values"][0:min(100, len(data["values"]))]
         json_str = json.dumps(data, indent = 4) 
+        self._set_response(len(json_str))
         self.wfile.write(json_str.encode(encoding='utf_8'))
 
     def do_POST(self):
@@ -45,6 +47,8 @@ class S(BaseHTTPRequestHandler):
         with open('leaderboards.json') as infile:
             data = json.load(infile)
         data["values"].append(new_score)
+        data["values"] = sorted(data["values"], key=lambda x:x["time"])
+
         with open("leaderboards.json", "w") as outfile: 
             json.dump(data, outfile)
 

@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvgmvpt1lfg1o"]
+[gd_scene load_steps=7 format=3 uid="uid://bvgmvpt1lfg1o"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/mainmenu.gd" id="1_pavq3"]
 [ext_resource type="Texture2D" uid="uid://li6ypkpv00ty" path="res://Textures/Menu/tlq.png" id="2_06swr"]
 [ext_resource type="Texture2D" uid="uid://ddnnrh5phag7r" path="res://Textures/UI/item_box_transparent.png" id="3_k7n4a"]
 [ext_resource type="AudioStream" uid="uid://bape6cbr8a8hv" path="res://Sound/BackgroundMusic/dark-mysterious-halloween-night-scary-creepy-spooky-horror-music-116551_by_-_SoundGalleryBy_.mp3" id="3_qvj5d"]
+[ext_resource type="FontFile" uid="uid://dmoxjb6kcjlh2" path="res://telegraw.ttf" id="4_hyc1o"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_18qqm"]
 
 [node name="main_menu" type="Node3D"]
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("text_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -15,6 +18,7 @@ offset_bottom = 645.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_pavq3")
+text_label = NodePath("CanvasLayer/RichTextLabel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
@@ -80,6 +84,28 @@ text = "exit"
 flat = true
 icon_alignment = 1
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/CanvasLayer"]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -462.0
+offset_top = -22.0
+offset_right = -30.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_hyc1o")
+theme_override_fonts/bold_font = ExtResource("4_hyc1o")
+bbcode_enabled = true
+text = "Rank #1: David: 1234s
+Rank #1: David: 1234s"
+custom_effects = [SubResource("RichTextEffect_18qqm")]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Control"]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qvj5d")
 volume_db = -20.0
@@ -88,3 +114,4 @@ autoplay = true
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/PlayButton" to="Control" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/LbButton" to="Control" method="_on_lb_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/QuitButton" to="Control" method="_on_quit_button_pressed"]
+[connection signal="request_completed" from="Control/HTTPRequest" to="Control" method="_on_http_request_request_completed"]
