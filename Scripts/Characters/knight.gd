@@ -32,7 +32,7 @@ const anim_map = {
 
 func _ready():
 	super._ready()
-	my_id = Global.arena.enemy_spawned(self, false)
+	my_id = Global.arena.enemy_spawned(self)
 	attack_range_squared = attack_range * attack_range
 	set_visuals(false)
 
@@ -113,7 +113,7 @@ func _on_dot_timer_timeout():
 		attack2_debuff = null
 
 func _on_tree_exited():
-	Global.arena.enemy_despawned(my_id, false)
+	Global.arena.enemy_despawned(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_knights -= 1
 

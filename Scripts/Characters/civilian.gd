@@ -1,5 +1,5 @@
 extends Enemy
-
+class_name Civilian
 enum State {ESCAPE, RANDOM, IDLE, DEAD}
 
 var current_stamina: float 
@@ -94,7 +94,7 @@ func _on_tree_exited():
 	var doot_instance = doot.instantiate()
 	Global.arena.add_child.call_deferred(doot_instance)
 	doot_instance.position = self.position
-	Global.arena.enemy_despawned(my_id, false)
+	Global.arena.enemy_despawned(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_civilians -= 1
 
@@ -113,7 +113,7 @@ func _on_dot_timer_timeout():
 		attack2_debuff = null
 
 func _on_ready():
-	my_id = Global.arena.enemy_spawned(self, false)
+	my_id = Global.arena.enemy_spawned(self)
 	current_stamina = max_stamina
 	random_mov_timer.start(randf_range(10, 20))
 

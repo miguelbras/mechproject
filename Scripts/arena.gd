@@ -1,8 +1,22 @@
 extends Node
 
+class_name Arena
+
 @export var win_screen_prefab: PackedScene
 @export var lose_screen_prefab: PackedScene
 @export var esc_screen_prefab: PackedScene
+
+signal villagerCreated
+signal villagerKilled
+signal soldierCreated
+signal soldierKilled
+signal buildingCreated
+signal buildingKilled
+signal skeletonKilled
+signal skeletonCreated
+signal flyerCreated
+signal flyerKilled
+
 
 var game_over: bool = false
 var building_count = 0
@@ -32,19 +46,30 @@ func lose():
 	var lose_screen = lose_screen_prefab.instantiate()
 	add_child(lose_screen)
 
-func enemy_spawned(enemy: Node3D, building: bool) -> int:
-	if building:
-		building_count += 1
+func enemy_spawned(enemy: Node3D) -> int:
 	enemy.process_tick_curr = process_tick_curr % enemy.process_tick_max
 	process_tick_curr += 1
 	enemy_id += 1
 	enemy_map[enemy_id] = enemy
+	if enemy is Civilian:
+		villagerCreated.emit()
+	if enemy is Knight or enemy is Paladin:
+		soldierCreated.emit()
+	if enemy is Building:
+		buildingCreated.emit()
+		building_count += 1
 	return enemy_id
 
-func enemy_despawned(id: int, building: bool):
-	enemy_map.erase(id)
-	if building:
+func enemy_despawned(id: int):
+	var enemy = enemy_map[id]
+	if enemy is Civilian:
+		villagerKilled.emit()
+	if enemy is Knight or enemy is Paladin:
+		soldierKilled.emit()
+	if enemy is Building:
+		buildingKilled.emit()
 		building_count -= 1
+	enemy_map.erase(id)
 	if building_count == 0:
 		win()
 		
@@ -57,9 +82,18 @@ func ally_spawned(ally: Node3D) -> int:
 	ally_id += 1
 	ally_map[ally_id] = ally
 	ally_map[LICH_ID].joined_horde(ally)
+	if ally is Doot:
+		skeletonCreated.emit()
+	if ally is Flyer:
+		flyerCreated.emit()
 	return ally_id
 
 func ally_despawned(id: int):
+	var ally = ally_map[id]
+	if ally is Doot:
+		skeletonKilled.emit()
+	if ally is Flyer:
+		flyerKilled.emit()
 	ally_map.erase(id)
 	
 func _on_tree_entered():

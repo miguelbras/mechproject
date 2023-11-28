@@ -1,0 +1,197 @@
+[gd_scene load_steps=12 format=3 uid="uid://5jrtgnqrgc4"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIInfoController.gd" id="1_1alyo"]
+[ext_resource type="Texture2D" uid="uid://c5wfgweu778jt" path="res://Textures/UI/black_bar.png" id="1_pvclw"]
+[ext_resource type="Texture2D" uid="uid://co1hmvgqva6pt" path="res://Textures/UI/red_bar.png" id="2_4grla"]
+[ext_resource type="Script" path="res://Scripts/UI/healthBar.gd" id="3_0nxta"]
+[ext_resource type="Texture2D" uid="uid://vvpj4oe5vd5k" path="res://Textures/UI/lichportrait.png" id="4_d77jb"]
+[ext_resource type="Texture2D" uid="uid://duofutabbry7b" path="res://Textures/UI/green_bar.png" id="5_15f32"]
+[ext_resource type="Texture2D" uid="uid://d0bis75cmaixs" path="res://Textures/UI/skeletonface.png" id="6_emta2"]
+[ext_resource type="Texture2D" uid="uid://cmoj70uqbw733" path="res://Textures/UI/flyerface.png" id="7_lxapl"]
+[ext_resource type="Texture2D" uid="uid://d2ph0f4h7yr78" path="res://Textures/UI/villagerface.png" id="8_81538"]
+[ext_resource type="Texture2D" uid="uid://dp28qj58221pm" path="res://Textures/UI/knightface.png" id="9_42bxy"]
+[ext_resource type="Texture2D" uid="uid://64akpfm3ju1t" path="res://Textures/UI/buildingface.png" id="10_8cx8f"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("skeletonAmountLabel", "flyerAmountLabel", "villagerAmountLabel", "soldiersAmountLabel", "buildingsAmountLabel", "balanceOfPowerBar", "timeLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 646.0
+script = ExtResource("1_1alyo")
+skeletonAmountLabel = NodePath("TextureRect/Skeleton/SkeletonAmount")
+flyerAmountLabel = NodePath("TextureRect/Flyer/SkeletonAmount")
+villagerAmountLabel = NodePath("TextureRect/Villager/VillagerAmount")
+soldiersAmountLabel = NodePath("TextureRect/Soldiers/SoldiersAmount")
+buildingsAmountLabel = NodePath("TextureRect/Building/BuildingsAmount")
+balanceOfPowerBar = NodePath("TextureRect/PowerBalanceBar")
+timeLabel = NodePath("TextureRect/RichTextLabel")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" node_paths=PackedStringArray("pg_bar")]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 31.0
+offset_right = 316.0
+offset_bottom = 49.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_pvclw")
+texture_progress = ExtResource("2_4grla")
+script = ExtResource("3_0nxta")
+pg_bar = NodePath(".")
+
+[node name="lich portrait" type="TextureRect" parent="CanvasLayer/Control/TextureProgressBar"]
+layout_mode = 0
+offset_left = -67.0
+offset_top = -29.0
+offset_right = 17.0
+offset_bottom = 47.0
+texture = ExtResource("4_d77jb")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -760.0
+offset_top = 3.0
+offset_right = -2.0
+offset_bottom = 34.0
+texture = ExtResource("1_pvclw")
+
+[node name="PowerBalanceBar" type="TextureProgressBar" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.483
+anchor_right = 0.483
+offset_left = -161.236
+offset_top = 8.0
+offset_right = 50.764
+offset_bottom = 24.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_15f32")
+texture_progress = ExtResource("2_4grla")
+
+[node name="Skeleton" type="Control" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 27.0
+offset_right = 27.0
+offset_bottom = 31.0
+
+[node name="Skeleton" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Skeleton"]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 37.0
+offset_bottom = 31.0
+texture = ExtResource("6_emta2")
+expand_mode = 2
+
+[node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Skeleton"]
+layout_mode = 2
+offset_left = 39.416
+offset_right = 78.416
+offset_bottom = 31.0
+text = "00"
+
+[node name="Flyer" type="Control" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 95.0
+offset_right = 95.0
+offset_bottom = 31.0
+
+[node name="Skeleton" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Flyer"]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 37.0
+offset_bottom = 31.0
+texture = ExtResource("7_lxapl")
+expand_mode = 2
+
+[node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Flyer"]
+layout_mode = 2
+offset_left = 39.416
+offset_right = 78.416
+offset_bottom = 31.0
+text = "00"
+
+[node name="Villager" type="Control" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 430.0
+offset_right = 430.0
+offset_bottom = 31.0
+
+[node name="Villager" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Villager"]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 37.0
+offset_bottom = 31.0
+texture = ExtResource("8_81538")
+expand_mode = 2
+
+[node name="VillagerAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Villager"]
+layout_mode = 2
+offset_left = 39.416
+offset_right = 78.416
+offset_bottom = 31.0
+text = "00"
+
+[node name="Soldiers" type="Control" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 504.0
+offset_right = 504.0
+offset_bottom = 31.0
+
+[node name="Soldiers" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Soldiers"]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 37.0
+offset_bottom = 31.0
+texture = ExtResource("9_42bxy")
+expand_mode = 2
+
+[node name="SoldiersAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Soldiers"]
+layout_mode = 2
+offset_left = 39.416
+offset_right = 78.416
+offset_bottom = 31.0
+text = "00"
+
+[node name="Building" type="Control" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 577.0
+offset_right = 577.0
+offset_bottom = 31.0
+
+[node name="Buildings" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Building"]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 37.0
+offset_bottom = 31.0
+texture = ExtResource("10_8cx8f")
+expand_mode = 2
+
+[node name="BuildingsAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Building"]
+layout_mode = 2
+offset_left = 39.416
+offset_right = 78.416
+offset_bottom = 31.0
+text = "00"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect"]
+layout_mode = 0
+offset_left = 655.0
+offset_right = 758.0
+offset_bottom = 30.0
+text = "00:00"

@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name Building
+
 @export var max_civilians: int = 1
 @export var max_knights: int = 0
 @export var max_paladins: int = 0
@@ -20,7 +22,7 @@ var process_tick_max = 1 #unused
 
 func _on_ready():
 	await Engine.get_main_loop().physics_frame
-	my_id = Global.arena.enemy_spawned(self, true)
+	my_id = Global.arena.enemy_spawned(self)
 	while current_paladins < max_paladins:
 		spawn_something_ready(paladin_prefab.instantiate())
 		current_paladins += 1
@@ -75,4 +77,4 @@ func _on_spawn_timer_timeout():
 	$AfterSpawnTimer.start()
 
 func _on_tree_exited():
-	Global.arena.enemy_despawned(my_id, true)
+	Global.arena.enemy_despawned(my_id)
