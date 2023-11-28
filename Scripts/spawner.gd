@@ -66,6 +66,7 @@ func _on_after_spawn_timer_timeout():
 	if last_spawned_entity != null:
 		last_spawned_entity.ready_after_spawn = true
 		last_spawned_entity.get_node("CollisionShape3D").disabled = false
+		last_spawned_entity = null
 
 func take_damage(dmg: int):
 	hp -= dmg
@@ -78,3 +79,4 @@ func _on_spawn_timer_timeout():
 
 func _on_tree_exited():
 	Global.arena.enemy_despawned(my_id)
+	_on_after_spawn_timer_timeout() # prevent enemies from staying "spawning" forever
