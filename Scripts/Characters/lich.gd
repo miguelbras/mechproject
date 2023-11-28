@@ -124,7 +124,7 @@ func _input(event):
 func joined_horde(mob):
 	if follow_selection_marker.visible: # following lich
 		mob.follow_mode(self)
-	else:
+	elif aggressive_marker.position.y > 0:
 		mob.aggressive_move(aggressive_marker.position)
 		
 
