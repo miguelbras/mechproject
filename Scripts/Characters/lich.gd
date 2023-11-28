@@ -231,18 +231,20 @@ func take_damage(damage: int):
 		death_timer.start()
 
 func summon_flier():
+	var result = get_mouse_target_pos()
+	if not result:
+		return
 	var sacrifice = []
 	for f in followers:
 		if is_instance_valid(f) and f is Doot:
 			sacrifice += [f]
 		if len(sacrifice) == flyer_summon_sacrifices:
-			var pos = sacrifice[0].position
 			for s in sacrifice:
 				followers.erase(s)
 				s.queue_free()
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)
-			flyer_instance.position = pos
+			flyer_instance.position = result.position
 			followers += [flyer_instance]
 			flyer_instance.follow_mode(self)
 			return
