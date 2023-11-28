@@ -49,6 +49,7 @@ func ally_spawned(ally: Node3D) -> int:
 	process_tick_curr += 1
 	ally_id += 1
 	ally_map[ally_id] = ally
+	ally_map[LICH_ID].joined_horde(ally)
 	return ally_id
 
 func ally_despawned(id: int):

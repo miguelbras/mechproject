@@ -56,6 +56,9 @@ func _ready():
 	Global.arena.lich_spawned(self)
 	anim_tree.active = true
 	follow_selection_marker.visible = false
+	# set initial aggression point as start pos
+	aggressive_marker.position = self.position
+	aggressive_marker.position.y = -0.1
 
 func _process(delta):
 	coolDownThick.emit(delta)
@@ -117,6 +120,13 @@ func _input(event):
 	elif event.is_action_pressed("switch_cam"):
 		top_down_camera.current = iso_camera.current
 		iso_camera.current = !top_down_camera.current
+
+func joined_horde(mob):
+	if follow_selection_marker.visible: # following lich
+		mob.follow_mode(self)
+	else:
+		mob.aggressive_move(aggressive_marker.position)
+		
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
