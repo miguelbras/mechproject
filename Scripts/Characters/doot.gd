@@ -9,6 +9,12 @@ class_name Doot
 const sound1 = preload("res://Sound/Character/female-horror-voice-creature-2-attack-vol-001-138132.mp3")
 const sound2 = preload("res://Sound/Character/female-horror-voice-possessed-vol-001-142646.mp3")
 const sound3 = preload("res://Sound/Character/female-horror-voice-possessed-vol-002-142639.mp3")
+const anim_map = {
+	State.IDLE: "Doot Boi armature_001|Idle", 
+	State.WALK: "Doot Boi armature_001|Walk",
+	State.ATK: "Doot Boi armature_001|Attack",
+	State.DEAD: "Doot Boi armature_001|Death"
+}
 
 func update_animation_parameters():
 	if state == State.IDLE:
@@ -41,6 +47,7 @@ func _on_attack_timer():
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
 	set_visuals(true)
+	anim_tree["parameters/playback"].start(anim_map[state])
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	set_visuals(false)

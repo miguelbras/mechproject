@@ -23,6 +23,13 @@ var process_tick_curr = 0
 @export var process_tick_max: int
 var my_id
 
+const anim_map = {
+	State.IDLE: "metarig_001|idle", 
+	State.WALK: "metarig_001|move",
+	State.ATK: "metarig_001|attack",
+	State.DEAD: "metarig_001|attack_idle_to_death"
+}
+
 func _ready():
 	super._ready()
 	my_id = Global.arena.enemy_spawned(self)
@@ -33,7 +40,6 @@ func set_visuals(enable: bool):
 	fbx.set_process(enable)
 	fbx.visible = enable
 	anim_tree.active = enable
-
 
 func attack():
 	cooldown.start()
@@ -143,6 +149,7 @@ func update_animation_parameters():
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
 	set_visuals(true)
+	anim_tree["parameters/playback"].start(anim_map[state])
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	set_visuals(false)
