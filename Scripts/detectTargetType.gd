@@ -40,7 +40,7 @@ func get_closest_target(curr_target: Node3D, pos: Vector3) -> Node3D:
 	return curr_target
 
 func _process(_delta):
-	if not is_instance_valid(closest_target):
+	if not is_instance_valid(null): # if we want them to keep following same target, use closest_target instead
 		closest_target = null
 	closest_target = get_closest_target(closest_target, parentNode.position)
 
