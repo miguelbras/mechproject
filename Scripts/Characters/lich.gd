@@ -6,10 +6,10 @@ enum State {IDLE, WALK, ATK, DEAD}
 
 signal healthChanged
 signal abilityUsed
-signal coolDownThick(deltaTime)
 signal abilityQUsed
 signal abilityWUsed
 signal abilityEUsed
+signal abilityRUsed
 
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
@@ -61,7 +61,6 @@ func _ready():
 	aggressive_marker.position.y = -0.1
 
 func _process(delta):
-	coolDownThick.emit(delta)
 	update_state()
 	update_animation_parameters()
 	if(navigationAgent.is_navigation_finished()):
@@ -247,6 +246,7 @@ func summon_flier():
 			flyer_instance.position = result.position
 			followers += [flyer_instance]
 			flyer_instance.follow_mode(self)
+			abilityRUsed.emit()
 			return
 
 func update_state():

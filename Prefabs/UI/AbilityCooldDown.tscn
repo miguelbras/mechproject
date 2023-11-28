@@ -16,16 +16,16 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("ability1Circle", "ability2Circle", "ability3Circle")]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("ability1Circle", "ability2Circle", "ability3Circle", "ability4Circle")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -94.035
-offset_right = 125.0
-offset_bottom = -30.035
+offset_left = -170.0
+offset_top = -98.0
+offset_right = 170.0
+offset_bottom = -33.9999
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
@@ -33,6 +33,7 @@ script = ExtResource("1_10xn3")
 ability1Circle = NodePath("Ability1Cooldown")
 ability2Circle = NodePath("Ability2Cooldown")
 ability3Circle = NodePath("Ability3Cooldown")
+ability4Circle = NodePath("Ability4Cooldown")
 
 [node name="Ability1Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
@@ -40,13 +41,31 @@ fill_mode = 4
 texture_under = ExtResource("1_78445")
 texture_progress = ExtResource("2_d1w2y")
 
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
 [node name="Ability2Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("3_fw8m0")
 texture_progress = ExtResource("2_d1w2y")
 
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
 [node name="Ability3Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+fill_mode = 4
+texture_under = ExtResource("4_kap6f")
+texture_progress = ExtResource("2_d1w2y")
+
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Ability4Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("4_kap6f")

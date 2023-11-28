@@ -10,8 +10,6 @@ extends Control
 @export var balanceOfPowerBar: TextureProgressBar
 @export var timeLabel: RichTextLabel
 
-@export var arena: Arena
-
 var villagerAmount = 0
 var soldierAmount = 0
 var buildingAmount = 0
@@ -23,16 +21,16 @@ var lichPopulation = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	arena.villagerCreated.connect(addVillager)
-	arena.villagerKilled.connect(removeVillager)
-	arena.soldierCreated.connect(addSoldier)
-	arena.soldierKilled.connect(removeSoldier)
-	arena.buildingCreated.connect(addBuilding)
-	arena.buildingKilled.connect(removeBuilding)
-	arena.skeletonCreated.connect(addSkeleton)
-	arena.skeletonKilled.connect(removeSkeleton)
-	arena.flyerCreated.connect(addFlyer)
-	arena.flyerKilled.connect(removeFlyer)# Replace with function body.
+	Global.arena.villagerCreated.connect(addVillager)
+	Global.arena.villagerKilled.connect(removeVillager)
+	Global.arena.soldierCreated.connect(addSoldier)
+	Global.arena.soldierKilled.connect(removeSoldier)
+	Global.arena.buildingCreated.connect(addBuilding)
+	Global.arena.buildingKilled.connect(removeBuilding)
+	Global.arena.skeletonCreated.connect(addSkeleton)
+	Global.arena.skeletonKilled.connect(removeSkeleton)
+	Global.arena.flyerCreated.connect(addFlyer)
+	Global.arena.flyerKilled.connect(removeFlyer)# Replace with function body.
 
 func addVillager():
 	villagerAmount += 1
@@ -99,6 +97,9 @@ func removeFlyer():
 	updatePowerBalanceBar()
 	
 func updatePowerBalanceBar():
+	if totalPopulation == 0:
+		balanceOfPowerBar.value = 1
+		return
 	balanceOfPowerBar.value = lichPopulation * 100 / totalPopulation
 	
 func _process(delta):
