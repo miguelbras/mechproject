@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 
 camera = NodePath("../Camera3D")
 
 [node name="Lich" parent="." node_paths=PackedStringArray("iso_camera", "top_down_camera", "aggressive_marker") instance=ExtResource("5_4lxhq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 4)
 iso_camera = NodePath("../Camera3D")
 top_down_camera = NodePath("../TopDownCamera3D")
 aggressive_marker = NodePath("../selection_marker")
