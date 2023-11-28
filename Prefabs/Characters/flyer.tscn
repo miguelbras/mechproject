@@ -2696,6 +2696,8 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tp6gt"]
 
 [node name="FlyerCharacter" type="CharacterBody3D" groups=["Mob"]]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_pryk6")
 attack_prefab = ExtResource("2_luirf")
 strength = 3
