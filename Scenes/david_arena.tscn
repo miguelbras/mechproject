@@ -32,9 +32,8 @@ transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 
 [node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_lfhsg")]
 camera = NodePath("../Camera3D")
 
-[node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_jxcgr")]
+[node name="Lich" parent="." instance=ExtResource("5_jxcgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-camera = NodePath("../Camera3D")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0ivu4")

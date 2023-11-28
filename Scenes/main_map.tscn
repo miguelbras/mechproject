@@ -67,8 +67,14 @@ autoplay = true
 
 [node name="HealthBar" parent="." instance=ExtResource("8_vlqt6")]
 
-[node name="TextureProgressBar" parent="HealthBar/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
+[node name="TextureRect" parent="HealthBar/CanvasLayer" index="0"]
+anchors_preset = 0
+
+[node name="TextureProgressBar" parent="HealthBar/CanvasLayer" index="1" node_paths=PackedStringArray("lich")]
 lich = NodePath("../../../Lich")
+
+[node name="lich portrait" parent="HealthBar/CanvasLayer/TextureProgressBar" index="0"]
+layout_mode = 0
 
 [node name="CastBar" parent="." instance=ExtResource("9_r5hdm")]
 offset_left = 693.0

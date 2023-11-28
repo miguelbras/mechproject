@@ -8,6 +8,6 @@ func _ready():
 	lich.healthChanged.connect(update)
 
 func update():
-	value = lich.hp * 100 / lich.maxHp
+	#value = lich.hp * 100 / lich.maxHp
 	# print(lich.hp)
 	# print(value)

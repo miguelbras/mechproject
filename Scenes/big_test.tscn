@@ -34,9 +34,8 @@ transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 
 [node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_btgsj")]
 camera = NodePath("../Camera3D")
 
-[node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_05uup")]
+[node name="Lich" parent="." instance=ExtResource("5_05uup")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.37112)
-camera = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 20, 10)

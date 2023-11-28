@@ -1,15 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn4137vckmneq"]
+[gd_scene load_steps=11 format=3 uid="uid://5jrtgnqrgc4"]
 
-[ext_resource type="Texture2D" uid="uid://c5wfgweu778jt" path="res://Textures/UI/black_bar.png" id="1_4kyki"]
-[ext_resource type="Texture2D" uid="uid://co1hmvgqva6pt" path="res://Textures/UI/red_bar.png" id="2_n78ew"]
-[ext_resource type="Script" path="res://healthBar.gd" id="3_o0pwp"]
-[ext_resource type="Texture2D" uid="uid://duofutabbry7b" path="res://Textures/UI/green_bar.png" id="4_lkqwi"]
-[ext_resource type="Texture2D" uid="uid://d0bis75cmaixs" path="res://Textures/UI/skeletonface.png" id="5_reiga"]
-[ext_resource type="Texture2D" uid="uid://cmoj70uqbw733" path="res://Textures/UI/flyerface.png" id="6_7luhp"]
-[ext_resource type="Texture2D" uid="uid://d2ph0f4h7yr78" path="res://Textures/UI/villagerface.png" id="7_w1hq7"]
-[ext_resource type="Texture2D" uid="uid://dp28qj58221pm" path="res://Textures/UI/knightface.png" id="8_4pbmj"]
-[ext_resource type="Texture2D" uid="uid://64akpfm3ju1t" path="res://Textures/UI/buildingface.png" id="9_mxm0c"]
-[ext_resource type="Texture2D" uid="uid://vvpj4oe5vd5k" path="res://Textures/UI/lichportrait.png" id="10_4tu40"]
+[ext_resource type="Texture2D" uid="uid://c5wfgweu778jt" path="res://Textures/UI/black_bar.png" id="1_pvclw"]
+[ext_resource type="Texture2D" uid="uid://co1hmvgqva6pt" path="res://Textures/UI/red_bar.png" id="2_4grla"]
+[ext_resource type="Script" path="res://healthBar.gd" id="3_0nxta"]
+[ext_resource type="Texture2D" uid="uid://vvpj4oe5vd5k" path="res://Textures/UI/lichportrait.png" id="4_d77jb"]
+[ext_resource type="Texture2D" uid="uid://duofutabbry7b" path="res://Textures/UI/green_bar.png" id="5_15f32"]
+[ext_resource type="Texture2D" uid="uid://d0bis75cmaixs" path="res://Textures/UI/skeletonface.png" id="6_emta2"]
+[ext_resource type="Texture2D" uid="uid://cmoj70uqbw733" path="res://Textures/UI/flyerface.png" id="7_lxapl"]
+[ext_resource type="Texture2D" uid="uid://d2ph0f4h7yr78" path="res://Textures/UI/villagerface.png" id="8_81538"]
+[ext_resource type="Texture2D" uid="uid://dp28qj58221pm" path="res://Textures/UI/knightface.png" id="9_42bxy"]
+[ext_resource type="Texture2D" uid="uid://64akpfm3ju1t" path="res://Textures/UI/buildingface.png" id="10_8cx8f"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -29,16 +29,16 @@ offset_top = 31.0
 offset_right = 316.0
 offset_bottom = 49.0
 nine_patch_stretch = true
-texture_under = ExtResource("1_4kyki")
-texture_progress = ExtResource("2_n78ew")
-script = ExtResource("3_o0pwp")
+texture_under = ExtResource("1_pvclw")
+texture_progress = ExtResource("2_4grla")
+script = ExtResource("3_0nxta")
 
 [node name="lich portrait" type="TextureRect" parent="CanvasLayer/Control/TextureProgressBar"]
 offset_left = -67.0
 offset_top = -29.0
 offset_right = 17.0
 offset_bottom = 47.0
-texture = ExtResource("10_4tu40")
+texture = ExtResource("4_d77jb")
 expand_mode = 1
 stretch_mode = 4
 flip_h = true
@@ -50,7 +50,7 @@ offset_left = 450.0
 offset_top = 3.0
 offset_right = 1142.0
 offset_bottom = 34.0
-texture = ExtResource("1_4kyki")
+texture = ExtResource("1_pvclw")
 
 [node name="PowerBalanceBar" type="TextureProgressBar" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 1
@@ -62,8 +62,8 @@ offset_top = 8.0
 offset_right = 50.764
 offset_bottom = 24.0
 nine_patch_stretch = true
-texture_under = ExtResource("4_lkqwi")
-texture_progress = ExtResource("2_n78ew")
+texture_under = ExtResource("5_15f32")
+texture_progress = ExtResource("2_4grla")
 
 [node name="Skeleton" type="Control" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 2
@@ -77,7 +77,7 @@ layout_mode = 2
 offset_left = 6.0
 offset_right = 37.0
 offset_bottom = 31.0
-texture = ExtResource("5_reiga")
+texture = ExtResource("6_emta2")
 expand_mode = 2
 
 [node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Skeleton"]
@@ -99,7 +99,7 @@ layout_mode = 2
 offset_left = 6.0
 offset_right = 37.0
 offset_bottom = 31.0
-texture = ExtResource("6_7luhp")
+texture = ExtResource("7_lxapl")
 expand_mode = 2
 
 [node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Flyer"]
@@ -121,7 +121,7 @@ layout_mode = 2
 offset_left = 6.0
 offset_right = 37.0
 offset_bottom = 31.0
-texture = ExtResource("7_w1hq7")
+texture = ExtResource("8_81538")
 expand_mode = 2
 
 [node name="VillagerAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Villager"]
@@ -143,7 +143,7 @@ layout_mode = 2
 offset_left = 6.0
 offset_right = 37.0
 offset_bottom = 31.0
-texture = ExtResource("8_4pbmj")
+texture = ExtResource("9_42bxy")
 expand_mode = 2
 
 [node name="SoldiersAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Soldiers"]
@@ -165,7 +165,7 @@ layout_mode = 2
 offset_left = 6.0
 offset_right = 37.0
 offset_bottom = 31.0
-texture = ExtResource("9_mxm0c")
+texture = ExtResource("10_8cx8f")
 expand_mode = 2
 
 [node name="BuildingsAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Building"]
