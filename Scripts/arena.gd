@@ -19,7 +19,7 @@ signal flyerKilled
 
 
 var game_over: bool = false
-var enemy_count = 0
+var building_count = 0
 var process_tick_curr = 0
 var enemy_id = 0
 var enemy_map = {}
@@ -47,7 +47,6 @@ func lose():
 	add_child(lose_screen)
 
 func enemy_spawned(enemy: Node3D) -> int:
-	enemy_count += 1
 	enemy.process_tick_curr = process_tick_curr % enemy.process_tick_max
 	process_tick_curr += 1
 	enemy_id += 1
@@ -58,10 +57,10 @@ func enemy_spawned(enemy: Node3D) -> int:
 		soldierCreated.emit()
 	if enemy is Building:
 		buildingCreated.emit()
+		building_count += 1
 	return enemy_id
 
 func enemy_despawned(id: int):
-	enemy_count -= 1
 	var enemy = enemy_map[id]
 	if enemy is Civilian:
 		villagerKilled.emit()
@@ -69,8 +68,9 @@ func enemy_despawned(id: int):
 		soldierKilled.emit()
 	if enemy is Building:
 		buildingKilled.emit()
+		building_count -= 1
 	enemy_map.erase(id)
-	if enemy_count == 0:
+	if building_count == 0:
 		win()
 		
 func lich_spawned(lich: Node3D):

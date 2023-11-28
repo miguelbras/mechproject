@@ -1,4 +1,5 @@
 extends Mob
+
 class_name Flyer
 @export var attack_prefab : PackedScene
 

@@ -90,112 +90,109 @@ collision_layer = 3
 shape = SubResource("BoxShape3D_mfbcc")
 
 [node name="City1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.804, 0, 315.825)
 
 [node name="Fortress" parent="City1" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(-0.459766, 0, -0.88804, 0, 1, 0, 0.88804, 0, -0.459766, -422.358, 0.0866356, -440.712)
+transform = Transform3D(-0.459766, 0, -0.88804, 0, 1, 0, 0.88804, 0, -0.459766, -108.556, 0.0866356, -119.461)
 
 [node name="Fortress2" parent="City1" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(-0.483634, 0, 0.87527, 0, 1, 0, -0.87527, 0, -0.483634, -401.548, 0.0866356, -399.527)
+transform = Transform3D(-0.483634, 0, 0.87527, 0, 1, 0, -0.87527, 0, -0.483634, -87.746, 0.0866356, -78.2761)
 
 [node name="House" parent="City1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.915016, 0, 0.403418, 0, 1, 0, -0.403418, 0, -0.915016, -391.347, 0.0866356, -415.861)
+transform = Transform3D(-0.915016, 0, 0.403418, 0, 1, 0, -0.403418, 0, -0.915016, -77.545, 0.0866356, -94.6101)
 
 [node name="House2" parent="City1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.894225, 0, -0.447619, 0, 1, 0, 0.447619, 0, -0.894225, -397.85, 0.0866356, -435.947)
+transform = Transform3D(-0.894225, 0, -0.447619, 0, 1, 0, 0.447619, 0, -0.894225, -84.048, 0.0866356, -114.696)
 
 [node name="House6" parent="City1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.481647, 0, -0.876366, 0, 1, 0, 0.876366, 0, -0.481647, -409.7, 0.0866356, -441.049)
+transform = Transform3D(-0.481647, 0, -0.876366, 0, 1, 0, 0.876366, 0, -0.481647, -95.8981, 0.0866356, -119.798)
 
 [node name="House3" parent="City1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.685399, 0, 0.728168, 0, 1, 0, -0.728168, 0, 0.685399, -430.076, 0.0866356, -405.889)
+transform = Transform3D(0.685399, 0, 0.728168, 0, 1, 0, -0.728168, 0, 0.685399, -116.274, 0.0866356, -84.6381)
 
 [node name="House4" parent="City1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.928674, 0, -0.370898, 0, 1, 0, 0.370898, 0, 0.928674, -436.434, 0.0866356, -432.335)
+transform = Transform3D(0.928674, 0, -0.370898, 0, 1, 0, 0.370898, 0, 0.928674, -122.632, 0.0866356, -111.084)
 
 [node name="House5" parent="City1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.95743, 0, 0.288664, 0, 1, 0, -0.288664, 0, 0.95743, -444.093, 0.0866356, -417.45)
+transform = Transform3D(0.95743, 0, 0.288664, 0, 1, 0, -0.288664, 0, 0.95743, -130.291, 0.0866356, -96.1991)
 
 [node name="Mansion" parent="City1" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.982011, 0, -0.188821, 0, 1, 0, 0.188821, 0, -0.982011, -409.207, 0.0866356, -428.403)
+transform = Transform3D(-0.982011, 0, -0.188821, 0, 1, 0, 0.188821, 0, -0.982011, -95.405, 0.0866356, -107.152)
 
 [node name="Mansion2" parent="City1" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.352021, 0, 0.935992, 0, 1, 0, -0.935992, 0, -0.352021, -414.699, 0.0866356, -409.328)
+transform = Transform3D(-0.352021, 0, 0.935992, 0, 1, 0, -0.935992, 0, -0.352021, -100.897, 0.0866356, -88.0771)
 
 [node name="Hut" parent="City1" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(-0.999863, 0, -0.01658, 0, 1, 0, 0.01658, 0, -0.999863, -377.675, 0.05, -404.307)
+transform = Transform3D(-0.999863, 0, -0.01658, 0, 1, 0, 0.01658, 0, -0.999863, -63.873, 0.05, -83.0561)
 
 [node name="Hut2" parent="City1" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(-0.815199, 0, 0.579182, 0, 1, 0, -0.579182, 0, -0.815199, -391.233, 0.05, -388.747)
+transform = Transform3D(-0.815199, 0, 0.579182, 0, 1, 0, -0.579182, 0, -0.815199, -77.431, 0.05, -67.4961)
 
 [node name="Hut3" parent="City1" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(0.807424, 0, 0.589972, 0, 1, 0, -0.589972, 0, 0.807424, -414.966, 0.05, -392.524)
+transform = Transform3D(0.807424, 0, 0.589972, 0, 1, 0, -0.589972, 0, 0.807424, -101.164, 0.05, -71.2731)
 
 [node name="City2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.73566, 0, 26.269)
 
 [node name="Fortress" parent="City2" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(0.260825, 0, -0.965386, 0, 1, 0, 0.965386, 0, 0.260825, 90.1042, 0.05, -128.622)
+transform = Transform3D(0.260825, 0, -0.965386, 0, 1, 0, 0.965386, 0, 0.260825, 90.1042, 0.05, -103.859)
 
 [node name="Fortress2" parent="City2" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(-0.338902, 0, 0.940822, 0, 1, 0, -0.940822, 0, -0.338902, 106.497, 0.05, -89.7416)
+transform = Transform3D(-0.338902, 0, 0.940822, 0, 1, 0, -0.940822, 0, -0.338902, 106.497, 0.05, -64.9783)
 
 [node name="Fortress3" parent="City2" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(-0.906985, 0, -0.421162, 0, 1, 0, 0.421162, 0, -0.906985, 123.966, 0.05, -115.264)
+transform = Transform3D(-0.906985, 0, -0.421162, 0, 1, 0, 0.421162, 0, -0.906985, 123.966, 0.05, -90.5007)
 
 [node name="House" parent="City2" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.957047, 0, 0.289934, 0, 1, 0, -0.289934, 0, 0.957047, 71.2148, 0.05, -105.255)
+transform = Transform3D(0.957047, 0, 0.289934, 0, 1, 0, -0.289934, 0, 0.957047, 71.2148, 0.05, -80.4917)
 
 [node name="House2" parent="City2" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.177583, 0, 0.984106, 0, 1, 0, -0.984106, 0, 0.177583, 92.9744, 0.05, -91.8748)
+transform = Transform3D(0.177583, 0, 0.984106, 0, 1, 0, -0.984106, 0, 0.177583, 92.9744, 0.05, -67.1115)
 
 [node name="House3" parent="City2" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.169917, 0, -0.985458, 0, 1, 0, 0.985458, 0, 0.169917, 103.629, 0.05, -121.61)
+transform = Transform3D(0.169917, 0, -0.985458, 0, 1, 0, 0.985458, 0, 0.169917, 103.629, 0.05, -96.8467)
 
 [node name="Hut" parent="City2" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(0.633691, 0, 0.773586, 0, 1, 0, -0.773586, 0, 0.633691, 80.6775, 0.05, -92.4164)
+transform = Transform3D(0.633691, 0, 0.773586, 0, 1, 0, -0.773586, 0, 0.633691, 80.6775, 0.05, -67.6531)
 
 [node name="Hut2" parent="City2" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(0.656191, 0, 0.754595, 0, 1, 0, -0.754595, 0, 0.656191, 87.6157, 0.05, -100.346)
+transform = Transform3D(0.656191, 0, 0.754595, 0, 1, 0, -0.754595, 0, 0.656191, 87.6157, 0.05, -75.5827)
 
 [node name="Hut3" parent="City2" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(-0.203796, 0, 0.979014, 0, 1, 0, -0.979014, 0, -0.203796, 103.35, 0.05, -102.08)
+transform = Transform3D(-0.203796, 0, 0.979014, 0, 1, 0, -0.979014, 0, -0.203796, 103.35, 0.05, -77.3167)
 
 [node name="Mansion" parent="City2" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.0882337, 0, 0.9961, 0, 1, 0, -0.9961, 0, -0.0882337, 115.983, 0.05, -100.77)
+transform = Transform3D(-0.0882337, 0, 0.9961, 0, 1, 0, -0.9961, 0, -0.0882337, 115.983, 0.05, -76.0067)
 
 [node name="Mansion2" parent="City2" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.228708, 0, -0.973495, 0, 1, 0, 0.973495, 0, -0.228708, 115.239, 0.05, -129.266)
+transform = Transform3D(-0.228708, 0, -0.973495, 0, 1, 0, 0.973495, 0, -0.228708, 115.239, 0.05, -104.503)
 
 [node name="Mansion3" parent="City2" instance=ExtResource("11_mrvic")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.1768, 0.05, -116.257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.1768, 0.05, -91.4937)
 
 [node name="City3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8238, 0, -29.1672)
 
 [node name="Fortress" parent="City3" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(-0.999999, 0, 0.00144854, 0, 1, 0, -0.00144854, 0, -0.999999, 99.1471, 0.05, 28.9318)
+transform = Transform3D(-0.999999, 0, 0.00144854, 0, 1, 0, -0.00144854, 0, -0.999999, 88.5996, 0.05, -4.04327)
 
 [node name="Fortress2" parent="City3" instance=ExtResource("10_oy1qd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.557, 0.05, 12.4696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.009, 0.05, -20.5055)
 
 [node name="House" parent="City3" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.00652746, 0, -0.999979, 0, 1, 0, 0.999979, 0, -0.00652746, 130.134, 0.05, 37.5478)
+transform = Transform3D(-0.00652746, 0, -0.999979, 0, 1, 0, 0.999979, 0, -0.00652746, 119.586, 0.05, 4.57273)
 
 [node name="House2" parent="City3" instance=ExtResource("6_1opo7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.779, 0.05, 46.0211)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.231, 0.05, 13.046)
 
 [node name="House3" parent="City3" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.000226899, 0, -1, 0, 1, 0, 1, 0, -0.000226899, 110.852, 0.05, 31.5594)
+transform = Transform3D(-0.000226899, 0, -1, 0, 1, 0, 1, 0, -0.000226899, 100.304, 0.05, -1.41567)
 
 [node name="Mansion" parent="City3" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.00251333, 0, 0.999997, 0, 1, 0, -0.999997, 0, -0.00251333, 128.631, 0.05, 27.1346)
+transform = Transform3D(-0.00251333, 0, 0.999997, 0, 1, 0, -0.999997, 0, -0.00251333, 118.083, 0.05, -5.84047)
 
 [node name="Mansion2" parent="City3" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.999992, 0, 0.00401416, 0, 1, 0, -0.00401416, 0, -0.999992, 109.433, 0.05, 42.9933)
+transform = Transform3D(-0.999992, 0, 0.00401416, 0, 1, 0, -0.00401416, 0, -0.999992, 98.8855, 0.05, 10.0182)
 
 [node name="Mansion3" parent="City3" instance=ExtResource("11_mrvic")]
-transform = Transform3D(0.0037874, 0, 0.999993, 0, 1, 0, -0.999993, 0, 0.0037874, 110.672, 0.05, 18.8924)
+transform = Transform3D(0.0037874, 0, 0.999993, 0, 1, 0, -0.999993, 0, 0.0037874, 100.124, 0.05, -14.0827)
 
 [node name="City4" type="Node3D" parent="."]
 
@@ -248,7 +245,6 @@ transform = Transform3D(-1, 0, 0.000279339, 0, 1, 0, -0.000279339, 0, -1, -9.374
 transform = Transform3D(-0.00450292, 0, 0.99999, 0, 1, 0, -0.99999, 0, -0.00450292, -0.153458, 0, 96.52)
 
 [node name="City5" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23744, 0, 3.52354)
 
 [node name="Fortress" parent="City5" instance=ExtResource("10_oy1qd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.814, 0.05, -10.6048)
@@ -294,31 +290,30 @@ transform = Transform3D(-0.999998, 0, -0.00207678, 0, 1, 0, 0.00207678, 0, -0.99
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.142, 0.05, -20.6648)
 
 [node name="Village1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34711, 0, 44.4553)
 
 [node name="House2" parent="Village1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.726, 0.05, -112.38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.726, 0.05, -82.9021)
 
 [node name="House3" parent="Village1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.0139098, 0, 0.999903, 0, 1, 0, -0.999903, 0, -0.0139098, -19.1763, 0.05, -102.555)
+transform = Transform3D(-0.0139098, 0, 0.999903, 0, 1, 0, -0.999903, 0, -0.0139098, -19.1763, 0.05, -73.0771)
 
 [node name="Mansion" parent="Village1" instance=ExtResource("11_mrvic")]
-transform = Transform3D(0.00450295, 0, 0.99999, 0, 1, 0, -0.99999, 0, 0.00450295, -4.12847, 0.05, -110.058)
+transform = Transform3D(0.00450295, 0, 0.99999, 0, 1, 0, -0.99999, 0, 0.00450295, -4.12847, 0.05, -80.5801)
 
 [node name="Mansion2" parent="Village1" instance=ExtResource("11_mrvic")]
-transform = Transform3D(-0.00855201, 0, -0.999963, 0, 1, 0, 0.999963, 0, -0.00855201, -7.13364, 0.05, -95.2273)
+transform = Transform3D(-0.00855201, 0, -0.999963, 0, 1, 0, 0.999963, 0, -0.00855201, -7.13364, 0.05, -65.7494)
 
 [node name="Hut" parent="Village1" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8242, 0.05, -93.9734)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8242, 0.05, -64.4955)
 
 [node name="Hut2" parent="Village1" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(-0.999981, 0, 0.00609123, 0, 1, 0, -0.00609123, 0, -0.999981, 7.48721, 0.05, -102.055)
+transform = Transform3D(-0.999981, 0, 0.00609123, 0, 1, 0, -0.00609123, 0, -0.999981, 7.48721, 0.05, -72.5771)
 
 [node name="Hut3" parent="Village1" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(-0.0523186, 0, -0.99863, 0, 1, 0, 0.99863, 0, -0.0523186, 7.33637, 0.05, -112.983)
+transform = Transform3D(-0.0523186, 0, -0.99863, 0, 1, 0, 0.99863, 0, -0.0523186, 7.33637, 0.05, -83.5051)
 
 [node name="House" parent="Village1" instance=ExtResource("6_1opo7")]
-transform = Transform3D(0.00129159, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00129159, 4.80937, 0.05, -92.4746)
+transform = Transform3D(0.00129159, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00129159, 4.80937, 0.05, -62.9967)
 
 [node name="Village2" type="Node3D" parent="."]
 

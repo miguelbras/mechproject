@@ -78,6 +78,18 @@ text = "leaderboards"
 flat = true
 icon_alignment = 1
 
+[node name="CreditsButton" type="Button" parent="Control/CanvasLayer/TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "credits"
+flat = true
+icon_alignment = 1
+
+[node name="ControlsButton" type="Button" parent="Control/CanvasLayer/TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "controls"
+flat = true
+icon_alignment = 1
+
 [node name="QuitButton" type="Button" parent="Control/CanvasLayer/TextureRect/VBoxContainer"]
 layout_mode = 2
 text = "exit"
@@ -113,5 +125,7 @@ autoplay = true
 
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/PlayButton" to="Control" method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/LbButton" to="Control" method="_on_lb_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/CreditsButton" to="Control" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/ControlsButton" to="Control" method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/VBoxContainer/QuitButton" to="Control" method="_on_quit_button_pressed"]
 [connection signal="request_completed" from="Control/HTTPRequest" to="Control" method="_on_http_request_request_completed"]

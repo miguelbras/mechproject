@@ -86,8 +86,8 @@ func _physics_process(delta):
 			stamina_timer.start(recovery_time)
 			state = State.IDLE
 	# gravity. hardcoded value where mobs stand at
-	if position.y > 0.58:
-		velocity.y = -(position.y-0.58) * 4
+	if position.y > 0.59:
+		velocity.y = -(position.y-0.59) * 4
 	move_and_slide()
 
 func _on_tree_exited():
