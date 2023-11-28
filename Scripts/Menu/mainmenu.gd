@@ -20,7 +20,6 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		print("HTTP error: ", result, ", response code: ", response_code)
 		return
 	var json = JSON.parse_string(body.get_string_from_utf8())
-	print(json)
 	var text = ""
 	if "values" not in json:
 		return
@@ -29,4 +28,16 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		text += "#%03d: [b]%20s[/b] - %05ds\n" % [rank, score["name"], score["time"]]
 		rank += 1
 	text_label.text = "[right]%s[/right]" % text
+	text_label.visible = true
+
+
+func _on_credits_button_pressed():
+	var text = "\n\nAdriano 'Danny Boy' Portugal\n\nDavid 'BlueMoon93' Simões\n\nMiguel 'XBlaze' Brás\n\nMiguel 'Meduzen' Mendes\n\nSimão 'DracoStriker' Reis"
+	text_label.text = "[center]%s[/center]" % text
+	text_label.visible = true
+
+
+func _on_controls_button_pressed():
+	var text = "Right Mouse Button - Move Lich\nQ - Frost Shock\nW - Fire Bolt\nE - Arcane Explosion\nR - Ritual Sacrifice\n\nLeft Mouse Button - Move Zombies\nSpace - Zombies Follow Lich\n\nTAB - Change Camera\nMouse Wheel - Zoom In/Out"
+	text_label.text = "[center]%s[/center]" % text
 	text_label.visible = true
