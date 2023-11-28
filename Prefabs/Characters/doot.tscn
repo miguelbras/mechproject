@@ -2798,6 +2798,8 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_adnoa"]
 
 [node name="DootCharacter" type="CharacterBody3D" groups=["Mob"]]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_wui4y")
 max_velocity = 4
 process_tick_max = 30
