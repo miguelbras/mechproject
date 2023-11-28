@@ -10,6 +10,12 @@ extends Mob
 
 const sound1 = preload("res://Sound/Character/dragon-roar-96996.mp3")
 const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
+const anim_map = {
+	State.IDLE: "Flyer Boi armature|Attack Idle", 
+	State.WALK: "Flyer Boi armature|Glide",
+	State.ATK: "Flyer Boi armature|Attack 1",
+	State.DEAD: "Flyer Boi armature|Death Fall"
+}
 
 var fire_pattern = 0 # remember which attack was selected
 
@@ -83,6 +89,7 @@ func _on_attack_timer():
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
 	set_visuals(true)
+	anim_tree["parameters/playback"].start(anim_map[state])
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	set_visuals(false)

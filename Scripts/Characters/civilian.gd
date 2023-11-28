@@ -21,6 +21,13 @@ var process_tick_curr = 0
 @export var process_tick_max: int
 var my_id
 
+const anim_map = {
+	State.ESCAPE: "metarig_001|idle_female", 
+	State.RANDOM: "metarig_001|idle_female",
+	State.IDLE: "metarig_001|move",
+	State.DEAD: "metarig_001|death"
+}
+
 func _ready():
 	super._ready()
 	set_visuals(false)
@@ -126,6 +133,7 @@ func _on_stamina_timer_timeout():
 
 func _on_visible_on_screen_notifier_3d_screen_entered():
 	set_visuals(true)
+	anim_tree["parameters/playback"].start(anim_map[state])
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	set_visuals(false)
