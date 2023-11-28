@@ -1,6 +1,7 @@
-extends TextureProgressBar
+extends Control
 
 @export var lich: Lich
+@export var pg_bar: TextureProgressBar
 
 func _ready():
 	# print("ready")
@@ -8,6 +9,6 @@ func _ready():
 	lich.healthChanged.connect(update)
 
 func update():
-	#value = lich.hp * 100 / lich.maxHp
+	pg_bar.value = lich.hp * 100 / lich.maxHp
 	# print(lich.hp)
 	# print(value)

@@ -2769,7 +2769,7 @@ parameters/conditions/attack2 = false
 parameters/conditions/death = false
 parameters/conditions/flap = false
 parameters/conditions/glide = false
-parameters/conditions/idle = true
+parameters/conditions/idle = false
 
 [node name="Timer" type="Timer" parent="."]
 
