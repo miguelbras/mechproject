@@ -67,8 +67,8 @@ func _process(delta):
 func _physics_process(_delta):
 	if ready_after_spawn:
 		calc_velocity()
-	if position.y > 0.58: # hardcoded value where mobs stand at
-		velocity.y = -position.y * 4
+	if position.y > 0.59:
+		velocity.y = -(position.y-0.59) * 4
 	look_at_target()
 	move_and_slide()
 

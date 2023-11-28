@@ -4,7 +4,7 @@ extends Control
 @export var text_label: RichTextLabel
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/david_arena.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main_map.tscn")
 
 func _on_lb_button_pressed():
 	# Perform a GET request. The URL below returns JSON as of writing.
