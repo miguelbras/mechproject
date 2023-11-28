@@ -7,7 +7,8 @@ var current_tutorial_index = 0
 var hints = [
 	"                Try moving around with your Right Mouse Button!",
 	"                                 Cast your spells with QWE!",
-	"            Order your zombies to follow you or to attack with SPACE!",
+	"                      Order your zombies to follow you with SPACE!",
+	"                   Order your zombies to attack with Left Mouse Button!",
 	"                          Some enemies fight back, be careful!",
 	"       Conquer the empire as fast as possible to get on the leaderboards!",
 ]

@@ -35,6 +35,7 @@ signal abilityEUsed
 @onready var anim_tree = $AnimationTree
 @onready var death_timer = $DeathTimer
 @onready var global_cooldown = $Cooldown
+@onready var follow_selection_marker = $SelectionMarker
 
 const atk3_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -54,6 +55,7 @@ var top_down_cam_zoom_level = 1
 func _ready():
 	Global.arena.lich_spawned(self)
 	anim_tree.active = true
+	follow_selection_marker.visible = false
 
 func _process(delta):
 	coolDownThick.emit(delta)
@@ -88,10 +90,13 @@ func _input(event):
 			atk_pattern = 3
 			attacking = true
 			global_cooldown.start()
-		if len(followers) == 0:
-			command_follow()
-		else:
-			zombies_agg()
+		zombies_agg()
+	elif event.is_action_pressed("zombie_follow"):
+		if not attacking:
+			atk_pattern = 3
+			attacking = true
+			global_cooldown.start()
+		command_follow()
 	elif event.is_action_pressed("attack1"):
 		attack1()
 	elif event.is_action_pressed("attack2"):
@@ -190,6 +195,7 @@ func command_follow():
 			followers += [mob]
 			mob.follow_mode(self)
 	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
+	follow_selection_marker.visible = true
 
 func zombies_agg():
 	var result = get_mouse_target_pos()
@@ -202,6 +208,7 @@ func zombies_agg():
 			mob.aggressive_move(result.position)
 	aggressive_marker.position = result.position
 	aggressive_marker.position.y += 0.1
+	follow_selection_marker.visible = false
 	followers = []
 
 func take_damage(damage: int):

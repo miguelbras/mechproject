@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://brjmf2ik2584c"]
+[gd_scene load_steps=27 format=3 uid="uid://brjmf2ik2584c"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/lich.gd" id="1_7sbdc"]
 [ext_resource type="PackedScene" uid="uid://x06ftgt6pfry" path="res://Prefabs/Attacks/attack1.tscn" id="2_g76xd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g6ncyk4rgjnt" path="res://3DModels/lich.fbx" id="6_aacag"]
 [ext_resource type="Texture2D" uid="uid://b7e8c3u8fuwlt" path="res://Textures/3DModels/lich.png" id="7_vvoo6"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bficgar1h60u7" path="res://AnimationTrees/lich.tres" id="8_dv26d"]
+[ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="9_0tndd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o30m4"]
 
@@ -4594,6 +4595,8 @@ one_shot = true
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="SelectionMarker" parent="." instance=ExtResource("9_0tndd")]
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
