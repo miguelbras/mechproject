@@ -3,8 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Menu/endscreen.gd" id="1_hv8am"]
 [ext_resource type="Texture2D" uid="uid://dfng1wu8hu7wh" path="res://Textures/Menu/victory.png" id="2_dugxi"]
 
-[node name="win_screen" type="Node3D"]
+[node name="win_screen" type="Node3D" node_paths=PackedStringArray("test_box", "submit_button", "feedback_label")]
 script = ExtResource("1_hv8am")
+test_box = NodePath("Control/VBoxContainer/HBoxContainer/LineEdit")
+submit_button = NodePath("Control/VBoxContainer/HBoxContainer/SubmitButton")
+feedback_label = NodePath("Control/VBoxContainer/Label")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -43,6 +46,9 @@ offset_bottom = 177.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 
@@ -51,7 +57,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "name"
 
-[node name="PlayButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="SubmitButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "submit score"
 
@@ -63,6 +69,9 @@ text = "menu"
 layout_mode = 2
 text = "exit"
 
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

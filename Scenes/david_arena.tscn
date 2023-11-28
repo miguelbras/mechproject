@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5y3xlo4cqvbw"]
+[gd_scene load_steps=15 format=3 uid="uid://c5y3xlo4cqvbw"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_dl7j3"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_ejt5t"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="8_54ukm"]
 [ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="9_24ial"]
 [ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="9_66yma"]
+[ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="11_n6bw6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -32,9 +33,11 @@ transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 
 [node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_lfhsg")]
 camera = NodePath("../Camera3D")
 
-[node name="Lich" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_jxcgr")]
+[node name="Lich" parent="." node_paths=PackedStringArray("iso_camera", "top_down_camera", "aggressive_marker") instance=ExtResource("5_jxcgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-camera = NodePath("../Camera3D")
+iso_camera = NodePath("../Camera3D")
+top_down_camera = NodePath("../TopDownCamera3D")
+aggressive_marker = NodePath("../selection_marker")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0ivu4")
@@ -80,8 +83,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76073, 0.0866349, 1.83357)
 [node name="DootCharacter" parent="." instance=ExtResource("9_66yma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66646, 0.0866356, 1.19838)
 
-[node name="Civilian2" parent="." instance=ExtResource("9_24ial")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4806, 0.0866356, -20.3199)
+[node name="TopDownCamera3D" type="Camera3D" parent="." groups=["Camera"]]
+transform = Transform3D(0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 30, 0)
+fov = 65.4
+size = 12.0
+near = 5.0
+far = 500.0
+
+[node name="selection_marker" parent="." instance=ExtResource("11_n6bw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33931, -4.07208, 1.66938)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
