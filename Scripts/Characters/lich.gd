@@ -14,6 +14,7 @@ signal abilityRUsed
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
 @export var attack3_prefab : PackedScene
+@export var escape_menu_prefab : PackedScene
 @export var iso_camera: Camera3D
 @export var top_down_camera: Camera3D
 @export var aggressive_marker: Node3D
@@ -50,6 +51,7 @@ var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
 var top_down_cam_zoom_level = 1
+var escape_menu = null
 
 func _ready():
 	Global.arena.lich_spawned(self)
@@ -81,6 +83,14 @@ func faceDirection(direction):
 
 func _input(event):
 	if Global.arena.game_over:
+		return
+	if event.is_action_pressed("escape"):
+		if escape_menu and is_instance_valid(escape_menu):
+			escape_menu.queue_free()
+		else:
+			escape_menu = escape_menu_prefab.instantiate()
+			Global.arena.add_child(escape_menu)
+	if escape_menu and is_instance_valid(escape_menu):
 		return
 	# move inputs
 	if Input.is_action_pressed("mouse_move"):
@@ -230,6 +240,13 @@ func summon_flier():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
+	var summon_pos = result.position
+	# place summon_pos within range
+	var summon_direction = summon_pos-self.position
+	var summon_direction_ratio_over_range = summon_direction.length() / 15.0
+	if summon_direction_ratio_over_range > 1:
+		summon_pos = self.position + (summon_direction / summon_direction_ratio_over_range)
+	# summon
 	var sacrifice = []
 	for f in Global.arena.ally_map.values():
 		if is_instance_valid(f) and f is Doot:
@@ -239,7 +256,7 @@ func summon_flier():
 				s.queue_free()
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)
-			flyer_instance.position = result.position
+			flyer_instance.position = summon_pos
 			flyer_instance.follow_mode(self)
 			abilityRUsed.emit()
 			return
