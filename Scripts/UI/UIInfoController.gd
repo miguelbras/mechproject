@@ -16,7 +16,7 @@ var buildingAmount = 0
 var skeletonAmount = 0
 var flyerAmount = 0
 var totalPopulation = 0
-var lichPopulation = 1
+var lichPopulation = 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,53 +47,53 @@ func removeVillager():
 func addSoldier():
 	soldierAmount += 1
 	soldiersAmountLabel.text = str(soldierAmount)
-	totalPopulation+=1
+	totalPopulation+=5
 	updatePowerBalanceBar()
 	
 func removeSoldier():
 	soldierAmount -= 1
 	soldiersAmountLabel.text = str(soldierAmount)
-	totalPopulation-=1
+	totalPopulation-=5
 	updatePowerBalanceBar()
 	
 func addBuilding():
 	buildingAmount += 1
 	buildingsAmountLabel.text = str(buildingAmount)
-	totalPopulation+=1
+	totalPopulation+=20
 	updatePowerBalanceBar()
 	
 func removeBuilding():
 	buildingAmount -= 1
 	buildingsAmountLabel.text = str(buildingAmount)
-	totalPopulation-=1
+	totalPopulation-=20
 	updatePowerBalanceBar()
 		
 func addSkeleton():
 	skeletonAmount += 1
 	skeletonAmountLabel.text = str(skeletonAmount)
 	totalPopulation+=1
-	lichPopulation += 1
+	lichPopulation += 2
 	updatePowerBalanceBar()
 	
 func removeSkeleton():
 	skeletonAmount -= 1
 	skeletonAmountLabel.text = str(skeletonAmount)
 	totalPopulation-=1
-	lichPopulation -= 1
+	lichPopulation -= 2
 	updatePowerBalanceBar()
 	
 func addFlyer():
 	flyerAmount +=1
 	flyerAmountLabel.text = str(flyerAmount)
 	totalPopulation+=1
-	lichPopulation += 1
+	lichPopulation += 12
 	updatePowerBalanceBar()
 	
 func removeFlyer():
 	flyerAmount -= 1
 	flyerAmountLabel.text = str(flyerAmount)
 	totalPopulation-=1
-	lichPopulation -= 1
+	lichPopulation -= 12
 	updatePowerBalanceBar()
 	
 func updatePowerBalanceBar():
