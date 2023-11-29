@@ -240,6 +240,13 @@ func summon_flier():
 	var result = get_mouse_target_pos()
 	if not result:
 		return
+	var summon_pos = result.position
+	# place summon_pos within range
+	var summon_direction = summon_pos-self.position
+	var summon_direction_ratio_over_range = summon_direction.length() / 15.0
+	if summon_direction_ratio_over_range > 1:
+		summon_pos = self.position + (summon_direction / summon_direction_ratio_over_range)
+	# summon
 	var sacrifice = []
 	for f in Global.arena.ally_map.values():
 		if is_instance_valid(f) and f is Doot:
@@ -249,7 +256,7 @@ func summon_flier():
 				s.queue_free()
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)
-			flyer_instance.position = result.position
+			flyer_instance.position = summon_pos
 			flyer_instance.follow_mode(self)
 			abilityRUsed.emit()
 			return
