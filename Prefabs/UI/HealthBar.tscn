@@ -4,12 +4,11 @@
 [ext_resource type="Script" path="res://Scripts/UI/healthBar.gd" id="1_x5uus"]
 [ext_resource type="Texture2D" uid="uid://co1hmvgqva6pt" path="res://Textures/UI/red_bar.png" id="2_n78ew"]
 
-[node name="UI" type="Control" node_paths=PackedStringArray("pg_bar", "time_label")]
+[node name="UI" type="Control" node_paths=PackedStringArray("pg_bar")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_x5uus")
 pg_bar = NodePath("CanvasLayer/TextureProgressBar")
-time_label = NodePath("CanvasLayer/Label")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

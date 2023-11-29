@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Menu/endscreen.gd" id="1_hv8am"]
 [ext_resource type="Texture2D" uid="uid://dfng1wu8hu7wh" path="res://Textures/Menu/victory.png" id="2_dugxi"]
 
-[node name="win_screen" type="Node3D" node_paths=PackedStringArray("test_box", "submit_button", "feedback_label")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("test_box", "submit_button", "feedback_label")]
 script = ExtResource("1_hv8am")
 test_box = NodePath("Control/VBoxContainer/HBoxContainer/LineEdit")
 submit_button = NodePath("Control/VBoxContainer/HBoxContainer/SubmitButton")
@@ -74,4 +74,3 @@ text = "exit"
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

@@ -6,10 +6,10 @@ enum State {IDLE, WALK, ATK, DEAD}
 
 signal healthChanged
 signal abilityUsed
-signal coolDownThick(deltaTime)
 signal abilityQUsed
 signal abilityWUsed
 signal abilityEUsed
+signal abilityRUsed
 
 @export var attack1_prefab : PackedScene
 @export var attack2_prefab : PackedScene
@@ -46,7 +46,6 @@ var hp = maxHp
 var last_time_attackedQ = 0
 var last_time_attackedW = 0
 var last_time_attackedE = 0
-var followers = []
 var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
@@ -61,7 +60,6 @@ func _ready():
 	aggressive_marker.position.y = -0.1
 
 func _process(delta):
-	coolDownThick.emit(delta)
 	update_state()
 	update_animation_parameters()
 	if(navigationAgent.is_navigation_finished()):
@@ -201,8 +199,7 @@ func command_follow():
 	for mob in Global.arena.ally_map.values():
 		if mob is Lich:
 			continue
-		if is_instance_valid(mob) and mob not in followers: # mob could have died
-			followers += [mob]
+		if is_instance_valid(mob):
 			mob.follow_mode(self)
 	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
 	follow_selection_marker.visible = true
@@ -219,7 +216,6 @@ func zombies_agg():
 	aggressive_marker.position = result.position
 	aggressive_marker.position.y += 0.1
 	follow_selection_marker.visible = false
-	followers = []
 
 func take_damage(damage: int):
 	damage -= defense
@@ -235,18 +231,17 @@ func summon_flier():
 	if not result:
 		return
 	var sacrifice = []
-	for f in followers:
+	for f in Global.arena.ally_map.values():
 		if is_instance_valid(f) and f is Doot:
 			sacrifice += [f]
 		if len(sacrifice) == flyer_summon_sacrifices:
 			for s in sacrifice:
-				followers.erase(s)
 				s.queue_free()
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)
 			flyer_instance.position = result.position
-			followers += [flyer_instance]
 			flyer_instance.follow_mode(self)
+			abilityRUsed.emit()
 			return
 
 func update_state():
