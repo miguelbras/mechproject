@@ -37,16 +37,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37606, 0.5, 5.48655)
 transform = Transform3D(1.00122, 0, 0, 0, 1.00122, 0, 0, 0, 1.00122, -0.210925, 2.17444, 1.55135)
 shape = SubResource("BoxShape3D_2nx6i")
 
-[node name="house_04" parent="." instance=ExtResource("5_45qnj")]
+[node name="house" parent="." instance=ExtResource("5_45qnj")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 6.3667, 0.0970755, 7.28974)
 
-[node name="Plane_012" parent="house_04/RootNode" index="0"]
+[node name="Plane_012" parent="house/RootNode" index="0"]
 transform = Transform3D(150, 0, 0, 0, 150, -6.55671e-06, 0, 6.55671e-06, 150, 8.34312, 0, -10.2111)
 surface_material_override/0 = ExtResource("6_edt7s")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(4.54814, 0, 0, 0, 4.09481, 0, 0, 0, 4.16821, -0.196437, 3.82908, 1.38417)
+aabb = AABB(-0.885047, -1, -1, 1.77009, 2, 2)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="AfterSpawnTimer" to="." method="_on_after_spawn_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 
-[editable path="house_04"]
+[editable path="house"]

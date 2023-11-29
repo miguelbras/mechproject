@@ -2788,6 +2788,7 @@ search_for_allies = false
 searchLich = false
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(3.59328, 0, 0, 0, 1.53526, 0, 0, 0, 1.16489, 0, 1.46052, 0)
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 3.0

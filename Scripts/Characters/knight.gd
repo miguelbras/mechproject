@@ -21,7 +21,6 @@ var mob_target # which mob to follow and attack
 var state = State.IDLE
 var process_tick_curr = 0
 @export var process_tick_max: int
-var my_id
 
 const anim_map = {
 	State.IDLE: "metarig_001|idle", 
@@ -113,7 +112,6 @@ func _on_dot_timer_timeout():
 		attack2_debuff = null
 
 func _on_tree_exited():
-	Global.arena.enemy_despawned(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_knights -= 1
 

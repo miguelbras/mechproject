@@ -23,6 +23,7 @@ var attack2_debuff = null
 
 var ready_after_spawn = true
 var parent_spawner = null
+var my_id
 
 func _ready():
 	set_as_top_level(true)
@@ -51,6 +52,7 @@ func take_damage(damage: int):
 		hp -= damage
 	if hp <= 0 and death_timer.is_stopped():
 		death_timer.start()
+		Global.arena.enemy_despawned(my_id)
 		self.set_physics_process(false)
 		self.velocity = Vector3.ZERO
 

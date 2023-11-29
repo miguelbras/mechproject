@@ -219,6 +219,7 @@ parameters/conditions/idle = true
 parameters/conditions/move = false
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.53098, 0, 0, 0, 1, 0, 1.51316, 0)
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

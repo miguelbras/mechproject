@@ -216,6 +216,8 @@ wait_time = 2.0
 one_shot = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.48829, 0, 0, 0, 1, 0, 1.29671, 0)
+aabb = AABB(-1, -0.888866, -1, 2, 1.94668, 2)
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

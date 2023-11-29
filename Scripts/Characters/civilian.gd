@@ -19,7 +19,6 @@ var rand_dir = Vector3.ZERO # target direction if RANDOM
 
 var process_tick_curr = 0
 @export var process_tick_max: int
-var my_id
 
 const anim_map = {
 	State.ESCAPE: "metarig_001|idle_female", 
@@ -94,7 +93,6 @@ func _on_tree_exited():
 	var doot_instance = doot.instantiate()
 	Global.arena.add_child.call_deferred(doot_instance)
 	doot_instance.position = self.position
-	Global.arena.enemy_despawned(my_id)
 	if parent_spawner != null:
 		parent_spawner.current_civilians -= 1
 

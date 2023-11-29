@@ -10,6 +10,8 @@ class_name Building
 @export var paladin_prefab: PackedScene
 @export var spawn_direction: Vector3 = Vector3(1,0,0)
 
+@onready var fbx = $house
+
 var current_paladins: int = 0
 var current_knights: int = 0
 var current_civilians: int = 0
@@ -32,6 +34,7 @@ func _on_ready():
 	while current_civilians < max_civilians:
 		spawn_something_ready(civilian_prefab.instantiate())
 		current_civilians += 1
+	set_visuals(false)
 
 func spawn_something():
 	if current_paladins < max_paladins:
@@ -80,3 +83,14 @@ func _on_spawn_timer_timeout():
 func _on_tree_exited():
 	Global.arena.enemy_despawned(my_id)
 	_on_after_spawn_timer_timeout() # prevent enemies from staying "spawning" forever
+
+func set_visuals(enable: bool):
+	fbx.set_process(enable)
+	fbx.visible = enable
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	set_visuals(true)
+
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	set_visuals(false)

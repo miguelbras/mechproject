@@ -58,7 +58,7 @@ func calc_velocity():
 		check_blocked()
 
 func _on_tree_exited():
-	Global.arena.ally_despawned(my_id)
+	pass
 
 func _process(delta):
 	update_state()
@@ -177,6 +177,7 @@ func take_damage(damage: int):
 		# TODO disable attack timers
 		self.set_physics_process(false)
 		death_timer.start()
+		Global.arena.ally_despawned(my_id)
 		_on_death()
 
 func _on_death_timer_timeout():

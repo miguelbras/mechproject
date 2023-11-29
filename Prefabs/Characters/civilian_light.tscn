@@ -3054,6 +3054,8 @@ wait_time = 2.0
 one_shot = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.565802, 0, 0, 0, 1.13455, 0, 0, 0, 1, 0, 1.07113, 0)
+aabb = AABB(-1, -1, -0.432042, 2, 2, 0.864083)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bidjw")
