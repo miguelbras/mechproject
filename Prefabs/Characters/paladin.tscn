@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/paladin.gd" id="1_3hk6k"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_7xlae"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_nhaj8"]
-[ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/knight.fbx" id="4_xq61m"]
+[ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/Character/knight.fbx" id="4_xq61m"]
 [ext_resource type="Texture2D" uid="uid://748mw4l6ac40" path="res://Textures/3DModels/knight.png" id="5_lwymu"]
 [ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_vmnto"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="6_nmybe"]

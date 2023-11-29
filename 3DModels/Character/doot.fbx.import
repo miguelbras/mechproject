@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://coxgcjcr1vuo1"
-path="res://.godot/imported/villager_male.fbx-f6355af3cfd44bbdbf8d075f48d16fe7.scn"
+uid="uid://d086xkoa74atm"
+path="res://.godot/imported/doot.fbx-5dee37816cc3e5694e4a1abca4d9fb86.scn"
 
 [deps]
 
-source_file="res://3DModels/villager_male.fbx"
-dest_files=["res://.godot/imported/villager_male.fbx-f6355af3cfd44bbdbf8d075f48d16fe7.scn"]
+source_file="res://3DModels/Character/doot.fbx"
+dest_files=["res://.godot/imported/doot.fbx-5dee37816cc3e5694e4a1abca4d9fb86.scn"]
 
 [params]
 

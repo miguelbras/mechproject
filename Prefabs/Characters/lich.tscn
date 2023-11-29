@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b5tjoddkd0lv4" path="res://Prefabs/Attacks/attack3.tscn" id="4_7f1bl"]
 [ext_resource type="PackedScene" uid="uid://dtm74i7jtl8nw" path="res://Prefabs/UI/escape_menu.tscn" id="5_6k0f4"]
 [ext_resource type="AudioStream" uid="uid://xdjb1ms4onmt" path="res://Sound/Attack/Eldritch Blast.wav" id="6_2s3g7"]
-[ext_resource type="PackedScene" uid="uid://g6ncyk4rgjnt" path="res://3DModels/lich.fbx" id="6_aacag"]
+[ext_resource type="PackedScene" uid="uid://g6ncyk4rgjnt" path="res://3DModels/Character/lich.fbx" id="6_aacag"]
 [ext_resource type="Texture2D" uid="uid://b7e8c3u8fuwlt" path="res://Textures/3DModels/lich.png" id="7_vvoo6"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bficgar1h60u7" path="res://AnimationTrees/lich.tres" id="8_dv26d"]
 [ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="9_0tndd"]

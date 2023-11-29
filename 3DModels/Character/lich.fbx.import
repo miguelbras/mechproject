@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vsay1xuutrti"
-path="res://.godot/imported/highlight.fbx-f9a3af92991a03bd7545908be1f65dab.scn"
+uid="uid://g6ncyk4rgjnt"
+path="res://.godot/imported/lich.fbx-0eca3e410d930ec0c7739cbeed9937a3.scn"
 
 [deps]
 
-source_file="res://3DModels/highlight.fbx"
-dest_files=["res://.godot/imported/highlight.fbx-f9a3af92991a03bd7545908be1f65dab.scn"]
+source_file="res://3DModels/Character/lich.fbx"
+dest_files=["res://.godot/imported/lich.fbx-0eca3e410d930ec0c7739cbeed9937a3.scn"]
 
 [params]
 

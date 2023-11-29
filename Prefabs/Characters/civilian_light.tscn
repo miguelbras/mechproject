@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="2_d18j0"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_3xc1d"]
 [ext_resource type="Texture2D" uid="uid://kbckgjohi7f7" path="res://Textures/3DModels/villager_female.png" id="5_4mv5g"]
-[ext_resource type="PackedScene" uid="uid://cyieugxevfa08" path="res://3DModels/villager_female.fbx" id="5_rio3h"]
+[ext_resource type="PackedScene" uid="uid://cyieugxevfa08" path="res://3DModels/Character/villager_female.fbx" id="5_rio3h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hn37s"]
 

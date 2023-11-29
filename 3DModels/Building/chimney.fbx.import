@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://g6ncyk4rgjnt"
-path="res://.godot/imported/lich.fbx-9357e45da2187d3ad99bf78a6c017980.scn"
+uid="uid://d4edlnje0pq5t"
+path="res://.godot/imported/chimney.fbx-050e628487c35ac804a1e651963cb027.scn"
 
 [deps]
 
-source_file="res://3DModels/lich.fbx"
-dest_files=["res://.godot/imported/lich.fbx-9357e45da2187d3ad99bf78a6c017980.scn"]
+source_file="res://3DModels/Building/chimney.fbx"
+dest_files=["res://.godot/imported/chimney.fbx-050e628487c35ac804a1e651963cb027.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cyieugxevfa08"
-path="res://.godot/imported/villager_female.fbx-10614c010d41e57fa6548991975baaba.scn"
+uid="uid://dxdwkiy7dykml"
+path="res://.godot/imported/house_04.fbx-b093f6e4f1adbf66fd7355fa59eabcf1.scn"
 
 [deps]
 
-source_file="res://3DModels/villager_female.fbx"
-dest_files=["res://.godot/imported/villager_female.fbx-10614c010d41e57fa6548991975baaba.scn"]
+source_file="res://3DModels/Building/house_04.fbx"
+dest_files=["res://.godot/imported/house_04.fbx-b093f6e4f1adbf66fd7355fa59eabcf1.scn"]
 
 [params]
 

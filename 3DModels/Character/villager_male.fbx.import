@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d4edlnje0pq5t"
-path="res://.godot/imported/chimney.fbx-177a5e253e4a501935c1a4079c6c3eee.scn"
+uid="uid://coxgcjcr1vuo1"
+path="res://.godot/imported/villager_male.fbx-64c31613205ceae6502248cfe8af63ce.scn"
 
 [deps]
 
-source_file="res://3DModels/chimney.fbx"
-dest_files=["res://.godot/imported/chimney.fbx-177a5e253e4a501935c1a4079c6c3eee.scn"]
+source_file="res://3DModels/Character/villager_male.fbx"
+dest_files=["res://.godot/imported/villager_male.fbx-64c31613205ceae6502248cfe8af63ce.scn"]
 
 [params]
 

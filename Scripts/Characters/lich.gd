@@ -210,10 +210,11 @@ func attack3():
 
 func command_follow():
 	for mob in Global.arena.ally_map.values():
-		if mob is Lich:
-			continue
 		if is_instance_valid(mob):
-			mob.follow_mode(self)
+			if mob is Lich:
+				continue
+			if is_instance_valid(mob):
+				mob.follow_mode(self)
 	aggressive_marker.visible = false
 	follow_selection_marker.visible = true
 
@@ -256,6 +257,7 @@ func summon_flier():
 			sacrifice += [f]
 		if len(sacrifice) == flyer_summon_sacrifices:
 			for s in sacrifice:
+				Global.arena.ally_despawned(s.my_id)
 				s.queue_free()
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)

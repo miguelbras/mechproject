@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/knight.gd" id="1_2x1n4"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_u3had"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_jtsri"]
-[ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/knight.fbx" id="4_3ath4"]
+[ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/Character/knight.fbx" id="4_3ath4"]
 [ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_24fca"]
 [ext_resource type="Texture2D" uid="uid://748mw4l6ac40" path="res://Textures/3DModels/knight.png" id="5_ftw8n"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="6_64djv"]
@@ -125,7 +125,7 @@ states/metarig_001|move/position = Vector2(886, 299)
 states/metarig_001|move_attack_to_attack/node = SubResource("AnimationNodeAnimation_wwr5r")
 states/metarig_001|move_attack_to_attack/position = Vector2(886, 127)
 transitions = ["Start", "metarig_001|idle", SubResource("AnimationNodeStateMachineTransition_8n1bg"), "metarig_001|idle", "metarig_001|idle_to_move", SubResource("AnimationNodeStateMachineTransition_5ka3e"), "metarig_001|idle_to_move", "metarig_001|move", SubResource("AnimationNodeStateMachineTransition_aypbj"), "metarig_001|move", "metarig_001|idle", SubResource("AnimationNodeStateMachineTransition_bxwv7"), "metarig_001|attack_idle", "metarig_001|attack", SubResource("AnimationNodeStateMachineTransition_b8au5"), "metarig_001|move", "metarig_001|move_attack_to_attack", SubResource("AnimationNodeStateMachineTransition_rp3y7"), "metarig_001|move_attack_to_attack", "metarig_001|attack_idle", SubResource("AnimationNodeStateMachineTransition_s0aup"), "metarig_001|attack_idle", "metarig_001|attack_idle_to_move", SubResource("AnimationNodeStateMachineTransition_frplg"), "metarig_001|attack_idle_to_move", "metarig_001|move", SubResource("AnimationNodeStateMachineTransition_quuql"), "metarig_001|attack_idle", "metarig_001|attack_idle_to_death_2", SubResource("AnimationNodeStateMachineTransition_oewco"), "metarig_001|idle", "metarig_001|attack_idle_to_death", SubResource("AnimationNodeStateMachineTransition_hyd71"), "metarig_001|attack", "metarig_001|attack_idle_to_death_2", SubResource("AnimationNodeStateMachineTransition_u2aem"), "metarig_001|move", "metarig_001|attack_idle_to_death", SubResource("AnimationNodeStateMachineTransition_mbc8r"), "metarig_001|attack", "metarig_001|attack_idle", SubResource("AnimationNodeStateMachineTransition_6jd64"), "metarig_001|idle", "metarig_001|attack", SubResource("AnimationNodeStateMachineTransition_dgtls")]
-graph_offset = Vector2(15, 358)
+graph_offset = Vector2(148, 125)
 
 [node name="Knight" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_2x1n4")

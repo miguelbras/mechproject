@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://0oi6rr43ull6"]
 
 [ext_resource type="Script" path="res://Scripts/Visuals/selection_marker.gd" id="1_3c3ac"]
-[ext_resource type="PackedScene" uid="uid://vsay1xuutrti" path="res://3DModels/highlight.fbx" id="2_5elfa"]
+[ext_resource type="PackedScene" uid="uid://vsay1xuutrti" path="res://3DModels/Visuals/highlight.fbx" id="2_5elfa"]
 [ext_resource type="Texture2D" uid="uid://b38nft6hjvt1m" path="res://Textures/Visuals/highlight_64x64.png" id="3_pmhmu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sndm1"]

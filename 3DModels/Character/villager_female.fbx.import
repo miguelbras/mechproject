@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxsi5j6vr8kn2"
-path="res://.godot/imported/flyer.fbx-c78914e0030f260ae5efd3be0d0671ce.scn"
+uid="uid://cyieugxevfa08"
+path="res://.godot/imported/villager_female.fbx-1b1f22f173a69f0f0566a5a66d644394.scn"
 
 [deps]
 
-source_file="res://3DModels/flyer.fbx"
-dest_files=["res://.godot/imported/flyer.fbx-c78914e0030f260ae5efd3be0d0671ce.scn"]
+source_file="res://3DModels/Character/villager_female.fbx"
+dest_files=["res://.godot/imported/villager_female.fbx-1b1f22f173a69f0f0566a5a66d644394.scn"]
 
 [params]
 
