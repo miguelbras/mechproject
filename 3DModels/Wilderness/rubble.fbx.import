@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://n20exwpt61qj"
-path="res://.godot/imported/detail_fern.fbx-638fe0034892a54292ee9a0147337478.scn"
+uid="uid://6kirbq6fj2g6"
+path="res://.godot/imported/rubble.fbx-373916e39f25d2de88b8d38e8fc19691.scn"
 
 [deps]
 
-source_file="res://3DModels/detail_fern.fbx"
-dest_files=["res://.godot/imported/detail_fern.fbx-638fe0034892a54292ee9a0147337478.scn"]
+source_file="res://3DModels/Wilderness/rubble.fbx"
+dest_files=["res://.godot/imported/rubble.fbx-373916e39f25d2de88b8d38e8fc19691.scn"]
 
 [params]
 

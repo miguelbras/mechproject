@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bkb77unfuv40d"
-path="res://.godot/imported/tree_damaged_02.fbx-5313cf63c25a9a4160fbefe8da47a84f.scn"
+uid="uid://b7wfeiv6daq3t"
+path="res://.godot/imported/detail_mushroom_02.fbx-bf0f9685fd44a30ec06b3c639e7bb15e.scn"
 
 [deps]
 
-source_file="res://3DModels/tree_damaged_02.fbx"
-dest_files=["res://.godot/imported/tree_damaged_02.fbx-5313cf63c25a9a4160fbefe8da47a84f.scn"]
+source_file="res://3DModels/Wilderness/detail_mushroom_02.fbx"
+dest_files=["res://.godot/imported/detail_mushroom_02.fbx-bf0f9685fd44a30ec06b3c639e7bb15e.scn"]
 
 [params]
 

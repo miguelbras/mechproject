@@ -14,12 +14,12 @@ script = ExtResource("1_kyyq0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10019, 0)
 shape = SubResource("BoxShape3D_2nx6i")
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(6.7033, 0, 0, 0, 4.53413, 0, 0, 0, 6.33476, 0, 3.45639, 0)
+
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(11.9442, 0, 0, 0, 7.7009, 0, 0, 0, 10.8559, 0, 3.82794, 0)
 mesh = SubResource("PrismMesh_q060x")
-
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(6.7033, 0, 0, 0, 4.53413, 0, 0, 0, 6.33476, 0, 3.45639, 0)
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

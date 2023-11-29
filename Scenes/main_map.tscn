@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://83ift1ga70x1"]
+[gd_scene load_steps=21 format=3 uid="uid://83ift1ga70x1"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_x7pq0"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_haw5r"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="14_lb7fs"]
 [ext_resource type="PackedScene" uid="uid://cjl8b7uvyfye1" path="res://Prefabs/UI/Tutorials.tscn" id="15_5k72p"]
 [ext_resource type="PackedScene" uid="uid://5jrtgnqrgc4" path="res://Prefabs/UI/UI.tscn" id="16_6d28y"]
-[ext_resource type="PackedScene" uid="uid://6ywomp04ttwi" path="res://Prefabs/Wilderness/barrel.tscn" id="16_w5624"]
 
 [sub_resource type="Environment" id="Environment_ggbec"]
 fog_light_energy = 0.0
@@ -790,9 +789,6 @@ offset_bottom = 73.0
 lich = NodePath("../../../../Lich")
 
 [node name="Wilderness" type="Node3D" parent="."]
-
-[node name="barrel" parent="Wilderness" instance=ExtResource("16_w5624")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.40819, 0.05, 1.06909)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 

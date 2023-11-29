@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6ywomp04ttwi"]
 
 [ext_resource type="Script" path="res://Scripts/Wilderness/decoration.gd" id="1_bcqc4"]
-[ext_resource type="PackedScene" uid="uid://g005asw58oca" path="res://3DModels/barrel.fbx" id="1_iqaei"]
+[ext_resource type="PackedScene" uid="uid://g005asw58oca" path="res://3DModels/Wilderness/barrel.fbx" id="1_iqaei"]
 [ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="2_y5pwu"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ucrsu"]
@@ -9,19 +9,19 @@
 [node name="barrel" type="StaticBody3D"]
 script = ExtResource("1_bcqc4")
 
-[node name="mesh" parent="." instance=ExtResource("1_iqaei")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="Cylinder_001" parent="mesh/RootNode" index="0"]
-surface_material_override/0 = ExtResource("2_y5pwu")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_ucrsu")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.633536, 0, 0, 0, 0.402954, 0, 0.68337, 0)
 aabb = AABB(-0.403283, -1, -1, 0.806567, 2, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_ucrsu")
+[node name="mesh" parent="." instance=ExtResource("1_iqaei")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Cylinder_001" parent="mesh/RootNode" index="0"]
+surface_material_override/0 = ExtResource("2_y5pwu")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

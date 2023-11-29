@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bgnpmob8eskud"
-path="res://.godot/imported/well.fbx-d2d53ec75801c1b288470015e75831dc.scn"
+uid="uid://bl2ap532uqthx"
+path="res://.godot/imported/detail_mushroom_01.fbx-a80fe7cd23e2644077d87c58512c90c3.scn"
 
 [deps]
 
-source_file="res://3DModels/well.fbx"
-dest_files=["res://.godot/imported/well.fbx-d2d53ec75801c1b288470015e75831dc.scn"]
+source_file="res://3DModels/Wilderness/detail_mushroom_01.fbx"
+dest_files=["res://.godot/imported/detail_mushroom_01.fbx-a80fe7cd23e2644077d87c58512c90c3.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://w0kvaqjbo8hy"
-path="res://.godot/imported/tree_03.fbx-bc208e28da0e3fa7c56f3d73b5a1ef77.scn"
+uid="uid://jbkyjfu7fpbq"
+path="res://.godot/imported/tree_02.fbx-0c842fdea1b9cf81afcc34e8bc1355b0.scn"
 
 [deps]
 
-source_file="res://3DModels/tree_03.fbx"
-dest_files=["res://.godot/imported/tree_03.fbx-bc208e28da0e3fa7c56f3d73b5a1ef77.scn"]
+source_file="res://3DModels/Wilderness/tree_02.fbx"
+dest_files=["res://.godot/imported/tree_02.fbx-0c842fdea1b9cf81afcc34e8bc1355b0.scn"]
 
 [params]
 

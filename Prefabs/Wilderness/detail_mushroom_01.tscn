@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cirvtbjyg8ews"]
+
+[ext_resource type="Script" path="res://Scripts/Wilderness/decoration.gd" id="1_qmexf"]
+[ext_resource type="PackedScene" uid="uid://bl2ap532uqthx" path="res://3DModels/Wilderness/detail_mushroom_01.fbx" id="2_kn80u"]
+[ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="3_brce5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2y7t4"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="detail_mushroom_01" type="StaticBody3D"]
+script = ExtResource("1_qmexf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.24239, 0)
+shape = SubResource("BoxShape3D_2y7t4")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.61226, 0, 0, 0, 0.713307, 0, 0, 0, 0.195241, -0.00908391, 0.268348, -0.0443119)
+aabb = AABB(-0.403283, -0.360332, -1, 0.806567, 0.720664, 2)
+
+[node name="mesh" parent="." instance=ExtResource("2_kn80u")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="mushroom 02_001" parent="mesh/RootNode" index="0"]
+surface_material_override/0 = ExtResource("3_brce5")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+
+[editable path="mesh"]
