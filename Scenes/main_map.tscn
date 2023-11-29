@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://83ift1ga70x1"]
+[gd_scene load_steps=20 format=3 uid="uid://83ift1ga70x1"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_x7pq0"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_haw5r"]
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_6usxq"]
-[ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_d77cj"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_4lxhq"]
 [ext_resource type="PackedScene" uid="uid://cjan7el5etmxg" path="res://Prefabs/Buildings/house.tscn" id="6_1opo7"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="7_ievwm"]
@@ -48,9 +47,6 @@ lose_screen_prefab = ExtResource("3_6usxq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
-
-[node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_d77cj")]
-camera = NodePath("../Camera3D")
 
 [node name="Lich" parent="." node_paths=PackedStringArray("iso_camera", "top_down_camera", "aggressive_marker") instance=ExtResource("5_4lxhq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 4)
