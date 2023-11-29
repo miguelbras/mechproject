@@ -12,6 +12,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my8xe"]
 shading_mode = 0
 albedo_texture = ExtResource("5_4mv5g")
+texture_filter = 0
 
 [sub_resource type="Animation" id="Animation_7gxey"]
 resource_name = "metarig_001|death"

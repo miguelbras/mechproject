@@ -59,7 +59,10 @@ func _ready():
 	follow_selection_marker.visible = false
 	# set initial aggression point as start pos
 	aggressive_marker.position = self.position
-	aggressive_marker.position.y = -0.1
+	aggressive_marker.scale.x = 0.11
+	aggressive_marker.scale.z = 0.11
+	aggressive_marker.scale.y = 4.00
+	aggressive_marker.visible = false
 
 func _process(delta):
 	update_state()
@@ -211,7 +214,7 @@ func command_follow():
 			continue
 		if is_instance_valid(mob):
 			mob.follow_mode(self)
-	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
+	aggressive_marker.visible = false
 	follow_selection_marker.visible = true
 
 func zombies_agg():
@@ -224,7 +227,7 @@ func zombies_agg():
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
 	aggressive_marker.position = result.position
-	aggressive_marker.position.y += 0.1
+	aggressive_marker.visible = true
 	follow_selection_marker.visible = false
 
 func take_damage(damage: int):

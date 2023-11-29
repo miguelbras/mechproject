@@ -4505,6 +4505,7 @@ _data = {
 }
 
 [node name="Lich" type="CharacterBody3D" groups=["Lich", "Mob"]]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_7sbdc")
 attack1_prefab = ExtResource("2_g76xd")
@@ -4605,3 +4606,5 @@ one_shot = true
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 
 [editable path="lich"]
+[editable path="SelectionMarker"]
+[editable path="SelectionMarker/highlight"]

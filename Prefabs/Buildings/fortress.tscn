@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm5ri7gsate38"]
+[gd_scene load_steps=8 format=3 uid="uid://dm5ri7gsate38"]
 
-[ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_vycki"]
+[ext_resource type="Script" path="res://Scripts/Buildings/spawner.gd" id="1_vycki"]
 [ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="2_weujv"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_gdmtc"]
 [ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="4_lumuw"]
+[ext_resource type="PackedScene" uid="uid://dxdwkiy7dykml" path="res://3DModels/house_04.fbx" id="5_45qnj"]
+[ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="6_edt7s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nx6i"]
-size = Vector3(8.53663, 4.53307, 8.79773)
-
-[sub_resource type="BoxMesh" id="BoxMesh_v761r"]
+size = Vector3(3.05733, 4.53307, 7.21223)
 
 [node name="Fortress" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_vycki")
@@ -25,23 +25,28 @@ wait_time = 10.0
 autostart = true
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.59379, 0, -1.81919)
 
 [node name="AfterSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.05587, 0.5, 6.239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37606, 0.5, 5.48655)
 
 [node name="BuildingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.00122, 0, 0, 0, 1.00122, 0, 0, 0, 1.00122, -0.210925, 2.17444, 1.55135)
 shape = SubResource("BoxShape3D_2nx6i")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.5481, 0, 0, 0, 7.72956, 0, 0, 0, 8.62636, 0, 0, 0)
-mesh = SubResource("BoxMesh_v761r")
+[node name="house_04" parent="." instance=ExtResource("5_45qnj")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 6.3667, 0.0970755, 7.28974)
+
+[node name="Plane_012" parent="house_04/RootNode" index="0"]
+transform = Transform3D(150, 0, 0, 0, 150, -6.55671e-06, 0, 6.55671e-06, 150, 8.34312, 0, -10.2111)
+surface_material_override/0 = ExtResource("6_edt7s")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="AfterSpawnTimer" to="." method="_on_after_spawn_timer_timeout"]
+
+[editable path="house_04"]

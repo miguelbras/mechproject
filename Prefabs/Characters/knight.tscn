@@ -13,6 +13,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhf33"]
 shading_mode = 0
 albedo_texture = ExtResource("5_ftw8n")
+texture_filter = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yvoud"]
 animation = &"metarig_001|attack"
@@ -177,6 +178,7 @@ bones/37/position = Vector3(-0.0137382, 0.0219567, 0.0447047)
 bones/39/position = Vector3(-0.0195834, 0.024392, 0.0203621)
 
 [node name="Cube_011" parent="knight/RootNode/metarig_001/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_lhf33")
 
 [node name="Cooldown" type="Timer" parent="."]
