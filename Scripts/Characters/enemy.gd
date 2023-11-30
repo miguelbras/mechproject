@@ -54,7 +54,7 @@ func take_damage(damage: int):
 	if hp <= 0 and death_timer.is_stopped():
 		death_timer.start()
 		Global.arena.enemy_despawned(my_id)
-		collision.queue_free()
+		collision.disable = true
 		self.set_physics_process(false)
 		self.velocity = Vector3.ZERO
 

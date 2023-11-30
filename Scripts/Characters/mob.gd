@@ -175,7 +175,7 @@ func take_damage(damage: int):
 		self.set_physics_process(false)
 		death_timer.start()
 		Global.arena.ally_despawned(my_id)
-		collision.queue_free()
+		collision.disable = true
 		_on_death()
 
 func _on_death_timer_timeout():
