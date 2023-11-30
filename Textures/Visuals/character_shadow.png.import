@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drlo4gxht2h3o"
-path.s3tc="res://.godot/imported/thunder_red.png-a823b2d8a483d977e66c0630cb08717c.s3tc.ctex"
+uid="uid://dbck23d46f8lg"
+path.s3tc="res://.godot/imported/character_shadow.png-aa659e10ed26b25532ba1fbbcf4ca1d3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Attacks/thunder_red.png"
-dest_files=["res://.godot/imported/thunder_red.png-a823b2d8a483d977e66c0630cb08717c.s3tc.ctex"]
+source_file="res://Textures/Visuals/character_shadow.png"
+dest_files=["res://.godot/imported/character_shadow.png-aa659e10ed26b25532ba1fbbcf4ca1d3.s3tc.ctex"]
 
 [params]
 

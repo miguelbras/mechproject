@@ -279,9 +279,9 @@ func update_state():
 func update_animation_parameters():
 	anim_tree["parameters/conditions/idle"] = state == State.IDLE or state == State.ATK
 	anim_tree["parameters/conditions/move"] = state == State.WALK
-	anim_tree["parameters/conditions/attack1"] = state == State.ATK and atk_pattern == 0
+	anim_tree["parameters/conditions/attack3"] = state == State.ATK and atk_pattern == 0
 	anim_tree["parameters/conditions/attack2"] = state == State.ATK and atk_pattern == 1
-	anim_tree["parameters/conditions/attack3"] = state == State.ATK and atk_pattern == 2
+	anim_tree["parameters/conditions/attack1"] = state == State.ATK and atk_pattern == 2
 	anim_tree["parameters/conditions/action"] = state == State.ATK and atk_pattern == 3
 	anim_tree["parameters/conditions/death"] = state == State.DEAD
 
