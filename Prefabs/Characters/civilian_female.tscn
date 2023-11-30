@@ -2979,10 +2979,10 @@ attack2_debuff_prefab = ExtResource("3_3xc1d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_hn37s")
 
-[node name="villager_female" parent="." instance=ExtResource("5_rio3h")]
+[node name="villager" parent="." instance=ExtResource("5_rio3h")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
-[node name="Skeleton3D" parent="villager_female/RootNode/metarig_001" index="0"]
+[node name="Skeleton3D" parent="villager/RootNode/metarig_001" index="0"]
 bones/5/position = Vector3(-6.68564e-17, 0.0346008, -0.00160698)
 bones/5/rotation = Quaternion(0.0479292, 0.168809, -0.00821866, 0.984448)
 bones/6/position = Vector3(-2.2971e-10, 0.0186377, 0.000481737)
@@ -3010,10 +3010,10 @@ bones/32/position = Vector3(-0.0192775, 0.0135464, -0.00729559)
 bones/34/position = Vector3(-0.00285285, 0.0118017, 0.00588934)
 bones/34/rotation = Quaternion(0.0817423, 0.136771, 0.193416, -0.968092)
 
-[node name="Cylinder" parent="villager_female/RootNode/metarig_001/Skeleton3D" index="0"]
+[node name="Cylinder" parent="villager/RootNode/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_my8xe")
 
-[node name="AnimationPlayer" parent="villager_female" index="1"]
+[node name="AnimationPlayer" parent="villager" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_tarb4")
 }
@@ -3059,7 +3059,7 @@ aabb = AABB(-1, -1, -0.432042, 2, 2, 0.864083)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bidjw")
-anim_player = NodePath("../villager_female/AnimationPlayer")
+anim_player = NodePath("../villager/AnimationPlayer")
 parameters/conditions/death = false
 parameters/conditions/idle = true
 parameters/conditions/move = false
@@ -3074,4 +3074,4 @@ parameters/conditions/move = false
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 
-[editable path="villager_female"]
+[editable path="villager"]
