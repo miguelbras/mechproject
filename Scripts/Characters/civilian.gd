@@ -21,8 +21,8 @@ var process_tick_curr = 0
 @export var process_tick_max: int
 
 const anim_map = {
-	State.ESCAPE: "metarig_001|idle_female", 
-	State.RANDOM: "metarig_001|idle_female",
+	State.ESCAPE: "metarig_001|idle", 
+	State.RANDOM: "metarig_001|idle",
 	State.IDLE: "metarig_001|move",
 	State.DEAD: "metarig_001|death"
 }
