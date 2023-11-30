@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cwde4wc8keid8"]
+
+[ext_resource type="Texture2D" uid="uid://748mw4l6ac40" path="res://Textures/3DModels/knight.png" id="1_lu5yg"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_lu5yg")
+texture_filter = 0

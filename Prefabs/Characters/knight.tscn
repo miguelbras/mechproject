@@ -1,18 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://kcl3hrttj06k"]
+[gd_scene load_steps=34 format=3 uid="uid://kcl3hrttj06k"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/knight.gd" id="1_2x1n4"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_u3had"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_jtsri"]
-[ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/knight.fbx" id="4_3ath4"]
+[ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/Character/knight.fbx" id="4_3ath4"]
 [ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_24fca"]
-[ext_resource type="Texture2D" uid="uid://748mw4l6ac40" path="res://Textures/3DModels/knight.png" id="5_ftw8n"]
+[ext_resource type="Material" uid="uid://cwde4wc8keid8" path="res://Materials/knight.tres" id="5_oa6ai"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="6_64djv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gn7p2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhf33"]
-shading_mode = 0
-albedo_texture = ExtResource("5_ftw8n")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yvoud"]
 animation = &"metarig_001|attack"
@@ -124,7 +120,7 @@ states/metarig_001|move/position = Vector2(886, 299)
 states/metarig_001|move_attack_to_attack/node = SubResource("AnimationNodeAnimation_wwr5r")
 states/metarig_001|move_attack_to_attack/position = Vector2(886, 127)
 transitions = ["Start", "metarig_001|idle", SubResource("AnimationNodeStateMachineTransition_8n1bg"), "metarig_001|idle", "metarig_001|idle_to_move", SubResource("AnimationNodeStateMachineTransition_5ka3e"), "metarig_001|idle_to_move", "metarig_001|move", SubResource("AnimationNodeStateMachineTransition_aypbj"), "metarig_001|move", "metarig_001|idle", SubResource("AnimationNodeStateMachineTransition_bxwv7"), "metarig_001|attack_idle", "metarig_001|attack", SubResource("AnimationNodeStateMachineTransition_b8au5"), "metarig_001|move", "metarig_001|move_attack_to_attack", SubResource("AnimationNodeStateMachineTransition_rp3y7"), "metarig_001|move_attack_to_attack", "metarig_001|attack_idle", SubResource("AnimationNodeStateMachineTransition_s0aup"), "metarig_001|attack_idle", "metarig_001|attack_idle_to_move", SubResource("AnimationNodeStateMachineTransition_frplg"), "metarig_001|attack_idle_to_move", "metarig_001|move", SubResource("AnimationNodeStateMachineTransition_quuql"), "metarig_001|attack_idle", "metarig_001|attack_idle_to_death_2", SubResource("AnimationNodeStateMachineTransition_oewco"), "metarig_001|idle", "metarig_001|attack_idle_to_death", SubResource("AnimationNodeStateMachineTransition_hyd71"), "metarig_001|attack", "metarig_001|attack_idle_to_death_2", SubResource("AnimationNodeStateMachineTransition_u2aem"), "metarig_001|move", "metarig_001|attack_idle_to_death", SubResource("AnimationNodeStateMachineTransition_mbc8r"), "metarig_001|attack", "metarig_001|attack_idle", SubResource("AnimationNodeStateMachineTransition_6jd64"), "metarig_001|idle", "metarig_001|attack", SubResource("AnimationNodeStateMachineTransition_dgtls")]
-graph_offset = Vector2(15, 358)
+graph_offset = Vector2(148, 125)
 
 [node name="Knight" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_2x1n4")
@@ -177,7 +173,8 @@ bones/37/position = Vector3(-0.0137382, 0.0219567, 0.0447047)
 bones/39/position = Vector3(-0.0195834, 0.024392, 0.0203621)
 
 [node name="Cube_011" parent="knight/RootNode/metarig_001/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_lhf33")
+transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
+surface_material_override/0 = ExtResource("5_oa6ai")
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 1.667
@@ -210,10 +207,12 @@ parameters/conditions/idle = true
 parameters/conditions/move = false
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.48829, 0, 0, 0, 1, 0, 1.29671, 0)
+aabb = AABB(-1, -0.888866, -1, 2, 1.94668, 2)
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

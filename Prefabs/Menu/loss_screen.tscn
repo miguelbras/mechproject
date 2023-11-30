@@ -51,5 +51,7 @@ text = "menu"
 layout_mode = 2
 text = "exit"
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="Control/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

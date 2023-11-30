@@ -30,7 +30,10 @@ func _ready():
 	Global.arena.skeletonCreated.connect(addSkeleton)
 	Global.arena.skeletonKilled.connect(removeSkeleton)
 	Global.arena.flyerCreated.connect(addFlyer)
-	Global.arena.flyerKilled.connect(removeFlyer)# Replace with function body.
+	Global.arena.flyerKilled.connect(removeFlyer)
+	flyerAmountLabel.text = str(flyerAmount) + "/6"
+	skeletonAmountLabel.text = str(skeletonAmount)
+	
 
 func addVillager():
 	villagerAmount += 1
@@ -84,7 +87,7 @@ func removeSkeleton():
 	
 func addFlyer():
 	flyerAmount +=1
-	flyerAmountLabel.text = str(flyerAmount)
+	flyerAmountLabel.text = str(flyerAmount) + "/6"
 	totalPopulation+=1
 	lichPopulation += 12
 	updatePowerBalanceBar()

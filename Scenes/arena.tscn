@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwt6nlsioa41q"]
+[gd_scene load_steps=15 format=3 uid="uid://bwt6nlsioa41q"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_041gh"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_j5whs"]
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_dlpux"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_ayhs3"]
+[ext_resource type="PackedScene" uid="uid://db1xd14iaadya" path="res://Prefabs/Buildings/hut.tscn" id="8_3rn30"]
 [ext_resource type="PackedScene" uid="uid://dn4137vckmneq" path="res://Prefabs/UI/HealthBar.tscn" id="8_b74ak"]
 [ext_resource type="PackedScene" uid="uid://dm5ri7gsate38" path="res://Prefabs/Buildings/fortress.tscn" id="8_nyilo"]
+[ext_resource type="PackedScene" uid="uid://cjan7el5etmxg" path="res://Prefabs/Buildings/house.tscn" id="9_a3jhr"]
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="9_etbo6"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="9_pnex7"]
-[ext_resource type="PackedScene" uid="uid://j7xjqslowfv4" path="res://Prefabs/Characters/flyer.tscn" id="9_pp6m7"]
+[ext_resource type="PackedScene" uid="uid://dv0510wjionak" path="res://Prefabs/Buildings/mansion.tscn" id="10_0mpls"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -88,9 +90,6 @@ autoplay = true
 
 [node name="UI" parent="." instance=ExtResource("8_b74ak")]
 
-[node name="TextureProgressBar" parent="UI/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
-lich = NodePath("../../../Lich")
-
 [node name="Control" parent="." instance=ExtResource("9_etbo6")]
 offset_left = 693.0
 offset_top = 591.0
@@ -100,15 +99,23 @@ offset_bottom = 591.0
 [node name="HBoxContainer" parent="Control/CanvasLayer" index="0" node_paths=PackedStringArray("lich")]
 lich = NodePath("../../../Lich")
 
-[node name="Fortress" parent="." instance=ExtResource("8_nyilo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.28709, 0.0866356, -3.70432)
+[node name="Hut" parent="." instance=ExtResource("8_3rn30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74768, 0.0866346, 19.335)
 
-[node name="FlyerCharacter" parent="." instance=ExtResource("9_pp6m7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9656, 0.0866351, 3.90293)
+[node name="House" parent="." instance=ExtResource("9_a3jhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.51253, 0.0866346, 8.52371)
+
+[node name="Mansion" parent="." instance=ExtResource("10_0mpls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.50206, 0.0866346, -4.16021)
+
+[node name="Fortress" parent="." instance=ExtResource("8_nyilo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8652, 0.0866346, -20.6347)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]
 [editable path="Lich/lich"]
+[editable path="Lich/SelectionMarker"]
+[editable path="Lich/SelectionMarker/highlight"]
 [editable path="UI"]
 [editable path="Control"]

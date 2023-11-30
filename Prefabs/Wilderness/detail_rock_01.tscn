@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmr36iomf6a76"]
+
+[ext_resource type="Script" path="res://Scripts/Wilderness/decoration.gd" id="1_ctg6l"]
+[ext_resource type="PackedScene" uid="uid://b8emf4ju46m8a" path="res://3DModels/Wilderness/detail_rock_01.fbx" id="2_5oakm"]
+[ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="3_e68k8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_410ua"]
+height = 1.0
+
+[node name="detail_rock_01" type="StaticBody3D"]
+script = ExtResource("1_ctg6l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363525, 0)
+shape = SubResource("CylinderShape3D_410ua")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1.39848, 0, 0, 0, 0.846884, 0, 0, 0, 0.571697, -0.00908391, 0.222113, 0.0682444)
+aabb = AABB(-0.403283, -0.360332, -1, 0.806567, 0.720664, 2)
+
+[node name="mesh" parent="." instance=ExtResource("2_5oakm")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0947496, 0)
+
+[node name="Icosphere_002" parent="mesh/RootNode" index="0"]
+surface_material_override/0 = ExtResource("3_e68k8")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+
+[editable path="mesh"]

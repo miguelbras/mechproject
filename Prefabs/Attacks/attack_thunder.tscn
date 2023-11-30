@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnwgxj1cn5do3"]
+
+[ext_resource type="Script" path="res://Scripts/Attacks/attack_thunder.gd" id="1_bkmi4"]
+[ext_resource type="Texture2D" uid="uid://drlo4gxht2h3o" path="res://Textures/Attacks/thunder_red.png" id="2_w2u0i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g585w"]
+size = Vector3(2.2, 1, 2.2)
+
+[node name="attack_thunder" type="Area3D"]
+script = ExtResource("1_bkmi4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7152)
+shape = SubResource("BoxShape3D_g585w")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(5.26, 0, 0, 0, -2.18557e-07, 2.128, 0, -5, -9.30178e-08, 0, -0.635855, -1.23412)
+texture_filter = 0
+texture = ExtResource("2_w2u0i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="FlipTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_dmg"]
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timer_timeout"]
