@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://li6ypkpv00ty" path="res://Textures/Menu/tlq.png" id="2_06swr"]
 [ext_resource type="Texture2D" uid="uid://ddnnrh5phag7r" path="res://Textures/UI/item_box_transparent.png" id="3_k7n4a"]
 [ext_resource type="AudioStream" uid="uid://bape6cbr8a8hv" path="res://Sound/BackgroundMusic/dark-mysterious-halloween-night-scary-creepy-spooky-horror-music-116551_by_-_SoundGalleryBy_.mp3" id="3_qvj5d"]
-[ext_resource type="FontFile" uid="uid://dmoxjb6kcjlh2" path="res://telegraw.ttf" id="4_hyc1o"]
+[ext_resource type="FontFile" uid="uid://dmoxjb6kcjlh2" path="res://Fonts/telegraw.ttf" id="4_hyc1o"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_18qqm"]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv0510wjionak"]
+[gd_scene load_steps=9 format=3 uid="uid://dv0510wjionak"]
 
 [ext_resource type="Script" path="res://Scripts/Buildings/spawner.gd" id="1_wp4qb"]
-[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="2_2wsek"]
+[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_female.tscn" id="2_jmo4x"]
+[ext_resource type="PackedScene" uid="uid://bkja2k30hj0ls" path="res://Prefabs/Characters/civilian_male.tscn" id="3_dflup"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_g2egg"]
 [ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="4_2xjtl"]
 [ext_resource type="PackedScene" uid="uid://b2fiot55pwnwm" path="res://3DModels/Building/house_03.fbx" id="5_xto4k"]
@@ -14,36 +15,36 @@ size = Vector3(6, 4.533, 7.697)
 script = ExtResource("1_wp4qb")
 max_civilians = 4
 max_knights = 2
-civilian_prefab = ExtResource("2_2wsek")
+female_prefab = ExtResource("2_jmo4x")
+male_prefab = ExtResource("3_dflup")
 knight_prefab = ExtResource("3_g2egg")
 paladin_prefab = ExtResource("4_2xjtl")
-spawn_direction = Vector3(2, 0, 0)
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+
+[node name="ReadySpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+
+[node name="BuildingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2617, 2.3179)
+shape = SubResource("BoxShape3D_2nx6i")
+
+[node name="house" parent="." instance=ExtResource("5_xto4k")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.0519208, 0, 2.50516)
+
+[node name="Plane_010" parent="house/RootNode" index="0"]
+surface_material_override/0 = ExtResource("6_dln8a")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
 
-[node name="SpawnPoint" type="Node3D" parent="."]
-
 [node name="AfterSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09809, 0.5, 3.26966)
-
-[node name="BuildingCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2617, -2.34345)
-shape = SubResource("BoxShape3D_2nx6i")
-
-[node name="house" parent="." instance=ExtResource("5_xto4k")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0445023, 0, -2.65799)
-
-[node name="Plane_010" parent="house/RootNode" index="0"]
-surface_material_override/0 = ExtResource("6_dln8a")
-
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(3.68439, 0, 0, 0, 3.13246, 0, 0, 0, 4.50656, 0.216462, 2.891, -2.11317)
+transform = Transform3D(3.40134, 0, 0, 0, 3.13246, 0, 0, 0, 4.13778, -0.147187, 2.891, 1.94507)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

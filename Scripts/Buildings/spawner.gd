@@ -5,10 +5,10 @@ class_name Building
 @export var max_civilians: int = 1
 @export var max_knights: int = 0
 @export var max_paladins: int = 0
-@export var civilian_prefab: PackedScene
+@export var female_prefab: PackedScene
+@export var male_prefab: PackedScene
 @export var knight_prefab: PackedScene
 @export var paladin_prefab: PackedScene
-@export var spawn_direction: Vector3 = Vector3(1,0,0)
 
 @onready var fbx = $house
 
@@ -32,7 +32,7 @@ func _on_ready():
 		spawn_something_ready(knight_prefab.instantiate())
 		current_knights += 1
 	while current_civilians < max_civilians:
-		spawn_something_ready(civilian_prefab.instantiate())
+		spawn_something_ready(male_prefab.instantiate() if randf() > 0.5 else female_prefab.instantiate())
 		current_civilians += 1
 	set_visuals(false)
 
@@ -44,13 +44,16 @@ func spawn_something():
 		last_spawned_entity = knight_prefab.instantiate()
 		current_knights += 1
 	elif current_civilians < max_civilians:
-		last_spawned_entity = civilian_prefab.instantiate()
+		if randf() > 0.5:
+			last_spawned_entity = male_prefab.instantiate()
+		else:
+			last_spawned_entity = female_prefab.instantiate()
 		current_civilians += 1
 	else:
 		last_spawned_entity = null
 		return
 	Global.arena.add_child(last_spawned_entity)
-	last_spawned_entity.velocity = spawn_direction
+	last_spawned_entity.velocity = -basis.z
 	last_spawned_entity.parent_spawner = self
 	last_spawned_entity.global_position = $SpawnPoint.global_position
 	last_spawned_entity.get_node("CollisionShape3D").disabled = true

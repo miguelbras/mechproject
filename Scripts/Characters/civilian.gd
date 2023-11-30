@@ -10,7 +10,7 @@ var current_stamina: float
 @onready var stamina_timer = $StaminaTimer
 @onready var random_mov_timer = $RandomMovementTimer
 @onready var doot = load("res://Prefabs/Characters/doot.tscn")
-@onready var fbx = $villager_female
+@onready var fbx = $villager
 @onready var anim_tree = $AnimationTree
 
 var target # target to run from if ESCAPE

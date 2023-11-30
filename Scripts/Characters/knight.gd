@@ -68,6 +68,8 @@ func _physics_process(_delta):
 		calc_velocity()
 	if position.y > 0.59:
 		velocity.y = -(position.y-0.59) * 4
+	elif position.y < 0.59:
+		position.y = 0.59
 	look_at_target()
 	move_and_slide()
 

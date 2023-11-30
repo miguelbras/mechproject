@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_7xlae"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_nhaj8"]
 [ext_resource type="PackedScene" uid="uid://cvobbpyan2tc0" path="res://3DModels/Character/paladin.fbx" id="4_fpnv2"]
-[ext_resource type="Material" uid="uid://cwde4wc8keid8" path="res://Materials/knight.tres" id="5_8lxsf"]
+[ext_resource type="Material" uid="uid://0hrgtaxpnnrp" path="res://Materials/paladin.tres" id="5_vatpk"]
 [ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_vmnto"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="6_nmybe"]
 
@@ -125,7 +125,11 @@ graph_offset = Vector2(-45, 38)
 [node name="Paladin" type="CharacterBody3D" groups=["Enemy", "Paladin"]]
 script = ExtResource("1_3hk6k")
 attack_range = 2.0
+strength = 5
 process_tick_max = 10
+hp = 20
+defense = 1
+max_velocity = 4
 attack1_debuff_prefab = ExtResource("2_7xlae")
 attack2_debuff_prefab = ExtResource("3_nhaj8")
 
@@ -137,7 +141,7 @@ shape = SubResource("CapsuleShape3D_gn7p2")
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
 [node name="Cube_011" parent="knight/RootNode/metarig_001/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("5_8lxsf")
+surface_material_override/0 = ExtResource("5_vatpk")
 
 [node name="Cooldown" type="Timer" parent="."]
 autostart = true
@@ -157,7 +161,7 @@ process_thread_group = 2
 process_thread_group_order = 2
 process_thread_messages = 0
 script = ExtResource("6_nmybe")
-aggro_range = 15.0
+aggro_range = 30.0
 parentNode = NodePath("..")
 searchLich = false
 

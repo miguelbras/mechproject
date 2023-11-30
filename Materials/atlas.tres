@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d36m7x8sj37qq" path="res://Textures/3DModels/atlas.png" id="1_3il0e"]
 
 [resource]
-transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("1_3il0e")
 texture_filter = 0

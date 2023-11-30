@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Wilderness/decoration.gd" id="1_xthnr"]
 [ext_resource type="PackedScene" uid="uid://diy0evqowodbc" path="res://3DModels/Wilderness/tree_05.fbx" id="2_201qm"]
-[ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="3_uvg2p"]
+[ext_resource type="Material" uid="uid://hbci2c4bg230" path="res://Materials/atlas_alpha.tres" id="3_tbkk2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_410ua"]
 radius = 0.75
@@ -22,7 +22,7 @@ aabb = AABB(-0.403283, -0.360332, -1, 0.806567, 0.720664, 2)
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="tree trunk 01_006" parent="mesh/RootNode" index="0"]
-surface_material_override/0 = ExtResource("3_uvg2p")
+surface_material_override/0 = ExtResource("3_tbkk2")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

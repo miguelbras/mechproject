@@ -24,6 +24,7 @@ func _on_ready():
 	audio_player.stream = sound1
 	audio_player.play()
 	set_visuals(false)
+	Global.fliers += 1
 
 func set_visuals(enable: bool):
 	fbx.set_process(enable)
@@ -95,5 +96,5 @@ func _on_visible_on_screen_notifier_3d_screen_entered():
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	set_visuals(false)
 
-func _on_tree_exited_child():
-	super._on_tree_exited()
+func _on_tree_exited():
+	Global.fliers -= 1
