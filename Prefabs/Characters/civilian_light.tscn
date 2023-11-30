@@ -5,13 +5,14 @@
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="2_d18j0"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_3xc1d"]
 [ext_resource type="Texture2D" uid="uid://kbckgjohi7f7" path="res://Textures/3DModels/villager_female.png" id="5_4mv5g"]
-[ext_resource type="PackedScene" uid="uid://cyieugxevfa08" path="res://3DModels/villager_female.fbx" id="5_rio3h"]
+[ext_resource type="PackedScene" uid="uid://cyieugxevfa08" path="res://3DModels/Character/villager_female.fbx" id="5_rio3h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hn37s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my8xe"]
 shading_mode = 0
 albedo_texture = ExtResource("5_4mv5g")
+texture_filter = 0
 
 [sub_resource type="Animation" id="Animation_7gxey"]
 resource_name = "metarig_001|death"
@@ -3053,6 +3054,8 @@ wait_time = 2.0
 one_shot = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.565802, 0, 0, 0, 1.13455, 0, 0, 0, 1, 0, 1.07113, 0)
+aabb = AABB(-1, -1, -0.432042, 2, 2, 0.864083)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bidjw")

@@ -37,6 +37,7 @@ signal abilityRUsed
 @onready var death_timer = $DeathTimer
 @onready var global_cooldown = $Cooldown
 @onready var follow_selection_marker = $SelectionMarker
+@onready var summon_timer = $SummonTimer
 
 const atk3_sound = preload("res://Sound/Attack/Eldritch Blast.wav")
 const atk2_sound = preload("res://Sound/Attack/fire-magic-6947.mp3")
@@ -50,6 +51,8 @@ var last_time_attackedE = 0
 var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
+var summoning = false
+
 var top_down_cam_zoom_level = 1
 var escape_menu = null
 
@@ -59,7 +62,10 @@ func _ready():
 	follow_selection_marker.visible = false
 	# set initial aggression point as start pos
 	aggressive_marker.position = self.position
-	aggressive_marker.position.y = -0.1
+	aggressive_marker.scale.x = 0.11
+	aggressive_marker.scale.z = 0.11
+	aggressive_marker.scale.y = 4.00
+	aggressive_marker.visible = false
 
 func _process(delta):
 	update_state()
@@ -67,7 +73,8 @@ func _process(delta):
 	if(navigationAgent.is_navigation_finished()):
 		velocity = Vector3.ZERO
 		return
-	moveToPoint(delta, my_speed)
+	if not summoning:
+		moveToPoint(delta, my_speed)
 	iso_camera.position = self.position + iso_camera_delta
 	top_down_camera.position = self.position + top_down_camera_delta
 
@@ -115,7 +122,11 @@ func _input(event):
 	elif event.is_action_pressed("attack3"):
 		attack3()
 	elif event.is_action_pressed("summon"):
-		summon_flier()
+		if not attacking and summon_timer.is_stopped():
+			attacking = true
+			summoning = true
+			atk_pattern = 1
+			summon_timer.start()
 	# camera inputs
 	if event.is_action_pressed("zoom_out"):
 		top_down_cam_zoom_level = min(top_down_cam_zoom_level*2, 8)
@@ -134,7 +145,6 @@ func joined_horde(mob):
 		mob.follow_mode(self)
 	elif aggressive_marker.position.y > 0:
 		mob.aggressive_move(aggressive_marker.position)
-		
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
@@ -182,7 +192,7 @@ func attack1():
 func attack2():
 	if attacking or last_time_attackedW + attackW_Cooldown_ms > Time.get_ticks_msec():
 		return
-	atk_pattern = 1
+	atk_pattern = 0
 	attacking = true
 	global_cooldown.start()
 	audio_player.stream = atk2_sound
@@ -195,7 +205,7 @@ func attack2():
 func attack3():
 	if attacking or last_time_attackedE + attackE_Cooldown_ms > Time.get_ticks_msec():
 		return
-	atk_pattern = 2
+	atk_pattern = 0
 	attacking = true
 	global_cooldown.start()
 	audio_player.stream = atk3_sound
@@ -207,11 +217,12 @@ func attack3():
 
 func command_follow():
 	for mob in Global.arena.ally_map.values():
-		if mob is Lich:
-			continue
 		if is_instance_valid(mob):
-			mob.follow_mode(self)
-	aggressive_marker.position = Vector3(0, -5, 0) # hide under map
+			if mob is Lich:
+				continue
+			if is_instance_valid(mob):
+				mob.follow_mode(self)
+	aggressive_marker.visible = false
 	follow_selection_marker.visible = true
 
 func zombies_agg():
@@ -224,7 +235,7 @@ func zombies_agg():
 		if is_instance_valid(mob):
 			mob.aggressive_move(result.position)
 	aggressive_marker.position = result.position
-	aggressive_marker.position.y += 0.1
+	aggressive_marker.visible = true
 	follow_selection_marker.visible = false
 
 func take_damage(damage: int):
@@ -237,23 +248,27 @@ func take_damage(damage: int):
 		death_timer.start()
 
 func summon_flier():
-	var result = get_mouse_target_pos()
-	if not result:
-		return
-	var summon_pos = result.position
+	#var result = get_mouse_target_pos()
+	#if not result:
+	#	return
+	#var summon_pos = result.position
 	# place summon_pos within range
-	var summon_direction = summon_pos-self.position
-	var summon_direction_ratio_over_range = summon_direction.length() / 15.0
-	if summon_direction_ratio_over_range > 1:
-		summon_pos = self.position + (summon_direction / summon_direction_ratio_over_range)
+	#var summon_direction = summon_pos-self.position
+	#var summon_direction_ratio_over_range = summon_direction.length() / 15.0
+	#if summon_direction_ratio_over_range > 1:
+	#	summon_pos = self.position + (summon_direction / summon_direction_ratio_over_range)
 	# summon
+	if Global.fliers > 5:
+		return
 	var sacrifice = []
 	for f in Global.arena.ally_map.values():
 		if is_instance_valid(f) and f is Doot:
 			sacrifice += [f]
 		if len(sacrifice) == flyer_summon_sacrifices:
+			var summon_pos = sacrifice[0].position
 			for s in sacrifice:
-				s.queue_free()
+				#Global.arena.ally_despawned(s.my_id)
+				s.take_damage(100)#.queue_free()
 			var flyer_instance = flyer.instantiate()
 			Global.arena.add_child(flyer_instance)
 			flyer_instance.position = summon_pos
@@ -274,9 +289,8 @@ func update_state():
 func update_animation_parameters():
 	anim_tree["parameters/conditions/idle"] = state == State.IDLE or state == State.ATK
 	anim_tree["parameters/conditions/move"] = state == State.WALK
-	anim_tree["parameters/conditions/attack1"] = state == State.ATK and atk_pattern == 0
 	anim_tree["parameters/conditions/attack2"] = state == State.ATK and atk_pattern == 1
-	anim_tree["parameters/conditions/attack3"] = state == State.ATK and atk_pattern == 2
+	anim_tree["parameters/conditions/attack1"] = state == State.ATK and atk_pattern == 0
 	anim_tree["parameters/conditions/action"] = state == State.ATK and atk_pattern == 3
 	anim_tree["parameters/conditions/death"] = state == State.DEAD
 
@@ -285,3 +299,8 @@ func _on_death_timer_timeout():
 
 func _on_cooldown_timeout():
 	attacking = false
+
+func _on_summon_timer_timeout():
+	summon_flier()
+	attacking = false
+	summoning = false

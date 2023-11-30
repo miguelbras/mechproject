@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Characters/flyer.gd" id="1_pryk6"]
 [ext_resource type="PackedScene" uid="uid://lyo40j6gd3ts" path="res://Prefabs/Attacks/attack_flyer.tscn" id="2_luirf"]
-[ext_resource type="PackedScene" uid="uid://cxsi5j6vr8kn2" path="res://3DModels/flyer.fbx" id="3_pylqf"]
+[ext_resource type="PackedScene" uid="uid://cxsi5j6vr8kn2" path="res://3DModels/Character/flyer.fbx" id="3_pylqf"]
 [ext_resource type="Texture2D" uid="uid://befmrqqwpmyap" path="res://Textures/3DModels/flyer.png" id="4_1re8f"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://7ad32kr2vxvm" path="res://AnimationTrees/flyer.tres" id="5_xbxaq"]
 [ext_resource type="AudioStream" uid="uid://df36jfrogp2x6" path="res://Sound/Attack/fire-magic-6947.mp3" id="7_w2my2"]
@@ -2788,6 +2788,7 @@ search_for_allies = false
 searchLich = false
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(3.59328, 0, 0, 0, 1.53526, 0, 0, 0, 1.16489, 0, 1.46052, 0)
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -2798,7 +2799,7 @@ wait_time = 1.433
 one_shot = true
 
 [connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="tree_exited" from="." to="." method="_on_tree_exited_child"]
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

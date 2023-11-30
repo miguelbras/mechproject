@@ -1,5 +1,7 @@
 extends Knight
+
 class_name Paladin
+
 # if lich visible follow lich and attack lich, if not follow closest mob
 func follow_enemy():
 	# prioritize lich

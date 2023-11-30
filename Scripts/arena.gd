@@ -81,7 +81,8 @@ func ally_spawned(ally: Node3D) -> int:
 	process_tick_curr += 1
 	ally_id += 1
 	ally_map[ally_id] = ally
-	ally_map[LICH_ID].joined_horde(ally)
+	if is_instance_valid(ally_map[LICH_ID]):
+		ally_map[LICH_ID].joined_horde(ally)
 	if ally is Doot:
 		skeletonCreated.emit()
 	if ally is Flyer:

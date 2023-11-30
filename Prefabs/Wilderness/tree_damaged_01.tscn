@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4jgru44j7wcf"]
+
+[ext_resource type="Script" path="res://Scripts/Wilderness/decoration.gd" id="1_u4y53"]
+[ext_resource type="PackedScene" uid="uid://r7gjk7j3ygbs" path="res://3DModels/Wilderness/tree_damaged_01.fbx" id="2_vfxfw"]
+[ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="3_1hlvo"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_410ua"]
+radius = 0.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0col1"]
+size = Vector3(2, 2, 1)
+
+[node name="tree_damaged_01" type="StaticBody3D"]
+script = ExtResource("1_u4y53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363525, 0)
+shape = SubResource("CylinderShape3D_410ua")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.863897, 0, 0.503668, 0, 1, 0, -0.503668, 0, 0.863897, 5.11584, 0.72705, -2.90341)
+shape = SubResource("BoxShape3D_0col1")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(8.72468, 0, 0, 0, 5.52354, 0, 0, 0, 2.12146, 2.7036, 1.5769, -1.34387)
+aabb = AABB(-0.403283, -0.360332, -1, 0.806567, 0.720664, 2)
+
+[node name="mesh" parent="." instance=ExtResource("2_vfxfw")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="tree trunk 01_007" parent="mesh/RootNode" index="0"]
+surface_material_override/0 = ExtResource("3_1hlvo")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+
+[editable path="mesh"]
