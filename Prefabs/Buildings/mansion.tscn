@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv0510wjionak"]
+[gd_scene load_steps=9 format=3 uid="uid://dv0510wjionak"]
 
 [ext_resource type="Script" path="res://Scripts/Buildings/spawner.gd" id="1_wp4qb"]
-[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="2_2wsek"]
+[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_female.tscn" id="2_jmo4x"]
+[ext_resource type="PackedScene" uid="uid://bkja2k30hj0ls" path="res://Prefabs/Characters/civilian_male.tscn" id="3_dflup"]
 [ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="3_g2egg"]
 [ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="4_2xjtl"]
 [ext_resource type="PackedScene" uid="uid://b2fiot55pwnwm" path="res://3DModels/Building/house_03.fbx" id="5_xto4k"]
@@ -14,7 +15,8 @@ size = Vector3(6, 4.533, 7.697)
 script = ExtResource("1_wp4qb")
 max_civilians = 4
 max_knights = 2
-civilian_prefab = ExtResource("2_2wsek")
+female_prefab = ExtResource("2_jmo4x")
+male_prefab = ExtResource("3_dflup")
 knight_prefab = ExtResource("3_g2egg")
 paladin_prefab = ExtResource("4_2xjtl")
 
