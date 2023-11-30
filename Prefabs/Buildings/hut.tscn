@@ -16,34 +16,32 @@ max_civilians = 3
 civilian_prefab = ExtResource("2_vvnwc")
 knight_prefab = ExtResource("3_pw1i6")
 paladin_prefab = ExtResource("4_mruqj")
-spawn_direction = Vector3(2, 0, 0)
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+
+[node name="ReadySpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+
+[node name="BuildingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51259, 2.29965, 0.0925086)
+shape = SubResource("BoxShape3D_2nx6i")
+
+[node name="house" parent="." instance=ExtResource("5_y4dj4")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -1.48304, 0, -1.39259)
+
+[node name="Plane_007" parent="house/RootNode" index="0"]
+surface_material_override/0 = ExtResource("6_romgv")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
 
-[node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18352, 0, 0.134407)
-
 [node name="AfterSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07374, 0.5, -4.80915)
-
-[node name="BuildingCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59722, 2.29965, 0)
-shape = SubResource("BoxShape3D_2nx6i")
-
-[node name="house" parent="." instance=ExtResource("5_y4dj4")]
-transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -1.56767, 0, -1.4851)
-
-[node name="Plane_007" parent="house/RootNode" index="0"]
-surface_material_override/0 = ExtResource("6_romgv")
-
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(4.4837, 0, 0, 0, 3.76021, 0, 0, 0, 3.6042, -1.47459, 3.75522, 0)
+transform = Transform3D(4.4837, 0, 0, 0, 3.76021, 0, 0, 0, 3.6042, -1.38996, 3.75522, 0.0925086)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

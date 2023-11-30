@@ -8,7 +8,6 @@ class_name Building
 @export var civilian_prefab: PackedScene
 @export var knight_prefab: PackedScene
 @export var paladin_prefab: PackedScene
-@export var spawn_direction: Vector3 = Vector3(1,0,0)
 
 @onready var fbx = $house
 
@@ -50,7 +49,7 @@ func spawn_something():
 		last_spawned_entity = null
 		return
 	Global.arena.add_child(last_spawned_entity)
-	last_spawned_entity.velocity = spawn_direction
+	last_spawned_entity.velocity = -basis.z
 	last_spawned_entity.parent_spawner = self
 	last_spawned_entity.global_position = $SpawnPoint.global_position
 	last_spawned_entity.get_node("CollisionShape3D").disabled = true

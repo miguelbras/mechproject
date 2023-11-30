@@ -8,13 +8,13 @@ enum State {IDLE, WALK, ATK, DEAD}
 @export var defense = 0
 @export var strength = 2
 @export var max_velocity = 3
-
-@onready var AggroTargetScript = $Thread1Node
 @export var attack_range: float = 2
 
 @onready var move_target = position # position to move on command
+@onready var AggroTargetScript = $Thread1Node
 @onready var death_timer: Timer = $DeathTimer
 @onready var cooldown = $Cooldown
+@onready var collision = $CollisionShape3D
 
 var target_velocity = Vector3.ZERO # direction to move
 var state = State.IDLE # animation state
@@ -56,9 +56,6 @@ func calc_velocity():
 				move_target = lich.position
 			follow_target()
 		check_blocked()
-
-func _on_tree_exited():
-	pass
 
 func _process(delta):
 	update_state()
@@ -178,6 +175,7 @@ func take_damage(damage: int):
 		self.set_physics_process(false)
 		death_timer.start()
 		Global.arena.ally_despawned(my_id)
+		collision.queue_free()
 		_on_death()
 
 func _on_death_timer_timeout():

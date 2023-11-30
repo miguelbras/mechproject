@@ -20,6 +20,7 @@ var dot_dmg = 1
 var attack2_debuff = null
 
 @onready var death_timer: Timer = $DeathTimer
+@onready var collision = $CollisionShape3D
 
 var ready_after_spawn = true
 var parent_spawner = null
@@ -53,6 +54,7 @@ func take_damage(damage: int):
 	if hp <= 0 and death_timer.is_stopped():
 		death_timer.start()
 		Global.arena.enemy_despawned(my_id)
+		collision.queue_free()
 		self.set_physics_process(false)
 		self.velocity = Vector3.ZERO
 

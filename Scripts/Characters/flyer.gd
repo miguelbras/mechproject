@@ -95,5 +95,3 @@ func _on_visible_on_screen_notifier_3d_screen_entered():
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	set_visuals(false)
 
-func _on_tree_exited_child():
-	super._on_tree_exited()

@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="6_edt7s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nx6i"]
-size = Vector3(3.05733, 4.53307, 7.21223)
+size = Vector3(3.057, 4.533, 7.5)
 
 [node name="Fortress" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_vycki")
@@ -18,34 +18,33 @@ max_paladins = 1
 civilian_prefab = ExtResource("2_weujv")
 knight_prefab = ExtResource("3_gdmtc")
 paladin_prefab = ExtResource("4_lumuw")
-spawn_direction = Vector3(2, 0, 0)
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
 
 [node name="SpawnPoint" type="Node3D" parent="."]
 
-[node name="AfterSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="ReadySpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37606, 0.5, 5.48655)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
 [node name="BuildingCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.00122, 0, 0, 0, 1.00122, 0, 0, 0, 1.00122, -0.210925, 2.17444, 1.55135)
+transform = Transform3D(0.00735668, 0, 1.00119, 0, 1.00122, 0, -1.00119, 0, 0.00735668, 1.54654, 2.17444, 0.29047)
 shape = SubResource("BoxShape3D_2nx6i")
 
 [node name="house" parent="." instance=ExtResource("5_45qnj")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 6.3667, 0.0970755, 7.28974)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 7.24318, 0.0970755, -6.25593)
 
 [node name="Plane_012" parent="house/RootNode" index="0"]
 transform = Transform3D(150, 0, 0, 0, 150, -6.55671e-06, 0, 6.55671e-06, 150, 8.34312, 0, -10.2111)
 surface_material_override/0 = ExtResource("6_edt7s")
 
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="AfterSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(4.54814, 0, 0, 0, 4.09481, 0, 0, 0, 4.16821, -0.196437, 3.82908, 1.38417)
+transform = Transform3D(4.54814, 0, 0, 0, 4.09481, 0, 0, 0, 3.67941, 1.46408, 3.82908, 0.467388)
 aabb = AABB(-0.885047, -1, -1, 1.77009, 2, 2)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
