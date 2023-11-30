@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drlo4gxht2h3o" path="res://Textures/Attacks/thunder_red.png" id="2_w2u0i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g585w"]
-size = Vector3(2, 1, 2)
+size = Vector3(2.2, 1, 2.2)
 
 [node name="attack_thunder" type="Area3D"]
 script = ExtResource("1_bkmi4")
