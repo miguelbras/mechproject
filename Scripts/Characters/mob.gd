@@ -14,7 +14,6 @@ enum State {IDLE, WALK, ATK, DEAD}
 @onready var AggroTargetScript = $Thread1Node
 @onready var death_timer: Timer = $DeathTimer
 @onready var cooldown = $Cooldown
-@onready var collision = $CollisionShape3D
 
 var target_velocity = Vector3.ZERO # direction to move
 var state = State.IDLE # animation state
@@ -175,7 +174,6 @@ func take_damage(damage: int):
 		self.set_physics_process(false)
 		death_timer.start()
 		Global.arena.ally_despawned(my_id)
-		collision.disable = true
 		_on_death()
 
 func _on_death_timer_timeout():
