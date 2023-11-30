@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://83ift1ga70x1"]
+[gd_scene load_steps=21 format=3 uid="uid://83ift1ga70x1"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_x7pq0"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_haw5r"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bbn2stw2yvli1" path="res://Prefabs/Wilderness/mountain.tscn" id="13_0gfih"]
 [ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="14_lb7fs"]
 [ext_resource type="PackedScene" uid="uid://cjl8b7uvyfye1" path="res://Prefabs/UI/Tutorials.tscn" id="15_5k72p"]
+[ext_resource type="PackedScene" uid="uid://bkja2k30hj0ls" path="res://Prefabs/Characters/civilian_male.tscn" id="15_dfctm"]
 [ext_resource type="PackedScene" uid="uid://5jrtgnqrgc4" path="res://Prefabs/UI/UI.tscn" id="16_6d28y"]
 
 [sub_resource type="Environment" id="Environment_ggbec"]
@@ -785,6 +786,9 @@ offset_bottom = 73.0
 lich = NodePath("../../../../Lich")
 
 [node name="Wilderness" type="Node3D" parent="."]
+
+[node name="Civilian" parent="." instance=ExtResource("15_dfctm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.34524, 0.05, 9.59744)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
