@@ -51,6 +51,8 @@ var last_time_attackedE = 0
 var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
+var summoning = false
+
 var top_down_cam_zoom_level = 1
 var escape_menu = null
 
@@ -71,7 +73,8 @@ func _process(delta):
 	if(navigationAgent.is_navigation_finished()):
 		velocity = Vector3.ZERO
 		return
-	moveToPoint(delta, my_speed)
+	if not summoning:
+		moveToPoint(delta, my_speed)
 	iso_camera.position = self.position + iso_camera_delta
 	top_down_camera.position = self.position + top_down_camera_delta
 
@@ -121,6 +124,7 @@ func _input(event):
 	elif event.is_action_pressed("summon"):
 		if not attacking and summon_timer.is_stopped():
 			attacking = true
+			summoning = true
 			atk_pattern = 1
 			summon_timer.start()
 	# camera inputs
@@ -141,7 +145,6 @@ func joined_horde(mob):
 		mob.follow_mode(self)
 	elif aggressive_marker.position.y > 0:
 		mob.aggressive_move(aggressive_marker.position)
-		
 
 func get_mouse_target_pos():
 	var mousePos = get_viewport().get_mouse_position()
@@ -300,3 +303,4 @@ func _on_cooldown_timeout():
 func _on_summon_timer_timeout():
 	summon_flier()
 	attacking = false
+	summoning = false
