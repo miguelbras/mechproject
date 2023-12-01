@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Attacks/attack1.gd" id="1_2y1fl"]
 [ext_resource type="PackedScene" uid="uid://bl5r74ydsnqd1" path="res://3DModels/Attack/bullet.fbx" id="2_5hlvm"]
-[ext_resource type="Material" uid="uid://caoc4ybvmoxfx" path="res://Materials/selection_marker.tres" id="3_dqmru"]
+[ext_resource type="Material" uid="uid://cbq7ilswbm8lc" path="res://Materials/ice.tres" id="3_lbxo3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s2cxj"]
 
@@ -21,7 +21,7 @@ transform = Transform3D(-0.75, 0, -1.13247e-07, 0, 0.75, 0, 1.13247e-07, 0, -0.7
 
 [node name="bullet" parent="bullet/RootNode" index="0"]
 transform = Transform3D(31.1619, 0, 0, 0, -1.72089e-05, 31.1619, 0, -144.359, -3.71479e-06, 0, 0, -1.11794)
-surface_material_override/0 = ExtResource("3_dqmru")
+surface_material_override/0 = ExtResource("3_lbxo3")
 
 [connection signal="body_entered" from="." to="." method="_on_dmg"]
 [connection signal="timeout" from="Timer" to="." method="_on_timeout"]
