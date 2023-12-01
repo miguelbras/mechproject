@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuvnsrih2hjtu"]
+[gd_scene load_steps=9 format=3 uid="uid://cuvnsrih2hjtu"]
 
 [ext_resource type="Script" path="res://Scripts/UI/AbilityCooldownUI.gd" id="1_10xn3"]
 [ext_resource type="Texture2D" uid="uid://nrkltitmgva1" path="res://Textures/UI/blue_circle.png" id="1_78445"]
-[ext_resource type="Texture2D" uid="uid://cvscs03iuidok" path="res://Textures/UI/gray_circle.png" id="2_d1w2y"]
 [ext_resource type="Texture2D" uid="uid://cyuo8vsm3k0m4" path="res://Textures/UI/red_circle.png" id="3_fw8m0"]
+[ext_resource type="Texture2D" uid="uid://cc24deomxqbmn" path="res://Textures/UI/blue_circle_cooldown.png" id="3_swbcp"]
 [ext_resource type="Texture2D" uid="uid://bv51grfhsq855" path="res://Textures/UI/green_circle.png" id="4_kap6f"]
+[ext_resource type="Texture2D" uid="uid://bw7wu3j027tps" path="res://Textures/UI/green_circle_cooldown.png" id="7_qo8ys"]
+[ext_resource type="Texture2D" uid="uid://d2umpcxoiksd4" path="res://Textures/UI/flyer_summon_circle.png" id="7_qyr6q"]
+[ext_resource type="Texture2D" uid="uid://dh2rqekrbgfrn" path="res://Textures/UI/flyer_summon_circle_cooldown.png" id="8_5su5q"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -39,7 +42,7 @@ ability4Circle = NodePath("Ability4Cooldown")
 layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("1_78445")
-texture_progress = ExtResource("2_d1w2y")
+texture_progress = ExtResource("3_swbcp")
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -49,7 +52,7 @@ layout_mode = 2
 layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("3_fw8m0")
-texture_progress = ExtResource("2_d1w2y")
+texture_progress = ExtResource("7_qo8ys")
 
 [node name="VSeparator2" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -59,7 +62,7 @@ layout_mode = 2
 layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("4_kap6f")
-texture_progress = ExtResource("2_d1w2y")
+texture_progress = ExtResource("7_qo8ys")
 
 [node name="VSeparator3" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -68,5 +71,5 @@ layout_mode = 2
 [node name="Ability4Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 fill_mode = 4
-texture_under = ExtResource("4_kap6f")
-texture_progress = ExtResource("2_d1w2y")
+texture_under = ExtResource("7_qyr6q")
+texture_progress = ExtResource("8_5su5q")
