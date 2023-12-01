@@ -11,6 +11,7 @@ class_name Flyer
 
 const sound1 = preload("res://Sound/Character/dragon-roar-96996.mp3")
 const sound2 = preload("res://Sound/Attack/fire-magic-6947.mp3")
+const sound3 = preload("res://Sound/Character/276577__mickboere__dragons-dying-breath.wav")
 const anim_map = {
 	State.IDLE: "Flyer Boi armature|Attack Idle", 
 	State.WALK: "Flyer Boi armature|Glide",
@@ -102,4 +103,7 @@ func _on_tree_exited():
 func _on_animation_tree_animation_started(anim_name):
 	if anim_name == "Flyer Boi armature|Attack 1" or anim_name == "Flyer Boi armature|Attack 2":
 		audio_player.stream = sound1
+		audio_player.play()
+	elif anim_name == "Flyer Boi armature|Death Fall":
+		audio_player.stream = sound3
 		audio_player.play()
