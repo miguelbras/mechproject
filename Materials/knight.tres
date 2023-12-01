@@ -1,8 +1,8 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cwde4wc8keid8"]
 
-[ext_resource type="Texture2D" uid="uid://dpffa7t64e126" path="res://Textures/3DModels/knight_diffuse_black_n_white_blue.png" id="1_srilq"]
+[ext_resource type="Texture2D" uid="uid://dpffa7t64e126" path="res://Textures/3DModels/knight_diffuse_black_n_white_blue.png" id="1_h4058"]
 
 [resource]
 shading_mode = 0
-albedo_texture = ExtResource("1_srilq")
+albedo_texture = ExtResource("1_h4058")
 texture_filter = 0
