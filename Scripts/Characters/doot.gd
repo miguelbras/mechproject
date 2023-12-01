@@ -40,6 +40,7 @@ func update_animation_parameters():
 func _on_death():
 	audio_player.stream = sound2
 	audio_player.play()
+	Global.doots -= 1
 
 func _on_attack_timer():
 	audio_player.stream = sound3
@@ -58,4 +59,5 @@ func set_visuals(enable: bool):
 	anim_tree.active = enable
 
 func _on_ready():
+	Global.doots += 1
 	set_visuals(false)

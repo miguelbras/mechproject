@@ -104,22 +104,22 @@ text = "00"
 [node name="Flyer" type="Control" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 95.0
-offset_right = 95.0
+offset_left = 114.0
+offset_right = 114.0
 offset_bottom = 31.0
 
 [node name="Skeleton" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Flyer"]
 layout_mode = 2
-offset_left = 6.0
-offset_right = 37.0
+offset_left = 7.0
+offset_right = 38.0
 offset_bottom = 31.0
 texture = ExtResource("7_lxapl")
 expand_mode = 2
 
 [node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Flyer"]
 layout_mode = 2
-offset_left = 39.416
-offset_right = 78.416
+offset_left = 40.416
+offset_right = 79.416
 offset_bottom = 31.0
 text = "00"
 

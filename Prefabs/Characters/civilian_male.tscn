@@ -3133,7 +3133,7 @@ mesh = SubResource("BoxMesh_7ecue")
 
 [node name="Thread1Node" type="Node" parent="." node_paths=PackedStringArray("parentNode")]
 process_thread_group = 2
-process_thread_group_order = 0
+process_thread_group_order = 5
 process_thread_messages = 0
 script = ExtResource("6_n0iss")
 aggro_range = 10.0

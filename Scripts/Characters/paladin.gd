@@ -36,6 +36,10 @@ func follow_enemy():
 	var steering = desired_velocity - velocity
 	velocity = Util.truncate_vector(velocity + steering, max_velocity)
 	velocity.y = 0
+	
+func _on_tree_exited():
+	if parent_spawner != null:
+		parent_spawner.current_paladins -= 1
 
 func attack_others():
 	for mob in AggroTargetScript.neighbours:	

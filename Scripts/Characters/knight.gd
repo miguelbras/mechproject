@@ -102,7 +102,7 @@ func _on_slow_timer_timeout():
 	attack1_debuff = null
 
 func _on_dot_timer_timeout():
-	take_damage(dot_dmg)
+	take_damage(dot_dmg, false)
 	dot_ticks_left -= 1
 	if dot_ticks_left == 0:
 		dot_timer.stop()
