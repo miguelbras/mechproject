@@ -66,7 +66,8 @@ win_screen_prefab = ExtResource("2_haw5r")
 lose_screen_prefab = ExtResource("3_6usxq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
+transform = Transform3D(1, 0, 0, 0, 0.354552, 0.935036, 0, -0.935036, 0.354552, 0, 5.28216, 0)
+shadow_enabled = true
 
 [node name="Lich" parent="." node_paths=PackedStringArray("iso_camera", "top_down_camera", "aggressive_marker") instance=ExtResource("5_4lxhq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 4)
@@ -289,9 +290,6 @@ transform = Transform3D(1, 0, -0.000366449, 0, 1, 0, 0.000366449, 0, 1, -100.466
 
 [node name="House2" parent="City5" instance=ExtResource("6_1opo7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.528, 0.05, -9.85531)
-
-[node name="House3" parent="City5" instance=ExtResource("6_1opo7")]
-transform = Transform3D(-0.00668454, 0, -0.999978, 0, 1, 0, 0.999978, 0, -0.00668454, -143.773, 0.05, -8.24982)
 
 [node name="House4" parent="City5" instance=ExtResource("6_1opo7")]
 transform = Transform3D(-0.00476458, 0, 0.999989, 0, 1, 0, -0.999989, 0, -0.00476458, -96.9114, 0.05, 0.181921)
@@ -686,6 +684,48 @@ transform = Transform3D(0.476069, 0, 0.879408, 0, 1, 0, -0.879408, 0, 0.476069, 
 
 [node name="tree_damaged_04" parent="forests" instance=ExtResource("25_qmn2n")]
 transform = Transform3D(0.481402, 0, 0.8765, 0, 1, 0, -0.8765, 0, 0.481402, 86.9098, 0.0499969, -50.7341)
+
+[node name="tree_11" parent="forests" instance=ExtResource("19_6npuu")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 37.7558, 0.05, 68.0067)
+
+[node name="tree_12" parent="forests" instance=ExtResource("20_bxnnj")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 35.9965, 0.05, 73.391)
+
+[node name="tree_13" parent="forests" instance=ExtResource("21_r01bx")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 34.434, 0, 63.7336)
+
+[node name="tree_14" parent="forests" instance=ExtResource("22_ebcg1")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 45.2895, 0, 66.7887)
+
+[node name="tree_15" parent="forests" instance=ExtResource("23_nw6t5")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 30.1964, 0, 68.7873)
+
+[node name="tree_damaged_05" parent="forests" instance=ExtResource("24_rielt")]
+transform = Transform3D(0.476069, 0, 0.879408, 0, 1, 0, -0.879408, 0, 0.476069, 18.207, 0.0499969, 80.4037)
+
+[node name="tree_damaged_06" parent="forests" instance=ExtResource("25_qmn2n")]
+transform = Transform3D(0.481402, 0, 0.8765, 0, 1, 0, -0.8765, 0, 0.481402, 53.4953, 0.0499969, 53.2722)
+
+[node name="tree_16" parent="forests" instance=ExtResource("19_6npuu")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -67.7231, 0.05, -18.3422)
+
+[node name="tree_17" parent="forests" instance=ExtResource("20_bxnnj")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -69.4824, 0.05, -12.9579)
+
+[node name="tree_18" parent="forests" instance=ExtResource("21_r01bx")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -71.0449, 0, -22.6153)
+
+[node name="tree_19" parent="forests" instance=ExtResource("22_ebcg1")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -60.1894, 0, -19.5602)
+
+[node name="tree_20" parent="forests" instance=ExtResource("23_nw6t5")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -75.2825, 0, -17.5616)
+
+[node name="tree_damaged_07" parent="forests" instance=ExtResource("24_rielt")]
+transform = Transform3D(0.476069, 0, 0.879408, 0, 1, 0, -0.879408, 0, 0.476069, -87.2719, 0.0499969, -5.94519)
+
+[node name="tree_damaged_08" parent="forests" instance=ExtResource("25_qmn2n")]
+transform = Transform3D(0.481402, 0, 0.8765, 0, 1, 0, -0.8765, 0, 0.481402, -51.9836, 0.0499969, -33.0767)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 

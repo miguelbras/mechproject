@@ -34,10 +34,10 @@ timeLabel = NodePath("TextureRect/RichTextLabel")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" node_paths=PackedStringArray("pg_bar")]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 31.0
-offset_right = 316.0
-offset_bottom = 49.0
+offset_left = 62.0
+offset_top = 28.0
+offset_right = 302.0
+offset_bottom = 46.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_pvclw")
 texture_progress = ExtResource("2_4grla")
@@ -46,10 +46,10 @@ pg_bar = NodePath(".")
 
 [node name="lich portrait" type="TextureRect" parent="CanvasLayer/Control/TextureProgressBar"]
 layout_mode = 0
-offset_left = -67.0
-offset_top = -29.0
-offset_right = 17.0
-offset_bottom = 47.0
+offset_left = -53.0
+offset_top = -24.0
+offset_right = 31.0
+offset_bottom = 52.0
 texture = ExtResource("4_d77jb")
 expand_mode = 1
 stretch_mode = 4
@@ -60,7 +60,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -760.0
+offset_left = -811.0
 offset_top = 3.0
 offset_right = -2.0
 offset_bottom = 34.0
@@ -71,9 +71,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.483
 anchor_right = 0.483
-offset_left = -161.236
+offset_left = -152.236
 offset_top = 8.0
-offset_right = 50.764
+offset_right = 59.764
 offset_bottom = 24.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_15f32")
@@ -96,16 +96,17 @@ expand_mode = 2
 
 [node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Skeleton"]
 layout_mode = 2
-offset_left = 39.416
-offset_right = 78.416
+offset_left = 39.0
+offset_right = 98.0
 offset_bottom = 31.0
-text = "00"
+text = "0/50
+"
 
 [node name="Flyer" type="Control" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 114.0
-offset_right = 114.0
+offset_left = 124.0
+offset_right = 124.0
 offset_bottom = 31.0
 
 [node name="Skeleton" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Flyer"]
@@ -118,16 +119,17 @@ expand_mode = 2
 
 [node name="SkeletonAmount" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect/Flyer"]
 layout_mode = 2
-offset_left = 40.416
-offset_right = 79.416
+offset_left = 40.0
+offset_right = 104.0
 offset_bottom = 31.0
-text = "00"
+text = "0/50
+"
 
 [node name="Villager" type="Control" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 430.0
-offset_right = 430.0
+offset_left = 472.0
+offset_right = 472.0
 offset_bottom = 31.0
 
 [node name="Villager" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Villager"]
@@ -148,8 +150,8 @@ text = "00"
 [node name="Soldiers" type="Control" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 504.0
-offset_right = 504.0
+offset_left = 546.0
+offset_right = 546.0
 offset_bottom = 31.0
 
 [node name="Soldiers" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Soldiers"]
@@ -170,8 +172,8 @@ text = "00"
 [node name="Building" type="Control" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 577.0
-offset_right = 577.0
+offset_left = 619.0
+offset_right = 619.0
 offset_bottom = 31.0
 
 [node name="Buildings" type="TextureRect" parent="CanvasLayer/Control/TextureRect/Building"]
@@ -191,7 +193,7 @@ text = "00"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/TextureRect"]
 layout_mode = 0
-offset_left = 655.0
-offset_right = 758.0
+offset_left = 697.0
+offset_right = 800.0
 offset_bottom = 30.0
 text = "00:00"
