@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://83ift1ga70x1"]
+[gd_scene load_steps=25 format=3 uid="uid://83ift1ga70x1"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_x7pq0"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_haw5r"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dm5ri7gsate38" path="res://Prefabs/Buildings/fortress.tscn" id="10_oy1qd"]
 [ext_resource type="PackedScene" uid="uid://dv0510wjionak" path="res://Prefabs/Buildings/mansion.tscn" id="11_mrvic"]
 [ext_resource type="PackedScene" uid="uid://db1xd14iaadya" path="res://Prefabs/Buildings/hut.tscn" id="12_7q0uv"]
-[ext_resource type="PackedScene" uid="uid://6ywomp04ttwi" path="res://Prefabs/Wilderness/barrel.tscn" id="14_4lnfr"]
 [ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="14_lb7fs"]
 [ext_resource type="PackedScene" uid="uid://cjl8b7uvyfye1" path="res://Prefabs/UI/Tutorials.tscn" id="15_5k72p"]
 [ext_resource type="PackedScene" uid="uid://5jrtgnqrgc4" path="res://Prefabs/UI/UI.tscn" id="16_6d28y"]
@@ -459,9 +458,6 @@ offset_bottom = 73.0
 lich = NodePath("../../../../Lich")
 
 [node name="Wilderness" type="Node3D" parent="."]
-
-[node name="barrel" parent="Wilderness" instance=ExtResource("14_4lnfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.07479)
 
 [node name="terrain_mountains" parent="." instance=ExtResource("16_fxbn0")]
 transform = Transform3D(0.0635323, 0, 0.495947, 0, 0.5, 0, -0.495947, 0, 0.0635323, 1.368, 0, -9.128)
