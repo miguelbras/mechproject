@@ -13,7 +13,7 @@ size = Vector3(11.5, 4.533, 6.5)
 
 [node name="Fortress" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_vycki")
-max_civilians = 8
+max_civilians = 6
 max_knights = 1
 max_paladins = 1
 female_prefab = ExtResource("2_44c5m")
