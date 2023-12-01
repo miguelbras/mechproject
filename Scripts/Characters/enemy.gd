@@ -55,8 +55,9 @@ func set_dot():
 		attack2_debuff = attack2_debuff_prefab.instantiate()
 		add_child(attack2_debuff)
 
-func take_damage(damage: int):
-	damage -= defense
+func take_damage(damage: int, negatable: bool = true):
+	if negatable:
+		damage -= defense
 	if damage > 0:
 		hp -= damage
 		if fbx.visible:

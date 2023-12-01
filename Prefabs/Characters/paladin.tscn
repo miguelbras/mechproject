@@ -163,7 +163,7 @@ process_thread_group = 2
 process_thread_group_order = 2
 process_thread_messages = 0
 script = ExtResource("6_nmybe")
-aggro_range = 30.0
+aggro_range = 15.0
 parentNode = NodePath("..")
 searchLich = false
 

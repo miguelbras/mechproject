@@ -13,7 +13,7 @@ size = Vector3(11.5, 4.533, 6.5)
 
 [node name="Fortress" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_vycki")
-max_civilians = 8
+max_civilians = 6
 max_knights = 1
 max_paladins = 1
 female_prefab = ExtResource("2_44c5m")
@@ -27,7 +27,7 @@ paladin_prefab = ExtResource("4_lumuw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
 [node name="BuildingCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.00735668, 0, 1.00119, 0, 1.00122, 0, -1.00119, 0, 0.00735668, -0.0985415, 2.17444, 4.60829)
+transform = Transform3D(0.00735668, 0, 1.00119, 0, 1.00122, 0, -1.00119, 0, 0.00735668, -0.0985415, 2.17444, -0.00773215)
 shape = SubResource("BoxShape3D_2nx6i")
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -43,7 +43,7 @@ transform = Transform3D(4.54814, 0, 0, 0, 9.61541, 0, 0, 0, 6.00314, -0.0531534,
 aabb = AABB(-0.885047, -1.09301, -1, 1.77009, 2.18601, 2)
 
 [node name="house" parent="." instance=ExtResource("7_0df4g")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.0177333, 0.00247002, 4.70906)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.0177333, 0.00247002, -0.00118923)
 
 [node name="Plane_002" parent="house/RootNode" index="0"]
 surface_material_override/0 = ExtResource("6_edt7s")
