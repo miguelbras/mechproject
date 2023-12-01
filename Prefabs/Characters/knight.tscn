@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_jtsri"]
 [ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/Character/knight.fbx" id="4_3ath4"]
 [ext_resource type="AudioStream" uid="uid://o40f4vqkcpja" path="res://Sound/Attack/hit-swing-sword-small-2-95566.mp3" id="5_24fca"]
-[ext_resource type="Material" uid="uid://cwde4wc8keid8" path="res://Materials/knight.tres" id="5_oa6ai"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="6_64djv"]
+[ext_resource type="Material" uid="uid://cwde4wc8keid8" path="res://Materials/knight.tres" id="6_vsf2h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gn7p2"]
 
@@ -177,7 +177,7 @@ bones/39/position = Vector3(-0.0195834, 0.024392, 0.0203621)
 
 [node name="Cube_011" parent="knight/RootNode/metarig_001/Skeleton3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 1.42109e-14, 0, -1.42109e-14, 1, 0, 0, 0)
-surface_material_override/0 = ExtResource("5_oa6ai")
+surface_material_override/0 = ExtResource("6_vsf2h")
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 1.667
