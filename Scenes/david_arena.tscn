@@ -1,19 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5y3xlo4cqvbw"]
+[gd_scene load_steps=14 format=3 uid="uid://c5y3xlo4cqvbw"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_dl7j3"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_ejt5t"]
 [ext_resource type="PackedScene" uid="uid://v4xke7w0hrkf" path="res://Prefabs/Menu/loss_screen.tscn" id="3_pg7i1"]
-[ext_resource type="PackedScene" uid="uid://bjsxmtsb0ta1e" path="res://Prefabs/selection.tscn" id="4_lfhsg"]
 [ext_resource type="PackedScene" uid="uid://brjmf2ik2584c" path="res://Prefabs/Characters/lich.tscn" id="5_jxcgr"]
 [ext_resource type="AudioStream" uid="uid://0xlvnt25ojka" path="res://Sound/BackgroundMusic/traversing-the-deep.mp3" id="6_xbhov"]
 [ext_resource type="PackedScene" uid="uid://cuvnsrih2hjtu" path="res://Prefabs/UI/AbilityCooldDown.tscn" id="8_54ukm"]
-[ext_resource type="PackedScene" uid="uid://cj3qf4rpr17pm" path="res://Prefabs/Characters/civilian_light.tscn" id="9_24ial"]
-[ext_resource type="PackedScene" uid="uid://66mvlwfwkl4m" path="res://Prefabs/Characters/doot.tscn" id="9_66yma"]
+[ext_resource type="PackedScene" uid="uid://dm5ri7gsate38" path="res://Prefabs/Buildings/fortress.tscn" id="10_sghba"]
 [ext_resource type="PackedScene" uid="uid://5jrtgnqrgc4" path="res://Prefabs/UI/UI.tscn" id="11_ap20t"]
 [ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="11_n6bw6"]
-[ext_resource type="PackedScene" uid="uid://b6jkyhurdoie0" path="res://Prefabs/Characters/paladin.tscn" id="14_cbnwf"]
 [ext_resource type="PackedScene" uid="uid://db1xd14iaadya" path="res://Prefabs/Buildings/hut.tscn" id="14_r1tc7"]
-[ext_resource type="PackedScene" uid="uid://kcl3hrttj06k" path="res://Prefabs/Characters/knight.tscn" id="17_od3gd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0ivu4"]
 vertices = PackedVector3Array(-22.25, 0.5, -29.5, -29.5, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, 22, -29.5, 0.5, 29.5, -22.25, 0.5, 29.5, 29.5, 0.5, -22.25, 29.5, 0.5, -29.5, 22, 0.5, -29.5, 22, 0.5, 29.5, 29.5, 0.5, 29.5, 29.5, 0.5, 22, -29.5, 0.5, 14.75, -29.5, 0.5, 22, -22.25, 0.5, 29.5, -14.75, 0.5, 29.5, 29.5, 0.5, -22.25, 22, 0.5, -29.5, 14.75, 0.5, -29.5, 29.5, 0.5, -14.75, -14.75, 0.5, -29.5, -22.25, 0.5, -29.5, -29.5, 0.5, -22.25, -29.5, 0.5, -14.75, 14.75, 0.5, 29.5, 22, 0.5, 29.5, 29.5, 0.5, 22, 7.25, 0.5, 29.5, 29.5, 0.5, 14.75, 29.5, 0.5, 7.25, 0, 0.5, 29.5, 14.75, 0.5, 29.5, 29.5, 0.5, 22, 29.5, 0.5, 14.75, 7.25, 0.5, 29.5, 0, 0.5, -29.5, -7.5, 0.5, -29.5, -29.5, 0.5, -7.5, -29.5, 0.5, 0, 29.5, 0.5, 0, 0, 0.5, -29.5, -29.5, 0.5, 0, -7.5, 0.5, 29.5, 0, 0.5, 29.5, 29.5, 0.5, 7.25, -29.5, 0.5, 14.75, -14.75, 0.5, 29.5, -7.5, 0.5, 29.5, -29.5, 0.5, 7.25, 29.5, 0.5, -7.5, 29.5, 0.5, -14.75, 14.75, 0.5, -29.5, 7.25, 0.5, -29.5, -7.5, 0.5, -29.5, -14.75, 0.5, -29.5, -29.5, 0.5, -14.75, -29.5, 0.5, -7.5, -29.5, 0.5, 0, -29.5, 0.5, 7.25, -7.5, 0.5, 29.5, 29.5, 0.5, -7.5, 7.25, 0.5, -29.5, 0, 0.5, -29.5, 29.5, 0.5, 0)
@@ -32,9 +28,6 @@ lose_screen_prefab = ExtResource("3_pg7i1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.861425, 0.507884, 0, -0.507884, 0.861425, 0, 5.28216, 0)
-
-[node name="Selection" parent="." node_paths=PackedStringArray("camera") groups=["Selection"] instance=ExtResource("4_lfhsg")]
-camera = NodePath("../Camera3D")
 
 [node name="Lich" parent="." node_paths=PackedStringArray("iso_camera", "top_down_camera", "aggressive_marker") instance=ExtResource("5_jxcgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
@@ -76,12 +69,6 @@ offset_bottom = 591.0
 UiStats = NodePath("../../../UI2/CanvasLayer/Control")
 lich = NodePath("../../../Lich")
 
-[node name="Civilian" parent="." instance=ExtResource("9_24ial")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76073, 0.0866349, 1.83357)
-
-[node name="DootCharacter" parent="." instance=ExtResource("9_66yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66646, 0.0866356, 1.19838)
-
 [node name="TopDownCamera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 30, 0)
 fov = 65.4
@@ -97,27 +84,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33931, -4.07208, 1.66938)
 [node name="TextureProgressBar" parent="UI2/CanvasLayer/Control" index="0" node_paths=PackedStringArray("lich")]
 lich = NodePath("../../../../Lich")
 
-[node name="Civilian2" parent="." instance=ExtResource("9_24ial")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08764, 0.0866346, 6.7939)
-
-[node name="Civilian3" parent="." instance=ExtResource("9_24ial")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25282, 0.0866346, -7.9428)
-
-[node name="Civilian4" parent="." instance=ExtResource("9_24ial")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8827, 0.0866346, -5.76161)
-
 [node name="Hut" parent="." instance=ExtResource("14_r1tc7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7758, 0.0866337, -20.7707)
 
-[node name="Knight" parent="." instance=ExtResource("17_od3gd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52823, 0.0866346, 4.78538)
-
-[node name="Paladin" parent="." instance=ExtResource("14_cbnwf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.638727, 0.0866346, 5.30691)
+[node name="Fortress" parent="." instance=ExtResource("10_sghba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7796, 0.0866346, 4.62278)
+max_civilians = 0
+max_knights = 0
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
 [editable path="Lich"]
 [editable path="Lich/lich"]
+[editable path="Lich/SelectionMarker"]
+[editable path="Lich/SelectionMarker/highlight"]
 [editable path="Control"]
 [editable path="UI2"]

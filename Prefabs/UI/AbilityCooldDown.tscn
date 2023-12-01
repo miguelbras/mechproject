@@ -42,6 +42,7 @@ texture_under = ExtResource("1_78445")
 texture_progress = ExtResource("2_d1w2y")
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(0, 0, 0, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
@@ -52,6 +53,7 @@ texture_under = ExtResource("3_fw8m0")
 texture_progress = ExtResource("2_d1w2y")
 
 [node name="VSeparator2" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
@@ -62,6 +64,7 @@ texture_under = ExtResource("4_kap6f")
 texture_progress = ExtResource("2_d1w2y")
 
 [node name="VSeparator3" type="VSeparator" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
@@ -70,3 +73,63 @@ layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("4_kap6f")
 texture_progress = ExtResource("2_d1w2y")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = -58.0
+offset_right = 169.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "R
+"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -58.0
+offset_right = 75.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "E
+"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -58.0
+offset_right = -17.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "W
+"
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -58.0
+offset_right = -113.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Q
+"

@@ -13,6 +13,7 @@ script = ExtResource("1_2dgqj")
 shape = SubResource("SphereShape3D_s2cxj")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
 autostart = true
 
 [node name="bullet" parent="." instance=ExtResource("2_el4v0")]
