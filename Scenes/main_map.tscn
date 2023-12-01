@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://83ift1ga70x1"]
+[gd_scene load_steps=34 format=3 uid="uid://83ift1ga70x1"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_x7pq0"]
 [ext_resource type="PackedScene" uid="uid://crry7pcjo62je" path="res://Prefabs/Menu/win_screen.tscn" id="2_haw5r"]
@@ -11,11 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://dm5ri7gsate38" path="res://Prefabs/Buildings/fortress.tscn" id="10_oy1qd"]
 [ext_resource type="PackedScene" uid="uid://dv0510wjionak" path="res://Prefabs/Buildings/mansion.tscn" id="11_mrvic"]
 [ext_resource type="PackedScene" uid="uid://db1xd14iaadya" path="res://Prefabs/Buildings/hut.tscn" id="12_7q0uv"]
+[ext_resource type="PackedScene" uid="uid://6ywomp04ttwi" path="res://Prefabs/Wilderness/barrel.tscn" id="14_4lnfr"]
 [ext_resource type="PackedScene" uid="uid://0oi6rr43ull6" path="res://Prefabs/Visuals/selection_marker.tscn" id="14_lb7fs"]
 [ext_resource type="PackedScene" uid="uid://cjl8b7uvyfye1" path="res://Prefabs/UI/Tutorials.tscn" id="15_5k72p"]
+[ext_resource type="PackedScene" uid="uid://dnnkf7dinxrq1" path="res://Prefabs/Wilderness/well.tscn" id="15_qs8y6"]
 [ext_resource type="PackedScene" uid="uid://5jrtgnqrgc4" path="res://Prefabs/UI/UI.tscn" id="16_6d28y"]
 [ext_resource type="PackedScene" uid="uid://cb88mojkyng7d" path="res://3DModels/terrain_mountains.fbx" id="16_fxbn0"]
 [ext_resource type="Texture2D" uid="uid://drqwk0bd7ri22" path="res://Textures/terrain_4k.png" id="16_jyns5"]
+[ext_resource type="PackedScene" uid="uid://bsk3hk1ddegb7" path="res://Prefabs/Wilderness/tree_01.tscn" id="19_6npuu"]
+[ext_resource type="PackedScene" uid="uid://bxv2cppydgrv1" path="res://Prefabs/Wilderness/tree_02.tscn" id="20_bxnnj"]
+[ext_resource type="PackedScene" uid="uid://bxwrso2qyd6pu" path="res://Prefabs/Wilderness/tree_03.tscn" id="21_r01bx"]
+[ext_resource type="PackedScene" uid="uid://dtexyerdjhti8" path="res://Prefabs/Wilderness/tree_04.tscn" id="22_ebcg1"]
+[ext_resource type="PackedScene" uid="uid://chagjrq4ly6ga" path="res://Prefabs/Wilderness/tree_05.tscn" id="23_nw6t5"]
+[ext_resource type="PackedScene" uid="uid://c4jgru44j7wcf" path="res://Prefabs/Wilderness/tree_damaged_01.tscn" id="24_rielt"]
+[ext_resource type="PackedScene" uid="uid://3l1mkjis7aco" path="res://Prefabs/Wilderness/tree_damaged_02.tscn" id="25_qmn2n"]
 
 [sub_resource type="Environment" id="Environment_ggbec"]
 fog_light_energy = 0.0
@@ -408,25 +417,91 @@ transform = Transform3D(0.00418872, 0, -0.999991, 0, 1, 0, 0.999991, 0, 0.004188
 [node name="RandomHuts" type="Node3D" parent="."]
 
 [node name="Hut" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
-transform = Transform3D(0.947143, 0, -0.320811, 0, 1, 0, 0.320811, 0, 0.947143, -35.9173, 0.05, -8.49946)
+transform = Transform3D(-0.310759, 0, -0.950489, 0, 1, 0, 0.950489, 0, -0.310759, -35.9173, 0.05, -8.49946)
+
+[node name="well" parent="RandomHuts/Hut" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(0.947143, 0, 0.320811, 0, 1, 0, -0.320811, 0, 0.947143, 6.24286, -7.63685e-07, -0.174336)
+
+[node name="barrel" parent="RandomHuts/Hut" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(0.947143, 0, 0.320811, 0, 1, 0, -0.320811, 0, 0.947143, 7.26422, -7.63685e-07, -2.2353)
+
+[node name="barrel2" parent="RandomHuts/Hut" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(0.947144, 0, 0.320811, 0, 1, 0, -0.320811, 0, 0.947144, 5.99425, 0, -2.51006)
+
+[node name="barrel3" parent="RandomHuts/Hut" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(0.947144, 0, 0.320811, 0, 1, 0, -0.320811, 0, 0.947144, 5.05771, 0, -1.87809)
 
 [node name="Hut7" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
 transform = Transform3D(-0.163722, 0, -0.986507, 0, 1, 0, 0.986507, 0, -0.163722, -0.074913, 0.05, -6.35962)
 
+[node name="well" parent="RandomHuts/Hut7" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -1.22359, 0, -7.37275)
+
+[node name="barrel" parent="RandomHuts/Hut7" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(-0.163722, 0, 0.986506, 0, 1, 0, -0.986506, 0, -0.163722, 3.14109, -0.05, -0.597237)
+
+[node name="barrel2" parent="RandomHuts/Hut7" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 3.54826, 0, 0.358765)
+
 [node name="Hut2" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
 transform = Transform3D(0.816672, 0, 0.577102, 0, 1, 0, -0.577102, 0, 0.816672, -50.3488, 0.05, 29.5678)
+
+[node name="barrel" parent="RandomHuts/Hut2" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7112, 0, 2.42155)
+
+[node name="barrel2" parent="RandomHuts/Hut2" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051918, 0, 2.43194)
+
+[node name="well" parent="RandomHuts/Hut2" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(0.816672, 0, -0.577102, 0, 1, 0, 0.577102, 0, 0.816672, -2.75285, 7.63685e-07, 7.1742)
 
 [node name="Hut3" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
 transform = Transform3D(-0.51423, 0, -0.857652, 0, 1, 0, 0.857652, 0, -0.51423, 38.3628, 0.05, -51.0791)
 
+[node name="well" parent="RandomHuts/Hut3" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(-0.51423, 0, 0.857652, 0, 1, 0, -0.857652, 0, -0.51423, -8.81437, 0, -3.08686)
+
 [node name="Hut4" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
 transform = Transform3D(-0.967793, 0, -0.251748, 0, 1, 0, 0.251748, 0, -0.967793, 52.3699, 0.05, -11.1801)
+
+[node name="well" parent="RandomHuts/Hut4" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(-0.967793, 0, 0.251748, 0, 1, 0, -0.251748, 0, -0.967793, -10.4164, 0, -0.627945)
+
+[node name="well2" parent="RandomHuts/Hut4" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(-0.967793, 0, 0.251748, 0, 1, 0, -0.251748, 0, -0.967793, -15.029, 0, 3.11677)
+
+[node name="well3" parent="RandomHuts/Hut4" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(-0.967793, 0, 0.251748, 0, 1, 0, -0.251748, 0, -0.967793, -15.5335, 0, -4.53407)
+
+[node name="barrel" parent="RandomHuts/Hut4" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(-0.967793, 0, 0.251748, 0, 1, 0, -0.251748, 0, -0.967793, -4.62714, 1.52737e-06, -2.1596)
+
+[node name="barrel2" parent="RandomHuts/Hut4" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(-0.967793, 0, 0.251748, 0, 1, 0, -0.251748, 0, -0.967793, -3.56101, 0, -2.25039)
+
+[node name="barrel3" parent="RandomHuts/Hut4" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(-0.967793, 0, 0.251748, 0, 1, 0, -0.251748, 0, -0.967793, -2.5176, 0, -2.25245)
 
 [node name="Hut5" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
 transform = Transform3D(0.931393, 0, 0.364015, 0, 1, 0, -0.364015, 0, 0.931393, 29.8737, 0.05, 36.7836)
 
+[node name="well" parent="RandomHuts/Hut5" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54704, 0, -11.3529)
+
+[node name="barrel" parent="RandomHuts/Hut5" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32415, 0, 5.94673)
+
+[node name="barrel2" parent="RandomHuts/Hut5" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119389, 0, 6.80841)
+
+[node name="barrel3" parent="RandomHuts/Hut5" instance=ExtResource("14_4lnfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75168, 0, 6.77984)
+
 [node name="Hut6" parent="RandomHuts" instance=ExtResource("12_7q0uv")]
 transform = Transform3D(-0.999841, 0, 0.0178537, 0, 1, 0, -0.0178537, 0, -0.999841, 45.7597, 0.05, 36.7836)
+
+[node name="well" parent="RandomHuts/Hut6" instance=ExtResource("15_qs8y6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164413, 0, -9.20743)
 
 [node name="House" parent="RandomHuts" instance=ExtResource("6_1opo7")]
 transform = Transform3D(0.98555, 0, 0.169384, 0, 1, 0, -0.169384, 0, 0.98555, -67.6211, 0.05, 19.0637)
@@ -456,8 +531,6 @@ offset_bottom = 73.0
 
 [node name="TextureProgressBar" parent="UI/CanvasLayer/Control" index="0" node_paths=PackedStringArray("lich")]
 lich = NodePath("../../../../Lich")
-
-[node name="Wilderness" type="Node3D" parent="."]
 
 [node name="terrain_mountains" parent="." instance=ExtResource("16_fxbn0")]
 transform = Transform3D(0.0635323, 0, 0.495947, 0, 0.5, 0, -0.495947, 0, 0.0635323, 1.368, 0, -9.128)
@@ -569,6 +642,50 @@ transform = Transform3D(0.963439, 0, 0.267928, 0, 1, 0, -0.267928, 0, 0.963439, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall15"]
 transform = Transform3D(0.995087, 0, -0.0990072, 0, 1, 0, 0.0990072, 0, 0.995087, 6.99195, 0.0016861, -1.31804)
 shape = SubResource("BoxShape3D_dc2gr")
+
+[node name="forests" type="Node3D" parent="."]
+
+[node name="tree_01" parent="forests" instance=ExtResource("19_6npuu")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 43.1918, 0.05, -75.8419)
+
+[node name="tree_02" parent="forests" instance=ExtResource("20_bxnnj")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 48.5631, 0.05, -74.9145)
+
+[node name="tree_03" parent="forests" instance=ExtResource("21_r01bx")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 39.87, 0, -84.5719)
+
+[node name="tree_04" parent="forests" instance=ExtResource("22_ebcg1")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 50.7255, 0, -87.0992)
+
+[node name="tree_05" parent="forests" instance=ExtResource("23_nw6t5")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 35.6324, 0, -79.5182)
+
+[node name="tree_damaged_01" parent="forests" instance=ExtResource("24_rielt")]
+transform = Transform3D(0.476069, 0, 0.879408, 0, 1, 0, -0.879408, 0, 0.476069, 23.643, 0.0499969, -67.9018)
+
+[node name="tree_damaged_02" parent="forests" instance=ExtResource("25_qmn2n")]
+transform = Transform3D(0.481402, 0, 0.8765, 0, 1, 0, -0.8765, 0, 0.481402, 58.9313, 0.0499969, -95.0333)
+
+[node name="tree_06" parent="forests" instance=ExtResource("19_6npuu")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 71.1703, 0.05, -35.9996)
+
+[node name="tree_07" parent="forests" instance=ExtResource("20_bxnnj")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 69.411, 0.05, -30.6153)
+
+[node name="tree_08" parent="forests" instance=ExtResource("21_r01bx")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 67.8485, 0, -40.2727)
+
+[node name="tree_09" parent="forests" instance=ExtResource("22_ebcg1")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 78.704, 0, -37.2176)
+
+[node name="tree_10" parent="forests" instance=ExtResource("23_nw6t5")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 63.6109, 0, -35.219)
+
+[node name="tree_damaged_03" parent="forests" instance=ExtResource("24_rielt")]
+transform = Transform3D(0.476069, 0, 0.879408, 0, 1, 0, -0.879408, 0, 0.476069, 51.6215, 0.0499969, -23.6026)
+
+[node name="tree_damaged_04" parent="forests" instance=ExtResource("25_qmn2n")]
+transform = Transform3D(0.481402, 0, 0.8765, 0, 1, 0, -0.8765, 0, 0.481402, 86.9098, 0.0499969, -50.7341)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 
