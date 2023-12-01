@@ -129,7 +129,7 @@ func _input(event):
 			summon_timer.start()
 	# camera inputs
 	if event.is_action_pressed("zoom_out"):
-		top_down_cam_zoom_level = min(top_down_cam_zoom_level*2, 8)
+		top_down_cam_zoom_level = min(top_down_cam_zoom_level*2, 4)
 		top_down_camera_delta = top_down_camera_delta_fixed * top_down_cam_zoom_level
 		top_down_camera.position = self.position + top_down_camera_delta
 	elif event.is_action_pressed("zoom_in"):
