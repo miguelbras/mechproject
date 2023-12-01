@@ -29,9 +29,20 @@ func follow_enemy():
 		velocity = Vector3.ZERO
 		if can_attack:
 			attack()
+			attack_others()
 		return
 	# chase enemy
 	var desired_velocity = (mob_target.position - position) * max_velocity
 	var steering = desired_velocity - velocity
 	velocity = Util.truncate_vector(velocity + steering, max_velocity)
 	velocity.y = 0
+
+func attack_others():
+	for mob in AggroTargetScript.neighbours:
+		var mob_id
+		if mob is Lich:
+			mob_id = 0 
+		else:
+			mob_id = mob_target.my_id	
+		if mob.my_id != mob_id and (self.position - mob.position).length_squared() < attack_range_squared:
+			mob.take_damage(strength)
