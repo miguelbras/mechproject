@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpjr4pngxxbux"]
+
+[ext_resource type="Script" path="res://Scripts/Wilderness/decoration.gd" id="1_d34g4"]
+[ext_resource type="PackedScene" uid="uid://6kirbq6fj2g6" path="res://3DModels/Wilderness/rubble.fbx" id="1_ywpvi"]
+[ext_resource type="Material" uid="uid://brd4xs0x0c3ki" path="res://Materials/atlas.tres" id="2_mvei2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hriaf"]
+
+[node name="rubble" type="StaticBody3D"]
+script = ExtResource("1_d34g4")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(3.4027, 0, 0, 0, 1, 0, 0, 0, 5.61663, 0, 1.12665, 0.57425)
+aabb = AABB(-1, -1, -0.642273, 2, 2, 1.28455)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 82.692, 0)
+shape = SubResource("BoxShape3D_hriaf")
+
+[node name="mesh" parent="." instance=ExtResource("1_ywpvi")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.111735, 0, 0.846027)
+
+[node name="Cube_002" parent="mesh/RootNode" index="0"]
+surface_material_override/0 = ExtResource("2_mvei2")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+
+[editable path="mesh"]
