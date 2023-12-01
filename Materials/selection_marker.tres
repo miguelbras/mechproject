@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://caoc4ybvmoxfx"]
+
+[ext_resource type="Texture2D" uid="uid://b38nft6hjvt1m" path="res://Textures/Visuals/highlight_64x64.png" id="1_qscys"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_qscys")
+texture_filter = 0

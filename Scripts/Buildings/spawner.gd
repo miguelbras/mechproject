@@ -11,6 +11,7 @@ class_name Building
 @export var paladin_prefab: PackedScene
 
 @onready var fbx = $house
+@onready var rubble = preload("res://Prefabs/Wilderness/rubble.tscn")
 
 var current_paladins: int = 0
 var current_knights: int = 0
@@ -86,6 +87,9 @@ func _on_spawn_timer_timeout():
 func _on_tree_exited():
 	Global.arena.enemy_despawned(my_id)
 	_on_after_spawn_timer_timeout() # prevent enemies from staying "spawning" forever
+	var cinders = rubble.instantiate()
+	Global.arena.add_child.call_deferred(cinders)
+	cinders.position = self.position
 
 func set_visuals(enable: bool):
 	fbx.set_process(enable)
