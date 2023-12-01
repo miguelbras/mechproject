@@ -34,10 +34,10 @@ timeLabel = NodePath("TextureRect/RichTextLabel")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" node_paths=PackedStringArray("pg_bar")]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 31.0
-offset_right = 316.0
-offset_bottom = 49.0
+offset_left = 62.0
+offset_top = 28.0
+offset_right = 302.0
+offset_bottom = 46.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_pvclw")
 texture_progress = ExtResource("2_4grla")
@@ -46,10 +46,10 @@ pg_bar = NodePath(".")
 
 [node name="lich portrait" type="TextureRect" parent="CanvasLayer/Control/TextureProgressBar"]
 layout_mode = 0
-offset_left = -67.0
-offset_top = -29.0
-offset_right = 17.0
-offset_bottom = 47.0
+offset_left = -53.0
+offset_top = -24.0
+offset_right = 31.0
+offset_bottom = 52.0
 texture = ExtResource("4_d77jb")
 expand_mode = 1
 stretch_mode = 4
