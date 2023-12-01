@@ -1,7 +1,8 @@
 extends Node
 
 @export var aggro_range: float
-var closest_target: Node3D = null # target to run from
+var closest_target
+var neighbours = []
 var aggro_range_squared: float
 @export var parentNode: Node3D
 @export var search_for_allies: bool = true
@@ -26,7 +27,7 @@ func get_targets(pos: Vector3):
 	return targets
 
 func get_closest_target(curr_target: Node3D, pos: Vector3) -> Node3D:
-	var neighbours = get_targets(pos)
+	neighbours = get_targets(pos)
 	if len(neighbours) == 0:
 		return null
 	elif curr_target not in neighbours:

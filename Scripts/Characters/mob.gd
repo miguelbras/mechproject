@@ -51,7 +51,7 @@ func calc_velocity():
 			follow_enemy()
 		# if no enemy nearby, or if passive, just move to destination
 		if enemy_target == null or not aggressive:
-			if follower:
+			if follower and is_instance_valid(lich):
 				move_target = lich.position
 			follow_target()
 		check_blocked()
