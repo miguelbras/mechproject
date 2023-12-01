@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brdqaqma4pdfe"
-path.s3tc="res://.godot/imported/knight_no_glow.png-3d1e3dc39e184cd15f62db46a09a5119.s3tc.ctex"
+uid="uid://dpffa7t64e126"
+path.s3tc="res://.godot/imported/knight_diffuse_black_n_white_blue.png-faa28743da0e2ce0a3a6501893e6a4ce.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/3DModels/knight_no_glow.png"
-dest_files=["res://.godot/imported/knight_no_glow.png-3d1e3dc39e184cd15f62db46a09a5119.s3tc.ctex"]
+source_file="res://Textures/3DModels/knight_diffuse_black_n_white_blue.png"
+dest_files=["res://.godot/imported/knight_diffuse_black_n_white_blue.png-faa28743da0e2ce0a3a6501893e6a4ce.s3tc.ctex"]
 
 [params]
 
