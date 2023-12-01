@@ -38,10 +38,14 @@ func _on_credits_button_pressed():
 
 
 func _on_controls_button_pressed():
-	var text = "Right Mouse Button - Move Lich\nQ - Frost Shock\nW - Fire Bolt\nE - Arcane Explosion\nR - Ritual Sacrifice\n\nLeft Mouse Button - Move Zombies\nSpace - Zombies Follow Lich\n\nTAB - Change Camera\nMouse Wheel - Zoom In/Out"
+	var text = "Right Mouse Button - Move Lich\nQ - Frost Shock\nW - Fire Bolt\nE - Arcane Explosion\nR - Ritual SacriFice\n\nLeft Mouse Button - Move Zombies\nSpace - Zombies Follow Lich\n\nTAB - Change Camera\nMouse Wheel - Zoom In/Out"
 	text_label.text = "[center]%s[/center]" % text
 	text_label.visible = true
 
 
 func _on_back_button_pressed():
 	self.queue_free()
+
+
+func _on_menu_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

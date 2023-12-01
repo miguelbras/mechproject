@@ -13,7 +13,7 @@ size = Vector3(7.5, 4.533, 3.1)
 
 [node name="Hut" type="StaticBody3D" groups=["Building", "Enemy", "spawner"]]
 script = ExtResource("1_32cou")
-max_civilians = 3
+max_civilians = 2
 female_prefab = ExtResource("2_10vbf")
 male_prefab = ExtResource("3_w75ij")
 knight_prefab = ExtResource("3_pw1i6")

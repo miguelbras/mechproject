@@ -86,6 +86,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_tree_exited():
+	if Global.doots >= 50:
+		return
 	var doot_instance = doot.instantiate()
 	Global.arena.add_child.call_deferred(doot_instance)
 	doot_instance.position = self.position
