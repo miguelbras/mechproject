@@ -74,8 +74,8 @@ layout_mode = 2
 [node name="Ability4Cooldown" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 fill_mode = 4
-texture_under = ExtResource("4_kap6f")
-texture_progress = ExtResource("2_d1w2y")
+texture_under = ExtResource("7_qyr6q")
+texture_progress = ExtResource("8_5su5q")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 7
