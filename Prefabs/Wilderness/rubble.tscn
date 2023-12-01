@@ -7,6 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_hriaf"]
 
 [node name="rubble" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.975379, 0)
 script = ExtResource("1_d34g4")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
