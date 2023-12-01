@@ -125,10 +125,10 @@ graph_offset = Vector2(-45, 38)
 
 [node name="Paladin" type="CharacterBody3D" groups=["Enemy", "Paladin"]]
 script = ExtResource("1_3hk6k")
-attack_range = 2.0
+attack_range = 4.0
 strength = 5
 process_tick_max = 10
-hp = 20
+hp = 25
 defense = 1
 max_velocity = 4
 bloodEmitterFX = ExtResource("2_ksxcv")
