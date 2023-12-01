@@ -2,7 +2,7 @@ extends Node
 
 @export var aggro_range: float
 var closest_target
-var neighbours
+var neighbours = []
 var aggro_range_squared: float
 @export var parentNode: Node3D
 @export var search_for_allies: bool = true

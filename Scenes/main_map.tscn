@@ -56,7 +56,7 @@ top_down_camera = NodePath("../TopDownCamera3D")
 aggressive_marker = NodePath("../selection_marker")
 
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 8.49485, 12.292, 11.122)
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 16.0068, 23.1394, 20.0647)
 environment = SubResource("Environment_ggbec")
 projection = 1
 current = true

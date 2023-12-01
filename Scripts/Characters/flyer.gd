@@ -98,3 +98,8 @@ func _on_visible_on_screen_notifier_3d_screen_exited():
 
 func _on_tree_exited():
 	Global.fliers -= 1
+
+func _on_animation_tree_animation_started(anim_name):
+	if anim_name == "Flyer Boi armature|Attack 1" or anim_name == "Flyer Boi armature|Attack 2":
+		audio_player.stream = sound1
+		audio_player.play()
