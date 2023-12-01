@@ -94,7 +94,7 @@ func addFlyer():
 	
 func removeFlyer():
 	flyerAmount -= 1
-	flyerAmountLabel.text = str(flyerAmount)
+	flyerAmountLabel.text = str(flyerAmount) + "/6"
 	totalPopulation-=1
 	lichPopulation -= 12
 	updatePowerBalanceBar()

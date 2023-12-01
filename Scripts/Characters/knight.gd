@@ -10,8 +10,8 @@ enum State {IDLE, WALK, ATK, DEAD}
 @onready var audio_player = $AudioStreamPlayer
 @onready var cooldown = $Cooldown
 @onready var AggroTargetScript = $Thread1Node
-@onready var anim_tree = $AnimationTree
-@onready var fbx = $knight
+#@onready var anim_tree = $AnimationTree
+#@onready var fbx = $knight
 
 var attack_range_squared: float
 var can_attack = true # cooldown so it does not endlessly attack
@@ -33,12 +33,8 @@ func _ready():
 	super._ready()
 	my_id = Global.arena.enemy_spawned(self)
 	attack_range_squared = attack_range * attack_range
+	fbx = $knight
 	set_visuals(false)
-
-func set_visuals(enable: bool):
-	fbx.set_process(enable)
-	fbx.visible = enable
-	anim_tree.active = enable
 
 func attack():
 	cooldown.start()

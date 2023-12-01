@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://kcl3hrttj06k"]
+[gd_scene load_steps=35 format=3 uid="uid://kcl3hrttj06k"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/knight.gd" id="1_2x1n4"]
+[ext_resource type="PackedScene" uid="uid://g6ha0fqsp6be" path="res://Prefabs/Visuals/blood_particle.tscn" id="2_fwr6e"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_u3had"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_jtsri"]
 [ext_resource type="PackedScene" uid="uid://ctj4ly41elsh8" path="res://3DModels/Character/knight.fbx" id="4_3ath4"]
@@ -126,6 +127,7 @@ graph_offset = Vector2(148, 125)
 script = ExtResource("1_2x1n4")
 attack_range = 2.0
 process_tick_max = 10
+bloodEmitterFX = ExtResource("2_fwr6e")
 attack1_debuff_prefab = ExtResource("2_u3had")
 attack2_debuff_prefab = ExtResource("3_jtsri")
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://cj3qf4rpr17pm"]
+[gd_scene load_steps=33 format=3 uid="uid://cj3qf4rpr17pm"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/civilian.gd" id="1_6nb2k"]
+[ext_resource type="PackedScene" uid="uid://g6ha0fqsp6be" path="res://Prefabs/Visuals/blood_particle.tscn" id="2_1uba8"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_a30c8"]
 [ext_resource type="Script" path="res://Scripts/detectTargetType.gd" id="2_d18j0"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_3xc1d"]
@@ -2972,6 +2973,7 @@ graph_offset = Vector2(-175.088, 20.0494)
 script = ExtResource("1_6nb2k")
 process_tick_max = 30
 hp = 5
+bloodEmitterFX = ExtResource("2_1uba8")
 attack1_debuff_prefab = ExtResource("2_a30c8")
 attack2_debuff_prefab = ExtResource("3_3xc1d")
 
