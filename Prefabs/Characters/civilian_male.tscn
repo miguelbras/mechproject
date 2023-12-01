@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://bkja2k30hj0ls"]
+[gd_scene load_steps=33 format=3 uid="uid://bkja2k30hj0ls"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/civilian.gd" id="1_rwsyn"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_1d5do"]
+[ext_resource type="PackedScene" uid="uid://g6ha0fqsp6be" path="res://Prefabs/Visuals/blood_particle.tscn" id="2_kiuox"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_3lxoc"]
 [ext_resource type="PackedScene" uid="uid://coxgcjcr1vuo1" path="res://3DModels/Character/villager_male.fbx" id="4_hwiyj"]
 [ext_resource type="Texture2D" uid="uid://o6pk8n4ktgjo" path="res://Textures/3DModels/villager_male.png" id="5_16vuk"]
@@ -3049,6 +3050,7 @@ graph_offset = Vector2(-175.088, 20.0494)
 script = ExtResource("1_rwsyn")
 process_tick_max = 30
 hp = 5
+bloodEmitterFX = ExtResource("2_kiuox")
 attack1_debuff_prefab = ExtResource("2_1d5do")
 attack2_debuff_prefab = ExtResource("3_3lxoc")
 

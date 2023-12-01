@@ -10,8 +10,8 @@ var current_stamina: float
 @onready var stamina_timer = $StaminaTimer
 @onready var random_mov_timer = $RandomMovementTimer
 @onready var doot = load("res://Prefabs/Characters/doot.tscn")
-@onready var fbx = $villager
-@onready var anim_tree = $AnimationTree
+#@onready var fbx = $villager
+#@onready var anim_tree = $AnimationTree
 
 var target # target to run from if ESCAPE
 var state = State.IDLE
@@ -29,13 +29,9 @@ const anim_map = {
 
 func _ready():
 	super._ready()
+	fbx = $villager
 	set_visuals(false)
 	
-func set_visuals(enable: bool):
-	fbx.set_process(enable)
-	fbx.visible = enable
-	anim_tree.active = enable
-
 # sets velocity and state
 func run_from_target():
 	target = AggroTargetScript.closest_target
