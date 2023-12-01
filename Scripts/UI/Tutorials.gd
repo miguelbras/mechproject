@@ -11,6 +11,7 @@ var hints = [
 	"                   Order your undead to attack with Left Mouse Button!",
 	"              Summon a stronger undead by sacrificing 5 followers with R!",
 	"                          Some enemies fight back, be careful!",
+	"				    Destroy all the enemy buildings to conquer the empire.",
 	"       Conquer the empire as fast as possible to get on the leaderboards!",
 ]
 
