@@ -20,7 +20,8 @@ func _ready():
 		feedback_label.text = "You took %d seconds to conquer the empire!" % game_time
 
 func _on_http_request_request_completed(result, response_code, headers, body):
-	feedback_label.text = "Submitted!"
+	#feedback_label.text = "Submitted!"
+	pass
 
 
 func _on_submit_button_pressed():
@@ -40,3 +41,4 @@ func _on_submit_button_pressed():
 		feedback_label.text = "Server down..."
 		return
 	submit_button.disabled = true
+	feedback_label.text = "Submitted!"
