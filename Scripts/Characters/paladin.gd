@@ -38,11 +38,10 @@ func follow_enemy():
 	velocity.y = 0
 
 func attack_others():
-	for mob in AggroTargetScript.neighbours:
-		var mob_id
-		if mob is Lich:
-			mob_id = 0 
-		else:
-			mob_id = mob_target.my_id	
-		if mob.my_id != mob_id and (self.position - mob.position).length_squared() < attack_range_squared:
+	for mob in AggroTargetScript.neighbours:	
+		var dir = mob.position - self.position
+		var dist = dir.length_squared()
+		dir = dir.normalized()
+		var angle = rad_to_deg((basis.z).angle_to(dir))
+		if mob.my_id != mob_target.my_id and dist < attack_range_squared and angle < 180:
 			mob.take_damage(strength)

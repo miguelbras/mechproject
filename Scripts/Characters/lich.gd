@@ -52,7 +52,7 @@ var state = State.IDLE # animation state
 var atk_pattern = 0
 var attacking = false
 var summoning = false
-
+var my_id = 0
 var top_down_cam_zoom_level = 1
 var escape_menu = null
 
