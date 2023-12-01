@@ -5,6 +5,10 @@ class_name Enemy
 @export var hp = 10
 @export var defense = 0
 @export var max_velocity = 3
+@export var bloodEmitterFX: PackedScene
+@onready var anim_tree = $AnimationTree
+
+var fbx 
 
 @onready var slow_timer = $SlowTimer
 var slow_factor = 0.5
@@ -28,6 +32,11 @@ var my_id
 func _ready():
 	set_as_top_level(true)
 
+func set_visuals(enable: bool):
+	fbx.set_process(enable)
+	fbx.visible = enable
+	anim_tree.active = enable
+
 func set_slow():
 	if slow:
 		slow_timer.stop()
@@ -50,6 +59,8 @@ func take_damage(damage: int):
 	damage -= defense
 	if damage > 0:
 		hp -= damage
+		if fbx.visible:
+			add_child(bloodEmitterFX.instantiate())
 	if hp <= 0 and death_timer.is_stopped():
 		death_timer.start()
 		Global.arena.enemy_despawned(my_id)

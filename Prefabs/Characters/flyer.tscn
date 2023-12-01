@@ -2771,8 +2771,6 @@ parameters/conditions/flap = false
 parameters/conditions/glide = false
 parameters/conditions/idle = false
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_w2my2")
 volume_db = -13.0
@@ -2798,12 +2796,14 @@ one_shot = true
 wait_time = 1.433
 one_shot = true
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="flyer"]

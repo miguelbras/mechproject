@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://bkja2k30hj0ls"]
+[gd_scene load_steps=33 format=3 uid="uid://bkja2k30hj0ls"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/civilian.gd" id="1_rwsyn"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_1d5do"]
+[ext_resource type="PackedScene" uid="uid://g6ha0fqsp6be" path="res://Prefabs/Visuals/blood_particle.tscn" id="2_kiuox"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_3lxoc"]
 [ext_resource type="PackedScene" uid="uid://coxgcjcr1vuo1" path="res://3DModels/Character/villager_male.fbx" id="4_hwiyj"]
 [ext_resource type="Texture2D" uid="uid://o6pk8n4ktgjo" path="res://Textures/3DModels/villager_male.png" id="5_16vuk"]
@@ -3038,17 +3039,18 @@ states/End/position = Vector2(982, 98)
 states/Start/position = Vector2(98, 85.6436)
 states/metarig_001|death/node = SubResource("AnimationNodeAnimation_ypkbk")
 states/metarig_001|death/position = Vector2(439.912, 182.644)
-states/metarig_001|idle_male/node = SubResource("AnimationNodeAnimation_5ckrw")
-states/metarig_001|idle_male/position = Vector2(303.912, 85.6436)
+states/metarig_001|idle/node = SubResource("AnimationNodeAnimation_5ckrw")
+states/metarig_001|idle/position = Vector2(303.912, 85.6436)
 states/metarig_001|move/node = SubResource("AnimationNodeAnimation_bq8o4")
 states/metarig_001|move/position = Vector2(555.912, 85.6436)
-transitions = ["metarig_001|move", "metarig_001|death", SubResource("AnimationNodeStateMachineTransition_5cjve"), "Start", "metarig_001|idle_male", SubResource("AnimationNodeStateMachineTransition_ftgsc"), "metarig_001|idle_male", "metarig_001|move", SubResource("AnimationNodeStateMachineTransition_lvpta"), "metarig_001|move", "metarig_001|idle_male", SubResource("AnimationNodeStateMachineTransition_eq6nh"), "metarig_001|idle_male", "metarig_001|death", SubResource("AnimationNodeStateMachineTransition_lfbau")]
+transitions = ["metarig_001|move", "metarig_001|death", SubResource("AnimationNodeStateMachineTransition_5cjve"), "Start", "metarig_001|idle", SubResource("AnimationNodeStateMachineTransition_ftgsc"), "metarig_001|idle", "metarig_001|move", SubResource("AnimationNodeStateMachineTransition_lvpta"), "metarig_001|move", "metarig_001|idle", SubResource("AnimationNodeStateMachineTransition_eq6nh"), "metarig_001|idle", "metarig_001|death", SubResource("AnimationNodeStateMachineTransition_lfbau")]
 graph_offset = Vector2(-175.088, 20.0494)
 
 [node name="Civilian" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_rwsyn")
 process_tick_max = 30
 hp = 5
+bloodEmitterFX = ExtResource("2_kiuox")
 attack1_debuff_prefab = ExtResource("2_1d5do")
 attack2_debuff_prefab = ExtResource("3_3lxoc")
 

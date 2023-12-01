@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://b6jkyhurdoie0"]
+[gd_scene load_steps=35 format=3 uid="uid://b6jkyhurdoie0"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/paladin.gd" id="1_3hk6k"]
 [ext_resource type="PackedScene" uid="uid://dfc0wb6eis4ga" path="res://Prefabs/Visuals/attack1_debuff.tscn" id="2_7xlae"]
+[ext_resource type="PackedScene" uid="uid://g6ha0fqsp6be" path="res://Prefabs/Visuals/blood_particle.tscn" id="2_ksxcv"]
 [ext_resource type="PackedScene" uid="uid://bu2o4ja3mcb8n" path="res://Prefabs/Visuals/attack2_debuff.tscn" id="3_nhaj8"]
 [ext_resource type="PackedScene" uid="uid://cvobbpyan2tc0" path="res://3DModels/Character/paladin.fbx" id="4_fpnv2"]
 [ext_resource type="Material" uid="uid://0hrgtaxpnnrp" path="res://Materials/paladin.tres" id="5_vatpk"]
@@ -130,6 +131,7 @@ process_tick_max = 10
 hp = 20
 defense = 1
 max_velocity = 4
+bloodEmitterFX = ExtResource("2_ksxcv")
 attack1_debuff_prefab = ExtResource("2_7xlae")
 attack2_debuff_prefab = ExtResource("3_nhaj8")
 
